@@ -118,17 +118,28 @@ inServer.onChange = () => {
         return;
     }
     
-    const desc = serversList.find((s) => {
-        const name = s.SyphonServerDescriptionNameKey || s.SyphonServerDescriptionName || s.SyphonServerDescriptionAppNameKey || s.SyphonServerDescriptionAppName || "Unknown Server";
-        return name === selected;
-    });
-    
-    if (desc) {
-        ipcRenderer.invoke("syphonSubscribe", desc).then((success) => {
-            if (!success) {
-                op.logWarn("Failed to subscribe to Syphon server:", selected);
-            }
+    const trySubscribe = () => {
+        const desc = serversList.find((s) => {
+            const name = s.SyphonServerDescriptionNameKey || s.SyphonServerDescriptionName || s.SyphonServerDescriptionAppNameKey || s.SyphonServerDescriptionAppName || "Unknown Server";
+            return name === selected;
         });
+        
+        if (desc) {
+            ipcRenderer.invoke("syphonSubscribe", desc).then((success) => {
+                if (!success) {
+                    op.logWarn("Failed to subscribe to Syphon server:", selected);
+                }
+            });
+        }
+    };
+    
+    if (serversList.length === 0) {
+        ipcRenderer.invoke("syphonGetServers").then((servers) => {
+            serversList = servers || [];
+            trySubscribe();
+        });
+    } else {
+        trySubscribe();
     }
 };
 
