@@ -1,0 +1,43 @@
+{
+    "authorName": "pandur",
+    "id": "ef0bae7e-32c9-4815-9ac3-9439fc1194ee",
+    "created": 1528207289545,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Execute"
+            },
+            {
+                "type": 0,
+                "name": "Primitive index",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "summary": "force rendering of meshes using points,lines or triangles",
+    "docs": {
+        "ports": [
+            {
+                "name": "Execute",
+                "text": "Trigger the op "
+            },
+            {
+                "name": "Next",
+                "text": "Trigger out"
+            }
+        ]
+    },
+    "license": "MIT",
+    "exampleProjectId": "a5Mz8i",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

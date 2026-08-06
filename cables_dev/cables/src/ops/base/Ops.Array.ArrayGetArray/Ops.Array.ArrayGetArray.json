@@ -1,0 +1,36 @@
+{
+    "summary": "Get an array from an array of arrays",
+    "docs": {
+        "ports": [
+            {
+                "name": "Array of Arrays",
+                "text": "must contain an array of only arrays"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "b9d3f42b-3fbf-4522-9df2-a5c769a92d66",
+    "created": 1519807916880,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array of Arrays"
+            },
+            {
+                "type": 0,
+                "name": "Index",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Result Array"
+            }
+        ]
+    },
+    "license": "MIT",
+    "exampleProjectId": "yU2Pet",
+    "isReleased": true
+}

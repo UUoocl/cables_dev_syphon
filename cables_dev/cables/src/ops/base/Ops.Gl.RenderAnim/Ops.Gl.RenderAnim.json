@@ -1,0 +1,117 @@
+{
+    "authorName": "pandur",
+    "id": "33cd13de-989d-4258-91ab-3f693d6c6f67",
+    "created": 1520328576809,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Filename",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "Fileformat index",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "Fileformat",
+                "subType": "string"
+            },
+            {
+                "type": "1",
+                "name": "Render"
+            },
+            {
+                "type": "0",
+                "name": "Start Time",
+                "group": "Timing",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "End Time",
+                "group": "Timing",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "FPS",
+                "group": "Timing",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Use Viewport Size",
+                "group": "Size",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Width",
+                "group": "Size",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "Height",
+                "group": "Size",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Progress",
+                "subType": "number"
+            },
+            {
+                "type": "1",
+                "name": "Finished"
+            }
+        ]
+    },
+    "summary": "render an animation and save as file webm video or png image sequence",
+    "docs": {
+        "ports": [
+            {
+                "name": "Start Time",
+                "text": "in seconds"
+            },
+            {
+                "name": "End Time",
+                "text": "in seconds"
+            },
+            {
+                "name": "FPS",
+                "text": "Frames per second for render."
+            },
+            {
+                "name": "Fileformat",
+                "text": "video file (only small files for now) or PNG files"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Progress",
+                "subType": "number"
+            }
+        ],
+        "name": "Ops.Exp.RenderAnim"
+    },
+    "issues": "",
+    "youtubeids": [],
+    "changelog": [
+        {
+            "message": "Ops.Exp.RenderAnim renamed to Ops.Gl.RenderAnim",
+            "author": "pandur",
+            "date": 1587361957468
+        }
+    ],
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

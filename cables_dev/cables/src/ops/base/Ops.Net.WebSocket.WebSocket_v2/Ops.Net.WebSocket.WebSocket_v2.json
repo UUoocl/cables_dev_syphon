@@ -1,0 +1,77 @@
+{
+    "id": "e747dc72-8214-41ca-9aae-9041f20dd6ac",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1600247160967,
+            "type": "new"
+        },
+        {
+            "message": "output raw message, add uierrors on invalid json and connection error",
+            "author": "stephan",
+            "date": 1660809295216,
+            "type": "improvement"
+        },
+        {
+            "message": "Show error messages from websocket API and check for correct protocol",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1723039214742
+        },
+        {
+            "message": "fix wrong connection state boolean when error occurs",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1733928461087
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1600247178087,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "URL"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Result"
+            },
+            {
+                "type": 0,
+                "name": "Valid JSON",
+                "subType": "boolean"
+            },
+            {
+                "type": 2,
+                "name": "Connection",
+                "objType": "Websocket"
+            },
+            {
+                "type": 0,
+                "name": "Connected",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Received Data"
+            },
+            {
+                "type": 5,
+                "name": "Raw Data"
+            }
+        ]
+    },
+    "summary": "Create a websocket connection and receive data from it",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "gu7DBo",
+    "license": "MIT",
+    "isReleased": true
+}

@@ -1,0 +1,164 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "a466bc1f-06e9-4595-8849-bffb9fe22f99",
+    "created": 1511171612134,
+    "summary": "control the order of execution/triggering",
+    "docs": {
+        "ports": []
+    },
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "exe"
+            },
+            {
+                "type": 1,
+                "name": "exe 0"
+            },
+            {
+                "type": 1,
+                "name": "exe 1"
+            },
+            {
+                "type": 1,
+                "name": "exe 2"
+            },
+            {
+                "type": 1,
+                "name": "exe 3"
+            },
+            {
+                "type": 1,
+                "name": "exe 4"
+            },
+            {
+                "type": 1,
+                "name": "exe 5"
+            },
+            {
+                "type": 1,
+                "name": "exe 6"
+            },
+            {
+                "type": 1,
+                "name": "exe 7"
+            },
+            {
+                "type": 1,
+                "name": "exe 8"
+            },
+            {
+                "type": 1,
+                "name": "exe 9"
+            },
+            {
+                "type": 1,
+                "name": "exe 10"
+            },
+            {
+                "type": 1,
+                "name": "exe 11"
+            },
+            {
+                "type": 1,
+                "name": "exe 12"
+            },
+            {
+                "type": 1,
+                "name": "exe 13"
+            },
+            {
+                "type": 1,
+                "name": "exe 14"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger 0"
+            },
+            {
+                "type": 1,
+                "name": "trigger 1"
+            },
+            {
+                "type": 1,
+                "name": "trigger 2"
+            },
+            {
+                "type": 1,
+                "name": "trigger 3"
+            },
+            {
+                "type": 1,
+                "name": "trigger 4"
+            },
+            {
+                "type": 1,
+                "name": "trigger 5"
+            },
+            {
+                "type": 1,
+                "name": "trigger 6"
+            },
+            {
+                "type": 1,
+                "name": "trigger 7"
+            },
+            {
+                "type": 1,
+                "name": "trigger 8"
+            },
+            {
+                "type": 1,
+                "name": "trigger 9"
+            },
+            {
+                "type": 1,
+                "name": "trigger 10"
+            },
+            {
+                "type": 1,
+                "name": "trigger 11"
+            },
+            {
+                "type": 1,
+                "name": "trigger 12"
+            },
+            {
+                "type": 1,
+                "name": "trigger 13"
+            },
+            {
+                "type": 1,
+                "name": "trigger 14"
+            },
+            {
+                "type": 1,
+                "name": "trigger 15"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "Ops.Sequence renamed to Ops.Trigger.Sequence",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1685959336768
+        },
+        {
+            "message": "Op is now resizable on the x axis and ports are gonna stretched out on the whole width",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1715112525892
+        }
+    ],
+    "license": "MIT",
+    "youtubeids": [
+        "1PtJG-Plz4Y"
+    ],
+    "exampleProjectId": "0bQrii",
+    "isReleased": true
+}

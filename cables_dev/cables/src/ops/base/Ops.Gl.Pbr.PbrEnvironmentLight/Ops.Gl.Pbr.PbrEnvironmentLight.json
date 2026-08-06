@@ -1,0 +1,263 @@
+{
+    "id": "7110f169-adfd-4649-a77a-c825751eaa9b",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "amajesticseaflapflap",
+            "date": 1642599506723,
+            "type": "new op"
+        },
+        {
+            "message": "added workaround for amd cards where cubemaps were rendered wrong, because of clearColor",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1671034875636
+        }
+    ],
+    "coreLibs": [
+        "cgl"
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "Intensity",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "RGBE Environment map",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Size Irradiance map index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Size pre-filtered environment index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Size IBL LUT index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Force 8bit IBL",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Environment map does not contain RGBE data",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Rotation",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Use parallax correction",
+                "group": "Parallax Correction",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "center X",
+                "group": "Parallax Correction",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "center Y",
+                "group": "Parallax Correction",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "center Z",
+                "group": "Parallax Correction",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Box min X",
+                "group": "Parallax Correction",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Box min Y",
+                "group": "Parallax Correction",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Box min Z",
+                "group": "Parallax Correction",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Box max X",
+                "group": "Parallax Correction",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Box max Y",
+                "group": "Parallax Correction",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Box max Z",
+                "group": "Parallax Correction",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "next"
+            },
+            {
+                "type": 2,
+                "name": "IBL LUT",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "cubemap (diffuse irradiance)",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "cubemap (pre-filtered environment map)",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Number of Pre-filtered mip levels",
+                "subType": "number"
+            }
+        ]
+    },
+    "credits": [
+        {
+            "title": "BabylonJS Shader Code",
+            "author": "Babylon.js",
+            "url": "https://github.com/BabylonJS/Babylon.js/blob/master/license.md",
+            "licence": "Apache License"
+        },
+        {
+            "title": "Filament Code",
+            "author": "google",
+            "url": "https://github.com/google/filament/blob/main/LICENSE",
+            "licence": "Apache License"
+        }
+    ],
+    "authorName": "amajesticseaflapflap",
+    "created": 1642599890799,
+    "summary": "PBR image based lighting setup",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [
+        "uwoj7R52yU8"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "RGBE Environment map",
+                "text": "RGBE format input, or RGB texture"
+            },
+            {
+                "name": "Size Irradiance map index",
+                "text": "large is more information"
+            },
+            {
+                "name": "Size pre-filtered environment index",
+                "text": "large is more information"
+            },
+            {
+                "name": "Size IBL LUT index",
+                "text": "large is more information"
+            },
+            {
+                "name": "Environment map does not contain RGBE data",
+                "text": "toggle ON if not using an RGB texture"
+            },
+            {
+                "name": "Rotation",
+                "text": "rotate the environment around the up axis in degrees"
+            },
+            {
+                "name": "Use parallax correction",
+                "text": "manually adjust your reflection area for your scene"
+            },
+            {
+                "name": "center X",
+                "text": "center of your scene on X axis"
+            },
+            {
+                "name": "center Y",
+                "text": "center of your scene on Y axis"
+            },
+            {
+                "name": "center Z",
+                "text": "center of your scene on Z axis"
+            },
+            {
+                "name": "Box min X",
+                "text": "minimum bounds on X axis"
+            },
+            {
+                "name": "Box min Y",
+                "text": "minimum bounds on Y axis"
+            },
+            {
+                "name": "Box min Z",
+                "text": "minimum bounds on Z axis"
+            },
+            {
+                "name": "Box max X",
+                "text": "maximum bounds on X axis"
+            },
+            {
+                "name": "Box max Y",
+                "text": "maximum bounds on Y axis"
+            },
+            {
+                "name": "Box max Z",
+                "text": "maximum bounds on Z axis"
+            },
+            {
+                "name": "IBL LUT",
+                "text": "for PBR Material (not required)"
+            },
+            {
+                "name": "cubemap (diffuse irradiance)",
+                "text": "for PBR Material (not required)"
+            },
+            {
+                "name": "cubemap (pre-filtered environment map)",
+                "text": "for PBR Material (not required)"
+            },
+            {
+                "name": "Number of Pre-filtered mip levels",
+                "text": "for PBR Material (not required)"
+            }
+        ]
+    },
+    "exampleProjectId": "9z9kFK",
+    "license": "MIT",
+    "isReleased": true
+}

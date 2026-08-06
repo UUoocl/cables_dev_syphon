@@ -1,0 +1,245 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "Amount",
+                "group": "Blending",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Blend Mode index",
+                "group": "Blending",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Alpha Mask index",
+                "values": [
+                    "Off",
+                    "On"
+                ],
+                "group": "Blending",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Coordinates index",
+                "values": [
+                    "0-1",
+                    "-1-1",
+                    "Pixel"
+                ],
+                "group": "Position",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Center",
+                "group": "Position",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "X",
+                "group": "Position",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "group": "Position",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Inner",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Width",
+                "group": "Size",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Height",
+                "group": "Size",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Rotate",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "roundness",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "r",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "g",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "b",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "a",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "Map Texture",
+                "group": "Mapping",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Start X",
+                "group": "Mapping",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Start Y",
+                "group": "Mapping",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Map Width",
+                "group": "Mapping",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Map Height",
+                "group": "Mapping",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "Mask",
+                "objType": "texture"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "078d420b-a16c-4a0a-8add-89cb1b0af711",
+    "created": 1709909144595,
+    "changelog": [
+        {
+            "message": "Added switch to change coordinates system, e.g. pixel based",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1710251758889
+        },
+        {
+            "message": "Added texturemapping for the rectangle and masking",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1710251781445
+        },
+        {
+            "message": "Added \"inner\" parameter to create an transparent inner hole in the rectangle",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1710329162662
+        },
+        {
+            "message": "Add mapping coordinates position and size to map parts of an image onto the rectangle",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1711097840782
+        }
+    ],
+    "summary": "draws a 2d rectangle into a texture.",
+    "docs": {
+        "ports": [
+            {
+                "name": "render",
+                "text": "Trigger in"
+            },
+            {
+                "name": "Amount",
+                "text": "Blend amount"
+            },
+            {
+                "name": "X",
+                "text": "The x position of the rectangle"
+            },
+            {
+                "name": "Y",
+                "text": "The y position of the rectangle"
+            },
+            {
+                "name": "Width",
+                "text": "Width of the rectangle"
+            },
+            {
+                "name": "Height",
+                "text": "Height of the rectangle"
+            },
+            {
+                "name": "Rotate",
+                "text": "Rotates the rectangle"
+            },
+            {
+                "name": "roundness",
+                "text": "Softens the 4 corners"
+            },
+            {
+                "name": "r",
+                "text": "Red amount"
+            },
+            {
+                "name": "g",
+                "text": "Green amount"
+            },
+            {
+                "name": "b",
+                "text": "Blue amount"
+            },
+            {
+                "name": "a",
+                "text": "Alpha amount"
+            },
+            {
+                "name": "trigger",
+                "text": "Trigger out"
+            }
+        ]
+    },
+    "license": "MIT",
+    "exampleProjectId": "IPPT7i",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,65 @@
+{
+    "authorName": "pandur",
+    "id": "1c3fb776-fe52-4f4b-84a9-832e5a57f0fd",
+    "created": 1518868364510,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Area index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Prevent Default",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Enabled",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "On Press"
+            },
+            {
+                "type": 0,
+                "name": "Key Code",
+                "subType": "number"
+            },
+            {
+                "type": 5,
+                "name": "Key"
+            }
+        ]
+    },
+    "summary": "Triggers when a key is pressed",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "lmGgPZ",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "changelog": [
+        {
+            "message": "new version: v2",
+            "author": "stephan",
+            "date": 1647266078375
+        },
+        {
+            "message": "added area-input, enable/disable and key-name output",
+            "author": "stephan",
+            "date": 1647442062066,
+            "type": "improvement"
+        }
+    ],
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

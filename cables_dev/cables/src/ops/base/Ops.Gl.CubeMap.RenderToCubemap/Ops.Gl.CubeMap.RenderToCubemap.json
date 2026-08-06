@@ -1,0 +1,45 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "Render"
+            },
+            {
+                "type": "0",
+                "name": "Size",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "Next"
+            },
+            {
+                "type": "2",
+                "name": "cubemap"
+            }
+        ]
+    },
+    "summary": "render a scene to generate a cubemap ",
+    "authorName": "pandur",
+    "id": "9194ea61-0746-4343-8c97-5028768509c5",
+    "created": 1521135757341,
+    "youtubeid": "",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "Z3KuUQ",
+    "changelog": [
+        {
+            "message": "Ops.Gl.CubeMap.CubeMapCamera renamed to Ops.Gl.CubeMap.RenderToCubemap",
+            "author": "pandur",
+            "date": 1665557163044
+        }
+    ],
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

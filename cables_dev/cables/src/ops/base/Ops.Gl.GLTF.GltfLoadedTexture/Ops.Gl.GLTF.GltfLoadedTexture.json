@@ -1,0 +1,46 @@
+{
+    "id": "308409d7-c7c9-4c67-a6e1-bb0452fea7b0",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1777535166540
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1777535166540,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Render"
+            },
+            {
+                "type": 5,
+                "name": "Name"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Texture",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Found",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "Load textures from inside a .glb file",
+    "docs": {
+        "ports": []
+    },
+    "coreLibs": [
+        "cgl"
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

@@ -1,0 +1,1 @@
+If you e.g. pass in `90`, `x` will be `-1` and `y` `0` (so counter-clockwise)

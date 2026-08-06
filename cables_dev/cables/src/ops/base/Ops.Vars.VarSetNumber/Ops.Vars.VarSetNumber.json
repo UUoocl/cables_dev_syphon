@@ -1,0 +1,36 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Value",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "set a variable number",
+    "docs": {
+        "ports": [
+            {
+                "name": "Value",
+                "text": "Number in"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "b0190d08-82f6-45b2-bc0c-b70a3257ea92",
+    "created": 1519228504479,
+    "issues": "",
+    "changelog": [
+        {
+            "message": "Ops.Vars.SetVariable renamed to Ops.Vars.VarSetNumber",
+            "author": "pandur",
+            "date": 1560418435802
+        }
+    ],
+    "youtubeids": [
+        "sUR6b0zvuSY"
+    ],
+    "exampleProjectId": "1tfFT6",
+    "isReleased": true
+}

@@ -1,0 +1,162 @@
+name: shared action - build electron
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        description: "image to run the build on"
+        required: true
+        type: string
+      target:
+        description: "mac/win/linux"
+        required: true
+        type: string
+      branch:
+        description: "branch to check out all repos at"
+        required: true
+        type: string
+      exe_name:
+        description: "basename of the final executable"
+        required: true
+        type: string
+      upload_url:
+        description: "upload url for release assets"
+        required: false
+        type: string
+      tag_name:
+        description: "the tag of the current release"
+        required: true
+        type: string
+      build_version:
+        description: "override for package.log version"
+        required: false
+        type: string
+      sign:
+        description: "sign executable"
+        required: false
+        type: boolean
+      notarize:
+        description: "notarize osx executable"
+        required: false
+        type: boolean
+        default: false
+      release_type:
+        description: "draft, prerelease, release"
+        required: false
+        type: string
+        default: "draft"
+jobs:
+  build:
+    runs-on: ${{ inputs.runner }}
+    steps:
+    - name: checkout cables_dev
+      uses: actions/checkout@v4
+      with:
+        repository: "cables-gl/cables_dev"
+        ref: ${{ inputs.branch }}
+        token: ${{ secrets.standalone_token }}
+    - name: checkout cables
+      uses: actions/checkout@v4
+      with:
+        repository: "cables-gl/cables"
+        ref: ${{ inputs.branch }}
+        token: ${{ secrets.standalone_token }}
+        path: "cables/"
+    - name: checkout cables ui
+      uses: actions/checkout@v4
+      with:
+        repository: "cables-gl/cables_ui"
+        ref: ${{ inputs.branch }}
+        token: ${{ secrets.standalone_token }}
+        path: "cables_ui/"
+    - name: checkout cables electron
+      uses: actions/checkout@v4
+      with:
+        path: "cables_electron/"
+        ref: ${{ inputs.branch }}
+    - name: install nodejs
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: ".nvmrc"
+        check-latest: false
+    - name: get node path
+      shell: bash
+      id: local_node
+      run: |
+        echo "NODE_EXE=$(which node)" >> $GITHUB_OUTPUT
+        echo "NPM_EXE=$(which npm)" >> $GITHUB_OUTPUT
+    - name: build electron
+      if: ${{ ! inputs.sign }}
+      shell: bash
+      run: ./build_standalone.sh ${{ inputs.target }}
+      env:
+        EXE_NAME: ${{ inputs.exe_name }}
+        BUILD_VERSION: ${{ inputs.build_version }}
+        GH_TOKEN: ${{ secrets.github_token }}
+        NODE_EXE: ${{ steps.local_node.outputs.NODE_EXE }}
+        NPM_EXE: ${{ steps.local_node.outputs.NPM_EXE }}
+        RELEASE_TYPE: ${{ inputs.release_type }}
+    - name: build signed electron
+      if: ${{ inputs.sign }}
+      shell: bash
+      run: ./build_standalone.sh ${{ inputs.target }}
+      env:
+        EXE_NAME: ${{ inputs.exe_name }}
+        BUILD_VERSION: ${{ inputs.build_version }}
+        GH_TOKEN: ${{ secrets.github_token }}
+        CSC_LINK: "${{ secrets.APPLE_CERT }}"
+        CSC_KEY_PASSWORD: "${{ secrets.APPLE_CERT_PASS }}"
+        APPLE_ID: "${{ secrets.APPLE_ID }}"
+        APPLE_APP_SPECIFIC_PASSWORD: "${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}"
+        APPLE_TEAM_ID: "${{ secrets.APPLE_TEAM_ID }}"
+        NOTARIZE: "${{ inputs.notarize }}"
+        NODE_EXE: ${{ steps.local_node.outputs.NODE_EXE }}
+        NPM_EXE: ${{ steps.local_node.outputs.NPM_EXE }}
+        RELEASE_TYPE: ${{ inputs.release_type }}
+    -   name: delete non-static runtime linux AppImage
+        if: inputs.target == 'linux'
+        uses: mknejp/delete-release-assets@v1
+        continue-on-error: true
+        with:
+            token: ${{ github.token }}
+            tag: ${{ inputs.tag_name }}
+            fail-if-no-assets: false
+            fail-if-no-release: false
+            assets: |
+                ${{ inputs.exe_name }}-linux-x64.AppImage
+    - name: convert x64 AppImage to static runtime
+      if: inputs.target == 'linux'
+      run: |
+          sudo apt install desktop-file-utils
+          cd cables_electron/dist/
+          appimage="${{ inputs.exe_name }}-linux-x64.AppImage"
+          wget "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage" -O ./appimagetool.AppImage
+          chmod +x ./"$appimage" ./appimagetool.AppImage
+          ./"$appimage" --appimage-extract && rm -f ./"$appimage"
+          ./appimagetool.AppImage --comp zstd --mksquashfs-opt -Xcompression-level --mksquashfs-opt 20 \
+            -n ./squashfs-root "${{ runner.temp }}"/"$appimage"
+          rm -rf ./squashfs-root ./appimagetool.AppImage
+    - name: upload static runtime AppImage
+      if: inputs.target == 'linux'
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ inputs.upload_url }}
+          asset_path: ${{ runner.temp }}/${{ inputs.exe_name }}-linux-x64.AppImage
+          asset_name: ${{ inputs.exe_name }}-linux-x64.AppImage
+          asset_content_type: application/octet-stream
+    - name: delete auto-update files
+      uses: mknejp/delete-release-assets@v1
+      continue-on-error: true
+      with:
+        token: ${{ github.token }}
+        tag: v${{ inputs.tag_name }}
+        fail-if-no-assets: false
+        fail-if-no-release: false
+        assets: |
+          *.yml
+          *.blockmap
+          v${{ inputs.tag_name }}.zip
+          v${{ inputs.tag_name }}.tar.gz

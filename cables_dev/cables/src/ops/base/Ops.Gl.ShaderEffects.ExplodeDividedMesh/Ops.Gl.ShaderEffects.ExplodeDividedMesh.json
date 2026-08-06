@@ -1,0 +1,86 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "b6d933cf-1ef8-41d6-95c1-593be0b4be90",
+    "created": 1511816789809,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "0",
+                "name": "Distance",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Absolute",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "add x",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "add y",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "add z",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "mul x",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "mul y",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "mul z",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "x",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "y",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "z",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Size",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            }
+        ]
+    },
+    "summary": "explode a (divided) mesh in the direction of faces normals",
+    "exampleProjectId": "sYIxm1",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

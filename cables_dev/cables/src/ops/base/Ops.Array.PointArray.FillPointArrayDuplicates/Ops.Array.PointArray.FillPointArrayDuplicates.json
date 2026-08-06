@@ -1,0 +1,42 @@
+{
+    "id": "dae7416d-b130-487e-bdd3-ca5a18278d47",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1548778386865
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1548778392795,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array"
+            },
+            {
+                "type": 0,
+                "name": "Num Elements",
+                "subType": "integer"
+            },
+            {
+                "type": 1,
+                "name": "Calculate"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Fill an XYZ array with existing duplicate points until it reaches the length ",
+    "youtubeid": "",
+    "issues": "",
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

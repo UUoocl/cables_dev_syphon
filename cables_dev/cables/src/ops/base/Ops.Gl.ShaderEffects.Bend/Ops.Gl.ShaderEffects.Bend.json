@@ -1,0 +1,65 @@
+{
+    "author": "599c49d0bd5c13002aac8617",
+    "authorName": "kusma",
+    "id": "8d4941a9-388d-40da-8574-266070235251",
+    "created": 1508772658372,
+    "summary": "bend objects along an axis",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "0",
+                "name": "RotX",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "RotY",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "RotZ",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Scale",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Offset",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Amount",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Limited",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            }
+        ]
+    },
+    "youtubeid": "",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "HtcN9Z",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

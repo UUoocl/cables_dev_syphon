@@ -1,0 +1,90 @@
+{
+    "summary": "Returns current date and time and timestamp",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Update Rate",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Year",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Month",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Day",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Hours",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Minutes",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Seconds",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Timestamp",
+                "subType": "number"
+            }
+        ]
+    },
+    "docs": {
+        "ports": [
+            {
+                "name": "Update Rate",
+                "text": "How often the op should update the output (in milliseconds)"
+            },
+            {
+                "name": "Year",
+                "text": "The current year"
+            },
+            {
+                "name": "Month",
+                "text": "The current month"
+            },
+            {
+                "name": "Day",
+                "text": "The current day"
+            },
+            {
+                "name": "Hours",
+                "text": "The current hour"
+            },
+            {
+                "name": "Minutes",
+                "text": "The current minute"
+            },
+            {
+                "name": "Seconds",
+                "text": "The current second"
+            },
+            {
+                "name": "Timestamp",
+                "text": "The current timestamp"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "beff95ec-7b50-4b6e-80b8-a7e4ab97d8cc",
+    "created": 1525244144566,
+    "exampleProjectId": "GuzKSD",
+    "isReleased": true
+}

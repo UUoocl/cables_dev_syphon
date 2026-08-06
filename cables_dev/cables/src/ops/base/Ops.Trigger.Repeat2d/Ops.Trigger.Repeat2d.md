@@ -1,0 +1,1 @@
+Imagine a Ops.Trigger.Repeat connected to a Ops.Trigger.Repeat, or a for loop inside a for loop. This loop is especially useful for drawing a matrix of objects.

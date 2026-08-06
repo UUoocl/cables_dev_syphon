@@ -1,0 +1,39 @@
+{
+    "id": "c65f3975-0901-4252-b040-f21f9b144d70",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1576832760392
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1576832794203,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            },
+            {
+                "type": 0,
+                "name": "Time",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "summary": "set current time of timeline",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "3F6DOe",
+    "isReleased": true
+}

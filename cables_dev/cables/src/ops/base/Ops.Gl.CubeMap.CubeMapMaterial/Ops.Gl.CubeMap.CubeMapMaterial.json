@@ -1,0 +1,45 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "0",
+                "name": "Mip Level",
+                "subType": "number"
+            },
+            {
+                "type": "2",
+                "name": "Cubemap"
+            },
+            {
+                "type": "0",
+                "name": "Reflection",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            }
+        ]
+    },
+    "summary": "cubemap as material ",
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "17f73be5-401b-46f1-ace7-fd203bf1aa94",
+    "created": 1507134982544,
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "u5y0Z5",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

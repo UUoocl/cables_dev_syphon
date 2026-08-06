@@ -1,0 +1,1 @@
+Array is only sent out when op is triggered.

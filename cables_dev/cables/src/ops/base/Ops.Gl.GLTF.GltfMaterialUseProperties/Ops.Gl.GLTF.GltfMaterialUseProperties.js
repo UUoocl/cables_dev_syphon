@@ -1,0 +1,87 @@
+const
+    exec = op.inTrigger("Update"),
+    inMatName = op.inString("Material Name", "default"),
+    inNameMatch = op.inSwitch("Name Match", ["exact", "starts with"], "exact"),
+    next = op.outTrigger("Next"),
+    outObj = op.outObject("Properties"),
+    outTexDiff = op.outTexture("Tex Diffuse"),
+    outFound = op.outBoolNum("Found");
+
+const cgl = op.patch.cgl;
+let currentSceneLoaded = null;
+let mat = null;
+let matIdx = -1;
+
+// inSubmesh.onChange =
+inNameMatch.onChange =
+inMatName.onChange = function ()
+{
+    outObj.setRef(null);
+    outFound.set(false);
+    let title = inMatName.get();
+    matIdx = -1;
+    mat = null;
+};
+
+exec.onTriggered = () =>
+{
+    if (!cgl.tempData.currentScene) return;
+    // if (currentSceneLoaded != cgl.tempData.currentScene.loaded) mesh = null;
+
+    if (!mat)
+    {
+    //     if (!cgl.tempData || !cgl.tempData.currentScene || !cgl.tempData.currentScene.nodes || !cgl.tempData.currentScene.loaded)
+    //         return;
+
+        outFound.set(false);
+        //     outGeom.setRef(null);
+        //     const name = inMatName.get();
+        //     let numMatches = 0;
+
+        //     currentSceneLoaded = cgl.tempData.currentScene.loaded;
+        // console.log("text", cgl.tempData.currentScene.json.materials);
+        const mats = cgl.tempData.currentScene.materials;
+
+        const name = inMatName.get();
+
+        if (mats)
+        {
+            for (let i = 0; i < mats.length; i++)
+            {
+                let matches = false;
+
+                if (inNameMatch.get() == "exact")
+                    matches = mats[i].name == name;
+                else
+                    matches = mats[i].name.startsWith(name);
+
+                if (matches)
+                {
+                    mat = mats[i];
+
+                    matIdx = i;
+                    outObj.setRef(mat.json);
+
+                    outFound.set(true);
+                    break;
+                }
+            }
+        }
+
+        if (!outFound.get())op.setUiError("notfound", "material not found", 1);
+        else op.setUiError("notfound", null);
+    }
+
+    if (mat)
+    {
+        if (mat._matTexDiffuse)outTexDiff.setRef(mat._matTexDiffuse.tex);
+        mat.bind(op.patch.cgl, cgl.getShader());
+    }
+
+    next.trigger();
+
+    if (mat)
+    {
+        mat.unbind(op.patch.cgl, cgl.getShader());
+    }
+};

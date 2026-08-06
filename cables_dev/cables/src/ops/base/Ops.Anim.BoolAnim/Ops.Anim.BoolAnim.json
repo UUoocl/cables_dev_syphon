@@ -1,0 +1,107 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "exe"
+            },
+            {
+                "type": 0,
+                "name": "bool",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "easing index",
+                "group": "Animation",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "duration",
+                "group": "Animation",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Direction index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "value false",
+                "group": "Values",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "value true",
+                "group": "Values",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            },
+            {
+                "type": 0,
+                "name": "value",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "finished",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Finished Trigger"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "06ad9d35-ccf5-4d31-889c-e23fa062588a",
+    "created": 1518522798910,
+    "docs": {
+        "ports": [
+            {
+                "name": "exe",
+                "text": "Trigger the op"
+            },
+            {
+                "name": "bool",
+                "text": "Required to trigger an animation"
+            },
+            {
+                "name": "duration",
+                "text": "How long it takes for the animation to occur"
+            },
+            {
+                "name": "value false",
+                "text": "The value to animate to when `Bool input` evaluates to `false`"
+            },
+            {
+                "name": "value true",
+                "text": "The value to animate to when `Bool input` evaluates to `true`"
+            },
+            {
+                "name": "trigger",
+                "text": "Trigger out "
+            },
+            {
+                "name": "value",
+                "text": "The current value of the animation"
+            },
+            {
+                "name": "Finished Trigger",
+                "text": "Outputs a trigger when the animation has finished"
+            }
+        ]
+    },
+    "exampleProjectId": "ofPcTo",
+    "license": "MIT",
+    "summary": "Animate between two numbers based on a boolean value",
+    "isReleased": true
+}

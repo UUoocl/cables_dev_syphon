@@ -1,0 +1,80 @@
+{
+    "summary": "Adjust FOV, field of view, and frustum clipping",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "Axis index",
+                "values": [
+                    "Vertical",
+                    "Horizontal"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "fov y",
+                "uititle": "FOV Degrees",
+                "group": "Field of View",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "frustum near",
+                "group": "Frustrum",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "frustum far",
+                "group": "Frustrum",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Auto Aspect Ratio",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Aspect Ratio",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            },
+            {
+                "type": 0,
+                "name": "Aspect",
+                "subType": "number"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "7a78e163-d28c-4f70-a6d0-6d952da79f50",
+    "created": 1524232373346,
+    "changelog": [
+        {
+            "message": "add option to switch axis vertical/horizontal field of view",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1671034192486
+        }
+    ],
+    "license": "MIT",
+    "exampleProjectId": "RJXV7i",
+    "docs": {
+        "ports": []
+    },
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

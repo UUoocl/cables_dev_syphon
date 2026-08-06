@@ -1,0 +1,30 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "732ff263-1aeb-4f39-969f-c781d7776cc8",
+    "created": 1537519830894,
+    "summary": "visually debug vertices of your 3D geometry ",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "x2PmHf",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,87 @@
+<script id="dialog_createport" type="text/x-handlebars-template">
+
+    <h2>Edit Port</h2>
+
+    <input id="createPortId" value="{{portId}}" class="hidden"/>
+
+    <br/>
+
+    <table class="formtable">
+        <tr>
+            <td>
+                Direction
+            </td>
+            <td>
+                <select id="createPortDir">
+                    <option value="0">Input</option>
+                    <option value="1" {{#if port.dir}}selected{{/if}}>Output</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Type
+            </td>
+            <td>
+                <select id="createPortType">
+                    <option value="Number - Float">Number - Float</option>
+                    <option value="Number - Float Slider" {{#compare port.uiDisplay '==' 'range'}}selected{{/compare}}>Number - Float Slider</option>
+                    <option value="Number - Integer" {{#compare port.uiDisplay '==' 'int'}}selected{{/compare}}>Number - Integer</option>
+                    <option value="Boolean" {{#compare port.uiDisplay '==' 'bool'}}selected{{/compare}}>Boolean</option>
+                    <option value="String" {{#compare port.type '==' 5}}selected{{/compare}}>String</option>
+                    <option value="String - URL" {{#compare port.uiDisplay '==' 'file'}}selected{{/compare}}>String - URL</option>
+                    <option value="String - Editor" {{#compare port.uiDisplay '==' 'editor'}}selected{{/compare}}>String - Editor</option>
+                    <option value="String - Switch" {{#compare port.uiDisplay '==' 'switch'}}selected{{/compare}}>String - Switch</option>
+                    <option value="String - Dropdown" {{#compare port.uiDisplay '==' 'dropdown'}}selected{{/compare}}>String - Dropdown</option>
+                    <option value="Array" {{#compare port.type '==' 3}}selected{{/compare}}>Array</option>
+                    <option value="Object" {{#compare port.type '==' 2}}selected{{/compare}}>Object</option>
+                    <option value="Object - Texture" {{#compare port.objType '==' 'texture'}}selected{{/compare}}>Object - Texture</option>
+                    <option value="Object - Element" {{#compare port.objType '==' 'element'}}selected{{/compare}}>Object - Element</option>
+                    <option value="Object - Geometry" {{#compare port.objType '==' 'geometry'}}selected{{/compare}}>Object - Geometry</option>
+                    <option value="Object - AudioNode" {{#compare port.objType '==' 'audioNode'}}selected{{/compare}}>Object - AudioNode</option>
+                    <option value="Object - Gradient" {{#compare port.objType '==' 'gradient'}}selected{{/compare}}>Object - Gradient</option>
+                    <option value="Trigger" {{#compare port.type '==' 1}}selected{{/compare}}>Trigger</option>
+                    <option value="Trigger - Button" {{#compare port.uiDisplay '==' 'button'}}selected{{/compare}}>Trigger - Button</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Title
+            </td>
+            <td>
+                <input id="createPortName" value="{{port.title}}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Default Value
+            </td>
+            <td>
+                <input id="createPortValue" value="{{port.value}}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Switch/Dropdown options (comma seperated)
+            </td>
+            <td>
+                <input id="createPortUiAttrValues" value="{{port.values}}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Additional uiattribs
+            </td>
+            <td>
+                <input id="createPortAddUiAttribs" value="{{json port.addUiAttribs}}"/>
+            </td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <a class="cblbutton bluebutton" id="createPortSubmit">Save</a>
+    <a class="cblbutton"onclick="gui.closeModal();">Cancel</a>
+
+</script>

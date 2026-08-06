@@ -1,0 +1,38 @@
+{
+    "updated": 1543065564817,
+    "authorName": "pandur",
+    "id": "fb8851d1-7605-430a-bf7a-38a7bbe9b984",
+    "created": 1519940499582,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Value",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Char",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "Num",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "String",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "create a string with a fixed length filling the space with a character",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "8LJxz7",
+    "isReleased": true
+}

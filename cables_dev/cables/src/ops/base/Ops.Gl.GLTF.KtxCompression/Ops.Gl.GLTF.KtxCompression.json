@@ -1,0 +1,62 @@
+{
+    "authorName": "pandur",
+    "id": "2f4a90a1-998e-4371-93f4-c15703f11667",
+    "created": 1773938021128,
+    "layout": {
+        "portsIn": [],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Support ASTC",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Support ETC1",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Support S3TC",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Support BPTC",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Support PVRTC",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Support ASTC HDR",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1776265399619
+        }
+    ],
+    "summary": "Load a KTX file as a texture",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "dependencies": [
+        {
+            "src": "./libktx_read.js",
+            "type": "commonjs"
+        }
+    ]
+}

@@ -1,0 +1,110 @@
+{
+    "id": "0679f203-3332-4dae-9676-9eeee4399088",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1587737466134,
+            "type": "new"
+        },
+        {
+            "message": "Show warning when no nodes found",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1768302294446
+        },
+        {
+            "message": "Added an option to ignore all nodes that have a scale of 0,0,0",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1768474838066
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1682493073710,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Render"
+            },
+            {
+                "type": 5,
+                "name": "Search"
+            },
+            {
+                "type": 0,
+                "name": "Order index",
+                "values": [
+                    "None",
+                    "AlphaNumerical"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Space index",
+                "values": [
+                    "GLTF",
+                    "World"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Time",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Remove 0 Scale Nodes",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Force Update",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 0,
+                "name": "Found",
+                "subType": "boolean"
+            },
+            {
+                "type": 3,
+                "name": "Positions"
+            },
+            {
+                "type": 3,
+                "name": "Scale"
+            },
+            {
+                "type": 3,
+                "name": "Rotation"
+            },
+            {
+                "type": 3,
+                "name": "Names"
+            }
+        ]
+    },
+    "summary": "output all transformations of nodes starting with [search]",
+    "issues": "",
+    "youtubeids": [
+        "I_eD5nml_5A"
+    ],
+    "docs": {
+        "ports": []
+    },
+    "coreLibs": [
+        "cgl"
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

@@ -1,0 +1,48 @@
+<script id="tab_jobs" type="text/x-handlebars-template">
+
+    <style>
+    </style>
+
+
+    <div class="tabContentScrollContainer">
+
+        <h2>Jobs</h2>
+
+        <table>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            {{#each list}}
+                <tr>
+                    <td>
+                        {{#if finished}}
+                        <span class="icon icon-check"></span>
+                        {{else}}
+                        <span class="icon icon-loader"></span>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if op}}
+                            <a class="button-small" onclick="gui.patchView.centerSelectOp('{{op.id}}');">
+                        {{/if}}
+                            {{type}}
+                        {{#if op}}
+                        </a>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{name}}
+                    </td>
+                </tr>
+            {{/each}}
+        </table>
+
+    </div>
+
+
+
+</script>
+
+

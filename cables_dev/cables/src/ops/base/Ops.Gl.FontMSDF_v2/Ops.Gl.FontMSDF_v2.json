@@ -1,0 +1,73 @@
+{
+    "authorName": "pandur",
+    "id": "6cbd5d67-25d5-4936-a2ad-3ee8ed478570",
+    "created": 1589978081140,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "Font Name"
+            },
+            {
+                "type": 5,
+                "name": "Font Data"
+            },
+            {
+                "type": 5,
+                "name": "Font Image"
+            },
+            {
+                "type": 5,
+                "name": "Font Image 1"
+            },
+            {
+                "type": 5,
+                "name": "Font Image 2"
+            },
+            {
+                "type": 5,
+                "name": "Font Image 3"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Loaded",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Total Chars",
+                "subType": "number"
+            },
+            {
+                "type": 5,
+                "name": "Chars"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "set default values to library example files for quicker setup",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1711464069706
+        },
+        {
+            "message": "only set library default values when in UI/Editor",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1725892920903
+        }
+    ],
+    "summary": "Load MSDF Font data and texture to use ",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "9COr26",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

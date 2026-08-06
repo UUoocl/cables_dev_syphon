@@ -1,0 +1,103 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "exe"
+            },
+            {
+                "type": 0,
+                "name": "num x",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "num y",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "mul",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "center",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            },
+            {
+                "type": 0,
+                "name": "x",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "index",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "total iterations",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Triggers all ops underneath Num X * Num Y times",
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "79934693-5887-4173-8b48-3e3a18fcf225",
+    "created": 1511163188763,
+    "docs": {
+        "ports": [
+            {
+                "name": "exe",
+                "text": "Executes the loop"
+            },
+            {
+                "name": "num x",
+                "text": "Number of times executed on the X axis"
+            },
+            {
+                "name": "num y",
+                "text": "Number of times executed on the Y axis"
+            },
+            {
+                "name": "mul",
+                "text": "Multiplies the `X` and `Y`values, makes it easier e.g. to use the outputs directly in a Ops.Gl.Matrix.Transform"
+            },
+            {
+                "name": "center",
+                "text": "Centers `X` and `Y` around the origin `(0/0)`"
+            },
+            {
+                "name": "trigger",
+                "text": "Trigger for each iteration of the loop"
+            },
+            {
+                "name": "x",
+                "text": "The X value for the current iteration"
+            },
+            {
+                "name": "y",
+                "text": "The Y value for the current iteration"
+            },
+            {
+                "name": "index",
+                "text": "Current index. If you have a 5x5 repeater, this value goes from 0 to (including) 24"
+            }
+        ]
+    },
+    "exampleProjectId": "lPZfgg",
+    "isReleased": true
+}

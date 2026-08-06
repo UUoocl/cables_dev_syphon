@@ -1,0 +1,40 @@
+{
+    "authorName": "pandur",
+    "id": "5c6d375a-82db-4366-8013-93f56b4061a9",
+    "created": 1541808319391,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Number",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Decimal Places",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Convert a number to a string",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "exampleProjectId": "fo6nci",
+    "changelog": [
+        {
+            "message": "Added Input for max number of decimal places",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1720680766210
+        }
+    ],
+    "isReleased": true
+}

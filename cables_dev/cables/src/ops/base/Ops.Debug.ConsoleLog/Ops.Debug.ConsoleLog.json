@@ -1,0 +1,33 @@
+{
+    "id": "545e7225-73b0-4d40-923b-4b39940403a8",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1586424481505,
+            "type": "new"
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1586424511965,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Number",
+                "subType": "number"
+            },
+            {
+                "type": "5",
+                "name": "String"
+            }
+        ]
+    },
+    "summary": "Log incoming values to the console/dev tools",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

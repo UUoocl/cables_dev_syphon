@@ -1,0 +1,48 @@
+{
+    "authorName": "andro",
+    "id": "65e8b8a2-ba13-485f-883a-2bcf377989da",
+    "created": 1564999639713,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "Execute"
+            },
+            {
+                "type": "0",
+                "name": "Pass Through",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "Trigger out"
+            }
+        ]
+    },
+    "summary": "Allows a trigger to pass only if the gate is open",
+    "issues": "",
+    "youtubeids": [
+        "gT1jXP5As9A"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "Pass Through",
+                "text": "When true trigger passes through"
+            },
+            {
+                "name": "Execute",
+                "text": "Trigger in "
+            },
+            {
+                "name": "Trigger out",
+                "text": "Trigger out"
+            }
+        ]
+    },
+    "exampleProjectId": "xotJAH",
+    "caniusequery": "",
+    "isReleased": true
+}

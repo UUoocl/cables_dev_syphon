@@ -1,0 +1,198 @@
+
+        <div class="cablesCssUi">
+            <a id="undev" data-info="undevLogo" class="icon-undev info" target="_blank" href="http://www.undev.de"></a>
+        </div>
+    </div>
+</body>
+<script>
+    "use strict";
+
+    var CABLESUILOADER = CABLESUILOADER || {};
+    var CABLES = CABLES || {};
+
+    CABLESUILOADER.GlobalVarTester = (function ()
+    {
+        var fields = {};
+        var before = function (w)
+        {
+            for (var field in w)
+                fields[field] = true;
+        };
+
+        var after = function (w)
+        {
+            for (var field in w)
+                if (!fields[field])
+                    console.log(field + " has been added");
+        };
+        return {
+            before: before,
+            after: after
+        };
+    }());
+
+    CABLESUILOADER.preload = {};
+    CABLESUILOADER.GlobalVarTester.before(window);
+
+    CABLESUILOADER.uiLoadStart = performance.now();
+    CABLESUILOADER.startup = {};
+    CABLESUILOADER.startup.log = [];
+    CABLESUILOADER.startup.maxEvents = 15 - 1;
+    CABLESUILOADER.startup.numEvents = 0;
+
+    CABLESUILOADER.buildInfo = {};
+
+    function incrementStartup()
+    {
+        CABLESUILOADER.startup.numEvents++;
+        // if(CABLESUILOADER.startup.numEvents>CABLESUILOADER.startup.maxEvents)console.warn("too many cables startup events!",CABLESUILOADER.startup.numEvents,CABLESUILOADER.startup.maxEvents)
+        const loadingBarEle = document.getElementById("loadingstatusBar");
+        if (loadingBarEle) loadingBarEle.style.width = (CABLESUILOADER.startup.numEvents / CABLESUILOADER.startup.maxEvents) * 100 + "%";
+    }
+
+    function logStartup(title)
+    {
+        if(window.gui && gui.finishedLoading()) return;
+
+        const timeUsed = Math.round((performance.now() - CABLESUILOADER.uiLoadStart) / 1000 * 100) / 100;
+
+        CABLESUILOADER.startup.log.push(
+            {
+                "title": title,
+                "time": timeUsed
+            });
+
+        if (!window.CABLES || !CABLES.platform || !CABLES.platform.isDevEnv()) return;
+        document.getElementById("loadingstatusLog").innerHTML += title + " (" + timeUsed + ") <br/>";
+    }
+
+    CABLESUILOADER.noCacheUrl = function (url)
+    {
+        if(window.CABLES && CABLES.platform) return CABLES.platform.noCacheUrl(url);
+        return url;
+    };
+
+    CABLESUILOADER.builtVersionUrl = function (component, url)
+    {
+        let ncUrl = CABLESUILOADER.noCacheUrl(url);
+        if (CABLESUILOADER.buildInfo)
+        {
+            if (CABLESUILOADER.buildInfo[component])
+            {
+                ncUrl = url;// + "?nc=" + CABLESUILOADER.buildInfo[component].timestamp;
+            }
+        }
+        return ncUrl;
+    };
+
+    incrementStartup();
+    if (window.logStartup) logStartup("start ui");
+
+    CABLESUILOADER.loadAll = function (cfg)
+    {
+        CABLESUILOADER.cfg = cfg;
+        if (!window.hasOwnProperty("loadjs"))
+        {
+            setTimeout(CABLESUILOADER.loadAll, 100);
+            console.log("wait for loadjs...");
+            return;
+        }
+
+        logStartup("loaded minimum libs / starting up...");
+
+        incrementStartup();
+        loadjs([CABLESUILOADER.builtVersionUrl("ui", "js/cablesui.js")], "cablesuinew");
+
+        loadjs.ready("cablesuinew", function ()
+        {
+            let platformClass = "PlatformCommunity";
+            if(cfg && cfg.platformClass) {
+                // only electron...
+                if(CABLES.hasOwnProperty(cfg.platformClass)) {
+                    platformClass = cfg.platformClass;
+                    console.info("using sandbox from", platformClass);
+                }else{
+                    console.error("could not find class for sandbox", cfg.platformClass, "using", platformClass);
+                }
+            }
+
+            if(!CABLES[platformClass])
+            {
+                console.error("no cfg or platformClass")
+                return;
+            }
+            CABLES.platform = new CABLES[platformClass](cfg);
+
+            incrementStartup();
+            logStartup("loaded ui");
+
+            CABLESUILOADER.talkerAPI.send(CABLESUILOADER.TalkerAPI.CMD_GET_ALL_OPDOCS, { "projectId": cfg.patchId }, (err, _data) =>
+            {
+                if (err)
+                {
+                    console.error("preloading error", err);
+                }
+                else
+                {
+                    CABLESUILOADER.preload.opDocsAll = _data;
+                }
+            }, (response) =>
+            {
+                console.error("preloading error", response);
+            });
+
+            loadjs([CABLESUILOADER.noCacheUrl(CABLES.platform.getUrlOpsCode()), CABLESUILOADER.noCacheUrl(CABLES.platform.getUrlProjectOpsCode(cfg.patchId))], 'all_ops', { "before": (path, scriptEl) => { scriptEl.setAttribute("crossorigin", "use-credentials"); } });
+            loadjs.ready('all_ops', () =>
+            {
+                incrementStartup();
+                logStartup('loaded cables ops');
+
+                waitForAce();
+            });
+        });
+    };
+
+    function waitForAce()
+    {
+        if (!CABLESUILOADER.preload.opDocsAll)
+        {
+            setTimeout(waitForAce, 100);
+        }
+        else
+        {
+            CABLESUILOADER.uiLoadFiles = performance.now() - CABLESUILOADER.uiLoadStart;
+            CABLES.UI.startUi(CABLESUILOADER.cfg);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function (event)
+    {
+        CABLESUILOADER.talkerAPI = new CABLESUILOADER.TalkerAPI(window.parent);
+
+        const reqTimeout=setTimeout(()=>
+        {
+            document.getElementById("loadingstatus").style.display="none";
+            document.getElementById("loadingstatusLog").innerHTML += "error: could not get response from talker api. editor not in iframe? <br/>";
+        },1000);
+
+        CABLESUILOADER.talkerAPI.send(CABLESUILOADER.TalkerAPI.CMD_REQUEST_PATCH_DATA, {}, function (response)
+        {
+            clearTimeout(reqTimeout);
+
+            if (response.buildInfo)
+            {
+                CABLESUILOADER.buildInfo = response.buildInfo;
+            }
+            CABLESUILOADER.loadAll(response);
+        });
+    });
+
+    if (!(function () { return !this; })()) console.log("not in strict mode: footer html");
+
+</script>
+
+<div class="preloading" style="font-family:SourceSansPro"></div>
+
+<div id="testcontent"></div>
+
+</html>

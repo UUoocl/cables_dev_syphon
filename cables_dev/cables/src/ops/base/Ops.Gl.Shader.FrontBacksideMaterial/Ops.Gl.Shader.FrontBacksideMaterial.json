@@ -1,0 +1,32 @@
+{
+    "updated": 1540977326066,
+    "author": "59db805b08bab26e1ab7a0f2",
+    "authorName": "pandur",
+    "id": "beb92b81-8fe8-4871-b790-efb71bfeefc4",
+    "created": 1513338032368,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "next"
+            }
+        ]
+    },
+    "summary": "visualize which faces are facing the camera",
+    "docs": {
+        "ports": []
+    },
+    "issues": "",
+    "youtubeids": [],
+    "exampleProjectId": "Lm6p9r",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

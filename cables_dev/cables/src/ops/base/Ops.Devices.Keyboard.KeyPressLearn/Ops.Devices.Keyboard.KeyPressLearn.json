@@ -1,0 +1,107 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "key code",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "canvas only",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Mod Key index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Enabled",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Prevent Default",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "learn"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "on press"
+            },
+            {
+                "type": 1,
+                "name": "on release"
+            },
+            {
+                "type": 0,
+                "name": "Pressed",
+                "subType": "boolean"
+            },
+            {
+                "type": 5,
+                "name": "Key"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "f069c0db-4051-4eae-989e-6ef7953787fd",
+    "created": 1510680311876,
+    "summary": "Triggers when certain key is pressed or released",
+    "docs": {
+        "ports": [
+            {
+                "name": "key code",
+                "text": "In most cases you won’t have to use this directly, just use the `Learn` button. It contains the key code on which to respond. You can use [keycode.info](http://keycode.info/) to find out the key code you are looking for."
+            },
+            {
+                "name": "canvas only",
+                "text": "If you want to only trigger when a key has been pressed while the canvas has the focus (when you clicked in the canvas before) use `true`. If you want key presses to trigger even if the canvas is not in focus set it to `false` (global mode). "
+            },
+            {
+                "name": "Prevent Default",
+                "text": "Prevent that other key listeners (parents) are informed on the key press"
+            },
+            {
+                "name": "learn",
+                "text": "Press learn and directly afterwards (3 Seconds) press a key, this one will from now on trigger on the output port `On Press` once the key has been pressed."
+            },
+            {
+                "name": "on press",
+                "text": "Triggers every time the learned key is pressed down (and also triggers while it is hold down)."
+            },
+            {
+                "name": "on release",
+                "text": "Triggers every time the learned key is released (once)."
+            },
+            {
+                "name": "Pressed",
+                "text": "True if the key is currently pressed, false otherwise"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "added key-name to extended title and outport",
+            "author": "stephan",
+            "date": 1647444317354
+        }
+    ],
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "exampleProjectId": "ZRY-x3",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,77 @@
+{
+    "id": "a8cc7d66-3222-4460-bd47-a8ecf2095eb1",
+    "created": 1764011722402,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1764011722403
+        },
+        {
+            "message": "Added color space selection",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1765801044769
+        },
+        {
+            "message": "Fix passthrough of element via outport",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1775840345795
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Element",
+                "objType": "element"
+            },
+            {
+                "type": 0,
+                "name": "Type index",
+                "values": [
+                    "linear",
+                    "radial",
+                    "conic"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Rect Color Space index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Angle",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "Gradient Object",
+                "objType": "gradient"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "HTML Element",
+                "objType": "element"
+            },
+            {
+                "type": 5,
+                "name": "CSS String"
+            }
+        ]
+    },
+    "summary": "Use a cables gradient as HTML element background",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "QB7br5",
+    "isReleased": true
+}

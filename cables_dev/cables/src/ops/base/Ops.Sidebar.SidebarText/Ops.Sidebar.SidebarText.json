@@ -1,0 +1,48 @@
+{
+    "authorName": "tim",
+    "id": "cf4c613e-2a99-4903-9d71-a39a739f440c",
+    "created": 1525265917547,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "2",
+                "name": "link"
+            },
+            {
+                "type": "0",
+                "name": "Text",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "Id",
+                "subType": "string"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "2",
+                "name": "childs"
+            }
+        ]
+    },
+    "summary": "Display text in the sidebar",
+    "youtubeid": "",
+    "docs": {
+        "ports": [
+            {
+                "name": "link",
+                "text": "Connect this to a sidebar or sidebar group op"
+            },
+            {
+                "name": "Text",
+                "text": "The text you want to show in the sidebar"
+            },
+            {
+                "name": "childs",
+                "text": "Connect any other siblings here"
+            }
+        ]
+    },
+    "isReleased": true
+}

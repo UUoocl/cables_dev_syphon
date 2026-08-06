@@ -1,0 +1,36 @@
+{
+    "updated": 1525265366521,
+    "authorName": "pandur",
+    "id": "3cdfb818-64ac-47f6-86fb-fdaf84343956",
+    "created": 1519127681136,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "2",
+                "name": "link"
+            },
+            {
+                "type": "0",
+                "name": "Text",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "Value",
+                "subType": "string"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "2",
+                "name": "childs"
+            }
+        ]
+    },
+    "summary": "display a value or string",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "aDgYX5",
+    "isReleased": true
+}

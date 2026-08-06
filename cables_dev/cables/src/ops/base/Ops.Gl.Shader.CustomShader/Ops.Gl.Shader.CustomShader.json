@@ -1,0 +1,56 @@
+{
+    "authorName": "pandur",
+    "id": "86565630-2092-4d16-b177-ffb1d4040f4e",
+    "created": 1526300707715,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "fragment",
+                "group": "Source Code",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "vertex",
+                "group": "Source Code",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            },
+            {
+                "type": 2,
+                "name": "Shader"
+            }
+        ]
+    },
+    "summary": "write your own shader",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "Now parses uniforms from source code, uniforms don't disappear when not in use",
+            "author": "pandur",
+            "date": 1558002044484
+        }
+    ],
+    "issues": "",
+    "youtubeids": [
+        "Zfhn8xSM0SE"
+    ],
+    "exampleProjectId": "",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true,
+    "license": "MIT"
+}

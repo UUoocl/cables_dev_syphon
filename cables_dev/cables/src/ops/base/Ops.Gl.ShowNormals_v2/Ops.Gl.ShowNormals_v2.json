@@ -1,0 +1,138 @@
+{
+    "authorName": "pandur",
+    "id": "3d68b4d4-2945-48bf-8fc9-30567946deda",
+    "created": 1582113072428,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "Draw",
+                "subType": "boolean"
+            },
+            {
+                "type": 2,
+                "name": "geometry",
+                "objType": "geometry"
+            },
+            {
+                "type": 0,
+                "name": "Vectors index",
+                "values": [
+                    "Normals",
+                    "Tangents",
+                    "Bitangents"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Length",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Colorize",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "R",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "G",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "B",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "A",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            },
+            {
+                "type": 2,
+                "name": "Line Geom",
+                "objType": "geometry"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "Ops.User.cables.ShowNormals_v2 renamed to Ops.Gl.ShowNormals_v2",
+            "author": "simod",
+            "date": 1582120711810
+        },
+        {
+            "message": "output geometry/toggle if it is rendering itself",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1671034687120
+        }
+    ],
+    "summary": "visualize normals, tangents or bitangents",
+    "docs": {
+        "ports": [
+            {
+                "name": "render",
+                "text": "trigger input"
+            },
+            {
+                "name": "geometry",
+                "text": "geometry input"
+            },
+            {
+                "name": "Vectors index",
+                "text": "choose either: 0 - normals, 1 - tangents, 2 - bitangents"
+            },
+            {
+                "name": "Length",
+                "text": "length of visualized vectors"
+            },
+            {
+                "name": "Colorize",
+                "text": "activate to render the vectors with color"
+            },
+            {
+                "name": "R",
+                "text": "R color component"
+            },
+            {
+                "name": "G",
+                "text": "G color component"
+            },
+            {
+                "name": "B",
+                "text": "B color component"
+            },
+            {
+                "name": "A",
+                "text": "transparency component"
+            },
+            {
+                "name": "trigger",
+                "text": "trigger output"
+            }
+        ]
+    },
+    "exampleProjectId": "4NeG02",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

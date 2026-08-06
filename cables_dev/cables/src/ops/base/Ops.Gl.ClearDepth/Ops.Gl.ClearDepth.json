@@ -1,0 +1,38 @@
+{
+    "summary": "Clears the depth buffer (zbuffer, z buffer)",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            }
+        ]
+    },
+    "author": "59db805b08bab26e1ab7a0f2",
+    "authorName": "pandur",
+    "id": "9e8a4b73-4ba7-4c4f-b266-81c5f9db9b7a",
+    "created": 1511946285033,
+    "docs": {
+        "ports": [
+            {
+                "name": "render",
+                "text": "Clears the depth buffer"
+            },
+            {
+                "name": "trigger",
+                "text": "Trigger next op"
+            }
+        ]
+    },
+    "exampleProjectId": "rEesag",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

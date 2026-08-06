@@ -1,0 +1,74 @@
+{
+    "id": "06bb7f67-dc32-4417-8d89-c86f7f533735",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1599662719074
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1599662777064,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "Filename"
+            },
+            {
+                "type": 0,
+                "name": "Use Canvas Size",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Screenshot"
+            },
+            {
+                "type": 0,
+                "name": "Width",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Height",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Finished"
+            }
+        ]
+    },
+    "summary": "Download the current screen content as png file",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Filename",
+                "text": "name of saved file"
+            },
+            {
+                "name": "Use Canvas Size",
+                "text": "Uses canvas size"
+            },
+            {
+                "name": "Screenshot",
+                "text": "Trigger to make a screenshot"
+            },
+            {
+                "name": "Finished",
+                "text": "Trigger out when screenshot has been created"
+            }
+        ]
+    },
+    "exampleProjectId": "OB0Qmi",
+    "caniusequery": "",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

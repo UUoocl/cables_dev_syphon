@@ -1,0 +1,159 @@
+{
+    "id": "d1fce807-a626-433f-ba61-3f59149fe46e",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "simod",
+            "date": 1586341642680
+        },
+        {
+            "message": "Ops.User.cables.CubeMapMaterial_v2 renamed to Ops.Gl.CubeMap.CubeMapMaterial_v2",
+            "author": "simod",
+            "date": 1586341845509
+        }
+    ],
+    "authorName": "simod",
+    "created": 1586341651597,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 2,
+                "name": "Cubemap"
+            },
+            {
+                "type": 0,
+                "name": "Use Reflection",
+                "group": "Appearance",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Blur",
+                "group": "Appearance",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Rotation",
+                "group": "Transforms",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Flip X",
+                "group": "Transforms",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Flip Y",
+                "group": "Transforms",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Flip Z",
+                "group": "Transforms",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Colorize",
+                "group": "Color",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "R",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "G",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "B",
+                "group": "Color",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "summary": "use a cubemap or equirectangular texture as a material",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "render",
+                "text": "Trigger input"
+            },
+            {
+                "name": "Cubemap",
+                "text": "Texture input, either cubemap or equirectangular"
+            },
+            {
+                "name": "Use Reflection",
+                "text": "Check to use the reflection vector"
+            },
+            {
+                "name": "Blur",
+                "text": "The amount of blur/miplevel"
+            },
+            {
+                "name": "Rotation",
+                "text": "Rotate the texture"
+            },
+            {
+                "name": "Flip X",
+                "text": "flip the x axis"
+            },
+            {
+                "name": "Flip Y",
+                "text": "flip the y axis"
+            },
+            {
+                "name": "Flip Z",
+                "text": "flip the z axis"
+            },
+            {
+                "name": "Colorize",
+                "text": "Check to multiply color to the texture"
+            },
+            {
+                "name": "R",
+                "text": "R component of the multiplied color"
+            },
+            {
+                "name": "G",
+                "text": "G component of the multiplied color"
+            },
+            {
+                "name": "B",
+                "text": "B component of the multiplied color"
+            },
+            {
+                "name": "trigger",
+                "text": "Trigger output"
+            }
+        ]
+    },
+    "exampleProjectId": "u5y0Z5",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

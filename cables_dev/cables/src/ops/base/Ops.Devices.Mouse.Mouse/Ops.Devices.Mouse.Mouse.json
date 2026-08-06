@@ -1,0 +1,149 @@
+{
+    "summary": "Get mouse coordinates and events",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "relative",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "normalize",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "smooth",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "smoothSpeed",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Area index",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "Area",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "multiply",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "flip y",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "right click prevent default",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "x",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "y",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "button down",
+                "subType": "boolean"
+            },
+            {
+                "type": "1",
+                "name": "click"
+            },
+            {
+                "type": "1",
+                "name": "Button Up"
+            },
+            {
+                "type": "1",
+                "name": "click right"
+            },
+            {
+                "type": "0",
+                "name": "mouseOver",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "button",
+                "subType": "number"
+            }
+        ]
+    },
+    "author": "59db805b08bab26e1ab7a0f2",
+    "authorName": "pandur",
+    "id": "0bf51f3e-3161-4cc5-aecf-6e9160089fd2",
+    "created": 1512568997633,
+    "docs": {
+        "ports": [
+            {
+                "name": "relative",
+                "text": "If set the position will be relative [-1..1]"
+            },
+            {
+                "name": "x",
+                "text": "The x coordinate of the mouse"
+            },
+            {
+                "name": "y",
+                "text": "The y coordinate of the mouse"
+            },
+            {
+                "name": "button down",
+                "text": "True if the mouse button is hold down"
+            },
+            {
+                "name": "click",
+                "text": "Triggers when mouse was clicked / a touch click event occured"
+            },
+            {
+                "name": "Button Up",
+                "text": "Triggers when the mouse was released"
+            },
+            {
+                "name": "click right",
+                "text": "Triggers when the right mouse button was clicked"
+            },
+            {
+                "name": "mouseOver",
+                "text": "True if the mouse is over the canvas"
+            }
+        ]
+    },
+    "youtubeid": "",
+    "changelog": [
+        {
+            "message": "fixed: wrong coordinates when using HDPI displays",
+            "author": "pandur",
+            "date": 1550863318111
+        }
+    ],
+    "exampleProjectId": "mDiCq6",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

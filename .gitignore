@@ -1,0 +1,17 @@
+# Node dependencies
+node_modules/
+**/node_modules/
+
+# Build artifacts & compiled addons
+**/build/
+**/dist/
+**/*.node
+
+# System files
+.DS_Store
+Thumbs.db
+
+reference/
+Antigravity/
+
+**/.DS_Store

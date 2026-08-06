@@ -1,0 +1,57 @@
+{
+    "authorName": "pandur",
+    "id": "654bb341-fbae-4ac4-bf95-6f8292e707d9",
+    "created": 1542216824352,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "2",
+                "name": "Texture"
+            },
+            {
+                "type": "1",
+                "name": "Download"
+            },
+            {
+                "type": "0",
+                "name": "Filename",
+                "subType": "string"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Finished",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "download a texture as png file",
+    "youtubeid": "",
+    "docs": {
+        "ports": [
+            {
+                "name": "Texture",
+                "text": "texture in to capture"
+            },
+            {
+                "name": "Download",
+                "text": "Trigger to download the texture/image"
+            },
+            {
+                "name": "Filename",
+                "text": "The name of the downloaded file"
+            },
+            {
+                "name": "Finished",
+                "text": "When the texture is downloaded outputs `true`"
+            }
+        ]
+    },
+    "issues": "",
+    "exampleProjectId": "15LaTs",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

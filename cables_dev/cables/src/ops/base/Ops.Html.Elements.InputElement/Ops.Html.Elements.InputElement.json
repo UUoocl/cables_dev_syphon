@@ -1,0 +1,145 @@
+{
+    "id": "b7e1635c-b5c0-43e1-be03-2f137e6e61ea",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1692307325062,
+            "type": "new"
+        },
+        {
+            "message": "Html.InputElement renamed to Ops.Html.Elements.InputElement",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1734352658965
+        },
+        {
+            "message": "Output trigger, when pressing enter or escape",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1754133008775
+        },
+        {
+            "message": "Added \"prevent default\" option",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1757844422108
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1692307353078,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Element index",
+                "values": [
+                    "Input",
+                    "Textarea"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Type index",
+                "values": [
+                    "Text",
+                    "Number",
+                    "Password",
+                    "Date"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 5,
+                "name": "Default Value"
+            },
+            {
+                "type": 5,
+                "name": "Placeholder"
+            },
+            {
+                "type": 5,
+                "name": "Id"
+            },
+            {
+                "type": 5,
+                "name": "Class"
+            },
+            {
+                "type": 5,
+                "name": "Style"
+            },
+            {
+                "type": 0,
+                "name": "Autocomplete",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Max Length",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Enter Key Prevent Default",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Visible",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Focus"
+            },
+            {
+                "type": 1,
+                "name": "Blur"
+            },
+            {
+                "type": 1,
+                "name": "Clear"
+            },
+            {
+                "type": 1,
+                "name": "Select"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "DOM Element",
+                "objType": "element"
+            },
+            {
+                "type": 5,
+                "name": "Value"
+            },
+            {
+                "type": 0,
+                "name": "Hover",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Enter pressed"
+            },
+            {
+                "type": 1,
+                "name": "Escape pressed"
+            }
+        ]
+    },
+    "exampleProjectId": "L83aeG",
+    "docs": {
+        "ports": []
+    },
+    "summary": "HTML input/textarea element to allow the user to enter text ",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

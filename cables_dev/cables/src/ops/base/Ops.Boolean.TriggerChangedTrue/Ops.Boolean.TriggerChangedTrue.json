@@ -1,0 +1,36 @@
+{
+    "summary": "Triggers next only after value has changed to `true`",
+    "authorName": "pandur",
+    "id": "385197e1-8b34-4d1c-897f-d1386d99e3b3",
+    "created": 1518604076114,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "docs": {
+        "ports": [
+            {
+                "name": "Value",
+                "text": "The boolean value to watch for change"
+            },
+            {
+                "name": "Next",
+                "text": "Triggers when `Value` changed to `false`"
+            }
+        ]
+    },
+    "license": "MIT",
+    "exampleProjectId": "UWCvS8",
+    "isReleased": true
+}

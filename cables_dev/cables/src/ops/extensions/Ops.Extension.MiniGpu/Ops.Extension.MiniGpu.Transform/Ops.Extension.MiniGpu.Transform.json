@@ -1,0 +1,66 @@
+{
+    "id": "23d36e3a-01dc-4800-b0cf-60d6a8d0e611",
+    "created": 1785497347193,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1785497347207
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Trigger"
+            },
+            {
+                "type": 0,
+                "name": "Translate X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Translate Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Translate Z",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Scale",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Scale X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Scale Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Scale Z",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "coreLibs": [
+        "minigpu"
+    ]
+}

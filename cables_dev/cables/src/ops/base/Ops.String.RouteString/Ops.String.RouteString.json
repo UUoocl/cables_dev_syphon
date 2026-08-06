@@ -1,0 +1,97 @@
+{
+    "id": "9998ff83-335b-40cd-aa0e-4cae558cb551",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "andro",
+            "date": 1587983335384
+        }
+    ],
+    "authorName": "andro",
+    "created": 1587983344507,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Index",
+                "subType": "integer"
+            },
+            {
+                "type": 5,
+                "name": "String in"
+            },
+            {
+                "type": 5,
+                "name": "Default string"
+            },
+            {
+                "type": 0,
+                "name": "Set inactive to default",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Index 0 string"
+            },
+            {
+                "type": 5,
+                "name": "Index 1 string"
+            },
+            {
+                "type": 5,
+                "name": "Index 2 string"
+            },
+            {
+                "type": 5,
+                "name": "Index 3 string"
+            },
+            {
+                "type": 5,
+                "name": "Index 4 string"
+            },
+            {
+                "type": 5,
+                "name": "Index 5 string"
+            },
+            {
+                "type": 5,
+                "name": "Index 6 string"
+            },
+            {
+                "type": 5,
+                "name": "Index 7 string"
+            },
+            {
+                "type": 5,
+                "name": "Index 8 string"
+            },
+            {
+                "type": 5,
+                "name": "Index 9 string"
+            }
+        ]
+    },
+    "summary": "Route a string to an output port",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Index",
+                "text": "Index of string port out to send string to"
+            },
+            {
+                "name": "String in",
+                "text": "String to route"
+            },
+            {
+                "name": "Default string",
+                "text": "The string which goes out of all other ports"
+            }
+        ]
+    },
+    "exampleProjectId": "WDoBX8",
+    "isReleased": true
+}

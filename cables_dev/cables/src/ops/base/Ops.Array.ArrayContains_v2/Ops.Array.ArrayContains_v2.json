@@ -1,0 +1,62 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array"
+            },
+            {
+                "type": 0,
+                "name": "SearchValue",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Found",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Index",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Check if an array contains a number (find,search,indexOf)",
+    "authorName": "simod",
+    "id": "b982d7e3-c9cf-41dd-aead-66daad785fa8",
+    "created": 1619617451517,
+    "docs": {
+        "ports": [
+            {
+                "name": "Array",
+                "text": "Array in that will be searched through"
+            },
+            {
+                "name": "SearchValue",
+                "text": "the string to look for"
+            },
+            {
+                "name": "Found",
+                "text": "Returns `true` if string is in array otherwise `false`"
+            },
+            {
+                "name": "Index",
+                "text": "The index number where the string was found in the array"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "cloned op from Ops.Array.ArrayContains",
+            "author": "simod",
+            "date": 1619617451517,
+            "type": "new"
+        }
+    ],
+    "exampleProjectId": "8pZ8GA",
+    "license": "MIT",
+    "isReleased": true
+}

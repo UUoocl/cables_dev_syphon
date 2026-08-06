@@ -1,0 +1,149 @@
+{
+    "id": "ff12e50f-e2bd-4554-9aec-dab9de4cba8b",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1636701596931
+        },
+        {
+            "message": "Ops.User.pandur.MediaRecorder renamed to Ops.Dev.MediaRecorder",
+            "author": "pandur",
+            "date": 1636903749376
+        },
+        {
+            "message": "Ops.Dev.MediaRecorder renamed to Ops.Gl.MediaRecorder",
+            "author": "pandur",
+            "date": 1638262270448
+        },
+        {
+            "message": "remove autoDownload option",
+            "author": "stephan",
+            "date": 1644588080538
+        },
+        {
+            "message": "write correct error message to output port",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1671035015041
+        },
+        {
+            "message": "fix audio-only mode",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1684936426970
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1636701601165,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Recording",
+                "subType": "boolean"
+            },
+            {
+                "type": 5,
+                "name": "Filename"
+            },
+            {
+                "type": 0,
+                "name": "Download Video",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Mimetype index",
+                "group": "Encoding",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "MBit",
+                "group": "Encoding",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Max FPS",
+                "group": "Encoding",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Force FPS",
+                "group": "Encoding",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Media index",
+                "values": [
+                    "Video",
+                    "Audio",
+                    "Audio+Video"
+                ],
+                "group": "Inputs",
+                "subType": "integer"
+            },
+            {
+                "type": 2,
+                "name": "Audio In",
+                "group": "Inputs",
+                "objType": "audioNode"
+            },
+            {
+                "type": 5,
+                "name": "Video Canvas Id",
+                "group": "Inputs"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "State"
+            },
+            {
+                "type": 5,
+                "name": "Error"
+            },
+            {
+                "type": 5,
+                "name": "Final Mimetype"
+            },
+            {
+                "type": 3,
+                "name": "Valid Mimetypes"
+            },
+            {
+                "type": 0,
+                "name": "Duration",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Finished Recording"
+            },
+            {
+                "type": 5,
+                "name": "Video DataUrl"
+            }
+        ]
+    },
+    "summary": "Record the renderer-output to video",
+    "issues": "",
+    "youtubeids": [
+        "zWfwC-GH7qk"
+    ],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "ioiDIR",
+    "caniusequery": "",
+    "coreLibs": [
+        "cgl",
+        "webaudio"
+    ],
+    "isReleased": true
+}

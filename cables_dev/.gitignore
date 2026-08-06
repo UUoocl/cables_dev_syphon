@@ -1,0 +1,25 @@
+.env
+./electron/
+data/
+docker-compose.yml
+gen/
+
+# misc
+.idea/
+.DS_Store
+.vscode
+docker-compose.yml
+.mocharc.json
+
+# OS generated files #
+######################
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#Node modules folder
+node_modules
+.external-ecmascript.js

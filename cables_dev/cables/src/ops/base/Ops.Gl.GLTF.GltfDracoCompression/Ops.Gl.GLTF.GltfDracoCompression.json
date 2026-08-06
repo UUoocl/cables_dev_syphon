@@ -1,0 +1,39 @@
+{
+    "id": "4ecdc2ef-a242-4548-ad74-13f617119a64",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1629877533436,
+            "type": "new op"
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1629877544198,
+    "libs": [
+        "draco_wasm_wrapper.js",
+        "draco_decoder_wasm.js"
+    ],
+    "layout": {
+        "portsIn": [],
+        "portsOut": []
+    },
+    "summary": "gltf draco compression library",
+    "issues": "",
+    "youtubeids": [
+        "Vo3Hs8-p7_I"
+    ],
+    "docs": {
+        "ports": []
+    },
+    "credits": [
+        {
+            "title": "DRACO Compression Loader",
+            "author": "three.js",
+            "url": "https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/DRACOLoader.js",
+            "licence": "MIT"
+        }
+    ],
+    "exampleProjectId": "WFva2K",
+    "isReleased": true
+}

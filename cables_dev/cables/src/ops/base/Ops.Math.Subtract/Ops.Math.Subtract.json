@@ -1,0 +1,45 @@
+{
+    "summary": "Subtracts Number2 from Number1 (minus, -)",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "number1",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "number2",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "result",
+                "subType": "number"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "a4ffe852-d200-4b96-9347-68feb01122ca",
+    "created": 1511163198003,
+    "docs": {
+        "ports": [
+            {
+                "name": "number1",
+                "text": "`a` in `a - b`"
+            },
+            {
+                "name": "number2",
+                "text": "`b` in `a - b`"
+            },
+            {
+                "name": "result",
+                "text": "Result of the division"
+            }
+        ]
+    },
+    "isReleased": true
+}

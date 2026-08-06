@@ -1,0 +1,13 @@
+{
+    "name": "cables-corelibs",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "main": "index.js",
+    "dependencies": {
+        "cables": "file:../../",
+        "cables-shared-client": "file:../../../shared/client/",
+        "gl-matrix": "3.4.4",
+        "three": "0.181.2"
+    }
+}

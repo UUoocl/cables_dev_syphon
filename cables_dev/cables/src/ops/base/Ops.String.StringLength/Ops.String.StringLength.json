@@ -1,0 +1,20 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "String"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "number of characters in a string",
+    "id": "3f59e539-37d1-47dd-a3cb-5fd3efe00392",
+    "authorName": "pandur",
+    "isReleased": true
+}

@@ -1,0 +1,48 @@
+{
+    "id": "93939bed-e43c-48e1-aa45-0a73534bd5d6",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1593236765771,
+            "type": "new"
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1614259627755,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Trigger"
+            },
+            {
+                "type": 2,
+                "name": "Value"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "coreLibs": [
+        "vargetset"
+    ],
+    "summary": "Set an object variable by trigger",
+    "issues": "",
+    "youtubeids": [
+        "30v_GQc6ajA"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "Value",
+                "text": "textures, geometry, api request returns, etc"
+            }
+        ]
+    },
+    "isReleased": true
+}

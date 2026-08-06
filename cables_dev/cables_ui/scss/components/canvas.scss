@@ -1,0 +1,219 @@
+
+.paco-iframe
+{
+    z-index: 99999999;
+    position: absolute;
+    border:2px solid red;
+}
+
+.transformSpot
+{
+    border:2px solid var(--color-special);
+    background: rgba(255,255,255,0.3);
+    border-radius: 100%;
+    width:12px;
+    height:12px;
+    position: absolute;
+    margin-left:-10px;
+    margin-top:-10px;
+    z-index: 11111;
+    cursor:pointer;
+}
+.transformSpot:hover
+{
+    background-color: white;
+}
+
+.gizmoline
+{
+    z-index: $zindex_over;
+    position: absolute;
+    pointer-events: none;
+}
+
+.gizmo
+{
+    position: absolute;
+    z-index: $zindex_over;
+    border-radius:100%;
+    width:12px;
+    height:12px;
+    margin-left:-6px;
+    margin-top:-6px;
+    cursor:pointer;
+
+    &:hover
+    {
+        border:1px solid white;
+    }
+}
+
+#canvasicons
+{
+    // height: 25px;
+    // background:linear-gradient(var(--color-01), var(--color-01),transparent,transparent);
+
+    user-select: none;
+    color:var(--color-13);
+    position: absolute;
+    overflow: hidden;
+    z-index: $zindex_canvas+1;
+    // border:1px solid red;
+    // background-color: blue;
+    background-color: var(--color-01);
+    display: inline-block;
+
+    // padding-left: 28px; /* to give resize-window icon some space */
+
+    #canvasIconBar
+    {
+        white-space: nowrap;
+        padding-right: 5px;;
+        overflow: hidden;
+    }
+    #canvasIconBar.focussed
+    {
+        opacity: 0.4;
+    }
+
+    .threedotcanvas
+    {
+        position:absolute;
+        right:3px;
+        background-color: var(--color-01);
+        border-radius: 3px !important;
+    }
+    .threedotcanvas:hover
+    {
+        background-color: var(--color-04);
+    }
+
+    a
+    {
+        margin-right: 10px;
+        position: relative;
+        top: -5px;
+    }
+
+    .icon-resize-window {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 17px;
+        left: 3px;
+        display: block;
+        opacity: 0.4;
+        cursor: nesw-resize;
+    }
+
+    .cbl_iconbar
+    {
+        // margin-top: 3px;
+        // padding-right:5px;
+        // margin-left: 10px;
+        // margin-top: 10px;
+        // transform:translate(-50%);
+        background-color: transparent !important;
+        // border-top-left-radius: 0;
+        // border-top-right-radius: 0;
+        margin-left: 25px;
+    }
+
+    .canvasInfo,.cbl_iconbar
+    {
+        span
+        {
+            vertical-align: middle;
+            font-family: monospace;
+        }
+
+        #canvasInfoFPS
+        {
+        }
+    }
+}
+
+#canvasmodal
+{
+    pointer-events: none;
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    background-color: #000;
+    opacity: 0.3;
+    z-index: $zindex_lowest ; // background darkener
+}
+
+#cablescanvas
+{
+    z-index: $zindex_canvas;
+    overflow:hidden;
+    position:absolute;
+}
+
+#glcanvas
+{
+    position:absolute;
+    top:0px;
+    // right:0px;
+    // outline: none;
+    z-index: $zindex_lowest;
+
+    &.maximized
+    {
+        &:focus
+        {
+            border-bottom:none;
+        }
+    }
+}
+
+#canvasflash
+{
+    pointer-events: none;
+    position: absolute;
+    z-index: 99999;
+}
+
+.flash
+{
+    animation:flashAnim 0.3s infinite ease-out;
+    animation-iteration-count: 1
+}
+
+@keyframes flashAnim
+{
+    0%{		background-color: var(--color-13);	}
+    10%{		background-color: var(--color-13);	}
+    100%{	background-color: transparent;	}
+}
+
+#inspectHtmlOverlay
+{
+    box-sizing: border-box;
+    background-color:var(--color-special);
+    opacity: 0.5;
+    position: absolute;
+    z-index: 99999;
+    border:2px solid black;
+    display: inline-block;
+}
+
+.gluiPreviewLayer
+{
+    position:absolute;
+    left:0;
+    pointer-events:none;
+}
+
+.infoOverlay
+{
+    background-color: var(--color-04);
+    font-family: monospace;
+    z-index: 9999;
+    position: absolute;
+    padding:20px;
+    transform: translate(-50%);
+}

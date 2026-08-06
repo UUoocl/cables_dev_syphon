@@ -1,0 +1,47 @@
+{
+    "id": "89fc70ea-2350-4a0e-9a24-4efca10cced6",
+    "authorName": "pandur",
+    "created": 1543048614948,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Object"
+            },
+            {
+                "type": 0,
+                "name": "Beautify",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Result"
+            },
+            {
+                "type": 0,
+                "name": "Error",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "Convert object to string",
+    "docs": {
+        "ports": []
+    },
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "exampleProjectId": "7X58nR",
+    "license": "MIT",
+    "changelog": [
+        {
+            "message": "Show a warning if the connected object port does not contain an object",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1770226461832
+        }
+    ],
+    "isReleased": true
+}

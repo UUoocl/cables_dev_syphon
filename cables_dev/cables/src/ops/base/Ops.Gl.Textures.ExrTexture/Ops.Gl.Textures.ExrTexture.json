@@ -1,0 +1,91 @@
+{
+    "id": "81a807c3-f814-4815-a43c-5914c223faf4",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1643638670612,
+            "type": "new"
+        },
+        {
+            "message": "Don't crash on wrong fileformat, show exception error message in op params",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1741096172275
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1643638688319,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "EXR File"
+            },
+            {
+                "type": 0,
+                "name": "Remove Alpha",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Filter index",
+                "values": [
+                    "Nearest",
+                    "Linear"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Flip",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Texture",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Width",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Height",
+                "subType": "number"
+            },
+            {
+                "type": 5,
+                "name": "Channels"
+            },
+            {
+                "type": 0,
+                "name": "Loading",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "load .exr floating point texture files",
+    "docs": {},
+    "exampleProjectId": "zHxXMW",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true,
+    "dependencies": [
+        {
+            "src": "./fflate.js",
+            "type": "commonjs"
+        },
+        {
+            "src": "./exrloader.js",
+            "type": "module",
+            "export": "EXR"
+        }
+    ]
+}

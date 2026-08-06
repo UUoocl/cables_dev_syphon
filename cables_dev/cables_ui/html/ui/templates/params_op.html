@@ -1,0 +1,203 @@
+
+<script id="params_op_head" type="text/x-handlebars-template">
+
+    <div class="selectable params">
+
+        <a onclick="gui.opParams.opContextMenu(this)" class="tt icon icon-three-dots iconhover op-contextmenu info" data-info="More Options"></a>
+        {{#if isBookmarked}}
+            <a onclick="gui.bookmarks.add('{{op.id}}')" class="icon iconhover icon-bookmark-filled info toggle-bookmark-button" data-info="Add Bookmark"></a>
+        {{else}}
+            <a onclick="gui.bookmarks.add('{{op.id}}')" class="icon iconhover icon-bookmark info toggle-bookmark-button" data-info="Add Bookmark"></a>
+        {{/if}}
+
+        <div class="panel params_op_head panel_head">
+            <!-- <span style="padding-left: 2px;font-size: 20px;font-weight: bold;">Op</span> -->
+            <!-- <input class="medium info" id="opname" oninput="gui.opParams.setCurrentOpTitle(this.value);" value="{{optitle}}" type="search" data-info="op_title"> -->
+
+            <a class="optitle" onclick="{{#if canEditOp}}CABLES.CMD.OP.renameOp(){{else}}CABLES.CMD.PATCH.setOpTitle(){{/if}}"><b>Op</b> {{optitle}} {{#if canEditOp}}<span class="editbutton"><i class="icon icon-edit"></i><span style="font-size:12px;">rename</span>{{/if}}</a>
+			<br/>
+            <div style="max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:5px;">
+            <a href="{{cablesDocsUrl}}/op/{{op.objName}}" class="{{colorClass}}" target="_blank"></i>&nbsp;{{op.objName}}</a>
+
+            {{#if oldVersion}}
+                <br/>
+                <a id="upgradableopselected" class="button-small" onclick="gui.patchView.replaceOpCheck('{{op.id}}','{{newestVersion.name}}')">Upgrade to newest version</a>
+                <br/>
+            {{else}}
+                {{#if op.summary}} - {{op.summary}}{{/if}}
+            {{/if}}
+        </div>
+
+
+        {{#if minified}}
+        {{:else}}
+            <div class="summary selectable">
+            </div>
+        {{/if}}
+
+
+        <a href="{{cablesDocsUrl}}/op/{{op.objName}}" class="button-small"  target="_blank"> Documentation</a>
+        {{#if hasExample}}
+            <a href="{{cablesDocsUrl}}/op/example/{{op.objName}}" class="button-small"  target="_blank">Example</a>
+        {{/if}}
+
+        <a class="button-small button-icon tt" data-tt="manage op" id="parampanel_manage_op"><span class="icon icon-op"></span></a>
+
+        {{#if canEditOp}}
+            <a class="button-small button-icon tt info" data-info="[e] - edit op" data-tt="[e] - edit op " id="parampanel_edit_op"><span class="icon icon-edit"></span></a>
+        {{/if}}
+
+
+
+
+        {{#if op.crashed }}
+            OP CRASHED
+        {{/if}}
+
+        {{#if op.isDeprecated }}
+            <div class="hint" id="">
+                This operator is outdated.
+                {{#if op.isDeprecatedAlternative}}
+                <br/>
+                we recommend to use the new version: <a onclick="gui.scene().addOp('{{op.isDeprecatedAlternative}}');">{{ op.isDeprecatedAlternative }}</a>
+                {{/if}}
+            </div>
+            <br/><br/>
+        {{/if}}
+
+        {{#if opChanged}}
+            <div>
+                op was changed on server
+                <a class="cblbutton-small button-icon tt" data-tt="manage op" id="parampanel_loadchangedop_{{op.opId}}"><span class="icon icon-refresh"></span> Reload</a>
+            </div>
+        {{/if}}
+
+        {{#if op.uiAttribs.error }}
+            <div class="warning-error warning-error-level2" id="options_error"  >
+                OLD ERROR MSG<br/>
+                <i>Error:</i> {{op.uiAttribs.error}}
+            </div>
+        {{/if}}
+
+        {{#if op.uiAttribs.errors }}
+            {{#each op.uiAttribs.errors}}
+                <div class="warning-error warning-error-level2" id="options_error"  >
+                    OLD ERROR MSG<br/>
+                    {{.}}<br/>
+                </div>
+            {{/each}}
+        {{/if}}
+
+        <div id="op_params_uierrors"></div>
+
+        {{#if op.enabled}}
+        {{else}}
+            <div id="uierror__disabled" class="warning-error warning-error-level0"><b>Hint: </b>Op is disabled</div>
+        {{/if}}
+
+        {{#if op.isExperimental }}
+            <div class="warning-experimental" id=""><b>Warning: This operator is Experimental.</b><br/> You can play around with it, but a lot will change and it might stop working for you.</div>
+        {{/if}}
+
+        {{#if op.uiAttribs.warning }}
+            <div class="warning" id="options_warning" >
+                <i>Warning:</i> {{op.uiAttribs.warning}}
+            </div>
+        {{/if}}
+
+        {{#if op.uiAttribs.hint }}
+            <div class="hint" id="options_hint" >
+                <i>Hint:</i> {{op.uiAttribs.hint}}
+            </div>
+        {{/if}}
+
+
+
+    </div>
+</div>
+
+<div id="opparams" class="panel opparams{{op.id}}" style="padding:0px;
+        {{#if op.enabled }}{{else}}opacity:0.3;{{/if}}
+        ">
+    <table>
+
+</script>
+
+
+<script id="params_op_foot" type="text/x-handlebars-template">
+
+        </table>
+
+    <div class="info " id="options_info" style="padding:0px;">
+        {{op.uiAttribs.info}}
+    </div>
+
+    <br/>
+    <div class="groupSpacer"><h3>Misc</h3></div>
+
+    <div class="panel" >
+        Tags:
+        <input spellcheck="off" id="tagInput" style="width:95%;" onInput="gui.opParams.setCurrentOpTags(this.value);" value="{{op.attribs.tags}}"></textarea>
+
+        Comment:
+        <textarea id="commentTextarea" style="height:60px;width:100%;" onInput="gui.opParams.setCurrentOpComment(this.value);" >{{op.uiAttribs.comment}}</textarea>
+
+        <br/>
+        {{#each commentColors}}
+            <a onclick="gui.patchView.setOpColor('{{.}}')" style="background-color:{{.}};" class="colorbutton"></a>
+        {{/each}}
+        <a onclick="gui.patchView.setOpColor(null)" style="background-color:#fff;" class="colorbutton icon-x icon"></a>
+
+    </div>
+    {{#if showDevInfos}}
+        <br/>
+        <div class="groupSpacer"><h3>Dev</h3></div>
+        <div class="panel" >
+
+            <table>
+                <tr>
+                    <td>op id</td>
+                    <td><code>{{op.opId}}</code></td>
+                </tr>
+                <tr>
+                    <td>op instance id </td>
+                    <td><code>{{op.id}}</code></td>
+                </tr>
+                <tr>
+                    <td>storage ref</td>
+                    <td><code>{{op.storage.ref}}</code></td>
+                </tr>
+                <tr>
+                    <td>subpatch</td>
+                    <td><code>{{op.uiAttribs.subPatch}}</code></td>
+                </tr>
+                <tr>
+                    <td>ui translate</td>
+                    <td><code>{{op.uiAttribs.translate.x}},{{op.uiAttribs.translate.y}}</code></td>
+                </tr>
+
+                <!-- <tr>
+                    <td>num instances</td>
+                    <td><code>?</code></td>
+                </tr> -->
+
+            </table>
+
+        </div>
+
+        <div class="groupSpacer"><h3>Watch</h3></div>
+        <div class="panel" >
+            <span id="watchOpSerialized" tabindex="0" class="cblbutton">Serialized</span>
+            <span id="watchOpUiAttribs" tabindex="0" class="cblbutton">UiAttribs</span>
+            <span id="watchOpDocsJson" tabindex="0" class="cblbutton">OpDocs</span>
+
+        </div>
+    {{/if}}
+
+
+    <br/><br/><br/>
+
+    <script>
+    </script>
+
+</script>

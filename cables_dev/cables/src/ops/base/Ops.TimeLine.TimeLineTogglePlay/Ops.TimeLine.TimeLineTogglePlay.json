@@ -1,0 +1,28 @@
+{
+    "id": "930c6f38-9271-4021-a58b-14dcfc5763b2",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1564783883358
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1564783928413,
+    "summary": "toggle between timeline playing and being paused",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Play",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "isReleased": true
+}

@@ -1,0 +1,45 @@
+{
+    "id": "565327f1-a5eb-4f3d-8484-759d85e56424",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1629877533436,
+            "type": "new op"
+        },
+        {
+            "message": "Upgraded library to draco v1.5.7",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1776152567014,
+            "url": "https://github.com/google/draco"
+        },
+        {
+            "message": "draco GLTF files now include all texture coordinate/UV channels, not only the first anymore",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1776152603954
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1776069740750,
+    "layout": {},
+    "summary": "gltf draco compression library",
+    "youtubeids": [
+        "Vo3Hs8-p7_I"
+    ],
+    "docs": {
+        "ports": []
+    },
+    "credits": [
+        {
+            "title": "DRACO Compression Loader",
+            "author": "three.js",
+            "url": "https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/DRACOLoader.js",
+            "licence": "MIT"
+        }
+    ],
+    "exampleProjectId": "WFva2K",
+    "license": "MIT",
+    "isReleased": true
+}

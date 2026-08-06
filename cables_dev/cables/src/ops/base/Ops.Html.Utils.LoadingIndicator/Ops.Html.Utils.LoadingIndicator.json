@@ -1,0 +1,68 @@
+{
+    "id": "e102834c-6dcf-459c-9e22-44ebccfc0d3b",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1605699580894,
+            "type": "new"
+        },
+        {
+            "message": "fixed problem becoming invisible on safari sometimes",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1752153571558
+        },
+        {
+            "message": "added element output",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1753343443148
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1605699652435,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Visible",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Center Position",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Style index",
+                "values": [
+                    "Spinner",
+                    "Ring",
+                    "Ellipsis"
+                ],
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Elment",
+                "objType": "element"
+            }
+        ]
+    },
+    "summary": "show a typical web loading/progress indicator animation",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "EsV74q",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

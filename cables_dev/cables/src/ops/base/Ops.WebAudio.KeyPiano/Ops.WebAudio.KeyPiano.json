@@ -1,0 +1,141 @@
+{
+    "author": "56cdab144f85abfb36c6c089",
+    "authorName": "tim",
+    "id": "9f7d2411-ed87-45be-95a7-e6759d51582d",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "c note on"
+            },
+            {
+                "type": 1,
+                "name": "c note off"
+            },
+            {
+                "type": 1,
+                "name": "cis note on"
+            },
+            {
+                "type": 1,
+                "name": "cis note off"
+            },
+            {
+                "type": 1,
+                "name": "d note on"
+            },
+            {
+                "type": 1,
+                "name": "d note off"
+            },
+            {
+                "type": 1,
+                "name": "dis note on"
+            },
+            {
+                "type": 1,
+                "name": "dis note off"
+            },
+            {
+                "type": 1,
+                "name": "e note on"
+            },
+            {
+                "type": 1,
+                "name": "e note off"
+            },
+            {
+                "type": 1,
+                "name": "f note on"
+            },
+            {
+                "type": 1,
+                "name": "f note off"
+            },
+            {
+                "type": 1,
+                "name": "fis note on"
+            },
+            {
+                "type": 1,
+                "name": "fis note off"
+            },
+            {
+                "type": 1,
+                "name": "g note on"
+            },
+            {
+                "type": 1,
+                "name": "g note off"
+            },
+            {
+                "type": 1,
+                "name": "gis note ons"
+            },
+            {
+                "type": 1,
+                "name": "gis note off"
+            },
+            {
+                "type": 1,
+                "name": "a note on"
+            },
+            {
+                "type": 1,
+                "name": "a note off"
+            },
+            {
+                "type": 1,
+                "name": "ais note on"
+            },
+            {
+                "type": 1,
+                "name": "ais note off"
+            },
+            {
+                "type": 1,
+                "name": "b note on"
+            },
+            {
+                "type": 1,
+                "name": "b note off"
+            },
+            {
+                "type": 0,
+                "name": "octave",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "frequency",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "is pressed",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Generates notes based on key presses",
+    "docs": {
+        "ports": [
+            {
+                "name": "octave",
+                "text": "The currently active octave – `1` is the lowest, `7` the highest. `[1-7]`"
+            },
+            {
+                "name": "frequency",
+                "text": "The note frequency of the last pressed / released key in *Hz*, e.g. `440` for `A4` (middle A). This port can be connected to the `frequency`-port of an `oscillator`-op e.g.."
+            },
+            {
+                "name": "is pressed",
+                "text": "If one of the keys is currently pressed: `1.0`, if no key is pressed: `0.0`.   Can e.g. be connected to a `Gain` node, to control the volume of a Web Audio op."
+            }
+        ]
+    },
+    "created": 1666259306772,
+    "isReleased": true
+}

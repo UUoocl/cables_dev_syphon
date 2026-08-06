@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+    <base href="./dist/ui/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <script>
+        window.nodeRequire = require;
+        delete window.require;
+        delete window.exports;
+        delete window.module;
+    </script>
+    <script src="js/talkerapi.js"></script>
+    <script src="../public/js/scripts.electron.js"></script>
+    <style>
+        body {
+            background-color: #222;
+            color: white;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <title>cables</title>
+</head>
+<body>
+<iframe id="editorIframe" style="width:100%;height:100%;border:0;position:absolute;"></iframe>
+</body>
+</html>

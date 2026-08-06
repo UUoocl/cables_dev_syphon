@@ -1,0 +1,46 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "value",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Maximum",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Sets the output to the input value which is higher",
+    "docs": {
+        "ports": [
+            {
+                "name": "value",
+                "text": "Value 1"
+            },
+            {
+                "name": "Maximum",
+                "text": "Value 2"
+            },
+            {
+                "name": "result",
+                "text": "The higher value of the two input values"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "created": 1542026227242,
+    "id": "07f0be49-c226-4029-8039-3b620145dc2a",
+    "license": "MIT",
+    "exampleProjectId": "hV3X7i",
+    "isReleased": true
+}

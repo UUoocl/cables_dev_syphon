@@ -1,0 +1,32 @@
+
+<script id="GradientEditor" type="text/x-handlebars-template">
+    <div id="{{id}}pointEditor" class="gradientEditor" style="padding:20px;padding-top:0px;" >
+
+        <h3>{{name}} Editor</h3>
+
+        <div id="{{id}}ColorInput" class="colorInput"></div>
+        <a class="iconbutton" style="position:absolute;left:550px;top:117px;" id="{{id}}KeyDelete"><span class="icon icon-x"></span></a>
+
+
+        <div id="gradienteditorbar" class="editorBar" >
+            <canvas id="{{id}}Canvas" width="512" height="1" ></canvas>
+        </div>
+
+        <br/>
+
+        <div id="{{id}}Keys"></div>
+
+        <br/><br/>
+        <a id="{{id}}SaveButton" class="bluebutton">Save</a>
+        <a id="{{id}}CancelButton"class="cblbutton">Cancel</a>
+
+
+        <a class="button-small tt" id="gradientPreset1">Preset 1</span></a>
+        <a class="button-small tt" id="gradientPreset2">Preset 2</span></a>
+        <a class="button-small tt" id="gradientPreset3">Preset 3</span></a>
+
+        <a class="iconbutton tt" data-tt="reverse" style="" id="{{id}}Reverse"><span class="icon icon-arrow-down-up"></span></a>
+
+    </div>
+
+</script>

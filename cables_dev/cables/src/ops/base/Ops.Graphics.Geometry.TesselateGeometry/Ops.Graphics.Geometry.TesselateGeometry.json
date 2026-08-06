@@ -1,0 +1,45 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Geometry"
+            },
+            {
+                "type": 0,
+                "name": "Iterations",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Result",
+                "objType": "geometry"
+            },
+            {
+                "type": 0,
+                "name": "Num Vertices",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "create new triangles in a mesh (subdivide)",
+    "authorName": "pandur",
+    "id": "eb3f0bd8-211c-4336-a3ad-fa31c50d705d",
+    "created": 1515175859293,
+    "exampleProjectId": "gLrrJV",
+    "changelog": [
+        {
+            "message": "Ops.Gl.TesselateGeometry renamed to Ops.Graphics.Geometry.TesselateGeometry",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1685950676757
+        }
+    ],
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true,
+    "license": "MIT"
+}

@@ -1,0 +1,66 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "481d2d8f-b9ee-42a0-a905-caf9dc23a63f",
+    "created": 1513580689408,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "exe"
+            },
+            {
+                "type": 3,
+                "name": "array"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            },
+            {
+                "type": 1,
+                "name": "finished"
+            },
+            {
+                "type": 0,
+                "name": "index",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "value"
+            }
+        ]
+    },
+    "summary": "Iterate over an array of objects",
+    "docs": {
+        "ports": [
+            {
+                "name": "exe",
+                "text": "Trigger the op"
+            },
+            {
+                "name": "array",
+                "text": "Array in containing objects"
+            },
+            {
+                "name": "trigger",
+                "text": "Trigger out"
+            },
+            {
+                "name": "index",
+                "text": "Index out of current object"
+            },
+            {
+                "name": "value",
+                "text": "The object out"
+            }
+        ]
+    },
+    "youtubeid": "",
+    "issues": "",
+    "exampleProjectId": "UlL2G1",
+    "isReleased": true
+}

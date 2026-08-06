@@ -1,0 +1,75 @@
+{
+    "id": "c7eafb19-36e8-4574-a5e6-ed83bd8dcb44",
+    "created": 1771848735758,
+    "license": "MIT",
+    "authorName": "stephan",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "stephan",
+            "date": 1771848735758
+        },
+        {
+            "message": "Boolean.OrMultiPort renamed to Ops.Boolean.Or_v2",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1772448237001
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Booleans_0",
+                "longPort": 6,
+                "group": "Booleans",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Booleans_1",
+                "group": "Booleans",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Booleans_2",
+                "group": "Booleans",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Booleans_3",
+                "group": "Booleans",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Booleans_4",
+                "group": "Booleans",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Booleans_5",
+                "uititle": "add port",
+                "group": "Booleans",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Outputs true if one of the input values is true (boolean)",
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true,
+    "exampleProjectId": "1dAfW2"
+}

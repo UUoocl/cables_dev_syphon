@@ -1,0 +1,20 @@
+<script id="dialog_upload" type="text/x-handlebars-template">
+
+    <div id="uploaddialog">
+
+        <div class="uploadarea" id="uploadarea" onclick="CABLES.CMD.PATCH.uploadFile()">
+            Drop files to upload!
+        </div>
+
+        <span >
+            By uploading data to cables, you warrant and represent that you own or otherwise control all of the rights to the uploaded data,
+            including all the rights necessary for you to provide, post, upload, input or submit the data.
+            Do not upload illegal or offensive material.
+            <br/><br/>
+        </span>
+
+        <a class="cblbutton bluebutton" onclick="CABLES.CMD.PATCH.uploadFile()">Select file</a>
+        <a class="cblbutton"onclick="gui.closeModal();">Cancel</a>
+    </div>
+
+</script>

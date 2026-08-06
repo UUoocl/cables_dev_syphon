@@ -1,0 +1,76 @@
+{
+    "id": "68177370-116e-4c76-aef3-3b10d68e7227",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1582125861169,
+            "type": "new"
+        },
+        {
+            "message": "Added active toggle to completly unloaded a font, or even never load it in the first place",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1723027224789
+        },
+        {
+            "message": "add quotes around css url",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1740477666259
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1582125874800,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "file"
+            },
+            {
+                "type": 5,
+                "name": "family"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Loaded",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Loaded Trigger"
+            }
+        ]
+    },
+    "summary": "Load a font file like .otf, .ttf, .woff via css",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "todos": [
+        {
+            "message": "catch error when font not loaded",
+            "author": "pandur",
+            "id": "1c2356ef-c435-485a-a9aa-849e50b95bd2",
+            "date": 1605426341004,
+            "deleted": true,
+            "deletedBy": "stephan",
+            "deletedDate": 1699373784244
+        }
+    ],
+    "exampleProjectId": "xR9zIR",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

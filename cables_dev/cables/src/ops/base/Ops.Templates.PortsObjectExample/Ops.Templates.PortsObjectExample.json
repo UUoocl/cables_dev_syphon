@@ -1,0 +1,25 @@
+{
+    "authorName": "andro",
+    "id": "d7f414bf-804f-4c1a-987f-dfdbb3d80e27",
+    "created": 1537191826097,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Object in"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Object Out"
+            }
+        ]
+    },
+    "summary": "Is a template for creating Object ports",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "rWJICn",
+    "isReleased": true
+}

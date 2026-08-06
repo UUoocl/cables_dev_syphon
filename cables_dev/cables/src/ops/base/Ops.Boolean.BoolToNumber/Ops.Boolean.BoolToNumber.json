@@ -1,0 +1,35 @@
+{
+    "summary": "Outputs `0` for `false` and `1` for `true` (converter, boolean)",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "bool",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "number",
+                "subType": "number"
+            }
+        ]
+    },
+    "docs": {
+        "ports": [
+            {
+                "name": "bool",
+                "text": "The boolean value to convert"
+            },
+            {
+                "name": "number",
+                "text": "The converted boolean value as a number, either `0` or `1`"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "2591c495-fceb-4f6e-937f-11b190c72ee5",
+    "created": 1542699191227,
+    "isReleased": true
+}

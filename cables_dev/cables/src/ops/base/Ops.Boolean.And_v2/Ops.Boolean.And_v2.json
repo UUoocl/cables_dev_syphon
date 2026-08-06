@@ -1,0 +1,57 @@
+{
+    "id": "0b9fa81d-3523-4d83-bd1f-b4cd3cc1b773",
+    "created": 1765450422636,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1762781802774
+        },
+        {
+            "message": "New Version v2: Multiport by default",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1782281879146
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Booleans_0",
+                "longPort": 3,
+                "group": "Booleans",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Booleans_1",
+                "group": "Booleans",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Booleans_2",
+                "uititle": "add port",
+                "group": "Booleans",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "Outputs `true` if all input values are `true` (boolean)",
+    "isReleased": true,
+    "exampleProjectId": "_B91Ms",
+    "docs": {
+        "ports": []
+    }
+}

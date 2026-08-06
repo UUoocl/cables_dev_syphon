@@ -1,0 +1,81 @@
+{
+    "id": "0ce14933-2d91-4381-9d82-2304aae22c0e",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1550903879563,
+            "type": "new"
+        },
+        {
+            "message": "Added option to set output to custom value if passThrough is false\t",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1712928836449
+        },
+        {
+            "message": "update on changing custom default value",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1749032375594
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1550903947060,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "String In"
+            },
+            {
+                "type": 0,
+                "name": "Pass Through",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "When False index",
+                "values": [
+                    "keep last string",
+                    "custom"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 5,
+                "name": "Custom Value"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "String Out"
+            }
+        ]
+    },
+    "summary": "Output string if pass through is true",
+    "issues": "",
+    "docs": {
+        "ports": [
+            {
+                "name": "String In",
+                "text": "String in"
+            },
+            {
+                "name": "Pass Through",
+                "text": "Opens or closes the gate"
+            },
+            {
+                "name": "String Out",
+                "text": "String output if pass through is true"
+            }
+        ]
+    },
+    "caniusequery": "",
+    "youtubeids": [
+        "gT1jXP5As9A"
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

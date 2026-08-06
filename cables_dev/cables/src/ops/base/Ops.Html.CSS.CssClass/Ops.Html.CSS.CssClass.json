@@ -1,0 +1,32 @@
+{
+    "id": "d0eebfda-eba0-4702-9bcb-a3d31ea05ab4",
+    "created": 1736430207339,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1736430207340
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "CSS"
+            },
+            {
+                "type": 5,
+                "name": "Class Name"
+            }
+        ]
+    },
+    "summary": "Create a CSS class for styling other elements",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "Zo2Tu1",
+    "isReleased": true
+}

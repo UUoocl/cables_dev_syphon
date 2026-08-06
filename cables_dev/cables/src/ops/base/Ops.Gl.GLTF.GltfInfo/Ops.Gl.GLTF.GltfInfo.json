@@ -1,0 +1,59 @@
+{
+    "id": "525e57e5-9373-4cf2-a7f5-2887872a3e86",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1681833881060
+        },
+        {
+            "message": "Ops.Patch.PwAzPku.GltfInfo renamed to Ops.Gl.GLTF.GltfInfo",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1681834365181
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Exec"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Num Nodes",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Num Cams",
+                "subType": "number"
+            },
+            {
+                "type": 5,
+                "name": "FileUrl"
+            },
+            {
+                "type": 5,
+                "name": "FileName"
+            },
+            {
+                "type": 3,
+                "name": "Camera Names"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "created": 1681833901074,
+    "summary": "output some infos about the current parent GLTF scene",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "Z7tacy",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

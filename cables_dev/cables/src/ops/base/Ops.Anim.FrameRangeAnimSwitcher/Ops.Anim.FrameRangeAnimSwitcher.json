@@ -1,0 +1,98 @@
+{
+    "authorName": "pandur",
+    "id": "d801703b-af5f-4988-af90-39d57706c4b6",
+    "created": 1520948924590,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Duration",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "easing index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Value 0",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value 1",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value 2",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value 3",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value 4",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value 5",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value 6",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value 7",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value 8",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value 9",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Time 1",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Time Fade",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Time 2",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Switch between multiple anim ranges of a keyframed 3d scene",
+    "youtubeid": "",
+    "issues": "",
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

@@ -1,0 +1,109 @@
+
+.cbl_iconbarContainer
+{
+    position: absolute;
+}
+
+.cbl_iconbar_hor
+{
+    padding-bottom: 2px !important;
+    display: inline-block;
+
+    .item
+    {
+        display: inline-block;
+        margin-bottom: 0px !important;
+    }
+}
+
+.cbl_iconbar
+{
+    border-radius: $iconbar-borderradius;
+    background-color:$color-bar-bg;
+    color:white;
+    padding:4px;
+    user-select: none;
+
+    .item
+    {
+        cursor:pointer;
+        padding:$iconbar-borderradius;
+        padding-bottom: 3px;
+        border-radius: 3px;
+        margin-bottom: 3px;
+
+        &:hover
+        {
+            background-color: $color-bar-hover;
+
+            .icontext
+            {
+                display: block;
+            }
+        }
+        &:active {
+            background-color: var(--color-button-bg-active) !important;
+        }
+
+
+        &.textButton
+        {
+            background-color: $color-bar-hover;
+            padding-left:5px;
+            padding-right:5px;
+            margin-right:3px;
+            margin-left:3px;
+
+            &:hover
+            {
+                background-color: var(--color-06);
+                color:var(--color-special);
+            }
+        }
+
+        &.nonInteractive
+        {
+            margin-right:3px;
+            margin-left:3px;
+            background-color: var(--color-02);
+            cursor:default;
+            &:hover
+            {
+                background-color: var(--color-02);
+            }
+        }
+
+        // .icon
+        // {
+        //     pointer-events: none;
+        // }
+    }
+
+    .icontext
+    {
+        position: absolute;
+        display: none;
+        background-color: var(--color-03);
+        border-bottom-right-radius: $iconbar-borderradius;
+        border-top-right-radius: $iconbar-borderradius;
+        padding:5px;
+        padding-left:10px;
+        padding-right:10px;
+        white-space: nowrap;
+        margin-left:27px;
+    }
+}
+
+
+#iconbar_sidebar_bottom
+{
+    bottom:10px;
+    right:300px;
+}
+
+#iconbar_sidebar_timeline
+{
+    bottom:10px;
+    left:100px;
+    transform:translate(-50%);
+}

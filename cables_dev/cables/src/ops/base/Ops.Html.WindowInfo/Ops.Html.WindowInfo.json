@@ -1,0 +1,73 @@
+{
+    "id": "9655045c-3539-457d-be65-a1456a58906a",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1566822587767
+        },
+        {
+            "message": "added boolean output: patch is opened in an iframe or not",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1671034399556
+        },
+        {
+            "message": "add output: absolute scroll-height of body",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1671034591994
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1566822681581,
+    "summary": "size of browser window in pixels",
+    "docs": {
+        "ports": []
+    },
+    "layout": {
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "clientWidth",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "clientHeight",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "body scroll Height",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Device Pixel Ratio",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Iframe Parent",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Orientation Angle",
+                "subType": "number"
+            },
+            {
+                "type": 5,
+                "name": "Orientation Type"
+            }
+        ]
+    },
+    "exampleProjectId": "DyHxSP",
+    "caniusequery": "ScreenOrientation",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

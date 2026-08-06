@@ -1,0 +1,1 @@
+Writes the FFT data line by line to the texture. Typically you connect this to a Ops.WebAudio.Analyser op.

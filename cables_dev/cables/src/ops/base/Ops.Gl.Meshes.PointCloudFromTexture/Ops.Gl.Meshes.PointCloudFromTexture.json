@@ -1,0 +1,120 @@
+{
+    "id": "105d8812-e641-47f2-bbaf-e45d5bc3ea8b",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1602105139180,
+            "type": "new"
+        },
+        {
+            "message": "fixed positioning problems when using the current pointmaterial for pointCloudFromTexture and with other operators",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1710518296722
+        },
+        {
+            "message": "Only modifies PSMUL pointsize multiplier when POINTMATERIAL is defined / fixes crashes with non pointmaterials",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1723208124845
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1614467987844,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "Num Points",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Axis index",
+                "values": [
+                    "XYZ",
+                    "XY"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 2,
+                "name": "Texture",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Point Size",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Normalize",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Remove Point at 0",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Ignore Alpha 0",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Trigger"
+            },
+            {
+                "type": 0,
+                "name": "Total Points",
+                "subType": "number"
+            }
+        ]
+    },
+    "coreLibs": [
+        "cgl_shadermodifier",
+        "cgl"
+    ],
+    "summary": "Visualize a RGB texture as XYZ coordinates as points",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [
+        "PrkdnENo8wQ"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "Num Points",
+                "text": "set a limit to the number of points that will be rendered - \"0\" is no limit"
+            },
+            {
+                "name": "Axis index",
+                "text": "XYZ or XY (2d) cloud mode"
+            },
+            {
+                "name": "Texture",
+                "text": "RGB texture input where each pixels color value assigns a points position in 3D space"
+            },
+            {
+                "name": "Point Size",
+                "text": "mono color texture input to change each points size"
+            },
+            {
+                "name": "Normalize",
+                "text": "center the pointcloud"
+            }
+        ]
+    },
+    "exampleProjectId": "bhWkpX",
+    "license": "MIT",
+    "isReleased": true
+}

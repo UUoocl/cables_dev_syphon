@@ -1,0 +1,42 @@
+{
+    "id": "09035f9e-e5b0-4c80-9077-e7498c056dba",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1740660823699
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            },
+            {
+                "type": 0,
+                "name": "Index",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "Object"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "created": 1740660823699,
+    "summary": "push/append a number to an array",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "isReleased": true
+}

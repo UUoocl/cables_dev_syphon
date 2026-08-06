@@ -1,0 +1,77 @@
+{
+    "summary": "Scale all child objects (scaleXYZ)",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "scale",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "x",
+                "group": "Axis",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "y",
+                "group": "Axis",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "z",
+                "group": "Axis",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "50e7f565-0cdb-47ca-912b-87c04e2f00e3",
+    "created": 1506603608787,
+    "docs": {
+        "ports": [
+            {
+                "name": "render",
+                "text": "Triggers the scaling"
+            },
+            {
+                "name": "scale",
+                "text": "Scale factor"
+            },
+            {
+                "name": "trigger",
+                "text": "Triggers the next operator"
+            }
+        ]
+    },
+    "license": "MIT",
+    "youtubeids": [
+        "5pucC-GuDcs"
+    ],
+    "changelog": [
+        {
+            "message": "added non uniform axis scaling parameters for convinience",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1711468368093
+        }
+    ],
+    "exampleProjectId": "au9U7i",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

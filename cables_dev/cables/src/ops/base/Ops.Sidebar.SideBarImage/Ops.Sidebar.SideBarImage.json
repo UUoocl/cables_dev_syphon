@@ -1,0 +1,60 @@
+{
+    "id": "5ab7b4b8-ae22-4694-9bbd-9c8bffcc98c4",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1672827991381
+        },
+        {
+            "message": "Ops.User.pandur.SideBarImage renamed to Ops.Sidebar.SideBarImage",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1672828372250
+        },
+        {
+            "message": "Added Image Element output",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1707129926541
+        },
+        {
+            "message": "handle prefixassetpath correctly for url input",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1733143177809
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1672827995772,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "link"
+            },
+            {
+                "type": 5,
+                "name": "File"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "childs"
+            },
+            {
+                "type": 2,
+                "name": "Image Element",
+                "objType": "element"
+            }
+        ]
+    },
+    "summary": "Display an image in the sidebar",
+    "exampleProjectId": "nLvdby",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "isReleased": true
+}

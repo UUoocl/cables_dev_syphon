@@ -1,0 +1,67 @@
+{
+    "id": "2f9b834e-c357-4dc7-ac2e-966b11735ef8",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1578780881742
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1578780947125,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "Exec"
+            },
+            {
+                "type": "3",
+                "name": "Array"
+            },
+            {
+                "type": "1",
+                "name": "Reset"
+            },
+            {
+                "type": "3",
+                "name": "Default"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "3",
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Copy an array with a trigger, reset to use a default array",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Exec",
+                "text": "Trigger the op - make a copy"
+            },
+            {
+                "name": "Array",
+                "text": "Array in to copy"
+            },
+            {
+                "name": "Reset",
+                "text": "Reset the op - initialize to default array"
+            },
+            {
+                "name": "Default",
+                "text": "Default array if reset is triggered"
+            },
+            {
+                "name": "Result",
+                "text": "Array out"
+            }
+        ]
+    },
+    "exampleProjectId": "JqSoH-",
+    "isReleased": true
+}

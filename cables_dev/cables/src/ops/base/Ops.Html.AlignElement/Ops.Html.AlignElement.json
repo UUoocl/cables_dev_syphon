@@ -1,0 +1,119 @@
+{
+    "id": "ac562885-ea7b-4dc0-a832-0dda50ce49c1",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1730384737203
+        },
+        {
+            "message": "Added trigger input to force an update",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1736415753187
+        },
+        {
+            "message": "Position offset inputs",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1736416059848
+        },
+        {
+            "message": "Update alignment after canvas was resized",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1769506456441
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1730384737202,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Element",
+                "objType": "element"
+            },
+            {
+                "type": 2,
+                "name": "Align Element",
+                "objType": "element"
+            },
+            {
+                "type": 0,
+                "name": "Horizontal Align index",
+                "values": [
+                    "Left",
+                    "Center",
+                    "Right"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Vertical Align index",
+                "values": [
+                    "Top",
+                    "Center",
+                    "Bottom"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Horizontal Orientation index",
+                "values": [
+                    "Left",
+                    "Center",
+                    "Right"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Vertical Orientation index",
+                "values": [
+                    "Top",
+                    "Center",
+                    "Bottom"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 1,
+                "name": "Force update"
+            },
+            {
+                "type": 0,
+                "name": "Offset X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Offset Y",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Element passthrough"
+            },
+            {
+                "type": 2,
+                "name": "Aligned Element"
+            }
+        ]
+    },
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "summary": "Align a HTML element to another, keep positioning",
+    "exampleProjectId": "jKcTdv",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

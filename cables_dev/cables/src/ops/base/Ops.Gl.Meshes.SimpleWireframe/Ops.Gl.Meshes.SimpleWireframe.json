@@ -1,0 +1,71 @@
+{
+    "id": "89264e0a-512f-48a4-a7bb-ec8f12aa19c1",
+    "authorName": "pandur",
+    "created": 1547245681217,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Render"
+            },
+            {
+                "type": 2,
+                "name": "Geometry",
+                "objType": "geometry"
+            },
+            {
+                "type": 0,
+                "name": "Draw",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 2,
+                "name": "Wire Geometry",
+                "objType": "geometry"
+            }
+        ]
+    },
+    "summary": "Simple Wireframe Line Renderer",
+    "issues": "",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "addded: now also contains normals and texture coordinates",
+            "author": "pandur",
+            "date": 1558096764115,
+            "type": "improvement"
+        },
+        {
+            "message": "now works also with not-indexed geometries",
+            "author": "pandur",
+            "date": 1560512021060,
+            "type": "bugfix"
+        },
+        {
+            "message": "fixed bug with non indexed meshes",
+            "author": "pandur",
+            "date": 1567174544877,
+            "type": "bugfix"
+        },
+        {
+            "message": "added output of the resulting line geometry",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1769008877088
+        }
+    ],
+    "exampleProjectId": "gt0cay",
+    "coreLibs": [
+        "cgl"
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

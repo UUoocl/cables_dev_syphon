@@ -1,0 +1,36 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Number",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Returns the smallest integer greater than or equal to a given number",
+    "docs": {
+        "ports": [
+            {
+                "name": "Number",
+                "text": "The number to process"
+            },
+            {
+                "name": "Result",
+                "text": "Ceiled number"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "15ba7aa9-b1c3-4b20-b6bf-b52a3ba8c8c5",
+    "created": 1540919753368,
+    "exampleProjectId": "nPvVW2",
+    "isReleased": true
+}

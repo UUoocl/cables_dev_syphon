@@ -1,0 +1,250 @@
+
+.cablesCssUi
+{
+    #infoAreaToggle
+    {
+        position: absolute;
+        bottom:3px;
+        right:90px;
+        cursor:pointer;
+        text-align: center;
+        z-index: $zindex_low+2;
+    }
+
+    #infoAreaParam,#infoArea
+    {
+        bottom:0;
+        text-overflow: ellipsis;
+        position: absolute;
+        height:25px;
+        background-color: var(--color-02);
+        color: var(--text-color);
+        opacity: 0.9;
+        font-size: 17px;
+        user-select: none;
+    }
+
+    #infoAreaParam
+    {
+        z-index: $zindex_low+1;
+        min-width: 200px;
+        bottom:0px;
+        padding-left: 5px;
+    }
+
+    #infoArea
+    {
+        width: 100%;
+        overflow: hidden;
+        z-index: $zindex_lowest;
+
+        h2
+        {
+            font-size: 15px !important;
+        }
+
+        .icon
+        {
+            margin-top: 2px;
+            width:20px;
+            height:20px;
+            vertical-align: sub;
+            margin-right: 5px;;
+        }
+
+        .infoareaContent {
+            padding: 0px;
+            position: absolute;
+            padding-top: 1px !important;
+            padding-left: 20px !important;
+
+            h2,li,ul,p
+            {
+                display:inline;
+                margin:0px;
+                padding:0px;
+                margin-right:15px;
+                background-color: transparent;
+                min-height:100%;
+            }
+
+            h2 {
+                font-size: 16px;
+                color:var(--color-13);
+                padding-top: 3px;
+                display:inline;
+            }
+        }
+    }
+
+    .key_updown
+    {
+        &:after
+        {
+            font-size: 14px;
+            content:"↑↓";
+            vertical-align: top;
+        }
+    }
+
+    .key_up
+    {
+        &:after
+        {
+            font-size: 14px;
+            content:"↑";
+            vertical-align: top;
+        }
+    }
+
+    .key_left
+    {
+        &:after
+        {
+            font-size: 14px;
+            content:"←";
+            vertical-align: top;
+        }
+    }
+
+    .key_right
+    {
+        &:after
+        {
+            font-size: 14px;
+            content:"→";
+            vertical-align: top;
+        }
+    }
+    .key_down
+    {
+        &:after
+        {
+            font-size: 14px;
+            content:"↓";
+            vertical-align: top;
+        }
+    }
+
+    .key_option
+    {
+        &:after
+        {
+            font-size: 19px;
+            content:"⌥";
+        }
+    }
+
+    .key_shift
+    {
+        &:after
+        {
+            font-size: 14px;
+            content:"⇧";
+            vertical-align: top;
+        }
+    }
+
+    #infoArea .key_shift:after
+    {
+        margin-top:-3px;
+        margin-left:5px;
+    }
+
+    .key_cmd
+    {
+        &:after
+        {
+            content:"⌘";
+        }
+    }
+
+    .tooltip_nopadding
+    {
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+
+    .tooltip {
+        position: absolute;
+        z-index: $zindex_highest+1;
+        background-color: var(--color-03);
+        border-radius: 5px;
+        white-space: nowrap;
+        color: var(--color-13);
+        padding: 5px;
+        padding-left: 14px;
+        padding-right: 14px;
+        border-radius: $iconbar-borderradius;
+
+        .tooltip_value
+        {
+            text-transform: none !important;
+        }
+
+        &:hover {
+            display: none;
+        }
+
+        b {
+            font-weight: bold;
+            color: var(--color-13);
+            font-size: 14px;
+        }
+
+        i {
+            color: var(--color-13);
+        }
+
+        .multiline-string-port {
+            display: block;
+        }
+
+        .code
+        {
+            background-color: transparent;
+        }
+
+        .tooltip_port
+        {
+            color:black;
+            margin-right: 10px;
+        }
+
+        .tooltip_value
+        {
+            margin-left: 10px;
+            font-family: SourceCodePro,monospace;
+            background-color: black;
+        }
+        .tooltip_objtype
+        {
+            background-color: #444;
+            margin-right: 10px;
+        }
+
+        .tooltip_port,.tooltip_value,.tooltip_objtype
+        {
+            border-radius: 3px;
+            padding:2px;
+            padding-left:5px;
+            padding-right:5px;
+            text-transform: capitalize;
+        }
+    }
+
+    .key, .infoareaContent code, .shortcut code
+    {
+        margin-right: 3px;
+        text-transform: uppercase;
+        border-radius: 3px;
+        border-bottom: 4px solid var(--color-06);
+        padding: 0px;
+        padding-left: 5px;
+        padding-right: 5px;
+        border: 1px solid var(--color-05);
+        background-color: var( --color-04);
+        font-size: 14px;
+        font-family: monospace;
+    }
+}

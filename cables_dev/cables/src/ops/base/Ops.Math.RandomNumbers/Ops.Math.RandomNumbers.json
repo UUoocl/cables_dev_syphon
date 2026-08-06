@@ -1,0 +1,60 @@
+{
+    "summary": "simple way to get random numbers without using arrays",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "index",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "random seed",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Min",
+                "group": "Value Range",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Max",
+                "group": "Value Range",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Integer",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "X",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Y",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Z",
+                "subType": "number"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "855880fa-6a85-4ba0-aac8-50440ccae948",
+    "created": 1518471909259,
+    "youtubeid": "ASp7LEqZUIE",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "W_z9bI",
+    "isReleased": true
+}

@@ -1,0 +1,92 @@
+{
+    "summary": "outputs a absolute value controlled by the mousewheel (scroll, zoom)",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Value",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Multiply",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "min",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "max",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "smooth",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "delay",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "prevent scroll",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Flip Direction",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "active",
+                "subType": "boolean"
+            },
+            {
+                "type": "1",
+                "name": "Reset"
+            },
+            {
+                "type": "0",
+                "name": "Area index",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "absolute value",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "delta",
+                "subType": "number"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "40331e99-d2c6-4a0a-b5dd-385045aecd18",
+    "created": 1516633142096,
+    "docs": {
+        "ports": []
+    },
+    "youtubeid": "",
+    "changelog": [
+        {
+            "message": "added area parameter",
+            "author": "pandur",
+            "date": 1573030793127
+        }
+    ],
+    "exampleProjectId": "hH8f_6",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

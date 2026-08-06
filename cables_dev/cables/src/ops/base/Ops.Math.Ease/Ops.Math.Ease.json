@@ -1,0 +1,60 @@
+{
+    "authorName": "pandur",
+    "id": "8f6e4a08-33e6-408f-ac4a-198bd03b417b",
+    "created": 1519295219006,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Min",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Max",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Easing index",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "map a value to an easing curve",
+    "docs": {
+        "ports": [
+            {
+                "name": "Value",
+                "text": "value to ease"
+            },
+            {
+                "name": "Min",
+                "text": "minimum value"
+            },
+            {
+                "name": "Max",
+                "text": "maximum value"
+            },
+            {
+                "name": "Easing",
+                "text": "Pick the easing mode"
+            }
+        ]
+    },
+    "youtubeid": "PEVSinWoOSc",
+    "exampleProjectId": "rLxYY6",
+    "isReleased": true
+}

@@ -1,0 +1,59 @@
+{
+    "id": "1e2319d9-3512-4c5c-833d-b372d3084b28",
+    "created": 1708341041421,
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "created op",
+            "type": "new",
+            "author": "pandur",
+            "date": 1708341041483
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Z",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Result Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Result Z",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "normalize a vector",
+    "license": "MIT",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "O8S5O8",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

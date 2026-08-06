@@ -1,0 +1,37 @@
+{
+    "authorName": "pandur",
+    "id": "421f5b52-c0fa-47c4-8b7a-012b9e1c864a",
+    "created": 1587327233386,
+    "layout": {
+        "portsIn": [],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "read a variable number",
+    "issues": "",
+    "youtubeids": [
+        "sUR6b0zvuSY"
+    ],
+    "coreLibs": [
+        "vargetset"
+    ],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "1tfFT6",
+    "license": "MIT",
+    "isReleased": true,
+    "changelog": [
+        {
+            "message": "Add button to directly assign the used variable to the connected port",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1779349967206
+        }
+    ]
+}

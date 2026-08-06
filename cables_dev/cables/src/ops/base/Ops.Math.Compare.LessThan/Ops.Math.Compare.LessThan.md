@@ -1,0 +1,1 @@
+Checks if `Number 1` is smaller than `Number 2` and returns `true` then, otherwise `false`.

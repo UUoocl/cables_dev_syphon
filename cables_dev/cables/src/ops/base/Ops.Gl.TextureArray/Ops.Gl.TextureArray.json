@@ -1,0 +1,116 @@
+{
+    "authorName": "pandur",
+    "id": "fac012e2-43c8-4e21-85ac-189fe85d5723",
+    "created": 1519814244088,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Texture 0",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 1",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 2",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 3",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 4",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 5",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 6",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 7",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 8",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 9",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 10",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 11",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 12",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 13",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 14",
+                "objType": "texture"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Array"
+            },
+            {
+                "type": 0,
+                "name": "Count",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "create an array of textures",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "code cleanup",
+            "author": "pandur",
+            "date": 1548415252635
+        },
+        {
+            "message": " added core lib: cgl_shadergraph",
+            "author": "pandur",
+            "date": 1666622715677
+        }
+    ],
+    "exampleProjectId": "vS5fjz",
+    "coreLibs": [
+        "cgl_shadergraph"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,1 @@
+Updates the output (`Distance`) every time one of the values changes.

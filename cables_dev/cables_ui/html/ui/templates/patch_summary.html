@@ -1,0 +1,111 @@
+
+<script id="patch_summary" type="text/x-handlebars-template">
+    <div class="panel params_op_head panel_head patch_summary">
+
+        <h2 class="nomargin" style="margin-bottom:10px !important;">
+
+            {{#if isTrustedPatch}}{{else}}<span class="icon icon-ban tt" data-tt="no write access"></span>{{/if}}
+
+            {{#compare project.summary.visibility '==' 'unlisted'}}<span class="tt icon icon-eye" data-tt="unlisted patch"></span>{{/compare}}
+            {{#compare project.summary.visibility '==' 'view_only'}}<span class="tt icon icon-eye" data-tt="view only patch"></span>{{/compare}}
+            {{#compare project.summary.visibility '==' 'private'}}<span class="tt icon icon-lock" data-tt="private patch"></span>{{/compare}}
+            {{#compare project.summary.visibility '==' 'public'}}<span class="tt icon icon-globe" data-tt="public patch"></span>{{/compare}}
+            <b style="color:var(--color-13)">
+                {{#if frontendOptions.showSetProjectTitle }}
+                    {{#if project.summary.allowEdit }}
+                        <a onclick="gui.patchView.store.showModalTitleDialog()">{{project.name}}</a>
+                    {{else}}
+                        {{project.name}}
+                    {{/if}}
+                {{else}}
+                    {{project.name}}
+                {{/if}}
+            </b>{{#if project.summary.owner.username }} by <a target="_blank" href="{{cablesUrl}}/user/{{project.summary.owner.username}}">{{project.summary.owner.username}}{{/if}}</a>
+        </h2>
+
+
+        {{#if project.summary.description}}
+            {{md project.summary.description}}
+            <br/><br/>
+        {{/if}}
+
+
+        {{#if project.summary.licence}}
+            {{#compare port.uiAttribs.display '!=' 'none' }}
+                {{#compare project.summary.licence.name '!=' 'No licence chosen' }}
+                    <b>Licence</b>:
+                    {{#if project.summary.licence.link}}
+                        <a href="{{project.summary.licence.link}}" class="link" target="_blank">{{project.summary.licence.name}}</a>
+                    {{else}}
+                        {{project.summary.licence.name}}
+                    {{/if}}
+                    <br/>{{project.summary.licence.description}}
+                    <br/><br/>
+                {{/compare}}
+            {{/compare}}
+        {{/if}}
+
+        {{#if project.teams}}
+            Teams:
+            {{#each project.teams}}
+                {{#unless @first}}, {{/unless}}
+                <a href="{{../cablesUrl}}{{link}}" target="_blank" class="link">{{name}}</a>
+            {{/each}}
+            <br/><br/>
+        {{/if}}
+        {{#if project.summary.patchLists}}
+            Lists:
+            {{#each project.summary.patchLists}}
+                {{#unless @first}}, {{/unless}}
+                <a href="{{../cablesUrl}}{{link}}" target="_blank" class="link">{{name}}</a>
+            {{/each}}
+            <br/><br/>
+        {{/if}}
+
+        {{#if project.summary.exampleForOps }}
+            Op Example patch for:<br/>
+            {{#each project.summary.exampleForOps}}
+                <a target="_blank" href="{{../cablesUrl}}/op/{{.}}"> {{opLayout . }}</a>
+            {{/each}}
+            <br/><br/>
+        {{/if}}
+
+
+        {{#if project.summary.isTest }}
+            <a target="_blank" href="{{cablesUrl}}/tests/{{project.shortId}}" class="button-small">Run Test </a>
+            <br/><br/>
+        {{/if}}
+
+        <div>
+            {{#if frontendOptions.hasCommunity}}
+                <a class="iconbutton info" aria-label="settings" id="btn_patch_settings" data-info="summary_settings"><span class="icon icon-settings"></span></a>
+            {{/if}}
+            <a class="iconbutton info" aria-label="analyze patch"  id="btn_analyze_patch" data-info="summary_analyze"><span class="icon icon-pie-chart"></span></a>
+
+            {{#if frontendOptions.hasCommunity}}
+                <a class="iconbutton" id="btn_toggle_patch_like" aria-label="favs"><span class="icon icon-heart{{#if project.summary.isFav}}-fill{{/if}}"></span>{{project.summary.numFavs}}</a>
+            {{/if}}
+            {{#if frontendOptions.hasCommunity}}
+                <a class="iconbutton" target="_blank" aria-label="open in new window" href="{{cablesUrl}}/p/{{project.shortId}}"><span class="icon icon-external"></span></a>
+            {{/if}}
+            {{#if showOpenPatchDirButton}}
+                <a class="iconbutton info" id="btn_patch_opendir" aria-label="open folder" data-info="electron_openfolder"><span class="icon icon-folder"></span></a>
+            {{/if}}
+        </div>
+
+    </div>
+
+
+
+{{#if sameHost}}
+{{else}}
+    {{#if project.summary.exampleForOps }}
+    {{else}}
+        <div class="warning-error warning-error-level0">
+            Patch was last saved on a different environment: <a class="link" href="{{patchHost}}" target="top">{{patchHost}}</a>
+        </div>
+    {{/if}}
+{{/if}}
+
+
+</script>

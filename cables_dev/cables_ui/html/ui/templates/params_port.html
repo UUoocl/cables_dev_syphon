@@ -1,0 +1,140 @@
+
+<script id="params_ports_head" type="text/x-handlebars-template">
+    <tr>
+        <td colspan="11" class="panelhead" data-panelselector=".opports_{{dirStr}}">
+            <div class="groupSpacer"><h3>{{title}}</h3></div>
+        </td>
+    </tr>
+</script>
+
+<script id="params_port_general" type="text/x-handlebars-template">
+
+{{#if port.uiAttribs.spaceBefore }}
+    <tr>
+        <td></td>
+    </tr>
+{{/if}}
+
+{{#if groupSpacer}}
+    <tr>
+        <td colspan="11" >
+            <div class="groupSpacer" onclick=" gui.opParams.hidePorts([{{#each portGroupNames}}'{{.}}', {{/each}}]); ">
+                {{startGroup}}
+            </div>
+        </td>
+    </tr>
+{{/if}}
+
+<tr id="tr_{{ dirStr }}_{{ portnum }}" class="paramport_{{panelid}}_{{port.id}} {{#if port.uiAttribs.hideParam}}hide {{/if}}{{#if port.uiAttribs.greyout }}greyedout{{/if}} {{#if port.uiAttribs.group}}op-port-group{{/if}} opportgroup_{{port.uiAttribs.group}} opports_{{ dirStr }}" data-portname="{{port.name}}" onmouseout="gui.hoverPortEnd()" onmouseover="gui.hoverPortStart('{{op.id}}','{{op.objName}}','{{port.name}}');">
+
+
+    {{#if port.uiAttribs.multiPort}}
+        <td></td>
+    {{else}}
+        <td class="portType_{{ port.type }} disp_{{port.uiAttribs.display}}">
+            {{#if port.uiAttribs.isAnimated}}&nbsp;&nbsp;&nbsp;<span id="paramportkeyframe_{{port.id}}" data-info="tlKeyIconParam" class="clickable info icon icon-diamond icon-0_75x"></span>{{/if}}
+            {{#if port.uiAttribs.expose}}<span>&nbsp;&nbsp;E{{port.uiAttribs.order}}</span>{{/if}}
+            {{#if port.uiAttribs.boundToVar}}<span>&nbsp;&nbsp;V</span>{{/if}}
+
+        </td>
+    {{/if}}
+    <td class="port {{#if port.links}}_linked{{/if}}" style="{{#if port.uiAttribs.hidePort }}box-shadow:none !important;{{/if}}" id="portLineTitle_{{ dirStr }}_{{ portnum }}"  data-portname="{{port.name}}" >
+
+        <span id="portTitle_{{ dirStr }}_{{ portnum }}" data-opid="{{op.id}}" data-portname="{{port.name}}" class="{{#if port.uiAttribs.hidePort}}{{else}}paramsPortTitleClickable{{/if}} {{#if port.uiAttribs.axis}}axis{{ port.uiAttribs.axis }}{{/if}}">
+            {{#compare port.uiAttribs.display '==' 'buttons' }}
+            {{else}}
+                {{#compare port.uiAttribs.display '==' 'button' }}
+                {{else}}
+                    {{#if port.uiAttribs.title }}
+                    <i>{{port.uiAttribs.title}}</i>
+                    {{else}}
+                        {{port.name}}
+                    {{/if}}
+                {{/compare}}
+            {{/compare}}
+        </span>
+
+        {{#compare port.type '!=' '1' }}
+            <span id="portTitle_{{ dirStr }}_{{ portnum }}_reset" class="param_reset reset_hidden  clickable" data-click="resetOpValues" data-opid="{{op.id}}" data-portname="{{port.name}}" >
+                <span class="icon icon-undo icon-0_75x"></span>
+            </span>
+        {{/compare}}
+
+        <!-- numberinput-val -->
+
+        {{#if port.uiAttribs.colorPick }}
+            <div class="button_colorpick fright" tabindex="0" id="watchcolorpick_{{ dirStr }}_{{ portnum }}_{{ panelid }}"></div>
+        {{/if}}
+
+
+    </td>
+    <td class="">
+        {{#if port.links}}
+            {{#if port.direction }}
+            </td><td  style="overflow: hidden;text-overflow:ellipsis">
+                <table>
+                {{#each port.links}}
+                    <tr>
+                        <td>
+                            <a class="info icon-x icon iconhover" data-info="{{ ../texts.portUnlink }}" id="portdelete_{{ ../dirStr }}_{{ ../portnum }}" style="vertical-align:bottom"></a>
+                            <a class="clickable paramsPortLink" data-click="centerSelectOp" data-op="{{portIn.op.id}}" >{{ portIn.op.name }}</a><br/>
+                        </td>
+                    </tr>
+                {{/each}}
+                </table>
+                {{else}}
+                    </td><td>
+                {{#each port.links}}
+                    <a class="info icon-x icon iconhover" data-info="{{ ../texts.portUnlink }}" id="portdelete_{{ ../dirStr }}_{{ ../portnum }}" style="vertical-align:bottom"></a>
+                    <a class="clickable paramsPortLink"  data-click="centerSelectOp" data-op="{{portOut.op.id}}" >{{ portOut.op.name }}</a><br/>
+                {{/each}}
+            {{/if}}
+        {{/if}}
+
+</script>
+
+
+
+
+<script id="params_port_general_end" type="text/x-handlebars-template">
+
+</td>
+
+<td class="contextmenuarea">
+<!-- animation/variable button -->
+
+{{#if isInput}}
+    {{#if port.links}}
+    {{else}}
+        {{#compare port.type '==' 1 }}
+        {{else}}
+
+            {{#compare port.uiAttribs.display '==' 'switch' }}
+            {{else}}
+                {{#compare port.uiAttribs.display '==' 'dropdown' }}
+                {{else}}
+
+                    {{#if port.uiAttribs.isAnimated}}
+                        <span class="button-small button-icon info clickable" data-click="showAnim" data-opid="{{op.id}}" data-portname="{{port.name}}">
+                            <span class="icon icon-timeline"></span>
+                        </span>
+                    {{/if}}
+
+                {{/compare}}
+            {{/compare}}
+
+        {{/compare}}
+
+    {{/if}}
+
+
+{{/if}}
+
+<a class="icon-three-dots icon iconhover" style="opacity:0.6" id="port_contextmenu_{{dirStr}}_{{portnum}}_{{panelid}}" data-portid="{{port.id}}"></a>
+
+
+
+
+</td>
+</tr>
+</script>

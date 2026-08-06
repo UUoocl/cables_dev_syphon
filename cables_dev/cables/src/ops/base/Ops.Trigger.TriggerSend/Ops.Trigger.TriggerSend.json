@@ -1,0 +1,59 @@
+{
+    "id": "ce1eaf2b-943b-4dc0-ab5e-ee11b63c9ed0",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1555063271731,
+            "type": "new"
+        },
+        {
+            "message": "Trigger names in dropdown are sorted alphabetically",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1725990438956
+        },
+        {
+            "message": "Added trigger output \"next\" to make op passthrough-able",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1741175895479
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1555063274095,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Trigger"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "summary": "Allows triggers to be sent to a TriggerReceive op with the same variable name",
+    "issues": "",
+    "docs": {
+        "ports": [
+            {
+                "name": "Trigger",
+                "text": "Trigger in - gets sent to the matching TriggerReceive "
+            },
+            {
+                "name": "Named Trigger",
+                "text": "Variable name assigned to the op - must match the TriggerReceive "
+            }
+        ]
+    },
+    "youtubeids": [
+        "QZqtvPytsKE"
+    ],
+    "exampleProjectId": "hrXVpH",
+    "license": "MIT",
+    "isReleased": true
+}

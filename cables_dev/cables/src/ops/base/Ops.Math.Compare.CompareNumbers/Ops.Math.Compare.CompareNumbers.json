@@ -1,0 +1,77 @@
+{
+    "id": "169137db-9853-4384-ac5b-d10a0bbda5c2",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "andro",
+            "date": 1577977278852
+        }
+    ],
+    "authorName": "andro",
+    "created": 1577977290989,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value in",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Comparison mode index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Condition value",
+                "uititle": "Condition value",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Max",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Performs logical comparisons on numbers (compare, operators)",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Comparison mode index",
+                "text": "Pick a mode with an integer"
+            },
+            {
+                "name": "Comparison mode",
+                "text": "Comparison mode"
+            },
+            {
+                "name": "Value in",
+                "text": "Number in to check"
+            },
+            {
+                "name": "Condition value",
+                "text": "Becomes min when between mode enabled"
+            },
+            {
+                "name": "Max",
+                "text": "Becomes max when between mode enabled"
+            },
+            {
+                "name": "Result",
+                "text": "Outputs 1 for true 0 for false"
+            }
+        ]
+    },
+    "exampleProjectId": "54YpN-",
+    "isReleased": true
+}

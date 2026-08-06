@@ -1,0 +1,41 @@
+{
+    "id": "3f7e6ede-63b6-4262-9dcd-176b43374c4d",
+    "authorName": "pandur",
+    "created": 1543065730037,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "String"
+            },
+            {
+                "type": 0,
+                "name": "Capitalize",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Convert all characters in a string to upperase",
+    "youtubeid": "",
+    "issues": "",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "a8qVz6",
+    "license": "MIT",
+    "changelog": [
+        {
+            "message": "Added toggle for capitalize, only set the first character uppercase",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1774264697857
+        }
+    ],
+    "isReleased": true
+}

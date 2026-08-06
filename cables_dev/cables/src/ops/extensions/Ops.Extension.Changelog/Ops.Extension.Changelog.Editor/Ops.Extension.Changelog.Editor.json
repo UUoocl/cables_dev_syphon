@@ -1,0 +1,369 @@
+{
+    "id": "fe13b4b6-8fb7-42f4-a66d-e2a7423ad898",
+    "created": 1773655929509,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "add a new Canvas floating mode, param panel then becomes full height",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1771844763902
+        },
+        {
+            "message": "Changed the zoom for centering ops (c) and clicking findresult to be more zoomed out",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1771844763902
+        },
+        {
+            "message": "Editor does not force timeline to play after loading the ui",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1771844763902
+        },
+        {
+            "message": "Load op-dependency only once per patch, preventing lot's of requests for parent-op",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1771844763902
+        },
+        {
+            "message": "Mesh ops show an X in the op title when drawing is deactivated",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1771844763902
+        },
+        {
+            "message": "Optimized loading time for patches with many materials/shadermods and effects, only compile shaders when they are needed",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1771844763902
+        },
+        {
+            "message": "Rework import and backup-restore workflow, option to not restore/import op-code",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1771844763902
+        },
+        {
+            "message": "Store canvas mode in user preferences, restore when opening the editor",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1771844763902
+        },
+        {
+            "message": "selected op connected cables now have a brighter outline and are move visible when zoomed out",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1772447867005
+        },
+        {
+            "message": "op suggestions based on objtype, e.g. audio object outputs",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1772447867005
+        },
+        {
+            "message": "no longer taking a screenshot when changing from automatic to manual screenshots in patch settings",
+            "type": "feature",
+            "author": "stephan",
+            "date": 1772447867005
+        },
+        {
+            "message": "Gradient editor: Added simple presets",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1773655970706
+        },
+        {
+            "message": "Gradient editor: Added button to reverse all keys in current gradient",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1773656286194
+        },
+        {
+            "message": "Added user preference to switch the text editor, added basic support for codemirror and a simple textarea editor",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1773656311414
+        },
+        {
+            "message": "Speed up subpatch op saving when reloading multiple instances of op",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1773656323687
+        },
+        {
+            "message": "Optimize shader compilation time, by only checking valid link status when shader is actually used",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1773656339510
+        },
+        {
+            "message": "Fix \"take screenshot now\" button, was not working in some cases",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1773656427885
+        },
+        {
+            "message": "Export: Remove reference to non-existant sourcemaps from non-minified exports",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1773656530900
+        },
+        {
+            "message": "Vizualisation ops are also suggested when clicking on a cable",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1773901201200
+        },
+        {
+            "message": "Notify UI of file-upload via cables-cli and refresh file ports",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1774271585578,
+            "url": "https://github.com/cables-gl/cables/issues/8164"
+        },
+        {
+            "message": "Filemanager: Files are greyed out if not used in current patch",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1774274461806
+        },
+        {
+            "message": "Ignore new annoying chrome pointerlock exceptions",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1774449550770
+        },
+        {
+            "message": "File manager removes current selection filter when switching to another op",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1774618618722
+        },
+        {
+            "message": "Mute audio will be stored in user preferences now. Added new commands for mute/unmute audio. Muted audio icon is highlighted in the canvas UI bar",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1774946987397,
+            "url": "https://github.com/cables-gl/cables/issues/8199"
+        },
+        {
+            "message": "Allow upload of binary as an op-dependency (i.e. for WASM)",
+            "type": "feature",
+            "author": "stephan",
+            "date": 1775550105089,
+            "url": "https://github.com/cables-gl/cables/issues/8183"
+        },
+        {
+            "message": "Fix project-settings tabs sometimes not clickable",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1775550131885
+        },
+        {
+            "message": "fixed size of patchbg canvas and cmd+enter now cycles between normal-&gt;patchgg-&gt;maximized ",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1775745204411,
+            "url": "https://github.com/cables-gl/cables/issues/8211"
+        },
+        {
+            "message": "popout canvas did not work correctly when adding elements to the patch, because of wrong container element ",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1775748386880,
+            "url": "https://github.com/cables-gl/cables/issues/8203"
+        },
+        {
+            "message": "Gradient editor draggable points would not register a \"pointer up\" event",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1775748571490,
+            "url": "https://github.com/cables-gl/cables/issues/8202"
+        },
+        {
+            "message": "Op search improve colors for loadable op collections (teams/extensions) ",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1775807680106
+        },
+        {
+            "message": "Fix bug in updating ui when disconnecting multiplayer client",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1775820029484
+        },
+        {
+            "message": "Switched code/text/string editors: Removed ACE editor and switched to CodeMirror 6",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1776156402636
+        },
+        {
+            "message": "Allow team-users to see file-infos for uploaded assets",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1776440508252
+        },
+        {
+            "message": "Fix bug with extendet title not showing when falsish value",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1776586491015,
+            "url": "https://github.com/cables-gl/cables/issues/8237"
+        },
+        {
+            "message": "Tooltips are no longer positioned outside of the browser window/ parameter panel tooltips for input ports",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1776672133744,
+            "url": "https://github.com/cables-gl/cables/issues/8242"
+        },
+        {
+            "message": "Search toggle: \":animated\" search only over ops that have animated ports",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1776683759408
+        },
+        {
+            "message": "Ops can now be tagged, those tags can be queried by ops for meta patch functionality",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1777910486663
+        },
+        {
+            "message": "Math ops now show variablenames when directly set to port",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1777964967619
+        },
+        {
+            "message": "Left Tabpanel/Editor can now be toggled using cmd/ctrl+b hotkey",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1778567347041
+        },
+        {
+            "message": "Port suggestions in opselect dialog now shows \"variable in port\" to directly get variable values into a port without creating a var get op",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1778567452038
+        },
+        {
+            "message": "Overlay transforms can now display text",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1778586124540
+        },
+        {
+            "message": "Drawcall profiler: new view to see what drawcalls to webgl are currently executed",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1778682466195
+        },
+        {
+            "message": "Text editor appearance will be greyed out when not currently focussed",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1778824257377
+        },
+        {
+            "message": "Fix name and link to team for extensions in opselect",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1779090939254
+        },
+        {
+            "message": "Restoring a backup will restore ui attributes of patch (e.g. bookmarks)",
+            "type": "feature",
+            "author": "stephan",
+            "date": 1779101630019
+        },
+        {
+            "message": "Optimize performance spikes when selecting huge amounts of ops",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1779290388588
+        },
+        {
+            "message": "Prevent creating ops with illegal names",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1779375286640
+        },
+        {
+            "message": "Make op dependencies editable in editor",
+            "type": "feature",
+            "author": "stephan",
+            "date": 1780928903278
+        },
+        {
+            "message": "Filemanager: highlight latest uploaded file",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1780996399427
+        },
+        {
+            "message": "Unified handling of attachments and libraries in mangage op",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1782731137216
+        },
+        {
+            "message": "Most modal dialogs can now be submited by pressing enter",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1782814285312
+        },
+        {
+            "message": "Fixed bug where commands in palette where not bookmarkable anymore",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1783596975355
+        },
+        {
+            "message": "Unified and improved handling of attachments and other dependencies in manage op tab",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1784296448405
+        },
+        {
+            "message": "much better support of scrolling and pinch/zoom with touchpad (macbook)",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1785221506003
+        }
+    ],
+    "isReleased": true,
+    "docs": {
+        "ports": []
+    },
+    "summary": "Editor Changelog",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Trigger"
+            },
+            {
+                "type": 0,
+                "name": "Number",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    }
+}

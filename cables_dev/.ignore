@@ -1,0 +1,12 @@
+cables/build/*
+cables_ui/dist/
+cables_electron/dist/
+jsdoc/dist/
+cables_api/public/landing/standalone/patch/**
+cables_api/public/landing/standalone/hero/js/*
+cables_api/public/libs_core/**
+**/node_modules/**
+**/public/js/
+**/gen/**
+**/public/js/libs_core/*
+**/public/libs_core/*

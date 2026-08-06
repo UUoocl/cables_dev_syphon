@@ -1,0 +1,44 @@
+<script id="op-doc-template" type="text/x-handlebars-template">
+    <div id="opselect-layout" class="op-doc {{#if collection}}collection{{/if}}">
+        <base target="_blank"/> <!-- open links in new window -->
+        {{#if collection}}
+            <h2><i class="icon icon-book-open"></i>&nbsp;{{collection.title}}</h2>
+            {{#if collection.team}}
+                Maintained by Team <a href="{{cablesUrl}}{{collection.team.link}}">{{collection.team.name}}</a><br/
+            {{/if}}
+        {{/if}}
+        {{#if opDoc}}
+            {{#unless collection}}
+                <p class="op-doc__name">{{opDoc.shortNameDisplay}}</p>
+                <p class="">
+                    {{opDoc.name}}
+                    {{#if opDoc.oldVersion}} OLD {{/if}}
+                </p>
+            {{/unless}}
+            {{#if opDoc.summary}}
+                <div class="op-doc__summary">{{md opDoc.summary}}</div>
+            {{/if}}
+            {{#if showScreenshot}}
+                <img class="op-doc__screenshot" src="{{cablesUrl}}/op/screenshot/{{ opDoc.name }}.png"/>
+            {{/if}}
+            {{#if opDoc.content}}
+                <div class="op-doc__description">
+                    {{md opDoc.content true "_blank"}}
+                </div>
+            {{/if}}
+        {{/if}}
+        {{#if collection}}
+            {{#if collection.team}}
+                <a href="{{cablesUrl}}{{collection.team.link}}" class="button-small">View team</a>
+            {{/if}}
+            <a href="{{cablesUrl}}/ops/{{collection.name}}" class="button-small">View ops in this namespace</a>
+            {{#if collection.ops.length}}
+                <br/><br/>
+                {{#each collection.ops}}
+                    <a href="{{../cablesUrl}}/op/{{.}}"><img src="{{../cablesUrl}}/api/op/layout/{{.}}"/></a>
+                {{/each}}
+            {{/if}}
+        {{/if}}
+        <br/><br/>
+    </div>
+</script>

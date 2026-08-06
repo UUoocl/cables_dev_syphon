@@ -1,0 +1,86 @@
+{
+    "id": "0bad56de-b6fb-4610-b62e-8e447197381e",
+    "created": 1716900198502,
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1716900198536
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Radius",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Round Segments",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Rounds",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Radius Add Round",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Radius Add Point",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Offset",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Point Offset XY",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Point Offset Z",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Offset Rotation",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Points"
+            },
+            {
+                "type": 3,
+                "name": "Rotation"
+            },
+            {
+                "type": 0,
+                "name": "Total points",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Array lengths",
+                "subType": "number"
+            }
+        ]
+    },
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

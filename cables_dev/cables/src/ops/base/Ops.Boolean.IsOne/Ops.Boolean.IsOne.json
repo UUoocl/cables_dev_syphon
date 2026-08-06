@@ -1,0 +1,35 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Returns `true` if input value is `1`",
+    "docs": {
+        "ports": [
+            {
+                "name": "Value",
+                "text": "The value to check for if it is one"
+            },
+            {
+                "name": "Result",
+                "text": "`True` when input is `1`, false otherwise"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "695d35e2-ffe6-498d-9242-12dc4bcb3c2d",
+    "created": 1542699231847,
+    "isReleased": true
+}

@@ -1,0 +1,115 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Timestamp 1",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Timestamp 2",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Stop at 0",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Year",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Month",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Day",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Hours",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Minutes",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Seconds",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Milliseconds",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Diff",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Calculates the difference between two timestamps",
+    "author": "5a0fe67d9641cedb39929853",
+    "authorName": "pandur",
+    "id": "34cd865c-cc4d-4c58-afb2-626773eb412e",
+    "created": 1511019287735,
+    "docs": {
+        "ports": [
+            {
+                "name": "Timestamp 1",
+                "text": "The first timestamp"
+            },
+            {
+                "name": "Timestamp 2",
+                "text": "The second timestamp"
+            },
+            {
+                "name": "Year",
+                "text": "Years of the difference"
+            },
+            {
+                "name": "Month",
+                "text": "Months of the difference"
+            },
+            {
+                "name": "Day",
+                "text": "Days of the difference"
+            },
+            {
+                "name": "Hours",
+                "text": "Hours of the difference"
+            },
+            {
+                "name": "Minutes",
+                "text": "Minutes of the difference"
+            },
+            {
+                "name": "Seconds",
+                "text": "Seconds of the difference"
+            },
+            {
+                "name": "Milliseconds",
+                "text": "Milliseconds of the difference"
+            },
+            {
+                "name": "Diff",
+                "text": "The difference as timestamp"
+            }
+        ]
+    },
+    "license": "MIT",
+    "exampleProjectId": "d1NUet",
+    "isReleased": true
+}

@@ -1,0 +1,55 @@
+{
+    "id": "fe4e2125-f533-4fcf-9cca-cf5691dfb268",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "kikohs",
+            "date": 1677604479625,
+            "type": "new op"
+        }
+    ],
+    "authorName": "kikohs",
+    "created": 1678108947352,
+    "summary": "Pick values from input array at given indices and stride",
+    "docs": {
+        "ports": [
+            {
+                "name": "Array",
+                "text": "Input array with all values"
+            },
+            {
+                "name": "Array Stride index",
+                "text": "1,2,3,4"
+            },
+            {
+                "name": "Indices",
+                "text": "List of indices to pick"
+            }
+        ]
+    },
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array"
+            },
+            {
+                "type": 0,
+                "name": "Array Stride index",
+                "subType": "integer"
+            },
+            {
+                "type": 3,
+                "name": "Indices"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Results"
+            }
+        ]
+    },
+    "exampleProjectId": "bOBgTq",
+    "isReleased": true
+}

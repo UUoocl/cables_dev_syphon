@@ -1,0 +1,152 @@
+{
+    "id": "a82ae429-ac07-4760-882b-595a857c7ae0",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1583492799503
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1583492820153,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "exec"
+            },
+            {
+                "type": 0,
+                "name": "num",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Default Texture Transparent",
+                "subType": "boolean"
+            },
+            {
+                "type": 2,
+                "name": "texture0",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture1",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture2",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture3",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture4",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture5",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture6",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture7",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture8",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture9",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture10",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture11",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture12",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture13",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture14",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texture15",
+                "objType": "texture"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 2,
+                "name": "texture",
+                "objType": "texture"
+            }
+        ]
+    },
+    "summary": "Switch between different textures ",
+    "issues": "",
+    "youtubeids": [
+        "TdHgjqOLpnM"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "exec",
+                "text": "Trigger in"
+            },
+            {
+                "name": "num",
+                "text": "Input port to pick texture from"
+            },
+            {
+                "name": "Default Texture Transparent",
+                "text": "Enable transparency"
+            },
+            {
+                "name": "texture",
+                "text": "Selected texture output"
+            }
+        ]
+    },
+    "exampleProjectId": "gsXwVJ",
+    "caniusequery": "",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

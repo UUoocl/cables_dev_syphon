@@ -1,0 +1,31 @@
+{
+    "authorName": "pandur",
+    "id": "d9023bba-8122-4eed-8d61-32461cad8aba",
+    "created": 1519024012236,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "generate coordinates of a butterfly curve",
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

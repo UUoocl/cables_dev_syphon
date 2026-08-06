@@ -1,0 +1,54 @@
+{
+    "id": "04ff8596-d35a-4ad5-86d6-db6a8c2ce8f0",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1659701381832
+        },
+        {
+            "message": "Ops.User.pandur.VizArrayChart renamed to Ops.Viz.VizArrayChart",
+            "author": "pandur",
+            "date": 1659801854705
+        },
+        {
+            "message": "Ops.Viz.VizArrayChart renamed to Ops.Ui.VizArrayChart",
+            "author": "pandur",
+            "date": 1659801880920
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1659701445601,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array Numbers"
+            },
+            {
+                "type": 3,
+                "name": "Titles"
+            }
+        ],
+        "portsOut": []
+    },
+    "summary": "Displays information of the distribution of numerical values in an array",
+    "docs": {
+        "ports": [
+            {
+                "name": "Array Numbers",
+                "text": "numerical array"
+            },
+            {
+                "name": "Titles",
+                "text": "titles for piechart and table"
+            },
+            {
+                "name": "Style index",
+                "text": "graph/piechart"
+            }
+        ]
+    },
+    "exampleProjectId": "bPWV2f",
+    "isReleased": true
+}

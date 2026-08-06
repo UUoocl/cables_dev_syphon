@@ -1,0 +1,201 @@
+{
+    "authorName": "pandur",
+    "id": "ec55d252-3843-41b1-b731-0482dbd9e72b",
+    "created": 1583419753370,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "r",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "g",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "b",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "a",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "texture",
+                "group": "Color Texture",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "colorizeTexture",
+                "group": "Color Texture",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Vertex Colors",
+                "group": "Color Texture",
+                "subType": "boolean"
+            },
+            {
+                "type": 2,
+                "name": "textureOpacity",
+                "group": "Opacity",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Alpha Mask Source index",
+                "values": [
+                    "Luminance",
+                    "R",
+                    "G",
+                    "B",
+                    "A",
+                    "1-A",
+                    "1-R"
+                ],
+                "group": "Opacity",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Opacity TexCoords Transform",
+                "group": "Opacity",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Discard Transparent Pixels",
+                "group": "Opacity",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "diffuseRepeatX",
+                "group": "Texture Transform",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "diffuseRepeatY",
+                "group": "Texture Transform",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Tex Offset X",
+                "group": "Texture Transform",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Tex Offset Y",
+                "group": "Texture Transform",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Crop TexCoords",
+                "group": "Texture Transform",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "billboard",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            },
+            {
+                "type": 2,
+                "name": "shader",
+                "objType": "shader"
+            }
+        ]
+    },
+    "summary": "A material without shading",
+    "issues": "",
+    "youtubeids": [
+        "F-CUdHq40Pc"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "colorizeTexture",
+                "text": "Multiply the RGBA color by the Texture Color, can be used to tint the texture"
+            },
+            {
+                "name": "Vertex Colors",
+                "text": "If the current geometry provides vertex colors they will be used"
+            },
+            {
+                "name": "textureOpacity",
+                "text": "Texture input for settings opacity/alpha channel of the final color. An easy way to create a mask or holes in the object"
+            },
+            {
+                "name": "Alpha Mask Source index",
+                "text": "What information should control the final alpha channel/opacity ?"
+            },
+            {
+                "name": "diffuseRepeatX",
+                "text": "Repeat the texture on the X axis. e.g.: 2 - shows the images twice, 0.5 only shows half of the image"
+            },
+            {
+                "name": "Tex Offset X",
+                "text": "Scroll the texture on the X axis"
+            },
+            {
+                "name": "Crop TexCoords",
+                "text": "Do not repeat the image, for example when scrolling &gt; 1"
+            },
+            {
+                "name": "billboard",
+                "text": "Rotate the final object perpendicular to the camera"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "added \"use vertex color\" input parameter",
+            "author": "pandur",
+            "date": 1643616563167,
+            "type": "feature"
+        },
+        {
+            "message": "Texture transform is now usable with only an opacity/mask texture connected",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1707980494934
+        },
+        {
+            "message": "Rendering of textures from gltf files",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1770386199275
+        }
+    ],
+    "exampleProjectId": "SKCL88",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

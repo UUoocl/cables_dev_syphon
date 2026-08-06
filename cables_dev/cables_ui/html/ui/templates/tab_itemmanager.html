@@ -1,0 +1,355 @@
+
+<script id="filemanager_header" type="text/x-handlebars-template">
+
+    <div class="filemanager_header">
+        <div style="width:1000px;overflow:hidden;padding:5px;">
+            <span class="divider"></span>
+
+            <a class="fileManagerSource {{#compare source '==' 'patch' }}activeFileManagerSource{{/compare}}" onclick="gui.fileManager.setSource('patch');" class="info" data-info="file_source_patch">Patch Files</a>
+            <a class="fileManagerSource {{#compare source '==' 'lib' }}activeFileManagerSource{{/compare}}" onclick="gui.fileManager.setSource('lib');" class="info" data-info="file_source_lib">Library Files</a>
+
+            <span class="divider"></span>
+
+            <span class="iconbutton info" data-info="filemanager_file_refresh" onclick="gui.refreshFileManager();">
+                <i class="icon icon-refresh"></i>
+            </span>
+
+            {{#if frontendOptions.showAssetUpload }}
+                <span class="iconbutton info" data-info="filemanager_file_upload" onclick="CABLES.CMD.PATCH.uploadFileDialog();">
+                    <i class="icon icon-upload"></i>
+                </span>
+            {{else}}
+                <span class="iconbutton info" data-info="filemanager_file_add" onclick="CABLES.CMD.PATCH.uploadFileDialog();">
+                    <i class="icon icon-file"></i>
+                </span>
+            {{/if}}
+
+            <span class="iconbutton info" data-info="filemanager_file_create" onclick="CABLES.CMD.PATCH.createFile();">
+                <i class="icon icon-file-plus"></i>
+            </span>
+
+            <span class="divider"></span>
+
+            <span id="switch-display-icons" class="switch switch-left {{#compare display '==' 'icons' }}switch-active{{/compare}}">
+                <i class="icon icon-grid"></i>
+            </span>
+            <span id="switch-display-list" class="switch switch-right {{#compare display '==' 'list' }}switch-active{{/compare}}">
+                <i class="icon icon-menu"></i>
+            </span>
+
+            <span class="divider"></span>
+
+            <input id="filefilter" type="search" class="medium" autocomplete="off" oninput="gui.fileManager.setFilter(this.value)" style="margin:0px;width:100px;border:1px solid #aaa;padding:4px !important;font-size:13px;" placeholder="Filter..." value="{{filter}}">
+        </div>
+    </div>
+
+    {{#if fileSelectOp}}
+        <span style="border:2px solid var(--color-special);padding:7px;border-radius:10px;cursor:pointer;display: block;margin-top: 20px;margin-bottom: 20px;text-align:center;" onclick="gui.fileManager.setFilePort(null);">
+            Selection mode for: <b>{{fileSelectOp.objName}}</b>  {{#if filterType}} / {{filterType}} {{/if}}
+            <span class="icon icon-x"></span>
+        </span>
+    {{/if}}
+</script>
+
+
+<script id="tab_itemmanager" type="text/x-handlebars-template">
+    <div id="filemanagercontainer" style="height:99%">
+        <div id="itemmanager_header" class=""></div>
+        <div class="filelistcontainer">
+            {{#each items}}
+                {{#if divider}}
+                    <div style="clear:both"></div>
+                    <div style="border-bottom:1px solid var(--color-07);margin-bottom:5px;" class="text-center">
+                        {{#if ../frontendOptions.openLocalFiles}}
+                            <h2>{{divider}}{{#unless isLibraryFile}}&nbsp;<a data-dir="{{p}}" onclick="CABLESUILOADER.talkerAPI.send('openDir', { 'dir': this.dataset.dir });"><span class="icon icon-folder"></span></a>{{/unless}}</h2>
+                        {{else}}
+                            <h1>{{divider}}</h1>
+                        {{/if}}
+                    </div>
+                {{else}}
+                    <div class="tt info fileFilterable item item-container {{#if selected}} selected {{/if}} draggable {{#if isLibraryFile}} library{{/if}} " id="item{{id}}" draggable="true" ondragstart="CABLES.DragNDrop.startDragLibraryFile(event,'{{p}}');" data-info="dragfile" data-searchable="{{title}}" data-tt="{{title}}"
+
+
+
+                    {{#if usedInPatch}}
+                    {{else}}
+                    style="opacity: 0.7;"
+                    {{/if}}
+                    >
+
+                        {{#if preview}}
+                            <div class="preview bgPatternDark info" data-info="dragfile" style="width:90%;height:calc(90% - 22px);;background-color:#777;">
+                                <div class="info" data-info="dragfile" style="background-image:url('{{preview}}');width:100%;height:100%;background-size:contain;background-repeat:no-repeat;background-position:center center;">
+                                </div>
+                            </div>
+                        {{else}}
+                            <div class="preview info text-center" data-info="dragfile" style="width:90%;height:calc(90% - 22px);;background-color:#555;">
+                                <br/>
+                                <span data-info="dragfile"  class="icon icon-{{icon}} icon-4x info"></span>
+                            </div>
+                        {{/if}}
+
+                        {{#if isReference}}
+                        <div style="position:absolute;width:12px;height:12px;margin-top:-18px;margin-left:6px;">
+                            <span data-info="dragfile tt" data-tt="Refecence: File from other patch" class="icon icon-file-symlink info"></span>
+                        </div>
+                        {{/if}}
+
+
+                        <div class="filename {{#if latest}}latest{{/if}} ">{{{shortTitle}}} {{#if latest}}(latest file){{/if}} </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+            <div style="clear:both"></div>
+        </div>
+        <div id="item_details"></div>
+    </div>
+</script>
+
+
+<script id="tab_itemmanager_list" type="text/x-handlebars-template">
+    <div id="itemmanager_header"></div>
+    <div class="filelistcontainer">
+        <table class="table">
+            {{#if showHeader}}
+            <tr>
+                <th onclick="gui.fileManager.setOrder('type');" style="cursor:pointer;"><span class="icon icon-file"></span></th>
+                <th onclick="gui.fileManager.setOrder('name');" style="cursor:pointer;">
+                    Filename
+                    {{#compare order '==' 'name' }}{{#if orderReverse}}<span class="icon icon-arrow-up "></span>{{else}}<span class="icon icon-arrow-down "></span>{{/if}}{{/compare}}
+                </th>
+                <th onclick="gui.fileManager.setOrder('size');" style="cursor:pointer;">
+                    Size
+                    {{#compare order '==' 'size' }}{{#if orderReverse}}<span class="icon icon-arrow-up "></span>{{else}}<span class="icon icon-arrow-down "></span>{{/if}}{{/compare}}
+                    </th>
+                <th onclick="gui.fileManager.setOrder('date');" style="cursor:pointer;">
+                    Changed
+                    {{#compare order '==' 'date' }}{{#if orderReverse}}<span class="icon icon-arrow-up "></span>{{else}}<span class="icon icon-arrow-down "></span>{{/if}}{{/compare}}
+                    </th>
+            </tr>
+            {{/if}}
+            {{#each items}}
+                {{#if divider}}
+                    <tr>
+                        <td colspan="100">
+                            <div style="border-bottom:1px solid var(--color-07);margin-bottom:5px;" class="text-center">
+                                {{#if ../frontendOptions.openLocalFiles}}
+                                    <h2>{{divider}}{{#unless isLibraryFile}}&nbsp;<a data-dir="{{p}}" onclick="CABLESUILOADER.talkerAPI.send('openDir', { 'dir': this.dataset.dir });"><span class="icon icon-folder"></span></a>{{/unless}}</h2>
+                                {{else}}
+                                    <h1>{{divider}}</h1>
+                                {{/if}}
+                            </div>
+                        </td>
+                    </tr>
+                {{else}}
+                    <tr class="{{#if latest}}latest{{/if}}  fileFilterable" data-searchable="{{title}}" id="itemrow{{id}}"
+
+                    {{#if usedInPatch}}
+                    {{else}}
+                    style="opacity: 0.6;"
+                    {{/if}}
+                    >
+                        <td>
+                            <span class="icon icon-{{icon}}"></span>
+                            {{#if isReference}}
+                                <span class="icon icon-file-symlink"></span>
+                            {{else}}
+                            {{/if}}
+                        </td>
+                        <td><div id="item{{id}}" draggable="true" ondragstart="CABLES.DragNDrop.startDragLibraryFile(event,'{{p}}');" class="draggable listitem item {{#if selected}} selected {{/if}} {{#if isLibraryFile}} library{{/if}}">{{title}} {{#if latest}}(latest file){{/if}}</div>
+                        </td>
+                        <td>{{sizeKb}}</td>
+                        <td>{{relativedate updated}}</td>
+                    </tr>
+                {{/if}}
+            {{/each}}
+        </table>
+    </div>
+    <div id="item_details"></div>
+</script>
+
+
+<script id="filemanager_details_lib" type="text/x-handlebars-template">
+
+    <div class="filemanager-detail-element">
+        <div>
+
+            <a class="iconbutton info" data-info="filemanager_file_download" download href="{{filename}}">
+                <span class="icon icon-1x icon-download"></span>
+            </a>
+            <span class="iconbutton info" data-info="filemanager_file_search" onclick="gui.find('{{filename}}')">
+                <a class="icon icon-1x icon-search"></a>
+            </span>
+
+        </div>
+    </div>
+
+        <div class="filemanager-detail-element">
+        <div style="padding:10px;">
+            <div class=""><b>Author:</b> {{fileInfo.author}}</div>
+            <div class=""><b>License:</b> {{fileInfo.license}}</div>
+            {{#if fileInfo.originalUrl}}
+            <div class=""><b>Original URL:</b> <a class="link" href="{{fileInfo.originalUrl}}" target="_blank">{{fileInfo.originalUrl}}</a></div>
+            {{/if}}
+        </div>
+    </div>
+</script>
+
+<script id="filemanager_details_lib_audio" type="text/x-handlebars-template">
+
+    <div class="filemanager-detail-element">
+        <div style="padding:10px;">
+
+            <a class="iconbutton info" data-info="filemanager_file_download" download href="{{filename}}">
+                <span class="icon icon-1x icon-download"></span>
+            </a>
+            <span class="iconbutton info" data-info="filemanager_file_search" onclick="gui.find('{{filename}}')">
+                <a class="icon icon-1x icon-search"></a>
+            </span>
+
+        </div>
+    </div>
+
+    <div class="filemanager-detail-element">
+        <div style="padding:10px;">
+            <div class=""><b>Artist:</b> {{fileInfo.artist}}</div>
+            <div class=""><b>Title:</b> {{fileInfo.title}}</div>
+            <div class=""><b>Artist Page:</b> {{fileInfo.artistLink}}</div>
+            <div class=""><b>License:</b> {{fileInfo.license}}</div>
+            <div class=""><b>Original URL:</b> {{fileInfo.originalUrl}}</div>
+
+            <div class=""><b>Length:</b> {{fileInfo.length}}</div>
+            <div class=""><b>Bitrate:</b> {{fileInfo.bitrate}}</div>
+            <div class=""><b>Type:</b> {{fileInfo.audioType}}</div>
+        </div>
+    </div>
+</script>
+
+
+
+
+
+
+
+<script id="filemanager_details" type="text/x-handlebars-template">
+
+    <div class="filemanager-detail-element">
+
+        {{#if file.imgPreview}}
+            <img src="{{file.imgPreview}}" style="height:auto;max-width:100%;"/>
+        {{else}}
+            No preview!!
+        {{/if}}
+
+    </div>
+    <div class="filemanager-detail-element">
+
+        <div style="padding-left:10px;">
+
+            <a class="iconbutton info" data-info="filemanager_file_download" download href="{{downloadUrl}}">
+                <span class="icon icon-1x icon-download"></span>
+            </a>
+            {{#if frontendOptions.showAssetExternalLink}}
+            <a class="iconbutton info" data-info="filemanager_file_open" target="_blank" href="{{assetPageUrl}}">
+                <span class="icon icon-1x icon-external"></span>
+            </a>
+            {{/if}}
+
+            {{#if frontendOptions.showLocalAssetDirOpen}}
+            <a class="iconbutton info" data-info="filemanager_file_open" target="_blank" onclick="CABLES.CMD.ELECTRON.openFileManager('{{downloadUrl}}')">
+                <span class="icon icon-1x icon-folder"></span>
+            </a>
+            {{/if}}
+
+            <span class="iconbutton info" data-info="filemanager_file_search" onclick="gui.find('{{assetPath}}')">
+                <a class="icon icon-1x icon-search"></a>
+            </span>
+
+            <span class="iconbutton info" data-info="filemanager_copy_file_url" id="filecopyurl{{file.fileDb._id}}">
+                <a class="icon icon-1x icon-copy"></a>
+            </span>
+
+            {{#if isEditable}}
+                <span class="iconbutton info" data-info="filemanager_edit_file" id="fileedit{{file.fileDb._id}}">
+                    <a class="icon icon-1x icon-edit"></a>
+                </span>
+            {{/if}}
+
+            <span class="iconbutton info" data-info="filemanager_reupload" id="fileReUpload{{file.fileDb._id}}" {{#if frontendOptions.isElectron}}data-file-path="{{file.fileDb.path}}"{{/if}} onclick="CABLES.CMD.PATCH.reuploadFile('{{file.fileDb._id}}', '{{file.fileDb.fileName}}');">
+                <a class="icon icon-1x icon-upload"></a>
+            </span>
+
+
+            <br/><br/>
+
+            {{#if isReference}}
+            reference:
+            {{/if}}
+            <b style="word-break: break-all;">{{file.fileDb.fileName}}</b>
+
+            <br/>
+
+            {{#if isPlatformCommunity}}
+                {{#if isReference}}
+                    {{#if isLibraryFile}}{{else}}
+                        <br/>
+                        <a class="button-small" href="{{projectUrl}}" target="_blank"><span class="icon icon-file-symlink"></span>Original patch</b></a>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+            {{#if referenceCount}}
+                <br/>
+                <a class="button-small" href="{{assetPageUrl}}" target="_blank">
+                    <span class="icon icon-file-symlink"></span>
+                    Show referencing patches</a>
+            {{/if}}
+
+            {{#compare source '==' 'patch' }}
+                <br/><br/>
+                {{#if file.imgSizeWidth}}
+                        {{file.fileDb.type}}: {{ file.imgSizeWidth }} x {{ file.imgSizeHeight }} ({{file.sizeReadable}})
+                    {{else}}
+                        {{file.fileDb.type}} ({{file.sizeReadable}})
+                {{/if}}
+
+                <br/><br/>
+                last change: {{relativedate file.fileDb.updated}}<br/>
+
+            {{/compare}}
+        </div>
+    </div>
+    <div class="filemanager-detail-element">
+        {{#if file.ops}}
+            File Ops
+            <br/><br/>
+            {{#each file.ops}}
+                <a class="cblbutton" onclick="gui.patchView.addAssetOpAuto('{{../assetPath}}')"><span class="icon icon-plus-circle"></span>add <b>{{.}}</b></a>
+                <br/><br/>
+            {{/each}}
+        {{/if}}
+
+        {{#if file.converters}}
+            File Tools
+            <br/><br/>
+            {{#each file.converters}}
+                <a class="cblbutton" onclick="gui.showConverter('{{ id }}','{{ ../file.fileDb.projectId }}','{{ ../file.fileDb._id }}','{{ name }}', '{{ ../file.fileDb.name }}');"><span class="icon icon-refresh"></span>{{ name }}</a>
+                <br/>
+            {{/each}}
+        {{/if}}
+
+        {{#compare source '==' 'patch' }}
+        {{#if isReference}}
+        {{else}}
+        <br/><br/>
+        <span class="cblbutton" data-info="filemanager_delete_file" id="filedelete{{file.fileDb._id}}">
+            <a class="info icon icon-1x icon-trash"></a>Delete File
+
+        </span>
+        {{/if}}
+    {{/compare}}
+    </div>
+    <div style="clear:both;"></div>
+
+
+
+</script>

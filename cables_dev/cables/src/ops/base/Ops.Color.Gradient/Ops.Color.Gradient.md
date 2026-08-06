@@ -1,0 +1,1 @@
+This op allows the creation of custom gradients. Click the edit button to get the UI to edit gradient. More colours can be added to the gradient.

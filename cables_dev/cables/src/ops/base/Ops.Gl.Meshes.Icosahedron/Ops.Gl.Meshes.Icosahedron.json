@@ -1,0 +1,50 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "smooth",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            },
+            {
+                "type": 2,
+                "name": "geometry"
+            }
+        ]
+    },
+    "summary": "Renders a icosahedron (polyhedron with 20 faces)",
+    "docs": {
+        "ports": [
+            {
+                "name": "render",
+                "text": "Renders the icosahedron"
+            },
+            {
+                "name": "trigger",
+                "text": "Triggers the next op"
+            },
+            {
+                "name": "geometry",
+                "text": "The geometry of the polyhedron"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "109cead5-8eda-4726-9e3d-b23afe201abd",
+    "created": 1542701625850,
+    "exampleProjectId": "Ie6iQ6",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

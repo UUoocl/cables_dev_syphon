@@ -1,0 +1,42 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            },
+            {
+                "type": 0,
+                "name": "X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Z",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "current xyz coordinates (modelmatrix)",
+    "author": "58dabd06a0d7ec8d1a982e66",
+    "authorName": "pandur",
+    "id": "390d0214-92a9-48e9-85b4-f3092ee9e043",
+    "created": 1509796610323,
+    "exampleProjectId": "2AtI98",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

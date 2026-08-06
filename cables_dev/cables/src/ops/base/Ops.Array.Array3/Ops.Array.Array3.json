@@ -1,0 +1,59 @@
+{
+    "id": "2766606a-3ea0-4204-8613-b8950a124435",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1559031697403
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1559031714224,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Num Triplets",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Z",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Array"
+            },
+            {
+                "type": 0,
+                "name": "Total points",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Array length",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Create an array of num triplets set to default values xyz",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "exampleProjectId": "lmn5Og",
+    "isReleased": true
+}

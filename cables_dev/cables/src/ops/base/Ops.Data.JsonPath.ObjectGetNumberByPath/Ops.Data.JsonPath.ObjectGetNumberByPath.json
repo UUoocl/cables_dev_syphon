@@ -1,0 +1,71 @@
+{
+    "authorName": "stephan",
+    "id": "ec736baf-feb8-4d8d-b04c-173fc197759c",
+    "created": 1596729430591,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Object"
+            },
+            {
+                "type": 5,
+                "name": "Path"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Output",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Found",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "finds a number at a position in an object defined by path",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Object",
+                "text": "json object"
+            },
+            {
+                "name": "Path",
+                "text": "the past (i.e. person.age)"
+            },
+            {
+                "name": "Output",
+                "text": "the number"
+            }
+        ]
+    },
+    "exampleProjectId": "RrYnln",
+    "license": "MIT",
+    "changelog": [
+        {
+            "message": "wrong path is not an error anymore, but a warning",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1736843454406
+        },
+        {
+            "message": "change errorlevels, show hint when no path provided",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1736850879305
+        },
+        {
+            "message": "change \"found\" port to boolNum type",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1741354771619
+        }
+    ],
+    "isReleased": true
+}

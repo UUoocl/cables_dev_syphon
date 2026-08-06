@@ -1,0 +1,50 @@
+{
+    "id": "0816c999-f2db-466b-9777-2814573574c5",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1555064309756,
+            "type": "new"
+        },
+        {
+            "message": "Trigger names in dropdown are sorted alphabetically",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1725990424430
+        },
+        {
+            "message": "Added missing event to update dropdowns on namechange",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1784560285901
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1555064338485,
+    "layout": {
+        "portsIn": [],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Triggered"
+            }
+        ]
+    },
+    "summary": "Receives triggers from a TriggerSend op with the same variable name",
+    "issues": "",
+    "docs": {
+        "ports": [
+            {
+                "name": "Triggered",
+                "text": "Trigger out"
+            }
+        ]
+    },
+    "youtubeids": [
+        "QZqtvPytsKE"
+    ],
+    "exampleProjectId": "hrXVpH",
+    "license": "MIT",
+    "isReleased": true
+}

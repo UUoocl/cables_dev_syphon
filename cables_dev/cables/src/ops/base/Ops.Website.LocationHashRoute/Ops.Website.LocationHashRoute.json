@@ -1,0 +1,72 @@
+{
+    "id": "1e76f92b-1eed-4575-96e1-fcff6ed08c04",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "cables",
+            "date": 1615306114394,
+            "type": "new"
+        },
+        {
+            "message": "fix crash when using misformed route, show error",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1680075922063
+        },
+        {
+            "message": "properly set port value when loading patch",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1680075941188
+        }
+    ],
+    "authorName": "stephan",
+    "created": 1615306259654,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "Route"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Values"
+            },
+            {
+                "type": 1,
+                "name": "Changed"
+            },
+            {
+                "type": 0,
+                "name": "Matching",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "gives updated information about window.location.hash",
+    "issues": "",
+    "youtubeids": [
+        "hUdHnFtBTNU"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "Route",
+                "text": "pattern for url and variables (i.e. /scene/:id)"
+            },
+            {
+                "name": "Values",
+                "text": "an object of key-value-pairs as extracted from the hash"
+            },
+            {
+                "name": "Changed",
+                "text": "fires on change of the hash in the url"
+            }
+        ]
+    },
+    "exampleProjectId": "EfiWpG",
+    "license": "MIT",
+    "isReleased": true
+}

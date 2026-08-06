@@ -1,0 +1,38 @@
+{
+    "id": "4c69914e-6b58-4a67-9682-ad09531f5335",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1580909062801
+        },
+        {
+            "message": "Ops.User.pandur.VarGetTexture renamed to Ops.Vars.VarGetTexture",
+            "author": "pandur",
+            "date": 1581417182319
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1580909065589,
+    "layout": {
+        "portsOut": [
+            {
+                "type": "2",
+                "name": "Object"
+            }
+        ]
+    },
+    "summary": "get a texture from a variable",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Object",
+                "text": "Texture out"
+            }
+        ]
+    },
+    "exampleProjectId": "lkS998",
+    "isReleased": true
+}

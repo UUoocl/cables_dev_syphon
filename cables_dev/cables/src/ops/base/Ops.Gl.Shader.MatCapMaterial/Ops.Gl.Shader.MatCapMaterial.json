@@ -1,0 +1,237 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "2",
+                "name": "MatCap"
+            },
+            {
+                "type": "2",
+                "name": "Diffuse",
+                "group": "Texture maps"
+            },
+            {
+                "type": "2",
+                "name": "Normal",
+                "group": "Texture maps"
+            },
+            {
+                "type": "2",
+                "name": "Specular",
+                "group": "Texture maps"
+            },
+            {
+                "type": "2",
+                "name": "Specular MatCap",
+                "group": "Texture maps"
+            },
+            {
+                "type": "2",
+                "name": "AO Texture",
+                "group": "Texture maps"
+            },
+            {
+                "type": "2",
+                "name": "Opacity Texture",
+                "group": "Texture maps"
+            },
+            {
+                "type": "0",
+                "name": "r",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "g",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "b",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Opacity",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "AO Intensity",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Repeat X",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Repeat Y",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Offset X",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Offset Y",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "calc normal tangents",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "projectCoords index",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "projectCoords",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "Screen Space Normals",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Alpha Mask Source index",
+                "subType": "integer"
+            },
+            {
+                "type": "5",
+                "name": "Alpha Mask Source",
+                "group": "Texture Opacity"
+            },
+            {
+                "type": "0",
+                "name": "Opacity TexCoords Transform",
+                "group": "Texture Opacity",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Discard Transparent Pixels",
+                "group": "Texture Opacity",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            },
+            {
+                "type": "2",
+                "name": "Shader"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "7857ee9e-6d60-4c30-9bc0-dfdddf2b47ad",
+    "created": 1508327382364,
+    "summary": "Easy to use image based lighting Material",
+    "docs": {
+        "ports": [
+            {
+                "name": "render",
+                "text": "Trigger the op"
+            },
+            {
+                "name": "MatCap",
+                "text": "texture in - should be matcap material format"
+            },
+            {
+                "name": "Diffuse",
+                "text": "Diffuse texture in"
+            },
+            {
+                "name": "Normal",
+                "text": "Normals texture in"
+            },
+            {
+                "name": "Specular",
+                "text": "Specular texture in"
+            },
+            {
+                "name": "Specular MatCap",
+                "text": "Specular matcap texture in"
+            },
+            {
+                "name": "AO Texture",
+                "text": "Ambient occlusion texture in"
+            },
+            {
+                "name": "Opacity Texture",
+                "text": "Opacity texture in - affected by texture opacity options"
+            },
+            {
+                "name": "r",
+                "text": "Red amount"
+            },
+            {
+                "name": "g",
+                "text": "Green amount"
+            },
+            {
+                "name": "b",
+                "text": "Blue amount"
+            },
+            {
+                "name": "Opacity",
+                "text": "Opacity amount"
+            },
+            {
+                "name": "AO Intensity",
+                "text": "Ambient occlusion intensity"
+            },
+            {
+                "name": "Repeat X",
+                "text": "Repeat texture amount on the X axis"
+            },
+            {
+                "name": "Repeat Y",
+                "text": "Repeat texture amount on the Y axis"
+            },
+            {
+                "name": "Offset X",
+                "text": "Offset texture on X axis"
+            },
+            {
+                "name": "Offset Y",
+                "text": "Offset texture on Y axis"
+            },
+            {
+                "name": "trigger",
+                "text": "Trigger out"
+            },
+            {
+                "name": "Shader",
+                "text": "Shader out"
+            }
+        ]
+    },
+    "issues": "",
+    "youtubeids": [],
+    "exampleProjectId": "gWkghi",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

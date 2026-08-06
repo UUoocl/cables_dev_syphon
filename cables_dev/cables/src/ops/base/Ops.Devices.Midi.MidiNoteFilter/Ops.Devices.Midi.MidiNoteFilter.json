@@ -1,0 +1,164 @@
+{
+    "authorName": "simod",
+    "id": "b248a588-81cc-47af-a65b-36509abd2888",
+    "created": 1553163854704,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "MIDI Event",
+                "group": "MIDI"
+            },
+            {
+                "type": 0,
+                "name": "MIDI Channel index",
+                "group": "MIDI",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Note Start index",
+                "group": "Notes",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Note End index",
+                "group": "Notes",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Normalize Velocity index",
+                "group": "Notes",
+                "subType": "integer"
+            },
+            {
+                "type": 1,
+                "name": "learn"
+            },
+            {
+                "type": 1,
+                "name": "reset"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Event"
+            },
+            {
+                "type": 1,
+                "name": "Trigger Out"
+            },
+            {
+                "type": 0,
+                "name": "Current Note",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Velocity",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Gate",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "Only read a range of notes (e.g. C1 to C2)",
+    "issues": "",
+    "youtubeids": [
+        "eDlaFD_d5lc",
+        "x0mjo8XStzA"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "MIDI Event",
+                "text": "Midi event in"
+            },
+            {
+                "name": "MIDI Channel",
+                "text": "Pick a midi channel from 1 to 16"
+            },
+            {
+                "name": "Note Start",
+                "text": "The first note in the range- all notes below this are ignored"
+            },
+            {
+                "name": "Note End",
+                "text": "The last note in the range- all notes above this are ignored"
+            },
+            {
+                "name": "Normalize Velocity",
+                "text": "Enable to normalise values from 0 to 1 or -1 to 1"
+            },
+            {
+                "name": "learn",
+                "text": "lick and then press the first and then last midi note to automatically define the range"
+            },
+            {
+                "name": "reset",
+                "text": "Resets the selected range"
+            },
+            {
+                "name": "Event",
+                "text": "Midi event out - passes all midi data through to allow midi ops to be stacked"
+            },
+            {
+                "name": "Trigger Out",
+                "text": "Triggers when notes between the selected range come in"
+            },
+            {
+                "name": "Current Note",
+                "text": "outputs all note numbers coming in between the selected range"
+            },
+            {
+                "name": "Velocity",
+                "text": "Velocity of current note. Normally between 0-127 unless Normalise velocity is enabled"
+            },
+            {
+                "name": "Gate",
+                "text": "True when the note is on else false."
+            }
+        ]
+    },
+    "exampleProjectId": "dfF3DI",
+    "changelog": [
+        {
+            "message": "learned input parameter are transfered to remote viewer",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1671034735622
+        },
+        {
+            "message": "refresh parameter when changing notes etc.",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1671034753335
+        },
+        {
+            "message": "fixed an infitnite loop problem",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1671034758646
+        },
+        {
+            "message": "fix error when learning note",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1736416409907
+        },
+        {
+            "message": "fixed problem displaying of notes",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1751873727267
+        }
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

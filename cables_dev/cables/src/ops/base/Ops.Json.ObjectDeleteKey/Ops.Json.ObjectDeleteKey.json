@@ -1,0 +1,37 @@
+{
+    "id": "57a80386-b565-4915-a365-61b2dccf5ccc",
+    "changelog": [
+        {
+            "message": "op created",
+            "author": "pandur",
+            "date": 1692282851977,
+            "type": "new op"
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1692282851977,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Object"
+            },
+            {
+                "type": 5,
+                "name": "Key"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Object Result"
+            }
+        ]
+    },
+    "summary": "Remove a Property from an Object by Key",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "piMxeG",
+    "isReleased": true
+}

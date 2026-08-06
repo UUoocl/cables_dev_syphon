@@ -1,0 +1,66 @@
+{
+    "id": "0e5cde34-35cd-440d-b8cd-f78e1b5b7722",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1644848363183,
+            "type": "new"
+        },
+        {
+            "message": "performance optimized: only read pixels that will be shown / update less often",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1671034973117
+        },
+        {
+            "message": "start at top left pixel of texture",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1671034980836
+        },
+        {
+            "message": "Add row parameter to scroll through texture rows",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1708512581387
+        },
+        {
+            "message": "show coordinates of each pixel color table row",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1717428609798
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1645188318557,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Texture",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Row Start",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": []
+    },
+    "summary": "Show pixel colors of connected texture as a table, useful for debugging",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "exampleProjectId": "kp6oq4",
+    "docs": {
+        "ports": []
+    },
+    "coreLibs": [
+        "cgl_pixelreader",
+        "cgl"
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

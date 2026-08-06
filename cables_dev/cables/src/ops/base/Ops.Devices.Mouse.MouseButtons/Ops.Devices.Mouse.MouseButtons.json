@@ -1,0 +1,94 @@
+{
+    "summary": "Get the state of mouse buttons",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Area index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Click Left"
+            },
+            {
+                "type": 1,
+                "name": "Click Right"
+            },
+            {
+                "type": 1,
+                "name": "Double Click"
+            },
+            {
+                "type": 0,
+                "name": "Button pressed Left",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Button pressed Middle",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Button pressed Right",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Down Left"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Down Middle"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Down Right"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Up Left"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Up Middle"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Up Right"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "c7e5e545-c8a1-4fef-85c2-45422b947f0d",
+    "created": 1507284375026,
+    "docs": {
+        "ports": []
+    },
+    "issues": "",
+    "youtubeids": [],
+    "caniusequery": "",
+    "exampleProjectId": "cLtJLO",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true,
+    "license": "MIT",
+    "changelog": [
+        {
+            "message": "Only trigger mouseUp outputs when down was pressed while active was true",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1777295605973
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "updated": 1522054884543,
+    "author": "59db805b08bab26e1ab7a0f2",
+    "authorName": "pandur",
+    "id": "7eb9a1ec-daf2-445c-a364-0bffa626a84b",
+    "created": 1511447490540,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "Screenshot"
+            },
+            {
+                "type": "0",
+                "name": "Filename",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "Use Canvas Size",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Width",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "Height",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "Finished"
+            }
+        ]
+    },
+    "summary": "download the current screen content as png file",
+    "exampleProjectId": "OB0Qmi",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

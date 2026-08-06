@@ -1,0 +1,84 @@
+{
+    "authorName": "pandur",
+    "id": "20be6064-b332-447c-a220-e70d5bc506e0",
+    "created": 1519816612579,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "2",
+                "name": "texture"
+            },
+            {
+                "type": "0",
+                "name": "Mode index",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "weightMul",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "r",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "g",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "b",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "white",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "diffuseRepeatX",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "diffuseRepeatY",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Tex Offset X",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Tex Offset Y",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            }
+        ]
+    },
+    "summary": "display texture and replace a color with transparency",
+    "docs": {
+        "ports": []
+    },
+    "issues": "",
+    "youtubeids": [],
+    "exampleProjectId": "aDqoTq",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

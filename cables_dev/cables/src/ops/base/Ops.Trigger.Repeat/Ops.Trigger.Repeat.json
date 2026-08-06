@@ -1,0 +1,54 @@
+{
+    "summary": "Triggers all ops below x times (for loop / while)",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "exe"
+            },
+            {
+                "type": "0",
+                "name": "num",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            },
+            {
+                "type": "0",
+                "name": "index",
+                "subType": "number"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "0f4d6489-ea7a-436b-b1b3-25a739e150c6",
+    "created": 1517218976788,
+    "docs": {
+        "ports": [
+            {
+                "name": "exe",
+                "text": "Executes the loop"
+            },
+            {
+                "name": "num",
+                "text": "How often the loop should be executed"
+            },
+            {
+                "name": "trigger",
+                "text": "Loop-Trigger"
+            },
+            {
+                "name": "index",
+                "text": "The index of the loop, starts at `0`, goes until `Num - 1`"
+            }
+        ]
+    },
+    "youtubeid": "jiOLZaMUH78",
+    "issues": "",
+    "exampleProjectId": "VFAfgg",
+    "isReleased": true
+}

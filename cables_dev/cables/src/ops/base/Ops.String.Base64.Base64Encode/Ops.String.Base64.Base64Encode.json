@@ -1,0 +1,24 @@
+{
+    "updated": 1541835596510,
+    "authorName": "pandur",
+    "id": "45ce8bbd-1db8-4b71-993c-5e3401475021",
+    "created": 1516815684003,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "String",
+                "subType": "string"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "encode a string to base64",
+    "isReleased": true
+}

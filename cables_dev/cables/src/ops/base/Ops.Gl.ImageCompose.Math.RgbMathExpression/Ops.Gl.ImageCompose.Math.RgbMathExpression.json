@@ -1,0 +1,103 @@
+{
+    "summary": "Execute a glsl code math expression in a image compose ",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Render"
+            },
+            {
+                "type": 5,
+                "name": "R ="
+            },
+            {
+                "type": 5,
+                "name": "G ="
+            },
+            {
+                "type": 5,
+                "name": "B ="
+            },
+            {
+                "type": 5,
+                "name": "A ="
+            },
+            {
+                "type": 1,
+                "name": "Update Shader"
+            },
+            {
+                "type": 0,
+                "name": "x",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "z",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "w",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "texA",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texB",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "texC",
+                "objType": "texture"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            },
+            {
+                "type": 5,
+                "name": "code"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "ffce294c-be45-493b-96cb-05ce35af3588",
+    "created": 1678981059161,
+    "changelog": [
+        {
+            "message": "op created",
+            "author": "pandur",
+            "date": 1678981059161,
+            "type": "new op"
+        },
+        {
+            "message": "Add parameter to set alpha channel",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1708513766728
+        }
+    ],
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "tG4xFs",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,1 @@
+All objects which are drawn after will be affected by this (translated, rotated and scaled).

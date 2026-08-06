@@ -1,0 +1,89 @@
+{
+    "id": "f63adc97-7f4a-4cad-a53a-a20ad1e9b30e",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "simod",
+            "date": 1571227742167
+        },
+        {
+            "message": "Ops.User.simod.MidiCCOut renamed to Ops.Devices.Midi.MidiCCOut",
+            "author": "simod",
+            "date": 1571309165529
+        }
+    ],
+    "authorName": "simod",
+    "created": 1571227793159,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "MIDI Channel index",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "CC Index",
+                "group": "CC",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "CC Value",
+                "group": "CC",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "Min In Value",
+                "group": "Value Range",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Max In Value",
+                "group": "Value Range",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "2",
+                "name": "MIDI Event Out"
+            }
+        ]
+    },
+    "summary": "send MIDI CC data to a midi output",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "MIDI Channel",
+                "text": "the midi channel of the CC message"
+            },
+            {
+                "name": "CC Index",
+                "text": "the index of the CC message"
+            },
+            {
+                "name": "CC Value",
+                "text": "the value of the CC message"
+            },
+            {
+                "name": "Min In Value",
+                "text": "the minimum value that is coming in"
+            },
+            {
+                "name": "Max In Value",
+                "text": "the maximum value that is coming in"
+            },
+            {
+                "name": "MIDI Event Out",
+                "text": "the midi event output port"
+            }
+        ]
+    },
+    "exampleProjectId": "VbaQXU",
+    "isReleased": true
+}

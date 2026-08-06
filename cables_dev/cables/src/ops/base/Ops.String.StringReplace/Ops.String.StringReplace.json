@@ -1,0 +1,69 @@
+{
+    "id": "4a053e7a-6b00-4e71-bd51-90cdb190994c",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1620204690545
+        },
+        {
+            "message": "Ops.User.pandur.StringReplace renamed to Ops.String.StringReplace",
+            "author": "pandur",
+            "date": 1620205093786
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1620204809070,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "String"
+            },
+            {
+                "type": 5,
+                "name": "Search For"
+            },
+            {
+                "type": 5,
+                "name": "Replace"
+            },
+            {
+                "type": 0,
+                "name": "Replace What index",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "replace occurrences of a string with another string",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "String",
+                "text": "incoming string"
+            },
+            {
+                "name": "Search For",
+                "text": "find a string or character"
+            },
+            {
+                "name": "Replace",
+                "text": "replace with this string"
+            },
+            {
+                "name": "Replace What index",
+                "text": "ALL(0) or First(1) occurrence "
+            }
+        ]
+    },
+    "exampleProjectId": "q0iLkE",
+    "isReleased": true
+}

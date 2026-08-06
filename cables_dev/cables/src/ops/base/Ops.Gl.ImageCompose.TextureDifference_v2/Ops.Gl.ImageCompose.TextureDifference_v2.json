@@ -1,0 +1,45 @@
+{
+    "authorName": "pandur",
+    "id": "42401bdb-8646-46e0-8429-9533c229e3bc",
+    "created": 1770816426095,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 2,
+                "name": "Texture 1",
+                "objType": "texture"
+            },
+            {
+                "type": 2,
+                "name": "Texture 2",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Threshold",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "summary": "render the difference of two textures",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [],
+    "license": "MIT",
+    "exampleProjectId": "zCDlTi",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

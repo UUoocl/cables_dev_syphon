@@ -1,0 +1,44 @@
+{
+    "id": "4af8e3b3-3258-428c-a2a3-ab3ed3ad5ad8",
+    "created": 1776698161645,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1776698161645
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Filter index",
+                "values": [
+                    "None",
+                    "EndsWith",
+                    "StartsWith",
+                    "Includes"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 5,
+                "name": "Filter Value"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Filenames"
+            }
+        ]
+    },
+    "summary": "Outputs an array of filenames, that are uploaded to the current patch",
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

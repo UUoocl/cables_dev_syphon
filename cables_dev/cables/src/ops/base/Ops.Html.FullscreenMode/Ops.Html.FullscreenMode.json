@@ -1,0 +1,69 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Request Fullscreen"
+            },
+            {
+                "type": 1,
+                "name": "Exit Fullscreen"
+            },
+            {
+                "type": 0,
+                "name": "Element index",
+                "values": [
+                    "Canvas",
+                    "Document"
+                ],
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Is Fullscreen",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Supported",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "Switch webgl to fullscreen",
+    "authorName": "pandur",
+    "id": "fe933b35-696d-4738-be03-c0c011ed67a0",
+    "created": 1558014424320,
+    "changelog": [
+        {
+            "message": "Enhancement: Stop Requesting fullscreen mode without exiting it",
+            "author": "pandur",
+            "date": 1564310959730,
+            "type": "improvement"
+        },
+        {
+            "message": "Fix null pointer exception happening even if everything worked fine",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1723100723437
+        },
+        {
+            "message": "Fix current state output and add \"Supported\" boolean output",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1757586955719
+        }
+    ],
+    "license": "MIT",
+    "exampleProjectId": "CCoJji",
+    "docs": {
+        "ports": []
+    },
+    "caniusequery": "Fullscreen API",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

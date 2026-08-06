@@ -1,0 +1,107 @@
+{
+    "summary": "Show WebGl Performance Statistics",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "exe"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Visible",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Measure GPU",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Position index",
+                "values": [
+                    "top",
+                    "bottom"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Open",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Smooth Graph",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Scale",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Size",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "childs"
+            },
+            {
+                "type": 2,
+                "name": "Canvas"
+            },
+            {
+                "type": 2,
+                "name": "Count Per Second Data"
+            },
+            {
+                "type": 0,
+                "name": "FPS",
+                "subType": "number"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "9cd2d9de-000f-4a14-bd13-e7d5f057583c",
+    "created": 1506600656132,
+    "exampleProjectId": "zFR8z5",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "changelog": [
+        {
+            "message": "Added active toggle to completly disable calculation of performance data",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1731928552752
+        },
+        {
+            "message": "Cleanup distplay / output count per second data",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1768570596586
+        },
+        {
+            "message": "Much more realistic results for GPU timing numbers, in some cases they are still very wrong, probably blame webgl query timer or GPU driver....",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1778835413046
+        }
+    ],
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

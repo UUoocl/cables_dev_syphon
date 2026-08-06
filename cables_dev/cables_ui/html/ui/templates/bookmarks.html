@@ -1,0 +1,19 @@
+<script id="bookmarks" type="text/x-handlebars-template">
+    {{#if bookmarks}}
+        <div class="panel" id="bookmarkpanel">
+            <h3>Bookmarks</h3>
+
+            {{#each bookmarks}}
+                <div class="list">
+                    <div onclick="gui.bookmarks.goto('{{id}}');" >
+                        <h3 class="op_color_{{class}}">{{name}}</h3>
+                        {{objName}}
+                        <a class="icon icon-x fright tt" data-tt="remove bookmark" onclick="gui.bookmarks.remove('{{id}}');"></a>
+                    </div>
+                </div>
+            {{/each}}
+            <br/>
+        </div>
+    {{/if}}
+    <br/>
+</script>

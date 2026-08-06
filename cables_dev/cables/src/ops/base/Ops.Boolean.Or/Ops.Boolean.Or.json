@@ -1,0 +1,78 @@
+{
+    "summary": "Returns `true` if one or more of the input booleans are `true`",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "bool 1",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "bool 2",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "bool 3",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "bool 4",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "bool 5",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "bool 6",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "bool 7",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "bool 8",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "bool 9",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "bool 10",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "result",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "docs": {
+        "ports": [
+            {
+                "name": "result",
+                "text": "`True` if one or more of the input ports is `true`, `false` otherwise"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "b3b36238-4592-4e11-afe3-8361c4fd6be5",
+    "created": 1520261823005,
+    "exampleProjectId": "1dAfW2",
+    "license": "MIT",
+    "isReleased": true
+}

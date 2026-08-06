@@ -1,0 +1,40 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "88d8662f-2c01-42e6-943d-4d3cf90657b0",
+    "created": 1506588523258,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Input"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Reverse an array",
+    "license": "MIT",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "Added active toggle",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1720621937829
+        }
+    ],
+    "exampleProjectId": "UGUp8i",
+    "isReleased": true
+}

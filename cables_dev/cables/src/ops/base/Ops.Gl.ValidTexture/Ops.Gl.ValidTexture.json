@@ -1,0 +1,54 @@
+{
+    "id": "51c24850-aa8b-41e4-936e-68ba718b5e39",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1593415973445,
+            "type": "new"
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1593416037892,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Texture",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Default index",
+                "values": [
+                    "Empty",
+                    "Stripes"
+                ],
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Result",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Is Valid",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "output current input texture or a default texture",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,44 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "e450a850-7311-48b5-abfc-07ec1fea3b8e",
+    "created": 1511161201893,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Execute"
+            },
+            {
+                "type": 0,
+                "name": "duration",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "summary": "Automatic rewind of timeline at a certain time",
+    "docs": {
+        "ports": [
+            {
+                "name": "Execute",
+                "text": "Executes the op"
+            },
+            {
+                "name": "duration",
+                "text": "How long the loop should be (in seconds)"
+            },
+            {
+                "name": "trigger",
+                "text": "Triggers the next op"
+            }
+        ]
+    },
+    "exampleProjectId": "GbEqL-",
+    "isReleased": true
+}

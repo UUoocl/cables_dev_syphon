@@ -1,0 +1,53 @@
+{
+    "summary": "Sends an audio signal to your speakers",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "2",
+                "name": "Audio In"
+            },
+            {
+                "type": "0",
+                "name": "Volume",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Mute",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "author": "58dabd06a0d7ec8d1a982e66",
+    "authorName": "pandur",
+    "id": "53fdbf4a-bc8d-4c5d-a698-f34fdeb53827",
+    "created": 1510091776622,
+    "docs": {
+        "ports": [
+            {
+                "name": "Audio In",
+                "text": "The audio signal to send to the speakers"
+            },
+            {
+                "name": "Volume",
+                "text": "How loud"
+            },
+            {
+                "name": "Mute",
+                "text": "Mutes the input"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "un-suspending the audiocontext via integrated play-button does not \"pop\" volume anymore",
+            "author": "stephan",
+            "date": 1643887951231
+        }
+    ],
+    "exampleProjectId": "teZhCp",
+    "coreLibs": [
+        "webaudio"
+    ],
+    "isReleased": true
+}

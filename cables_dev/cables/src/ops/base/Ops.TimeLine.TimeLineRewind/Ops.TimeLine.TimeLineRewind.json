@@ -1,0 +1,26 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "d3408604-858c-4226-8d4c-1ef669956f35",
+    "created": 1511161157222,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "exe"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "summary": "set time of timeline to 0 (rewind, restart)",
+    "exampleProjectId": "3F6DOe",
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

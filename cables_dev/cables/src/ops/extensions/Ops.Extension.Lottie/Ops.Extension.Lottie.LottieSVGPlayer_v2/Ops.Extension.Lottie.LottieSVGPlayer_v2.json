@@ -1,0 +1,105 @@
+{
+    "id": "b18346b3-1eb1-48dd-a66b-3e115c0d48ab",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1555057855316,
+            "type": "new op"
+        },
+        {
+            "message": "New Version v2: upgraded lottie.js to version 5.13.0",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1771961398545
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1771961192425,
+    "libs": [],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "HTML Element",
+                "objType": "element"
+            },
+            {
+                "type": 2,
+                "name": "JSON Data"
+            },
+            {
+                "type": 0,
+                "name": "Play Mode index",
+                "values": [
+                    "Auto",
+                    "Frame"
+                ],
+                "group": "Timing",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Render Frame",
+                "group": "Timing",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Loop",
+                "group": "Timing",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Play",
+                "group": "Timing",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Play Backward",
+                "group": "Timing",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Rewind",
+                "group": "Timing"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Completed",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Progress",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Total Frames",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Play Bodymovin/Lottie animations as SVG in a HTML element",
+    "docs": {},
+    "exampleProjectId": "3ezRZH",
+    "license": "MIT",
+    "dependencies": [
+        {
+            "src": "./lottie.js",
+            "type": "commonjs"
+        }
+    ],
+    "isReleased": true
+}

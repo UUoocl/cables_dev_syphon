@@ -1,0 +1,81 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Mul Orientation",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Orientation Alpha",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Orientation Beta",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Orientation Gamme",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Acceleration X",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Acceleration Y",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Acceleration Z",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Acceleration X no gravity",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Acceleration Y no gravity",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Acceleration Z no gravity",
+                "subType": "number"
+            },
+            {
+                "type": "2",
+                "name": "Object"
+            }
+        ]
+    },
+    "summary": "get values from the device motion sensor  mobile",
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "3b15ad33-0117-4a33-975e-bca154a7f298",
+    "created": 1507296025359,
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "added acceleration output without gravity",
+            "author": "pandur",
+            "date": 1559124082791
+        }
+    ],
+    "issues": "",
+    "youtubeids": [],
+    "exampleProjectId": "dZ8wQ0",
+    "isReleased": true
+}

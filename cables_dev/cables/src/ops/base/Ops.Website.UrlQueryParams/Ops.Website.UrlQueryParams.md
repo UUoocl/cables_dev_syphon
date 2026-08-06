@@ -1,0 +1,1 @@
+Returns a URL query parameter, e.g. `index.html?Parameter=ParameterValue`

@@ -1,0 +1,45 @@
+{
+    "authorName": "pandur",
+    "id": "e3a43bad-3a48-4f2a-af68-3c92420a76d6",
+    "created": 1682433539531,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Get a number variable value at time of trigger",
+    "issues": "",
+    "youtubeids": [
+        "sUR6b0zvuSY"
+    ],
+    "coreLibs": [
+        "vargetset"
+    ],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "yNCGmy",
+    "changelog": [
+        {
+            "message": "cloned op from Ops.Vars.VarGetNumber_v2",
+            "author": "pandur",
+            "date": 1682433539531,
+            "type": "new"
+        }
+    ],
+    "isReleased": true
+}

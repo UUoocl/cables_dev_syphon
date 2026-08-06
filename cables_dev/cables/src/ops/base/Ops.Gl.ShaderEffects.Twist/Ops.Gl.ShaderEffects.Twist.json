@@ -1,0 +1,54 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "0",
+                "name": "amount"
+            },
+            {
+                "type": "0",
+                "name": "X"
+            },
+            {
+                "type": "0",
+                "name": "Y"
+            },
+            {
+                "type": "0",
+                "name": "Z"
+            },
+            {
+                "type": "0",
+                "name": "Center X"
+            },
+            {
+                "type": "0",
+                "name": "Center Y"
+            },
+            {
+                "type": "0",
+                "name": "Center Z"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            }
+        ]
+    },
+    "summary": "twist a mesh around an axis",
+    "updated": 1515176072374,
+    "authorName": "pandur",
+    "id": "4c5eed58-07f0-497f-bdd3-3b2f1c80b7df",
+    "created": 1515175921198,
+    "exampleProjectId": "VYPlJ5",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,45 @@
+{
+    "summary": "Multiplies two numbers",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "number1",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "number2",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "result",
+                "subType": "number"
+            }
+        ]
+    },
+    "docs": {
+        "ports": [
+            {
+                "name": "result",
+                "text": "Result of the multiplication"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "1bbdae06-fbb2-489b-9bcc-36c9d65bd441",
+    "created": 1523828700087,
+    "changelog": [
+        {
+            "message": "adjusted default values",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1704977966249
+        }
+    ],
+    "exampleProjectId": "0010r1",
+    "isReleased": true
+}

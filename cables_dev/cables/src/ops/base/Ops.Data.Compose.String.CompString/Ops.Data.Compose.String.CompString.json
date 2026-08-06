@@ -1,0 +1,60 @@
+{
+    "id": "a1fde819-2b8e-4520-8086-c08e00e0d2f7",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1689760361275,
+            "type": "new"
+        },
+        {
+            "message": "Added clear checkbox and trigger",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1752593903797
+        },
+        {
+            "message": "Fix problem with buffer not being cleared when starting to compose",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1774860630760,
+            "url": "https://github.com/cables-gl/cables/issues/8193#issuecomment-4161263196"
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            },
+            {
+                "type": 0,
+                "name": "clear",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Reset"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 5,
+                "name": "Result"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "created": 1689760384412,
+    "summary": "Compose a string",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "GUpzJB",
+    "license": "MIT",
+    "isReleased": true
+}

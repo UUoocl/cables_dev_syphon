@@ -1,0 +1,101 @@
+{
+    "id": "250c8d79-2b83-419f-8c23-910d95936f2c",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1550643918720
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1615474741499,
+    "summary": "switch between filenames",
+    "docs": {
+        "ports": []
+    },
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Index",
+                "subType": "integer"
+            },
+            {
+                "type": 5,
+                "name": "File 0"
+            },
+            {
+                "type": 5,
+                "name": "File 1"
+            },
+            {
+                "type": 5,
+                "name": "File 2"
+            },
+            {
+                "type": 5,
+                "name": "File 3"
+            },
+            {
+                "type": 5,
+                "name": "File 4"
+            },
+            {
+                "type": 5,
+                "name": "File 5"
+            },
+            {
+                "type": 5,
+                "name": "File 6"
+            },
+            {
+                "type": 5,
+                "name": "File 7"
+            },
+            {
+                "type": 5,
+                "name": "File 8"
+            },
+            {
+                "type": 5,
+                "name": "File 9"
+            },
+            {
+                "type": 5,
+                "name": "File 10"
+            },
+            {
+                "type": 5,
+                "name": "File 11"
+            },
+            {
+                "type": 5,
+                "name": "File 12"
+            },
+            {
+                "type": 5,
+                "name": "File 13"
+            },
+            {
+                "type": 5,
+                "name": "File 14"
+            },
+            {
+                "type": 5,
+                "name": "File 15"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Result"
+            }
+        ]
+    },
+    "youtubeids": [
+        "TdHgjqOLpnM"
+    ],
+    "license": "MIT",
+    "exampleProjectId": "unutii",
+    "isReleased": true
+}

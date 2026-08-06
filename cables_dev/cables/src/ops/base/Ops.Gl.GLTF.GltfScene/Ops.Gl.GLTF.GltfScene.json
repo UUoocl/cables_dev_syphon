@@ -1,0 +1,181 @@
+{
+    "id": "92dba573-955d-4dff-b454-75ae184bab26",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1575540499966
+        },
+        {
+            "message": "Ops.User.pandur.GlbTest renamed to Ops.Gl.GLTF",
+            "author": "pandur",
+            "date": 1575641188314
+        },
+        {
+            "message": "Ops.Gl.GLTF renamed to Ops.Gl.GLTF.GltfScene",
+            "author": "pandur",
+            "date": 1576232952766
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1575540508530,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Render"
+            },
+            {
+                "type": 5,
+                "name": "glb File"
+            },
+            {
+                "type": 0,
+                "name": "Draw",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Auto Scale",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Show Structure"
+            },
+            {
+                "type": 0,
+                "name": "Time",
+                "group": "Timing",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Sync to timeline",
+                "group": "Timing",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Loop",
+                "group": "Timing",
+                "subType": "boolean"
+            },
+            {
+                "type": 2,
+                "name": "Materials"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Render Before"
+            },
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 5,
+                "name": "Generator"
+            },
+            {
+                "type": 0,
+                "name": "GLTF Version",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Anim Length",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Anim Time",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "Json"
+            },
+            {
+                "type": 1,
+                "name": "Finished"
+            }
+        ]
+    },
+    "summary": "Load GLTF/GLB 3d files",
+    "issues": "",
+    "youtubeids": [
+        "QNLw21hSweg"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "Render",
+                "text": "Trigger the op"
+            },
+            {
+                "name": "glb File",
+                "text": "String/name of GLB file to load"
+            },
+            {
+                "name": "Draw",
+                "text": "Render the GLB file"
+            },
+            {
+                "name": "Auto Scale",
+                "text": "Auto scale to maximum bounding box around all meshes, disable for actual scale"
+            },
+            {
+                "name": "Show Structure",
+                "text": "Click to open the UI for the GLTF op, shows information of mesh sections and materials"
+            },
+            {
+                "name": "Time",
+                "text": "Used to go through any animations in the GLB file"
+            },
+            {
+                "name": "Sync to timeline",
+                "text": "Sync to timeline"
+            },
+            {
+                "name": "Loop",
+                "text": "Loops animation if end is reached "
+            },
+            {
+                "name": "Materials",
+                "text": "Expects gltfSetMaterial node to set materials of nodes"
+            },
+            {
+                "name": "Generator",
+                "text": "Generator used to create the current GLB file"
+            },
+            {
+                "name": "GLTF Version",
+                "text": "Version of the current GLB file"
+            },
+            {
+                "name": "Anim Length",
+                "text": "Length of the animation in seconds"
+            },
+            {
+                "name": "Anim Time",
+                "text": "current time with animation"
+            },
+            {
+                "name": "Json",
+                "text": "Json object of the GLB file"
+            },
+            {
+                "name": "Finished",
+                "text": "Triggers when all GLB file has been loaded"
+            }
+        ]
+    },
+    "exampleProjectId": "XmL8GY",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

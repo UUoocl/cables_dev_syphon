@@ -1,0 +1,56 @@
+{
+    "id": "20ed335d-fb41-459e-b1dc-34d1a92074b5",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1689760588796
+        },
+        {
+            "message": "Added option do add a linebreak at the end of the new string ",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1711547257415
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            },
+            {
+                "type": 0,
+                "name": "Direction index",
+                "values": [
+                    "End",
+                    "Begin"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 5,
+                "name": "String"
+            },
+            {
+                "type": 0,
+                "name": "Add Break",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "created": 1689760598014,
+    "summary": "Append a string to a string",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "Yqj7eG",
+    "isReleased": true
+}

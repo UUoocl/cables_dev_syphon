@@ -1,0 +1,49 @@
+{
+    "id": "20f7bcab-ed71-45d1-9fae-d89aacf3961b",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1559301644607,
+            "type": "new"
+        },
+        {
+            "message": "handle non numeric input values",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1779780558717
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1694609742924,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Object"
+            },
+            {
+                "type": 5,
+                "name": "Key"
+            },
+            {
+                "type": 0,
+                "name": "Number",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Result Object"
+            }
+        ]
+    },
+    "summary": "Set number at key in an object",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "isReleased": true,
+    "exampleProjectId": "1TD5yn"
+}

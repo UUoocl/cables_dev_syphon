@@ -1,0 +1,80 @@
+{
+    "id": "61f40a94-66c8-4ed8-9be4-9b4dc62ead02",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1770208667127
+        },
+        {
+            "message": "Update op when changing height/width units",
+            "type": "bugfix",
+            "author": "stephan",
+            "date": 1773069091830
+        },
+        {
+            "message": "Added vh and vw to size units",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1776262540408
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1770208667126,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Element",
+                "objType": "element"
+            },
+            {
+                "type": 0,
+                "name": "Width",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Width Unit index",
+                "values": [
+                    "Off",
+                    "px",
+                    "%",
+                    "vw"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Height",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Height Unit index",
+                "values": [
+                    "Off",
+                    "px",
+                    "%",
+                    "vh"
+                ],
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Passthrough",
+                "objType": "element"
+            }
+        ]
+    },
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "summary": "Set Size of a HTML element",
+    "isReleased": true,
+    "exampleProjectId": "Os01yn"
+}

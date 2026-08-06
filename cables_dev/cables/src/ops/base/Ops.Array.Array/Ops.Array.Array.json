@@ -1,0 +1,49 @@
+{
+    "summary": "Create an Array and fill with one value",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Length",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "DefaultValue",
+                "subType": "integer"
+            },
+            {
+                "type": "1",
+                "name": "Reset"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "3",
+                "name": "Array"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "fe2ed80f-fd0a-438d-8aa0-01a59129261d",
+    "created": 1506587820889,
+    "docs": {
+        "ports": [
+            {
+                "name": "Length",
+                "text": "Length of the array"
+            },
+            {
+                "name": "DefaultValue",
+                "text": "The value applied to every index"
+            },
+            {
+                "name": "Array",
+                "text": "Array output with value"
+            }
+        ]
+    },
+    "exampleProjectId": "",
+    "isReleased": true
+}

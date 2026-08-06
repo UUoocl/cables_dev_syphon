@@ -1,0 +1,25 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "f34d019d-59ae-40d6-a55d-a7691bbc40e0",
+    "created": 1512423370795,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "subtract a number from one",
+    "exampleProjectId": "8-XQ5d",
+    "isReleased": true
+}

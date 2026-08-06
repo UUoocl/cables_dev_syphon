@@ -1,0 +1,46 @@
+{
+    "id": "7e13efda-330f-4c5e-bc84-e14e5af99cd4",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1608756495961,
+            "type": "new op"
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1608756708552,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Geom"
+            },
+            {
+                "type": 3,
+                "name": "Points"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "result geom"
+            }
+        ]
+    },
+    "summary": "Generate an animated geometry from MpFaceTracking Point Coordinates",
+    "issues": "",
+    "caniusequery": "",
+    "relatedops": [
+        "Ops.Libs.Mediapipe.MpFaceTracking"
+    ],
+    "youtubeids": [],
+    "exampleProjectId": "by9Tq4",
+    "docs": {
+        "ports": []
+    },
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

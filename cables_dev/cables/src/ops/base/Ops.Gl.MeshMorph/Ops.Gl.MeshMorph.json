@@ -1,0 +1,154 @@
+{
+    "summary": "morph from one geometry to another",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "Method index",
+                "values": [
+                    "Auto Anim",
+                    "Interpolate Index",
+                    "Interpolate Indices"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Geometry",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Duration",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Index",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Index 2",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Fade",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Easing index",
+                "subType": "integer"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 0"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 1"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 2"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 3"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 4"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 5"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 6"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 7"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 8"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 9"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 10"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 11"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 12"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 13"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 14"
+            },
+            {
+                "type": 2,
+                "name": "Geometry 15"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Finished",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "41bc544e-a0c9-450b-b657-405d80b1298c",
+    "created": 1508241684882,
+    "changelog": [
+        {
+            "message": "Geometry parameter being below 0 or above 7 no longer throws an error",
+            "author": "andro",
+            "date": 1549461050219
+        },
+        {
+            "message": "code cleanup - ports and whitespace",
+            "author": "andro",
+            "date": 1559044991080
+        },
+        {
+            "message": "added missing corelib",
+            "author": "stephan",
+            "date": 1658228722037
+        }
+    ],
+    "exampleProjectId": "PdhglN",
+    "coreLibs": [
+        "cgl_shadermodifier",
+        "cgl"
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

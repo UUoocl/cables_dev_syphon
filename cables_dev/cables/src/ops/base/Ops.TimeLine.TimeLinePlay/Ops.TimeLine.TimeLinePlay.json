@@ -1,0 +1,43 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "fc75b841-a55f-4474-8746-61218588598d",
+    "created": 1504850778646,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Play"
+            },
+            {
+                "type": 1,
+                "name": "Pause"
+            },
+            {
+                "type": 1,
+                "name": "Toggle"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "summary": "start timeline",
+    "exampleProjectId": "3F6DOe",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "changelog": [
+        {
+            "message": "Added trigger to toggle between play/pause",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1771841444045
+        }
+    ],
+    "isReleased": true
+}

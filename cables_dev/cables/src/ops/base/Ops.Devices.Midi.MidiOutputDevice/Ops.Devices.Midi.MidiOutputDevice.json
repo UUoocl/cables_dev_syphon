@@ -1,0 +1,74 @@
+{
+    "id": "a874a81a-4416-4ed5-bea9-66531ed83376",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "simod",
+            "date": 1571218830424,
+            "type": "new"
+        },
+        {
+            "message": "Retry getting midi devices when midi api silently fails",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1728638909189
+        },
+        {
+            "message": "Fixed problem when changing computers and having different devices, it was not possible to select the one current device",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1764246947256
+        }
+    ],
+    "authorName": "simod",
+    "created": 1571218864323,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Device index",
+                "group": "Device",
+                "subType": "integer"
+            },
+            {
+                "type": 2,
+                "name": "Note",
+                "group": "Midi Events"
+            },
+            {
+                "type": 2,
+                "name": "CC",
+                "group": "Midi Events"
+            },
+            {
+                "type": 2,
+                "name": "NRPN",
+                "group": "Midi Events"
+            }
+        ],
+        "portsOut": []
+    },
+    "summary": "Connect to MIDI device input port",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Note",
+                "text": "the input port for MIDI note events"
+            },
+            {
+                "name": "CC",
+                "text": "the input port for MIDI CC events"
+            },
+            {
+                "name": "NRPN",
+                "text": "the input port for MIDI NRPN events"
+            }
+        ]
+    },
+    "caniusequery": "Web MIDI API",
+    "exampleProjectId": "VbaQXU",
+    "license": "MIT",
+    "isReleased": true
+}

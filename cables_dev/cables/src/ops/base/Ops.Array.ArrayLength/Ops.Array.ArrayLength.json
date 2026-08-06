@@ -1,0 +1,37 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "array"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "length",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Number of items in an array",
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "ea508405-833d-411a-86b4-1a012c135c8a",
+    "created": 1514985490845,
+    "issues": "",
+    "docs": {
+        "ports": [
+            {
+                "name": "array",
+                "text": "Array in"
+            },
+            {
+                "name": "length",
+                "text": "The length of the array/ amount of items in the array returned as a number"
+            }
+        ]
+    },
+    "exampleProjectId": "",
+    "isReleased": true
+}

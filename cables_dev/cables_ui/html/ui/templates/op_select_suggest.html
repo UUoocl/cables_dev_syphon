@@ -1,0 +1,83 @@
+<script id="op_select_sugggest" type="text/x-handlebars-template">
+
+    <h2 style="margin-top:0px;">Suggestions</h2>
+
+
+    {{#if ops}}
+    <h3>Ops</h3>
+        {{#each ops}}
+            <a class="opLayoutButton" onclick="gui.opSelect().addOp('{{.}}');">
+                {{opLayout .}}
+            </a><br/>
+        {{/each}}
+    {{/if}}
+
+    {{#if vizops}}
+        <h3>Visualize</h3>
+        {{#each vizops}}
+            <a class="opLayoutButton" onclick="gui.opSelect().addOp('{{.}}');">
+                {{opLayout .}}
+                </a><br/>
+        {{/each}}
+    {{/if}}
+
+
+    {{#if link}}
+    <br/>
+
+        <a class="cblbutton button-icon" onclick="CABLES.CMD.PATCH.addLinkReroute();">
+            <span class="icon icon-git-commit-horizontal"></span>Reroute
+        </a>
+
+    {{/if}}
+
+    <h3>Variables</h3>
+
+    <span id="opselect_createTrigger">
+        <a class="button-small" onclick="CABLES.CMD.PATCH.createTriggerSendReceive();">Create trigger send/receive</a>
+        <br/>
+        <a class="button-small" id="replaceLinkTriggerExists" onclick="CABLES.CMD.PATCH.replaceLinkTriggerReceiveExist();">Receive existing trigger send!</a>
+        <br/>
+    </span>
+
+    <span id="opselect_createTriggerExists">
+        <a class="button-small" id="createLinkTriggerExists" onclick="CABLES.CMD.PATCH.createTriggerSendReceiveExist();">TRIGGER SEND OR RECEIVE</a>
+        <br/>
+    </span>
+
+    {{#compare port.direction '==' '0' }}
+    <span id="opselect_createVar">
+        <a class="button-small" onclick="CABLES.CMD.PATCH.createAutoVariable();">Set+Get variable</a>
+        <br/>
+        <a class="button-small" id="createLinkVariableExists" onclick="CABLES.CMD.PATCH.createLinkVariableExist();">Get variable</a>
+        <br/>
+        <a class="button-small" id="createLinkVariableExists" onclick="CABLES.CMD.PATCH.createLinkVariableExist(false,true);">Assign variable to port</a>
+        <br/>
+    </span>
+
+    {{/compare}}
+
+    {{#compare port.direction '==' '1' }}
+    <span id="opselect_createVar">
+        <a class="button-small" onclick="CABLES.CMD.PATCH.createAutoVariable();">Create a variable</a>
+        <br/>
+        <a class="button-small" id="createLinkVariableExists" onclick="CABLES.CMD.PATCH.createLinkVariableExist();">Set variable</a>
+        <br/>
+        <a class="button-small" id="createLinkTriggerVariable" onclick="CABLES.CMD.PATCH.createLinkVariableExist(true);">Trigger variable</a>
+        <br/>
+    </span>
+    {{/compare}}
+
+    <span id="opselect_replaceVar">
+        Replace link with:
+        <a class="button-small" onclick="CABLES.CMD.PATCH.replaceLinkVariable();">New variable</a>
+        <br/>
+        <a class="button-small" id="replaceLinkVariableExists" onclick="CABLES.CMD.PATCH.replaceLinkVariableExist();">Existing variable</a>
+        <br/>
+    </span>
+
+    <br/>
+
+
+
+</script>

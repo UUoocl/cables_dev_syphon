@@ -1,0 +1,51 @@
+{
+    "authorName": "pandur",
+    "id": "5120ca09-6ce3-457a-afc1-79b15a06137c",
+    "created": 1668507350444,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array3x"
+            },
+            {
+                "type": 0,
+                "name": "Add X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Add Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Add Z",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Add number to every XYZ member of array3x",
+    "docs": {
+        "ports": [
+            {
+                "name": "Array3x",
+                "text": "3x array in"
+            },
+            {
+                "name": "Result",
+                "text": "Calculated array output"
+            }
+        ]
+    },
+    "changelog": [],
+    "exampleProjectId": "D-pQHj",
+    "license": "MIT",
+    "isReleased": true
+}

@@ -1,0 +1,42 @@
+{
+    "id": "7176f9c7-1ee8-419e-b58b-178cca9265e7",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1660561563662,
+            "type": "new op"
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1660561615581,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Used Heap Size",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Total Heap Size",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "browser js memory consumption",
+    "issues": "",
+    "caniusequery": "performance.memory",
+    "youtubeids": [],
+    "exampleProjectId": "_UyS0f",
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

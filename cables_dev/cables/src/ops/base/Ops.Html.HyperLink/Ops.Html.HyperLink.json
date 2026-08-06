@@ -1,0 +1,21 @@
+{
+    "summary": "open an url",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "open"
+            },
+            {
+                "type": "0",
+                "name": "URL",
+                "subType": "string"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "a721e6ff-6fe2-4780-a46c-b28fc54c1901",
+    "created": 1554453379359,
+    "exampleProjectId": "ilts7O",
+    "isReleased": true
+}

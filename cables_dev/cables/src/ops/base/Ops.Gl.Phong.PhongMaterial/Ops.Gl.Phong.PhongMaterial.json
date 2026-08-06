@@ -1,0 +1,102 @@
+{
+    "summary": "a shaded material for lighting objects",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "0",
+                "name": "Specular Strength",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Shininess",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Fresnel",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Normal Texture Intensity",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "diffuse r",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "diffuse g",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "diffuse b",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "diffuse a",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "colorize texture",
+                "subType": "boolean"
+            },
+            {
+                "type": "2",
+                "name": "texture"
+            },
+            {
+                "type": "2",
+                "name": "AO Texture"
+            },
+            {
+                "type": "2",
+                "name": "Specular Texture"
+            },
+            {
+                "type": "2",
+                "name": "Normal Texture"
+            },
+            {
+                "type": "0",
+                "name": "diffuseRepeatX",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "diffuseRepeatY",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            },
+            {
+                "type": "2",
+                "name": "shader"
+            }
+        ]
+    },
+    "updated": 1524478381491,
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "0d951d8a-5a69-45b4-876a-92aa1139ed5a",
+    "created": 1504885115768,
+    "exampleProjectId": "L3HqYa",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

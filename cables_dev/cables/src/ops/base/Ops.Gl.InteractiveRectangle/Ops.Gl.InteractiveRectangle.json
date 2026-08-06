@@ -1,0 +1,172 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "eeebdb51-9d8c-404d-a538-f5d9cf409200",
+    "created": 1512493628863,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "0",
+                "name": "width",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "height",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "id",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "Class",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "pivot x index",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "pivot x",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "pivot y index",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "pivot y",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "axis index",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "axis",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "Is Interactive",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Render Rectangle",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Show Boundings",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Cursor index",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "Cursor",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "Render",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            },
+            {
+                "type": "2",
+                "name": "geometry"
+            },
+            {
+                "type": "0",
+                "name": "Pointer Hover",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Pointer Down",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Pointer X",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Pointer Y",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Top",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Left",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Right",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Bottom",
+                "subType": "number"
+            },
+            {
+                "type": "1",
+                "name": "Left Click"
+            },
+            {
+                "type": "2",
+                "name": "Dom Element"
+            }
+        ]
+    },
+    "summary": "an area which is interactive ",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "tweaked interaction on mobile: no contextmenu/no highlight color/no long tap",
+            "author": "pandur",
+            "date": 1549553115947
+        }
+    ],
+    "issues": "",
+    "youtubeids": [
+        "4iPmZlrYRQg"
+    ],
+    "exampleProjectId": "P_SED0",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

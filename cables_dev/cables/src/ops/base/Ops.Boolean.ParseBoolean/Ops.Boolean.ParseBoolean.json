@@ -1,0 +1,35 @@
+{
+    "authorName": "pandur",
+    "id": "f118e251-e82b-42dd-ba7f-e7e23ced07be",
+    "created": 1519743518627,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Value",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Result",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "parse boolean from string/number",
+    "docs": {
+        "ports": [
+            {
+                "name": "Value",
+                "text": "The string / number to parse"
+            },
+            {
+                "name": "Result",
+                "text": "The input value as a boolean value"
+            }
+        ]
+    },
+    "isReleased": true
+}

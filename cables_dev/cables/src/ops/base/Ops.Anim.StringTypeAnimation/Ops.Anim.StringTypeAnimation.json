@@ -1,0 +1,76 @@
+{
+    "summary": "Animates a text/string, like it is being typed out by a person",
+    "updated": 1538418659151,
+    "authorName": "pandur",
+    "id": "61b0db65-814c-403f-b4d1-2b58e6311454",
+    "created": 1518872140148,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "text",
+                "subType": "string"
+            },
+            {
+                "type": "1",
+                "name": "Restart"
+            },
+            {
+                "type": "0",
+                "name": "Speed",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Speed Variation",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Result",
+                "subType": "string"
+            },
+            {
+                "type": "1",
+                "name": "Changed"
+            },
+            {
+                "type": "1",
+                "name": "Finished"
+            }
+        ]
+    },
+    "issues": "",
+    "docs": {
+        "ports": [
+            {
+                "name": "text",
+                "text": "The text/string which will typed out"
+            },
+            {
+                "name": "Restart",
+                "text": "When triggered causes the string to be typed out again"
+            },
+            {
+                "name": "Speed",
+                "text": "Determines the speed that the typing occurs at"
+            },
+            {
+                "name": "Result",
+                "text": "The typed out string"
+            },
+            {
+                "name": "Changed",
+                "text": "Triggers out each time a letter is typed"
+            },
+            {
+                "name": "Finished",
+                "text": "Trigger out when animation is finished"
+            }
+        ]
+    },
+    "exampleProjectId": "",
+    "isReleased": true
+}

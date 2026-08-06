@@ -1,0 +1,34 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "34f8a78c-7648-4431-97c9-1ad681dd3ae1",
+    "created": 1506697987362,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "0",
+                "name": "Max",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            }
+        ]
+    },
+    "summary": "only draw the first X vertices of a mesh",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "gLrrJV",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

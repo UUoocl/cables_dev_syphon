@@ -1,0 +1,45 @@
+{
+    "id": "e828a0e1-cd24-4dfb-a0cf-6c944ca88ed4",
+    "created": 1716289161901,
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1716289161933
+        },
+        {
+            "message": "added shortname output",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1738067676482
+        },
+        {
+            "message": "updates when subpatch was cloned and recreated",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1738067704351
+        }
+    ],
+    "layout": {
+        "portsIn": [],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Name"
+            },
+            {
+                "type": 5,
+                "name": "ShortName"
+            }
+        ]
+    },
+    "summary": "Outputs the current subpatch op name",
+    "license": "MIT",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "20tMrh",
+    "isReleased": true
+}

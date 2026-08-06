@@ -1,0 +1,49 @@
+{
+    "summary": "Access to the microphone",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "Start"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "2",
+                "name": "audio out"
+            },
+            {
+                "type": "0",
+                "name": "Listening",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "a9f43b57-5bf7-4158-963f-d5cf30f83558",
+    "created": 1513608940511,
+    "youtubeid": "",
+    "issues": "",
+    "docs": {
+        "ports": [
+            {
+                "name": "Start",
+                "text": "Trigger in to activate microphone"
+            },
+            {
+                "name": "audio out",
+                "text": "Audio out"
+            },
+            {
+                "name": "Listening",
+                "text": "Is true when microphone is on"
+            }
+        ]
+    },
+    "exampleProjectId": "xjHACp",
+    "coreLibs": [
+        "webaudio"
+    ],
+    "isReleased": true
+}

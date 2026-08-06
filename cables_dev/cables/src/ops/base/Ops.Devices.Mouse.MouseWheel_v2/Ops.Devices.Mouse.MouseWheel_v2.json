@@ -1,0 +1,89 @@
+{
+    "id": "7b9626db-536b-4bb4-85c3-95401bc60d1b",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1586273422836,
+            "type": "new"
+        },
+        {
+            "message": "Fix bug with area could not be \"document\"",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1757845225167
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1586273436875,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Speed",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "prevent scroll",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Flip Direction",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Simple Delta",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Area index",
+                "values": [
+                    "Canvas",
+                    "Document",
+                    "Parent"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "delta",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "delta X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "browser event delta",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Wheel Action"
+            }
+        ]
+    },
+    "summary": "outputs delta values controlled by the mousewheel (scroll, zoom)",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "hH8f_6",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

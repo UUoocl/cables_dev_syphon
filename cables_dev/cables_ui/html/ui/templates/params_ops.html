@@ -1,0 +1,71 @@
+
+
+<script id="params_ops" type="text/x-handlebars-template">
+
+    <div class="panel">
+
+        {{#if numOps}}
+            <h3><a onclick="new CABLES.UI.FindTab(gui.mainTabs, ':selected');">{{numOps}} ops selected</a></h3>
+            {{#if mulSubs}}
+                in multiple subpatches!
+                <br/>
+            {{/if}}
+
+            <hr/>
+
+            <a onclick="CABLES.CMD.PATCH.createOpFromSelection()" class="icon-button button-small" style="color: var(--color-special) !important;"><span class="icon icon-op icon-1_25x"></span>Create Op From Selection </a>
+            <!-- <a onclick="CABLES.CMD.PATCH.createSubPatchFromSelection()" class="icon-button button-small "><span class="icon icon-subpatch icon-1_25x"></span>Create Subpatch</a> -->
+            <br/>
+            <a onclick="CABLES.CMD.PATCH.createAreaFromSelection()" class="icon-button button-small "><span class="icon icon-square icon-1_25x"></span>Create Area Around Selection</a>
+
+
+            <hr/>
+
+
+            <a onclick="CABLES.CMD.PATCH.alignOpsLeft()" class="icon-button button-small info" data-info="Press `A` to align left"><span class="icon icon-align-left icon-1_25x"></span>Align Left</a>
+            <br/>
+            <a onclick="CABLES.CMD.PATCH.compressOps()" class="icon-button button-small info" data-info="Press `shift`+`A` to Compress Vertically"><span class="icon icon-align-justify icon-1_25x"></span>Compress Vertically </a>
+            <br/>
+
+
+            <hr/>
+
+
+            <a onclick="CABLES.CMD.PATCH.addSpaceX()" class="icon-button button-small "><span class="icon icon-subpatch icon-1_25x"></span>Add space X</a>
+            <br/>
+            <a onclick="CABLES.CMD.PATCH.addSpaceY()" class="icon-button button-small "><span class="icon icon-square icon-1_25x"></span>Add space Y</a>
+
+
+
+            {{#compare numOps '==' 2}}
+                <br/>
+                <hr/>
+                <br/>
+                <a id="link_two_ops" onclick="CABLES.CMD.PATCH.linkTwoSelectedOps()" class="icon-button button-small "><span class="icon icon-op icon-1_25x"></span><span class="icon icon-op icon-1_25x"></span>Link two ops</a>
+            {{/compare}}
+            <br/>
+
+            <hr/>
+            Colorize:
+            <br/>
+            <div style="margin-top:10px;">
+                {{#each commentColors}}
+                    <a onclick="gui.patchView.setOpColor('{{.}}')" style="background-color:{{.}};" class="colorbutton"></a>
+                {{/each}}
+                <a onclick="gui.patchView.setOpColor(null)" style="background-color:#fff;" class="colorbutton icon-x icon"></a>
+            </div>
+            <br/><br/><br/>
+
+            {{#if showDevInfos}}
+            {{/if}}
+
+
+            <!-- <a onclick="CABLES.CMD.PATCH.deleteSelectedOps()" class="icon-button button-small info" data-info="Press `del` to delete ops"><span class="icon icon-trash icon-1_25x"></span>Delete Ops </a> -->
+
+        {{else}}
+        <h2>no ops selected</h2>
+        {{/if}}
+
+    </div>
+
+</script>

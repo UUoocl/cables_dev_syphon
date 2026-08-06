@@ -1,0 +1,58 @@
+{
+    "summary": "Counts how often the port was triggered",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "exe"
+            },
+            {
+                "type": "1",
+                "name": "reset"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            },
+            {
+                "type": "0",
+                "name": "timesTriggered",
+                "subType": "number"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "e640619f-235c-4543-bbf8-b358e0283180",
+    "created": 1516481646742,
+    "docs": {
+        "ports": [
+            {
+                "name": "exe",
+                "text": "Every time `Execute` is triggered, the output port `Times Triggered` will increment.  "
+            },
+            {
+                "name": "reset",
+                "text": "Resets the counter"
+            },
+            {
+                "name": "trigger",
+                "text": "Triggers every time `Execute` is triggered"
+            },
+            {
+                "name": "timesTriggered",
+                "text": "The number of times the input port `Execute` has been triggered  "
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "add current count in extended title",
+            "author": "stephan",
+            "date": 1643887791013
+        }
+    ],
+    "exampleProjectId": "WNh8pc",
+    "isReleased": true
+}

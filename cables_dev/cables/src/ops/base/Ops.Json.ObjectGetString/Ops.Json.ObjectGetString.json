@@ -1,0 +1,47 @@
+{
+    "id": "7d86cd28-f7d8-44a1-a4da-466c4782aaec",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1567704844833
+        },
+        {
+            "message": " added core lib: vargetset",
+            "author": "stephan",
+            "date": 1594375912912
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1567704869743,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "data"
+            },
+            {
+                "type": 5,
+                "name": "Key"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Get string from object by key",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "coreLibs": [
+        "vargetset"
+    ],
+    "exampleProjectId": "Sn0k9Q",
+    "license": "MIT",
+    "isReleased": true
+}

@@ -1,0 +1,35 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Array In"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Array Out",
+                "objType": "texture"
+            }
+        ]
+    },
+    "docs": {
+        "ports": []
+    },
+    "authorName": "pandur",
+    "id": "c9b14538-bcd7-4559-9f61-c0d5a96b0ba8",
+    "created": 1717676916134,
+    "changelog": [
+        {
+            "message": "",
+            "type": "new",
+            "author": "pandur",
+            "date": 1719846530202
+        }
+    ],
+    "license": "MIT",
+    "summary": "Patchfield cable routing helper for object cables",
+    "exampleProjectId": "CLMeDg",
+    "isReleased": true
+}

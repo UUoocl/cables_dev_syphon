@@ -1,0 +1,34 @@
+{
+    "id": "cfa03ee3-81c5-4c58-9365-e60181b38b3e",
+    "created": 1708377272378,
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "created op",
+            "type": "new",
+            "author": "pandur",
+            "date": 1708377272448
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "String"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "MD5 Hash"
+            }
+        ]
+    },
+    "summary": "Create a md5 hash of a string",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "exampleProjectId": "IyC0O8",
+    "isReleased": true
+}

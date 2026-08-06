@@ -1,0 +1,1 @@
+Useful for e.g. for debugging when you need to know how often `Execute` has been triggered, or if it was triggered at all.

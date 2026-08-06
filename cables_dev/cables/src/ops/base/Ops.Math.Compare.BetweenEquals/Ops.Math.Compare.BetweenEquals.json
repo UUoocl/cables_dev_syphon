@@ -1,0 +1,46 @@
+{
+    "authorName": "pandur",
+    "id": "e2d6d6c4-84c7-42d7-a1b2-e9c5d4c5c13e",
+    "created": 1519023820432,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Range 1",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Range 2",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "result is true if value is between or equal number1 and number2 ",
+    "docs": {
+        "ports": [
+            {
+                "name": "Value",
+                "text": "The number you want to check"
+            },
+            {
+                "name": "Range 2",
+                "text": "`true` if `Value` is in range, `false` otherwise"
+            }
+        ]
+    },
+    "exampleProjectId": "pixllg",
+    "isReleased": true
+}

@@ -1,0 +1,44 @@
+{
+    "authorName": "pandur",
+    "id": "2e76c1f8-19ac-4e9d-8db8-58b2f9fbc1d3",
+    "created": 1519816793278,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "file"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "result"
+            },
+            {
+                "type": 0,
+                "name": "num items",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "parse CSV files as array",
+    "docs": {
+        "ports": [
+            {
+                "name": "file",
+                "text": "The CSV-file you want to use in cables as an array"
+            },
+            {
+                "name": "result",
+                "text": "The parsed two-dimensional array containing all the rows and columns from the CSV-file"
+            },
+            {
+                "name": "num items",
+                "text": "The number of rows "
+            }
+        ]
+    },
+    "exampleProjectId": "UlL2G1",
+    "license": "MIT",
+    "isReleased": true
+}

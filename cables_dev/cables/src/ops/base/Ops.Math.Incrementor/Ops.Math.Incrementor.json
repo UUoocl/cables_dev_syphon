@@ -1,0 +1,80 @@
+{
+    "summary": "increment a number by triggering",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Increment"
+            },
+            {
+                "type": 1,
+                "name": "Decrement"
+            },
+            {
+                "type": 0,
+                "name": "Limit",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Length",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Step",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Mode index",
+                "values": [
+                    "Rewind",
+                    "Stop at Max"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Default",
+                "subType": "integer"
+            },
+            {
+                "type": 1,
+                "name": "Reset"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Changed"
+            },
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Restarted"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "45cc0011-ada8-4423-8f5b-39a3810b8389",
+    "created": 1516875152747,
+    "exampleProjectId": "OdcvGu",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "changelog": [
+        {
+            "message": "Added step size input",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1769646661791
+        }
+    ],
+    "isReleased": true
+}

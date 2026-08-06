@@ -1,0 +1,66 @@
+{
+    "id": "3e761540-3648-45f8-ae47-8fad9ff95244",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1566058252402
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1566058393799,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "5",
+                "name": "String"
+            },
+            {
+                "type": "0",
+                "name": "Num Lines",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "Reverse",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Force Num Lines",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "5",
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Limit number of lines in a string",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "String",
+                "text": "String input"
+            },
+            {
+                "name": "Num Lines",
+                "text": "Number of lines to display"
+            },
+            {
+                "name": "Reverse",
+                "text": "reverse lines"
+            },
+            {
+                "name": "Result",
+                "text": "String out"
+            }
+        ]
+    },
+    "exampleProjectId": "ZCUND-",
+    "isReleased": true
+}

@@ -1,0 +1,53 @@
+{
+    "id": "d0894a6b-f921-4542-aafc-3f1b21615a44",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "andro",
+            "date": 1562762718624
+        }
+    ],
+    "authorName": "andro",
+    "created": 1562762828530,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Index Position",
+                "subType": "number"
+            },
+            {
+                "type": 3,
+                "name": "Array"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Interpolate between all values of an array",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Index Position",
+                "text": "Index position of array - integers return a non interpolated number"
+            },
+            {
+                "name": "Array",
+                "text": "Array in"
+            },
+            {
+                "name": "result",
+                "text": "Number out"
+            }
+        ]
+    },
+    "exampleProjectId": "dbUc-L",
+    "isReleased": true
+}

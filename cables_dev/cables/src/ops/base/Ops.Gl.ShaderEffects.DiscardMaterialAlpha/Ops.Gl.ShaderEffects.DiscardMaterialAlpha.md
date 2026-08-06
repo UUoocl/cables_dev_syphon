@@ -1,0 +1,1 @@
+coverage option needs MSAA enabled, especially in renderToTexture contexts

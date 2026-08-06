@@ -1,0 +1,51 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "posx",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "negx",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "posy",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "negy",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "posz",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "negz",
+                "subType": "string"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "2",
+                "name": "cubemap"
+            }
+        ]
+    },
+    "summary": "combine 6 textures to a cubemap",
+    "authorName": "pandur",
+    "id": "7b090629-e7ce-4c5f-a1d3-41525b762b36",
+    "created": 1519576849237,
+    "exampleProjectId": "-QPf26",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

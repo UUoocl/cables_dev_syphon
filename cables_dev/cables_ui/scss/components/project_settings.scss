@@ -1,0 +1,70 @@
+
+.projectsettings
+{
+    textarea,input
+    {
+        background-color: $color-background-input;
+        width:100%;
+    }
+}
+
+.settings_content
+{
+	background-color: $background-color-brighter;
+	padding:20px;
+	min-height: 540px;
+
+
+	textarea
+	{
+		height:150px !important;
+		// outline: none;
+	    border: none;
+	}
+
+	.taginputcontainer
+	{
+		margin-top: 5px;
+		border:7px solid $color-background-input;
+		border-bottom:3px solid $color-background-input;
+	}
+
+	h2
+	{
+		text-transform: uppercase;
+	}
+}
+
+.settings_tabs
+{
+	background-color: $background-color-dark;
+	padding-left: 30px;
+	padding-right: 30px;
+	min-height: 580px;
+
+    a
+    {
+        display: block;
+        padding:4px;
+        padding-left: 5px;
+    }
+
+    .active
+    {
+        color: var(--color-special);
+    }
+
+}
+
+#settings_error
+{
+    b
+    {
+        color:white;
+    }
+    ul,li
+    {
+        color: var(--color-error);
+        margin-bottom: 0px;
+    }
+}

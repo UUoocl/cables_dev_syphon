@@ -1,0 +1,70 @@
+{
+    "summary": "Executes an external function (external javascript)",
+    "updated": 1541051030933,
+    "authorName": "tim",
+    "id": "33475ab9-b631-4225-92fa-c678cb2e0a24",
+    "created": 1516178727528,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "exe"
+            },
+            {
+                "type": "0",
+                "name": "callback name",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "value 1",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "value 2",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "value 3",
+                "subType": "string"
+            }
+        ]
+    },
+    "docs": {
+        "ports": [
+            {
+                "name": "exe",
+                "text": "Calls the external function / executes the callback"
+            },
+            {
+                "name": "callback name",
+                "text": "Name of the function to call"
+            },
+            {
+                "name": "value 1",
+                "text": "Parameter 1"
+            },
+            {
+                "name": "value 2",
+                "text": "Parameter 2"
+            },
+            {
+                "name": "value 3",
+                "text": "Parameter 3"
+            }
+        ]
+    },
+    "youtubeid": "",
+    "issues": "",
+    "changelog": [
+        {
+            "message": "Ops.Patch.CallBack renamed to Ops.Cables.CallBack",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1678265320150
+        }
+    ],
+    "isReleased": true
+}

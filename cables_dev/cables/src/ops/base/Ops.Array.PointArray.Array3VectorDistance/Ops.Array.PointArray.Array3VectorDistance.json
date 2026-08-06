@@ -1,0 +1,60 @@
+{
+    "id": "d8f245ef-4639-4c76-aa87-b9101f666d9e",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "andro",
+            "date": 1563376252532
+        },
+        {
+            "message": "Ops.Array.Array3VectorDistance renamed to Ops.Array.PointArray.Array3VectorDistance",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1722850071201
+        }
+    ],
+    "authorName": "andro",
+    "created": 1563379319924,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array in 1"
+            },
+            {
+                "type": 3,
+                "name": "Array in 2"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Array out"
+            }
+        ]
+    },
+    "summary": "Return the distance between 2 points from an array",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Array in 1",
+                "text": "Array in 1"
+            },
+            {
+                "name": "Array in 2",
+                "text": "Array in 2"
+            },
+            {
+                "name": "Array out",
+                "text": "Distance between each point"
+            }
+        ]
+    },
+    "exampleProjectId": "Tbb8xN",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

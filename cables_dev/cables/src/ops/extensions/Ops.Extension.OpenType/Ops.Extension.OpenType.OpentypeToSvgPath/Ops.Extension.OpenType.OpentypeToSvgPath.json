@@ -1,0 +1,64 @@
+{
+    "id": "4d901c72-b8dc-45dc-ac2e-608e5da40677",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1647541367044,
+            "type": "new op"
+        },
+        {
+            "message": "Added support for line breaks, added line height parameter",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1770292038171
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1647541416783,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Opentype Font"
+            },
+            {
+                "type": 5,
+                "name": "Text"
+            },
+            {
+                "type": 0,
+                "name": "Letter Spacing",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Line Height",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Path String"
+            }
+        ]
+    },
+    "summary": "get svg path from (OTF) OpentypeFont using the opentype library",
+    "issues": "",
+    "caniusequery": "",
+    "relatedops": [
+        "Ops.Libs.OpenType.OpentypeFont",
+        "Ops.Gl.Geometry.SvgPathToGeometry"
+    ],
+    "youtubeids": [],
+    "exampleProjectId": "Cp5VS3",
+    "docs": {
+        "ports": []
+    },
+    "libs": [
+        "opentype.js"
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

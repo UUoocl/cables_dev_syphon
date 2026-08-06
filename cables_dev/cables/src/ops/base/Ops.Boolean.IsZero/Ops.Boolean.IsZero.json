@@ -1,0 +1,35 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Returns `true` if input value is `0`",
+    "docs": {
+        "ports": [
+            {
+                "name": "Value",
+                "text": "The number to check if it is `0`"
+            },
+            {
+                "name": "Result",
+                "text": "`true` if input `Value` is `0`, `false` otherwise"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "76d37c73-3c32-47bd-8b4a-4229db7e57f1",
+    "created": 1542699279469,
+    "isReleased": true
+}

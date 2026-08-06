@@ -1,0 +1,49 @@
+{
+    "id": "66de24c3-da6f-458b-b160-151953bbbc3d",
+    "created": 1710844489983,
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1710844490022
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "Template"
+            },
+            {
+                "type": 2,
+                "name": "Data"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Done"
+            },
+            {
+                "type": 5,
+                "name": "Result"
+            },
+            {
+                "type": 5,
+                "name": "Errors"
+            }
+        ]
+    },
+    "libs": [
+        "/assets/65f96a07c4f63abf487f326b/handlebars-v4.7.8.js"
+    ],
+    "exampleProjectId": "TKQIs7",
+    "docs": {
+        "ports": []
+    },
+    "summary": "string conversion using handlebars template engine",
+    "license": "MIT",
+    "isReleased": true
+}

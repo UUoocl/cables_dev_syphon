@@ -1,0 +1,38 @@
+{
+    "summary": "Interpolate between values, lerp, linear interpolate",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value 1",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value 2",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Percentage",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "d126e2c8-221e-428f-8ff4-8b8c5f6b8905",
+    "created": 1558014630016,
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

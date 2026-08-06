@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>| cables</title>
+
+        <script>
+            if(window.hasOwnProperty("require")) {
+                // electron npm load functionality
+                window.nodeRequire = require;
+                delete window.process;
+                delete window.require;
+                delete window.exports;
+                delete window.module;
+            }
+
+            if(parent !== window) {
+                window.addEventListener("hashchange", (event) => {
+                    parent.postMessage({"type": "hashchange", "data": window.location.hash}, "*");
+                });
+            }
+        </script>
+
+        <script src="js/libs.ui.js"></script>
+        <script src="js/talkerapi.js"></script>
+
+        <meta name="robots" content="noindex, nofollow"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <style media="screen">
+            body { background-color: #282828; color:#aaa; position:fixed;overflow: hidden;}
+            #loadingstatusBar { background-color: #999;height:100%;width:0px;margin-bottom: 10px;z-index: 10000;}
+            #loadingstatus { position:absolute;top:0px;left:0px;height:4px;width:100%;z-index: 10000;}
+
+            @keyframes spin
+            {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            @keyframes scaleout {
+                0% {
+                    transform: scale(0.0);
+                    -webkit-transform: scale(0.0);
+                } 100% {
+                    transform: scale(1.0);
+                    -webkit-transform: scale(1.0);
+                    opacity: 0;
+                }
+            }
+
+            .loading,.workingindicator
+            {
+                background-color: #aaa;
+                animation: scaleout 1.0s infinite ease-in-out;
+                border-radius: 50%;
+                width:40px;
+                height:40px;
+                min-width: 40px !important;
+                min-height: 40px !important;
+                max-width: 40px !important;
+                max-height: 40px !important;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top:20px;
+                margin-bottom:20px;
+            }
+
+            .startUpError
+            {
+                padding:30px;
+                font-family: monospace;
+            }
+
+        </style>
+        <link rel="stylesheet" type="text/css" media="all" href="css/style-dark.css" />
+    </head>
+<body>
+
+    <div class="cablesCssUi">
+        <div id="loadingstatus"><div id="loadingstatusBar"></div><div id="loadingInfo"></div><div class="loading" style="margin-top:50px;"></div></div>
+        <div id="loadingstatusLog" style="font-family: monospace;padding:30px;position:absolute"></div>
+    </div>
+
+    <div id="cablescanvas" class="bgpatternDark hidden" style="width:640px;height:300px;right:0px;">
+        <canvas id="glcanvas" width="0" height="0"></canvas>
+    </div>
+
+    <div class="cablesCssUi">
+
+        <div id="mainContainer" class="hidden cablesCssUi"></div>
+
+        <div id="cmdpalette" class="hidden">
+        </div>
+    </div>
+

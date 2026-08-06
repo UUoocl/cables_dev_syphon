@@ -1,0 +1,38 @@
+{
+    "author": "59db805b08bab26e1ab7a0f2",
+    "authorName": "pandur",
+    "id": "76fdea4d-1653-46d6-80f3-af34018f043d",
+    "created": 1512035138842,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Position",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Radius",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "x and y coordinates of a circle",
+    "exampleProjectId": "uAkdL5",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

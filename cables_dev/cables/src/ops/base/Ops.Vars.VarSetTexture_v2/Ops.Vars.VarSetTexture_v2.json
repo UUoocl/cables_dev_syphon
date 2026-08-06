@@ -1,0 +1,39 @@
+{
+    "id": "4fbfc71e-1429-439f-8591-ad35961252ed",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1593237008001
+        },
+        {
+            "message": " added core lib: vargetset",
+            "author": "pandur",
+            "date": 1596042454916
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1593237012176,
+    "coreLibs": [
+        "vargetset"
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Value",
+                "objType": "texture"
+            }
+        ],
+        "portsOut": []
+    },
+    "summary": "set a texture variable",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "lkS998",
+    "license": "MIT",
+    "isReleased": true
+}

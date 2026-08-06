@@ -1,0 +1,50 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Execute"
+            },
+            {
+                "type": 2,
+                "name": "Event In"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 2,
+                "name": "Event Out"
+            }
+        ]
+    },
+    "authorName": "tim",
+    "id": "8a0f1c05-3ed7-4d50-b8ec-e8298050988d",
+    "created": 1517606255138,
+    "summary": "Stop a JavaScript event (bubbling / capturing)",
+    "youtubeid": "",
+    "docs": {
+        "ports": [
+            {
+                "name": "Execute",
+                "text": "Only execute once per event"
+            },
+            {
+                "name": "Event In",
+                "text": "The event to stop"
+            },
+            {
+                "name": "Next",
+                "text": "Triggers after event was stopped"
+            },
+            {
+                "name": "Event Out",
+                "text": "Same as Input Event"
+            }
+        ]
+    },
+    "isReleased": true
+}

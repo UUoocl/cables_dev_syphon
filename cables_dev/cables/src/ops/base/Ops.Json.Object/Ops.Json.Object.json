@@ -1,0 +1,38 @@
+{
+    "id": "d618f2e1-4e60-4ac4-91aa-218bab2a6742",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1692304937920,
+            "type": "new"
+        },
+        {
+            "message": "Became simple passthrough op, old object op is now called \"emptyobject\"",
+            "author": "pandur",
+            "date": 1712929758277,
+            "type": "improvement"
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1712929758277,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Object"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "An empty Object",
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

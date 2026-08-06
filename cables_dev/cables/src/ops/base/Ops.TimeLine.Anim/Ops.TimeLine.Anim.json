@@ -1,0 +1,73 @@
+{
+    "id": "5e29e1c8-2553-478b-b782-bd564de91e75",
+    "created": 1745917962265,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1745917962266
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "loop index",
+                "values": [
+                    "Off",
+                    "Repeat",
+                    "Mirror",
+                    "Offset"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Clip",
+                "subType": "boolean"
+            },
+            {
+                "type": 5,
+                "name": "Clip Name"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Anim",
+                "objType": "anim"
+            },
+            {
+                "type": 0,
+                "name": "Loop Length",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Length",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "timeline keyframable animation object",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "sKguKJ",
+    "coreLibs": [
+        "vargetset"
+    ],
+    "youtubeids": [
+        "zRorQ_ah2eg",
+        "qMKcF54YjJA"
+    ],
+    "isReleased": true
+}

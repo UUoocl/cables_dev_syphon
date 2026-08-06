@@ -1,0 +1,44 @@
+{
+    "authorName": "pandur",
+    "id": "55285d4a-f542-4c8b-9839-02b33b15c916",
+    "created": 1541835497046,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "chars"
+            },
+            {
+                "type": 0,
+                "name": "Length",
+                "subType": "integer"
+            },
+            {
+                "type": 1,
+                "name": "Generate"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Generate a random string of given characters",
+    "issues": "",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "added unicode support",
+            "author": "stephan",
+            "date": 1648808530498
+        }
+    ],
+    "caniusequery": "",
+    "youtubeids": [],
+    "exampleProjectId": "xtDYx3",
+    "isReleased": true
+}

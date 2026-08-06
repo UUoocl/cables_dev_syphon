@@ -1,0 +1,81 @@
+{
+    "id": "78eb6f9d-e82b-427a-9d1f-138328138f2d",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1584365937229
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1584366020284,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Execute"
+            },
+            {
+                "type": 3,
+                "name": "Array"
+            },
+            {
+                "type": 0,
+                "name": "Index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Number",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Reset"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 3,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Set a number at index in an array",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Execute",
+                "text": "Trigger to set the value at the index"
+            },
+            {
+                "name": "Array",
+                "text": "Array in"
+            },
+            {
+                "name": "Index",
+                "text": "index to update with the value"
+            },
+            {
+                "name": "Number",
+                "text": "number that will be set to the selected index"
+            },
+            {
+                "name": "Reset",
+                "text": "Reverts array to it's original state"
+            },
+            {
+                "name": "Result",
+                "text": "Modified array out"
+            }
+        ]
+    },
+    "exampleProjectId": "bJrH16",
+    "isReleased": true
+}

@@ -1,0 +1,74 @@
+{
+    "id": "69cc5915-fd7f-4c6c-9a8c-8553c6bab0c5",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1668508251853
+        },
+        {
+            "message": "Ops.User.pandur.MulMatrixXyz renamed to Ops.Math.MulMatrixXyz",
+            "author": "pandur",
+            "date": 1668527595714
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1668508312343,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            },
+            {
+                "type": 0,
+                "name": "X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Z",
+                "subType": "number"
+            },
+            {
+                "type": 3,
+                "name": "Matrix"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 0,
+                "name": "Result X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Result Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Result Z",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "multiply XYZ values with a gl matrix vec3 x mat4",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "QlOcck",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

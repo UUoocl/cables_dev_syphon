@@ -1,0 +1,141 @@
+{
+    "authorName": "pandur",
+    "id": "790f3702-9833-464e-8e37-6f0f813f7e16",
+    "created": 1581607123708,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "File"
+            },
+            {
+                "type": 0,
+                "name": "Filter index",
+                "values": [
+                    "nearest",
+                    "linear",
+                    "mipmap"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Wrap index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Anisotropic index",
+                "values": [
+                    "0",
+                    "1",
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Data Format index",
+                "values": [
+                    "R",
+                    "RG",
+                    "RGB",
+                    "RGBA",
+                    "SRGBA"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Flip",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Save Memory",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Add Cachebuster",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Reload"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Texture",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Width",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Height",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Aspect Ratio",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Loaded",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Loading",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "Ops.User.pandur.Texture_v2 renamed to Ops.Gl.Texture_v2",
+            "author": "pandur",
+            "date": 1581607147784,
+            "type": "new"
+        },
+        {
+            "message": "typing in the url input will not blur element",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1707381819030
+        },
+        {
+            "message": "Cachebuster option default value is now false. turn on to force a reload of the image every time",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1715952002835
+        }
+    ],
+    "summary": "Load an image as a texture",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "iRKrD-",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

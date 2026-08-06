@@ -1,0 +1,41 @@
+{
+    "id": "1334b4a0-d684-42f3-ab49-ba5e826962b3",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1642868426174,
+            "type": "new op"
+        }
+    ],
+    "coreLibs": [
+        "cgl_copytexture",
+        "cgl"
+    ],
+    "authorName": "pandur",
+    "created": 1642868505891,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "summary": "Convert a RGBE texture to HDR/floating point texture",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "adsLpX",
+    "license": "MIT",
+    "isReleased": true
+}

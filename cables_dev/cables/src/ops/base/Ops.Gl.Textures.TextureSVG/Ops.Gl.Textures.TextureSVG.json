@@ -1,0 +1,52 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "file",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "texture width",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "texture height",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "wrap index",
+                "subType": "integer"
+            },
+            {
+                "type": "0",
+                "name": "filter index",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "2",
+                "name": "texture"
+            },
+            {
+                "type": "0",
+                "name": "Loaded",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "Load a SVG image and convert to pixel texture",
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "ecd162d1-615e-4d97-8376-9edbbc51aee1",
+    "created": 1508247676380,
+    "exampleProjectId": "oqCKY6",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

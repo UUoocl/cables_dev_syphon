@@ -1,0 +1,153 @@
+{
+    "id": "4ea2d7b0-ca74-45db-962b-4d1965ac20c0",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1591630315193,
+            "type": "new"
+        },
+        {
+            "message": "now also uses cubemaps alpha channel",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1671034575804
+        },
+        {
+            "message": "Show pixel grid when zoomed in ",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1709801021905
+        },
+        {
+            "message": "Also show pixelcolor when show info is not active / fix crosshair",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1741340486744
+        },
+        {
+            "message": "Render the transparent checkerboard unattached to the op",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1762204735610
+        },
+        {
+            "message": "Option to visualize RGBE encoded images",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1771422697689
+        },
+        {
+            "message": "Option to debug by only visualizing one RGB channel",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1771517832762
+        },
+        {
+            "message": "Add option to show a specific mip level",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1772469794185
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1591630325323,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Texture In",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Show Info",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Visualize outside 0-1 index",
+                "values": [
+                    "Off",
+                    "Anim",
+                    "Modulo"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Alpha index",
+                "values": [
+                    "A",
+                    "1",
+                    "1-A"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Convert RGBE",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Channels index",
+                "values": [
+                    "RGB",
+                    "R",
+                    "G",
+                    "B"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Show Color",
+                "group": "Show Values",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "X",
+                "group": "Show Values",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "group": "Show Values",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Mip Level",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Texture Out",
+                "objType": "texture"
+            },
+            {
+                "type": 5,
+                "name": "Info"
+            }
+        ]
+    },
+    "summary": "Displays texture at input port",
+    "youtubeids": [
+        "-1vMiU6BcDg"
+    ],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "HOVjnR",
+    "coreLibs": [
+        "cgl_pixelreader",
+        "cgl"
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

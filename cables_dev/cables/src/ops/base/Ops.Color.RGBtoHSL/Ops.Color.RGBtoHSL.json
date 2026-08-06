@@ -1,0 +1,59 @@
+{
+    "id": "dfaa03d8-dc03-4f36-bd0b-248a4eb2b722",
+    "created": 1727786352874,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1727786023093
+        }
+    ],
+    "libs": [
+        "chroma.js"
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "R",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "G",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "B",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Hue",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Saturation",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Lightness",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Convert RGB color to HSL values",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "Du0rvs",
+    "isReleased": true
+}

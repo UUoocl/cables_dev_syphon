@@ -1,0 +1,81 @@
+{
+    "id": "c3b01c76-a300-44d3-8e1a-c8ae7a776463",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "cables",
+            "date": 1560858958571
+        }
+    ],
+    "authorName": "simod",
+    "created": 1560859040306,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "MIDI Event In",
+                "group": "MIDI"
+            },
+            {
+                "type": 0,
+                "name": "MIDI Channel index",
+                "group": "MIDI",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Transpose Amount",
+                "group": "Transpose",
+                "subType": "integer"
+            },
+            {
+                "type": 1,
+                "name": "learn",
+                "group": "MIDI"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "MIDI Event Out"
+            },
+            {
+                "type": 1,
+                "name": "Trigger Out"
+            }
+        ]
+    },
+    "summary": "transpose incoming midi notes",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "MIDI Event In",
+                "text": "the incoming MIDI event"
+            },
+            {
+                "name": "MIDI Channel",
+                "text": "pick a MIDI channel from 1 to 16"
+            },
+            {
+                "name": "learn",
+                "text": "click to set MIDI channel automatically"
+            },
+            {
+                "name": "Transpose Amount",
+                "text": "the amount of semitones to transpose incoming midi notes"
+            },
+            {
+                "name": "MIDI Event Out",
+                "text": "Midi event out - passes all midi data through to allow midi ops to be stacked"
+            },
+            {
+                "name": "Trigger Out",
+                "text": "triggers whenever a midi note comes in"
+            }
+        ]
+    },
+    "exampleProjectId": "dfF3DI",
+    "isReleased": true
+}

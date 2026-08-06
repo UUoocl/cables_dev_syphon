@@ -1,0 +1,80 @@
+const inTrigger = op.inTrigger("Trigger In");
+const inR = op.inValueSlider("R", 1);
+const inG = op.inValueSlider("G", 1);
+const inB = op.inValueSlider("B", 1);
+const inIntensity = op.inValueSlider("Intensity", 1);
+const colorIn = [inR, inG, inB];
+op.setPortGroup("Color", colorIn);
+
+inR.setUiAttribs({ "colorPick": true });
+
+const outTrigger = op.outTrigger("Trigger Out");
+
+function Light(config)
+{
+    this.type = config.type || "point";
+    this.color = config.color || [1, 1, 1];
+    this.specular = config.specular || [0, 0, 0];
+    this.position = config.position || null;
+    this.intensity = config.intensity || 1;
+    this.constantAttenuation = config.constantAttenuation || 0;
+    this.linearAttenuation = config.linearAttenuation || 0;
+    this.quadraticAttenuation = config.quadraticAttenuation || 0;
+    this.radius = config.radius || 1;
+    this.falloff = config.falloff || 1;
+    this.spotExponent = config.spotExponent || 1;
+    this.coneAngleInner = config.coneAngleInner || 0; // spot light
+    this.coneAngle = config.coneAngle || 0; // spot light
+    this.cosConeAngle = Math.cos(CGL.DEG2RAD * this.coneAngle);
+    this.conePointAt = config.conePointAt || [0, 0, 0];
+
+    // * shadow
+    this.nearFar = [0, 0];
+    this.shadowStrength = 0;
+    this.shadowBias = 0;
+
+    return this;
+}
+
+const cgl = op.patch.cgl;
+
+const light = new Light({
+    "type": "ambient",
+    "color": [0, 1, 2].map(function (i) { return colorIn[i].get(); }),
+    "intensity": inIntensity.get(),
+});
+
+const inLight = {
+    "color": [inR, inG, inB],
+    "intensity": inIntensity,
+};
+
+Object.keys(inLight).forEach(function (key)
+{
+    if (inLight[key].length)
+    {
+        for (let i = 0; i < inLight[key].length; i += 1)
+        {
+            inLight[key][i].onChange = function ()
+            {
+                light[key][i] = inLight[key][i].get();
+            };
+        }
+    }
+    else
+    {
+        inLight[key].onChange = function ()
+        {
+            light[key] = inLight[key].get();
+        };
+    }
+});
+
+inTrigger.onTriggered = function ()
+{
+    if (!cgl.tempData.lightStack) cgl.tempData.lightStack = [];
+
+    cgl.tempData.lightStack.push(light);
+    outTrigger.trigger();
+    cgl.tempData.lightStack.pop();
+};

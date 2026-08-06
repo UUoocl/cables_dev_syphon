@@ -1,0 +1,41 @@
+{
+    "summary": "visualize normals of a geometry",
+    "authorName": "pandur",
+    "id": "3e0e2c25-036e-4aeb-8803-9e07a9076da0",
+    "created": 1518895052920,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "2",
+                "name": "geometry"
+            },
+            {
+                "type": "0",
+                "name": "Length",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "fix problem normal lines disappearing when using other materials than BasicMaterial",
+            "author": "pandur",
+            "date": 1561131711835
+        }
+    ],
+    "exampleProjectId": "4NeG02",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,47 @@
+{
+    "id": "6468b7c1-f63e-4db4-b809-4b203d27ead3",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1557742503222
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1557742505295,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "value"
+            },
+            {
+                "type": 0,
+                "name": "Syntax index",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "string text editor",
+    "docs": {
+        "ports": [
+            {
+                "name": "value",
+                "text": "Not an input port, press edit to open the text editor"
+            },
+            {
+                "name": "Result",
+                "text": "String output"
+            }
+        ]
+    },
+    "license": "MIT",
+    "exampleProjectId": "Jhvn8i",
+    "isReleased": true
+}

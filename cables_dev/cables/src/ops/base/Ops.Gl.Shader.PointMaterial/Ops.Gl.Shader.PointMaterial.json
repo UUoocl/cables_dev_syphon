@@ -1,0 +1,187 @@
+{
+    "summary": "Draw all vertices as points / circles",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "0",
+                "name": "PointSize",
+                "group": "Size",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Random Size",
+                "group": "Size",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Round",
+                "group": "Size",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Scale by Distance",
+                "group": "Size",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "r",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "g",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "b",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "a",
+                "group": "Color",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "preMultiplied alpha",
+                "group": "Color",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Vertex Colors",
+                "group": "Color",
+                "subType": "boolean"
+            },
+            {
+                "type": "2",
+                "name": "texture",
+                "group": "Texture"
+            },
+            {
+                "type": "2",
+                "name": "Texture Mask",
+                "group": "Texture"
+            },
+            {
+                "type": "0",
+                "name": "colorizeTexture",
+                "group": "Texture",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "texture Lookup",
+                "group": "Texture",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            },
+            {
+                "type": "2",
+                "name": "shader"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "f86a4a07-00ee-4f68-8839-e02d51d1cd2f",
+    "created": 1505469976045,
+    "docs": {
+        "ports": [
+            {
+                "name": "render",
+                "text": "Trigger the op"
+            },
+            {
+                "name": "PointSize",
+                "text": "The size of each point, distance has no effect unless \"scale by distance\" is enabled"
+            },
+            {
+                "name": "Random Size",
+                "text": "Causes point size to become more random with higher values"
+            },
+            {
+                "name": "Round",
+                "text": "Render points as circles , disable to render squares"
+            },
+            {
+                "name": "Scale by Distance",
+                "text": "Point size is changed with distance to the camera"
+            },
+            {
+                "name": "r",
+                "text": "Red colour component"
+            },
+            {
+                "name": "g",
+                "text": "Green colour component"
+            },
+            {
+                "name": "b",
+                "text": "Blue colour component"
+            },
+            {
+                "name": "a",
+                "text": "Alpha component"
+            },
+            {
+                "name": "preMultiplied alpha",
+                "text": "Enable pre-multiplied alpha with texture input"
+            },
+            {
+                "name": "texture",
+                "text": "Texture which is applied to each point"
+            },
+            {
+                "name": "Texture Mask",
+                "text": "Texture mask which is applied to each point"
+            },
+            {
+                "name": "colorizeTexture",
+                "text": "RGB values are mixed with texture values"
+            },
+            {
+                "name": "texture Lookup",
+                "text": "Use to give each point a random colour from the texture input"
+            },
+            {
+                "name": "trigger",
+                "text": "Trigger out"
+            }
+        ]
+    },
+    "issues": "",
+    "changelog": [
+        {
+            "message": "added support for vertex colors",
+            "author": "pandur",
+            "date": 1561041326814
+        }
+    ],
+    "youtubeids": [
+        "tFM2Ixf-ixs"
+    ],
+    "exampleProjectId": "O9yRO6",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

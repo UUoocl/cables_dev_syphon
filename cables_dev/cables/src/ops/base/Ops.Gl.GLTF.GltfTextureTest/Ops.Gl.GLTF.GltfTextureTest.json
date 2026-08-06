@@ -1,0 +1,51 @@
+{
+    "id": "8960aece-4df8-4a9d-9628-620d3137cad2",
+    "created": 1778078130364,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1778078130365
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "Show tex index",
+                "values": [
+                    "Albedo",
+                    "Normal",
+                    "AO",
+                    "MR",
+                    "Lightmap"
+                ],
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            },
+            {
+                "type": 2,
+                "name": "shader",
+                "objType": "shader"
+            }
+        ]
+    },
+    "isReleased": true,
+    "docs": {
+        "ports": []
+    },
+    "summary": "Show specific GLTF texture channels as color texture",
+    "exampleProjectId": "6Jtryn"
+}

@@ -1,0 +1,51 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "Iterations",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Flat",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Draw",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "next"
+            },
+            {
+                "type": 2,
+                "name": "Geometry"
+            }
+        ]
+    },
+    "summary": "A sphere mesh with uniform distributed vertices",
+    "docs": {
+        "ports": []
+    },
+    "authorName": "pandur",
+    "id": "ad0e8831-9554-46b3-ac03-c5c166921eda",
+    "created": 1519245806225,
+    "exampleProjectId": "T43V0D",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

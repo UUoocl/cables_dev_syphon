@@ -1,0 +1,35 @@
+
+
+<script id="select_project" type="text/x-handlebars-template">
+
+
+    <div class="projectsearch">
+
+        <div style="padding-left:25px;padding-right:25px;">
+            <input id="projectsearch" class="medium info" placeholder="filter patches"/>
+        </div>
+
+        <br/>
+        <style id="search_style"></style>
+
+
+        <div class="projectsearchresults">
+          {{#each projects}}
+            <div class="thumbcont searchresult searchable" data-projid="{{ _id }}" data-index="{{name}}" onclick="document.location.href='#/project/{{_id}}'">
+                <div style="background-color:black;width:180px;height:100px;background-image:url(/project/{{_id}}/screenshot.png);background-repeat:no-repeat;background-size:100%;background-position:center center;"></div>
+                <div class="title">
+                    {{name}}
+
+                    {{#if isPrivate}}
+                    &nbsp;<i class="icon icon-lock"></i>
+                    {{/if}}
+
+                </div>
+            </div>
+          {{/each}}
+        </div>
+
+
+    </div>
+
+</script>

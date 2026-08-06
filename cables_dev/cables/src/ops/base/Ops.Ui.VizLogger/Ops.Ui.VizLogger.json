@@ -1,0 +1,51 @@
+{
+    "id": "22b731fe-bc97-42fe-a550-92cf0cedb133",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1645174841480,
+            "type": "new"
+        },
+        {
+            "message": "Performance optimization with very long lines",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1720786632421
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Number",
+                "subType": "number"
+            },
+            {
+                "type": 5,
+                "name": "String"
+            },
+            {
+                "type": 2,
+                "name": "Object"
+            },
+            {
+                "type": 1,
+                "name": "Clear"
+            }
+        ],
+        "portsOut": []
+    },
+    "authorName": "pandur",
+    "created": 1645174874478,
+    "summary": "Log changes of input values line by line, use like a logfile for debugging",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "exampleProjectId": "-4pkq4",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "isReleased": true
+}

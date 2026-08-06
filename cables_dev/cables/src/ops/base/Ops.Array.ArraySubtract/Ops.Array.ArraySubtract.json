@@ -1,0 +1,62 @@
+{
+    "summary": "Subtract one number from all values in an array",
+    "docs": {
+        "ports": [
+            {
+                "name": "Array In",
+                "text": "Array in"
+            },
+            {
+                "name": "Value",
+                "text": "The number to subtract from all numbers in the array"
+            },
+            {
+                "name": "Array Out",
+                "text": "Array out"
+            }
+        ]
+    },
+    "authorName": "andro",
+    "id": "af78ab59-75d5-4ead-9a8d-27a63e1cbf3f",
+    "created": 1540902068741,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array In"
+            },
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Mode index",
+                "values": [
+                    "Array-x",
+                    "x-Array"
+                ],
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Array Out"
+            }
+        ]
+    },
+    "issues": "",
+    "youtubeids": [],
+    "exampleProjectId": "uIYNcn",
+    "changelog": [
+        {
+            "message": "Copy over array stride information",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1715181891262
+        }
+    ],
+    "isReleased": true
+}

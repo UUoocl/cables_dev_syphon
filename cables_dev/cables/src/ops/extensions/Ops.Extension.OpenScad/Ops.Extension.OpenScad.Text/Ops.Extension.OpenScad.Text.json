@@ -1,0 +1,55 @@
+{
+    "id": "26526644-ad67-4f29-b47f-2dc989e48cc9",
+    "created": 1771760083634,
+    "license": "MIT",
+    "authorName": "",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            },
+            {
+                "type": 5,
+                "name": "Text"
+            },
+            {
+                "type": 0,
+                "name": "Size",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Fragments",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1771746832667
+        },
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "",
+            "date": 1771757144000
+        },
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "",
+            "date": 1771760083634
+        }
+    ],
+    "isReleased": true
+}

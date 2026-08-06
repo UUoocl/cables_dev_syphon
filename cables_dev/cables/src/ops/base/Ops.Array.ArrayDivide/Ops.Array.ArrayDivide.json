@@ -1,0 +1,54 @@
+{
+    "summary": "Divide all values in an array by one number",
+    "docs": {
+        "ports": [
+            {
+                "name": "Array In",
+                "text": "The array to divide"
+            },
+            {
+                "name": "Value",
+                "text": "The number that all array values are divided by "
+            },
+            {
+                "name": "Array Out",
+                "text": "Divided array out"
+            }
+        ]
+    },
+    "authorName": "andro",
+    "id": "e9406477-1f1c-4cf3-8a64-f6009df05c7c",
+    "created": 1540902073883,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array In"
+            },
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Mode index",
+                "values": [
+                    "Array/x",
+                    "x/Array"
+                ],
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Array Out"
+            }
+        ]
+    },
+    "issues": "",
+    "youtubeids": [],
+    "exampleProjectId": "uIYNcn",
+    "isReleased": true
+}

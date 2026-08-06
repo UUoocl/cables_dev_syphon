@@ -1,0 +1,31 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "value",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Minimum",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Result will be the smaller number of the inputs",
+    "docs": {
+        "ports": []
+    },
+    "authorName": "pandur",
+    "id": "ad6f54bd-6dbd-4fa0-aa8b-5854231a5fc9",
+    "created": 1542700332610,
+    "isReleased": true
+}

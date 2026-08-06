@@ -1,0 +1,81 @@
+name: dev build
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        description: "version number"
+        required: true
+      mac:
+        type: boolean
+        description: "mac"
+        default: "true"
+        required: false
+      win:
+        type: boolean
+        description: "win"
+        default: "true"
+        required: false
+      linux:
+        type: boolean
+        description: "linux"
+        default: "true"
+        required: false
+
+jobs:
+  draft_release:
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: create release
+        id: create_release
+        uses: softprops/action-gh-release@v3
+        with:
+          name: "${{ inputs.version }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: v${{ inputs.version }}
+          draft: true
+          prerelease: true
+  linux:
+    if: ${{ inputs.linux == true || inputs.linux == 'true' }}
+    uses: ./.github/workflows/build.yml
+    needs: draft_release
+    with:
+      runner: ubuntu-latest
+      target: linux
+      branch: ${{ github.ref_name }}
+      build_version: ${{ inputs.version }}
+      exe_name: cables-${{ inputs.version }}
+      tag_name: v${{ inputs.version }}
+      upload_url: ${{ needs.draft_release.outputs.upload_url }}
+    secrets: inherit
+  win:
+    if: ${{ inputs.win == true || inputs.win == 'true' }}
+    uses: ./.github/workflows/build.yml
+    needs: draft_release
+    with:
+      runner: windows-latest
+      target: win
+      branch: ${{ github.ref_name }}
+      build_version: ${{ inputs.version }}
+      exe_name: cables-${{ inputs.version }}
+      tag_name: v${{ inputs.version }}
+      upload_url: ${{ needs.draft_release.outputs.upload_url }}
+    secrets: inherit
+  mac:
+    if: ${{ inputs.mac == true || inputs.mac == 'true' }}
+    uses: ./.github/workflows/build.yml
+    needs: draft_release
+    with:
+      runner: macos-14
+      target: mac
+      branch: ${{ github.ref_name }}
+      build_version: ${{ inputs.version }}
+      exe_name: cables-${{ inputs.version }}
+      tag_name: ${{ inputs.version }}
+      upload_url: ${{ needs.draft_release.outputs.upload_url }}
+      sign: true
+      notarize: true
+    secrets: inherit

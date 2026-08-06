@@ -1,0 +1,33 @@
+{
+    "id": "95399669-ea70-429b-9d08-2815cf1e29a4",
+    "created": 1770828707343,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1770828707366
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Unstrip a line point array",
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

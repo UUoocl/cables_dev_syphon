@@ -1,0 +1,27 @@
+{
+    "authorName": "pandur",
+    "id": "6d123c9f-7485-4fd9-a5c2-76e59dcbeb34",
+    "created": 1521803894495,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Boolean",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "result is false if input is true and vice versa (negate/toggle/switch/!=)",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "1dAfW2",
+    "isReleased": true
+}

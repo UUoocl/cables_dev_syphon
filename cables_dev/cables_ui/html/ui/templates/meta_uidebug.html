@@ -1,0 +1,55 @@
+
+<script id="uiDebug" type="text/x-handlebars-template">
+
+        <h3>WebGL</h3>
+
+        <table>
+            <tr>
+                <td valign="top">version:</td>
+                <td>{{ gl_ver }}</td>
+            </tr>
+            <tr>
+                <td valign="top">renderer:</td>
+                <td>{{ gl_renderer }}</td>
+            </tr>
+        </table>
+        <br/><br/>
+
+        <h3>SVG</h3>
+
+        numOps:{{numOps}}
+        <br/>
+        numSvgElements:{{numSvgElements}}
+        <br/>
+        numVisibleOps:{{numVisibleOps}}
+        <br/>
+        <br/>
+
+        <h3>Canvas</h3>
+        <table>
+            {{#each canvass}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{width}}x{{height}}</td>
+                </tr>
+            {{/each}}
+        </table>
+        <br/>
+        <br/>
+
+
+        <h3>startup times</h3>
+        <table>
+            {{#each startup}}
+                <tr>
+                    <td>{{time}}s</td>
+                    <td>{{title}}</td>
+                </tr>
+            {{/each}}
+        </table>
+
+
+
+
+
+</script>

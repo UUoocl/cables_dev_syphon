@@ -1,0 +1,1 @@
+E.g. value: `1.5`, result: `0.5`

@@ -1,0 +1,12 @@
+{
+    "summary": "Automatically starts the timeline playback when opening patch",
+    "layout": {},
+    "updated": 1519734786204,
+    "authorName": "pandur",
+    "id": "6069e8fe-6cf5-4be6-be38-4d46056ec9f7",
+    "created": 1518592471557,
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

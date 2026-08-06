@@ -1,0 +1,9 @@
+{
+    "id": "fe16ff3e-e50b-4a64-9b96-b962e4bf17d3",
+    "authorName": "pandur",
+    "changelog": [],
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

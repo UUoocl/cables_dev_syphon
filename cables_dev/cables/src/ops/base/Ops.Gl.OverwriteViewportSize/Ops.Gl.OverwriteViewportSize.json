@@ -1,0 +1,39 @@
+{
+    "authorName": "pandur",
+    "id": "20e370c7-d6e9-4e29-acab-1dd2eb4b921f",
+    "created": 1517517729437,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Exec"
+            },
+            {
+                "type": 0,
+                "name": "Width",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Height",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "next"
+            }
+        ]
+    },
+    "summary": "Force a manually set viewport size for connected ops",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

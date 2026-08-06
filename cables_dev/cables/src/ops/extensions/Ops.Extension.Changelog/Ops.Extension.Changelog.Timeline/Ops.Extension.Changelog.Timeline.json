@@ -1,0 +1,55 @@
+{
+    "id": "dd8baacf-36cd-498d-bbe9-76bdd89ee2f2",
+    "created": 1775890740707,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "Anim title line: Added value display and functionality to manipulate values by dragging",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1775891000979
+        },
+        {
+            "message": "Anim title line: Added buttons to jump next/previous keyframe and to add new ones",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1775891025314
+        },
+        {
+            "message": "When clicking an op, the timeline scrolls, so the line is visible ",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1776684669136
+        }
+    ],
+    "isReleased": true,
+    "docs": {
+        "ports": []
+    },
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Trigger"
+            },
+            {
+                "type": 0,
+                "name": "Number",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Changelog"
+}

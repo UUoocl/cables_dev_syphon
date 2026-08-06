@@ -1,0 +1,44 @@
+{
+    "summary": "flip the image on x or y axis",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "0",
+                "name": "X",
+                "subType": "boolean"
+            },
+            {
+                "type": "0",
+                "name": "Y",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            }
+        ]
+    },
+    "updated": 1540822034854,
+    "authorName": "pandur",
+    "id": "ce36ad01-411a-412f-affa-1959aa23f93b",
+    "created": 1540821837396,
+    "exampleProjectId": "179Jjr",
+    "changelog": [
+        {
+            "message": "new op",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1701855376227
+        }
+    ],
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

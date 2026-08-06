@@ -1,0 +1,58 @@
+{
+    "authorName": "pandur",
+    "id": "ce0fff72-1438-4373-924f-e1d0f78b053f",
+    "created": 1518859707157,
+    "summary": "change how colors are mixed (blending/mixing modes)",
+    "docs": {
+        "ports": [
+            {
+                "name": "Render",
+                "text": "Trigger the op"
+            },
+            {
+                "name": "Blendmode",
+                "text": "Pick a from the following : blendMode `none, add, subtract, mul`"
+            },
+            {
+                "name": "Premultiplied",
+                "text": "Enable pre-multiplied mode"
+            },
+            {
+                "name": "Next",
+                "text": "Trigger out"
+            }
+        ]
+    },
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Render"
+            },
+            {
+                "type": 0,
+                "name": "Blendmode index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Premultiplied",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "youtubeid": "",
+    "issues": "",
+    "exampleProjectId": "x1-Fvc",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

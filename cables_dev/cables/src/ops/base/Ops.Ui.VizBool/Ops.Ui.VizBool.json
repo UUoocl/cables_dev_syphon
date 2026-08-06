@@ -1,0 +1,45 @@
+{
+    "id": "cf194306-175b-416a-b90e-31ff2192a190",
+    "changelog": [
+        {
+            "message": "Ops.User.pandur.VizBool renamed to Ops.Dev.VizBool",
+            "author": "pandur",
+            "date": 1651126681345,
+            "type": "new op"
+        },
+        {
+            "message": "fix bug when op is resized to very small",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1771335161733
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Boolean",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Bool",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "created": 1649238794135,
+    "summary": "Visualize the state of a boolean input in the patch, useful for debugging",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "exampleProjectId": "9SHiq4",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "isReleased": true
+}

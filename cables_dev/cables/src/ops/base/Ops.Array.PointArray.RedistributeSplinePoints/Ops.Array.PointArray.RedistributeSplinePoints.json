@@ -1,0 +1,45 @@
+{
+    "id": "f17bae71-6047-49ea-af17-f7690e6e4d36",
+    "authorName": "pandur",
+    "created": 1544389546763,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array3x"
+            },
+            {
+                "type": 0,
+                "name": "Num Points",
+                "subType": "integer"
+            },
+            {
+                "type": 1,
+                "name": "Calculate"
+            },
+            {
+                "type": 0,
+                "name": "Normalized",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Result"
+            },
+            {
+                "type": 0,
+                "name": "Spline Length",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Recalculate a spline / change number of points of a spline",
+    "docs": {
+        "ports": []
+    },
+    "issues": "",
+    "youtubeids": [],
+    "isReleased": true
+}

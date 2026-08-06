@@ -1,0 +1,69 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "Strength",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Step Multiplier",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "credits": [
+        {
+            "title": "NormalMap Shader",
+            "author": "moka",
+            "url": "https://forum.openframeworks.cc/t/compute-normal-map-from-image/1400/11"
+        }
+    ],
+    "author": "59d794f763898eb73bd67a7e",
+    "authorName": "pandur",
+    "id": "5dfb2856-b589-4bd9-8f4e-b518da115d11",
+    "created": 1653732124735,
+    "summary": "Convert a black and white map to a normal map",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "new op",
+            "author": "pandur",
+            "date": 1560333507524,
+            "type": "new op"
+        }
+    ],
+    "todos": [
+        {
+            "message": "Make texture size dynamic, right now fixed at 1024!",
+            "author": "simod",
+            "id": "20d29ae3-7a58-4ad2-9b24-4c7c2ba6f314",
+            "date": 1572519515040,
+            "deleted": true,
+            "deletedBy": "stephan",
+            "deletedDate": 1654245372278
+        }
+    ],
+    "issues": "",
+    "youtubeids": [
+        "a56wk9Xm9dY"
+    ],
+    "exampleProjectId": "L62oT6",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,163 @@
+{
+    "id": "fb2ac304-5c36-419c-ba71-cdf43aed8a53",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "kikohs",
+            "date": 1647361182194
+        },
+        {
+            "message": "Fixed but with boolean grouping parameter",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1719327485697
+        }
+    ],
+    "authorName": "kikohs",
+    "created": 1647614687158,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Input Number",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Locale index",
+                "values": [
+                    "browser",
+                    "custom"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 5,
+                "name": "Locale string"
+            },
+            {
+                "type": 0,
+                "name": "Style index",
+                "values": [
+                    "decimal",
+                    "currency",
+                    "percent"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Minimum Integer Digits",
+                "group": "Format",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Minimum Fraction Digits",
+                "group": "Format",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Maximum Fraction Digits",
+                "group": "Format",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Minimum Significant Digits",
+                "group": "Significant Digits",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Maximum Significant Digits",
+                "group": "Significant Digits",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Use Grouping",
+                "subType": "boolean"
+            },
+            {
+                "type": 5,
+                "name": "Currency Name",
+                "group": "Currency"
+            },
+            {
+                "type": 0,
+                "name": "Currency Display index",
+                "values": [
+                    "symbol",
+                    "code",
+                    "name"
+                ],
+                "group": "Currency",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Formatted Number"
+            },
+            {
+                "type": 0,
+                "name": "Has error",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "Format a number to a string in the given locale and format",
+    "issues": "",
+    "caniusequery": "Date%20toLocaleString",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Locale string",
+                "text": "A string with a BCP 47 language tag"
+            },
+            {
+                "name": "Style index",
+                "text": "The formatting style to use"
+            },
+            {
+                "name": "Minimum Integer Digits",
+                "text": "The minimum number of integer digits to use. Possible values are from 1 to 21"
+            },
+            {
+                "name": "Minimum Fraction Digits",
+                "text": "The minimum number of fraction digits to use. Possible values are from 0 to 20"
+            },
+            {
+                "name": "Maximum Fraction Digits",
+                "text": "The maximum number of fraction digits to use. Possible values are from 0 to 20"
+            },
+            {
+                "name": "Minimum Significant Digits",
+                "text": "The maximum number of significant digits to use. Possible values are from 1 to 21"
+            },
+            {
+                "name": "Maximum Significant Digits",
+                "text": "The minimum number of significant digits to use. Possible values are from 1 to 21"
+            },
+            {
+                "name": "Use Grouping",
+                "text": "Whether to use grouping separators, such as thousands separators."
+            },
+            {
+                "name": "Currency Name",
+                "text": "The currency to use in currency formatting. Possible values are the ISO 4217 currency codes."
+            },
+            {
+                "name": "Currency Display index",
+                "text": "How to display the currency in currency formatting"
+            }
+        ]
+    },
+    "exampleProjectId": "-h-Rx3",
+    "license": "MIT",
+    "isReleased": true
+}

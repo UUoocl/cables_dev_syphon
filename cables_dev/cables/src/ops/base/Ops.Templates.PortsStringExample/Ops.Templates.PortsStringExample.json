@@ -1,0 +1,25 @@
+{
+    "authorName": "andro",
+    "id": "3d387694-022f-431f-b25e-636c6d666518",
+    "created": 1537174067400,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "5",
+                "name": "String in"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "5",
+                "name": "String out"
+            }
+        ]
+    },
+    "summary": "Is a template for creating String ports",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "rWJICn",
+    "isReleased": true
+}

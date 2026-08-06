@@ -1,0 +1,61 @@
+{
+    "authorName": "tim",
+    "id": "d8deecd3-418f-43dd-8edb-dfe238b5327c",
+    "created": 1519667584199,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Source Array"
+            },
+            {
+                "type": 0,
+                "name": "Start Index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "New Length",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Cropped Array"
+            },
+            {
+                "type": 0,
+                "name": "Array length",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Crop/cuts a smaller chunk out of an array.",
+    "docs": {
+        "ports": [
+            {
+                "name": "Source Array",
+                "text": "The array to crop"
+            },
+            {
+                "name": "New Length",
+                "text": "The length the new array should have"
+            },
+            {
+                "name": "Cropped Array",
+                "text": "The cropped array with new length, the source array stays untouched"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "added start index parameter",
+            "author": "pandur",
+            "date": 1574332879603
+        }
+    ],
+    "exampleProjectId": "UuuJH-",
+    "license": "MIT",
+    "isReleased": true
+}

@@ -1,0 +1,1 @@
+pad outputs can be connected to Ops.Devices.GamePad.GamePad to receive button states

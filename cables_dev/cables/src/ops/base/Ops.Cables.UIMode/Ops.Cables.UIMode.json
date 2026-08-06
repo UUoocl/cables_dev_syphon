@@ -1,0 +1,85 @@
+{
+    "summary": "Outputs `true` if patch is executed in the cables editor (UI)",
+    "layout": {
+        "portsIn": [],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "UI",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Overlay Mode",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Remote Viewer",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Is Standalone",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Canvas Mode",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Patch Field Visible",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "docs": {
+        "ports": [
+            {
+                "name": "UI",
+                "text": "`True` if the patch is viewed inside the cables editor"
+            },
+            {
+                "name": "Remote Viewer",
+                "text": "`True` if the patch is viewed inside the cables remote viewer"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "7c110d60-829f-4b06-b3e4-0af911550570",
+    "created": 1540834918658,
+    "changelog": [
+        {
+            "message": "add output boolean for remote viewer",
+            "author": "stephan",
+            "date": 1646674613446,
+            "type": "feature"
+        },
+        {
+            "message": "Added output port: Is overlay mode activated right now ? (hotkey \"o\")",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1720601385993
+        },
+        {
+            "message": "Added output \"Is Standalone\" is true if we are in cables electron standalone",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1725632781929
+        },
+        {
+            "message": "add current value of canvas mode as default value",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1772213600994
+        }
+    ],
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "exampleProjectId": "vyqgR3",
+    "license": "MIT",
+    "isReleased": true
+}

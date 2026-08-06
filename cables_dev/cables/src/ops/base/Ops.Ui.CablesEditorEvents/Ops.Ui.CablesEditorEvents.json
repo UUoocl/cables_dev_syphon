@@ -1,0 +1,76 @@
+{
+    "id": "31add1df-b4ce-486a-bbad-3291e07d8b76",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 0,
+            "type": "new"
+        },
+        {
+            "message": "created op\t",
+            "type": "new",
+            "author": "pandur",
+            "date": 1715092320586
+        },
+        {
+            "message": "trigger output when any port parameter was changed in the UI",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1759840841305
+        },
+        {
+            "message": "Added events to trigger, when op created/deleted, port linked etc",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1771743942896
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1632840113349,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Set Changed Patch"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Saving Patch"
+            },
+            {
+                "type": 1,
+                "name": "Selection Changed"
+            },
+            {
+                "type": 1,
+                "name": "PortValueEdited"
+            },
+            {
+                "type": 1,
+                "name": "Op Add"
+            },
+            {
+                "type": 1,
+                "name": "Op Delete"
+            },
+            {
+                "type": 1,
+                "name": "Op Reload"
+            },
+            {
+                "type": 1,
+                "name": "Port Link"
+            }
+        ]
+    },
+    "summary": "Cables UI Event Triggers",
+    "license": "MIT",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "gdbdQc",
+    "isReleased": true
+}

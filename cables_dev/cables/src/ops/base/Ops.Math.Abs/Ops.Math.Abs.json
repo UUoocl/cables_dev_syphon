@@ -1,0 +1,37 @@
+{
+    "summary": "Returns the absolute, positive value",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "number",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "result",
+                "subType": "number"
+            }
+        ]
+    },
+    "docs": {
+        "ports": [
+            {
+                "name": "number",
+                "text": "The number you want to make positive."
+            },
+            {
+                "name": "result",
+                "text": "The absolute value of `Number` (always positive)"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "6b5af21d-065f-44d2-9442-8b7a254753f6",
+    "created": 1540919817048,
+    "license": "MIT",
+    "exampleProjectId": "vtPZ7i",
+    "isReleased": true
+}

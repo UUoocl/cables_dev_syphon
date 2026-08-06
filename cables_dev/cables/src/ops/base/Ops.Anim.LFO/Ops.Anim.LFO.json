@@ -1,0 +1,67 @@
+{
+    "authorName": "pandur",
+    "id": "559bb980-78fb-47a7-a199-16f10808b150",
+    "created": 1524724642926,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Time",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Type index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Phase",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Amplitude",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Low-frequency oscillation for animations",
+    "docs": {
+        "ports": [
+            {
+                "name": "Time",
+                "text": "Plug a timer into this to determine the speed of the oscillation"
+            },
+            {
+                "name": "Type index",
+                "text": "selection index of Waveform: Sine, Triangle, Ramp Up, Ramp Down, Block (Square)"
+            },
+            {
+                "name": "Phase",
+                "text": "Phase point of the animation. Use this to offset from other LFO ops"
+            },
+            {
+                "name": "Amplitude",
+                "text": "Min and max value that animation outputs"
+            },
+            {
+                "name": "Result",
+                "text": "Animated value out"
+            }
+        ]
+    },
+    "issues": "",
+    "youtubeids": [
+        "cn_PcwI7vO0"
+    ],
+    "exampleProjectId": "Vzwnrc",
+    "isReleased": true
+}

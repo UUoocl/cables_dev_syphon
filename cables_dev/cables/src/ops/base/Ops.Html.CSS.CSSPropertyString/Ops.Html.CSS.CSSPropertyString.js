@@ -1,0 +1,72 @@
+const
+    inEle = op.inObject("Element"),
+    inProperty = op.inString("Property"),
+    inValue = op.inString("Value"),
+    inActive = op.inBool("Active", true),
+    outEle = op.outObject("HTML Element");
+
+op.setPortGroup("Element", [inEle]);
+op.setPortGroup("Attributes", [inProperty, inValue]);
+
+op.toWorkPortsNeedsString(inProperty);
+
+inProperty.onChange = updateProperty;
+inValue.onChange = update;
+let ele = null;
+
+inEle.onChange = () =>
+{
+    // if (inEle.get() == ele) return; //needs to be updated..........
+    removeProp();
+};
+
+outEle.onLinkChanged =
+    inEle.onLinkChanged = removeProp;
+
+inActive.onChange = () =>
+{
+    if (!inActive.get()) removeProp();
+    else update();
+
+    updateUi();
+};
+
+function removeProp()
+{
+    if (ele && ele.style) ele.style[inProperty.get()] = "initial";
+    update();
+    updateUi();
+}
+
+function updateUi()
+{
+    if (!inActive.get()) op.setUiAttrib({ "extendTitle": "x" });
+    else op.setUiAttrib({ "extendTitle": inProperty.get() + "" });
+}
+
+function updateProperty()
+{
+    update();
+    updateUi();
+}
+
+function update()
+{
+    if (!inActive.get()) return;
+
+    ele = inEle.get();
+    if (ele && ele.style)
+    {
+        const str = inValue.get();
+        try
+        {
+            ele.style[inProperty.get()] = str;
+        }
+        catch (e)
+        {
+            op.logError(e);
+        }
+    }
+
+    outEle.setRef(inEle.get());
+}

@@ -1,0 +1,62 @@
+{
+    "id": "9989b1c0-1073-4d5f-bfa0-36dd98b66e27",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1551085749888
+        },
+        {
+            "message": "Ops.Trigger.SetNumberOnTrigger renamed to Ops.Trigger.TriggerNumber",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1694676552717
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1551085774736,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Set"
+            },
+            {
+                "type": 0,
+                "name": "Number",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 0,
+                "name": "Out Value",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Outputs a number when triggered",
+    "docs": {
+        "ports": [
+            {
+                "name": "Set",
+                "text": "Trigger - send out stored number"
+            },
+            {
+                "name": "Number",
+                "text": "Number to output on Trigger"
+            },
+            {
+                "name": "Out Value",
+                "text": "Number out"
+            }
+        ]
+    },
+    "license": "MIT",
+    "exampleProjectId": "Qq3Y7i",
+    "isReleased": true
+}

@@ -1,0 +1,52 @@
+{
+    "authorName": "pandur",
+    "id": "92aee475-63e8-45cc-902f-2a84154e0a93",
+    "created": 1515176075838,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "0",
+                "name": "Degree",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Height",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Axis index",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "Trigger"
+            }
+        ]
+    },
+    "summary": "twist a mesh around an axis",
+    "changelog": [
+        {
+            "message": "Ops.Gl.ShaderEffects.Twist_v2 renamed to Ops.Gl.ShaderEffects.Twist_v3",
+            "author": "pandur",
+            "date": 1596029913466
+        },
+        {
+            "message": "Ops.Gl.ShaderEffects.Twist_v3 renamed to Ops.Gl.ShaderEffects.Twist_v2",
+            "author": "pandur",
+            "date": 1596029956686
+        }
+    ],
+    "exampleProjectId": "VYPlJ5",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

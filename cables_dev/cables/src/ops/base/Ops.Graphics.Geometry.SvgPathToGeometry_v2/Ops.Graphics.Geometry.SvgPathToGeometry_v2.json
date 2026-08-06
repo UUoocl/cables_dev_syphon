@@ -1,0 +1,54 @@
+{
+    "id": "4267b3e7-1285-4a3e-acc8-ea92a72a6bc0",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1647416911262,
+            "type": "new"
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "SVG Path"
+            },
+            {
+                "type": 0,
+                "name": "Bezier Stepsize",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Rescale",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Geometry",
+                "objType": "geometry"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "created": 1656063040878,
+    "libs": [
+        "earcut.js"
+    ],
+    "summary": "Generate a SVG path string of a string using an opentype font",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "exampleProjectId": "Cp5VS3",
+    "docs": {
+        "ports": []
+    },
+    "coreLibs": [
+        "cgl"
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

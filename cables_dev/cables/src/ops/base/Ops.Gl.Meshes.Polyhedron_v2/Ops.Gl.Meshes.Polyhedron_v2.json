@@ -1,0 +1,56 @@
+{
+    "author": "5a0fe67d9641cedb39929853",
+    "authorName": "pandur",
+    "id": "203a3bcd-7fff-4791-aab7-378f2b68bf29",
+    "created": 1637079875909,
+    "libs": [],
+    "credits": [
+        {
+            "title": "conway-heart",
+            "author": "mikolalysenko",
+            "url": "https://github.com/mikolalysenko/conway-hart",
+            "licence": "GPL"
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "Receipt"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Geometry",
+                "objType": "geometry"
+            }
+        ]
+    },
+    "summary": "Generate polyhedron meshes ",
+    "docs": {},
+    "changelog": [
+        {
+            "message": "cloned op from Ops.Gl.Meshes.Polyhedron",
+            "author": "stephan",
+            "date": 1637079875909
+        },
+        {
+            "message": "fixed crash when using illegal seed",
+            "author": "stephan",
+            "date": 1646674582145
+        }
+    ],
+    "exampleProjectId": "VRG6Q6",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true,
+    "dependencies": [
+        {
+            "type": "commonjs",
+            "src": "./conway-hart.js"
+        }
+    ]
+}

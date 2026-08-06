@@ -1,0 +1,148 @@
+
+<script id="params_convert" type="text/x-handlebars-template">
+    <div class="panel">
+
+        <h2>{{ converterName }}</h2>
+        <br/>
+        <i id="converterprogress" class="hidden">Working....</i>
+
+        <form id="converterform" onsubmit="return false;">
+
+            {{#compare converterId '==' 'duplicate' }}
+            <div>
+                <table>
+                    <tr>
+                        <td>New Filename</td>
+                        <td>
+                            <input style="width: 60%" type="text" name="newName" value="{{ fileName }}" autofocus>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            {{/compare}}
+
+            {{#compare converterId '==' 'rename' }}
+            <div>
+                <table>
+                    <tr>
+                        <td>New Filename</td>
+                        <td>
+                            <input style="width: 60%" type="text" name="newName" value="{{ fileName }}" autofocus>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            {{/compare}}
+
+            {{#compare converterId '==' 'gltf2draco' }}
+
+            <table>
+                <tr>
+                    <td>Compression Level [0-10]<br/><br/></td>
+                    <td><input name="compressionLevel" value="6"></td>
+                </tr>
+
+                <tr>
+                    <td>Quantize Position Bits</td>
+                    <td><input name="quantizePositionBits" value="14"></td>
+                </tr>
+                <tr>
+                    <td>Quantize Normal Bits</td>
+                    <td><input name="quantizeNormalBits" value="10"></td>
+                </tr>
+                <tr>
+                    <td>Quantize Texcoord Bits</td>
+                    <td><input name="quantizeTexcoordBits" value="12"></td>
+                </tr>
+                <tr>
+                    <td>Quantize Color Bits</td>
+                    <td><input name="quantizeColorBits" value="8"></td>
+                </tr>
+                <tr>
+                    <td>Quantize Generic Bits</td>
+                    <td><input name="quantizeGenericBits" value="12"></td>
+                </tr>
+                <tr>
+                    <td>Unified Quantization</td>
+                    <td>
+                        <select name="unifiedQuantization">
+                            <option value="false">false</option>
+                            <option value="true">true</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <br/>
+
+            {{/compare}}
+
+            {{#compare converterId '==' 'gltfpack' }}
+            <table>
+                <tr>
+                    <td><input name="kn" type="checkbox" checked="checked"></td>
+                    <td>Keep named nodes and meshes attached</td>
+                </tr>
+                <tr>
+                    <td><input name="km" type="checkbox" checked="checked"></td>
+                    <td>Keep named materials and disable named material merging</td>
+                </tr>
+                <tr>
+                    <td><input name="ke" type="checkbox" checked="checked"></td>
+                    <td>Keep extras data</td>
+                </tr>
+                <tr>
+                    <td><input name="vpf" type="checkbox"></td>
+                    <td>Use floating-point position quantization</td>
+                </tr>
+                <tr>
+                    <td><input name="tw" type="checkbox"></td>
+                    <td>Convert all textures to WebP</td>
+                </tr>
+            </table>
+            <br/>
+            <div>For more information see <a href="https://www.npmjs.com/package/gltfpack" target="_blank">gltfpack documentation</a>.</div>
+            <br/>
+            {{/compare}}
+
+            {{#compare converterId '==' 'pcconv' }}
+
+                <div>
+                    <table>
+                        <tr>
+                            <td>Center Points</td>
+                            <td>
+                                <select name="doCenter">
+                                    <option value="false">false</option>
+                                    <option value="true">true</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Reduce Points Num</td>
+                            <td>
+                                <input name="reduce" value="0"/>
+                                <br/>0 - do not reduce
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            {{/compare}}
+
+
+            <a class="cblbutton" onclick="gui.converterStart('{{ projectId }}','{{ fileId }}','{{ converterId }}')"><span class="icon icon-refresh"></span>Start: {{ converterName }}</a>
+            <br/><br/>
+
+        </form>
+
+    </div>
+    <div class="modalScrollContent hidden" id="converteroutput">
+
+    </div>
+    <br/>
+    <a id="modalClose" class="hidden bluebutton">Close</a>
+
+</script>

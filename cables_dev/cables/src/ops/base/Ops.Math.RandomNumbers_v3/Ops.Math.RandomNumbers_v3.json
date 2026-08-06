@@ -1,0 +1,64 @@
+{
+    "id": "d2b970e1-9406-4459-995c-5a594acd88e3",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1616093364302,
+            "type": "new op"
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1616093403854,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Seed",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Min",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Max",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Z",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "W",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Simple way to get random numbers without using arrays",
+    "issues": "",
+    "youtubeids": [
+        "ASp7LEqZUIE"
+    ],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "W_z9bI",
+    "isReleased": true
+}

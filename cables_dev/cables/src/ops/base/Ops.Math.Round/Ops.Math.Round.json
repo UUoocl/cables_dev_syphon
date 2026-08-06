@@ -1,0 +1,46 @@
+{
+    "summary": "Outputs number rounded to the nearest integer",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "number",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Decimal Places",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "result",
+                "subType": "number"
+            }
+        ]
+    },
+    "author": "59db805b08bab26e1ab7a0f2",
+    "authorName": "pandur",
+    "id": "1a1ef636-6d02-42ba-ae1e-627b917d0d2b",
+    "created": 1512035642075,
+    "docs": {
+        "ports": [
+            {
+                "name": "number",
+                "text": "The number to round"
+            },
+            {
+                "name": "Decimal Places",
+                "text": "How many decimals"
+            },
+            {
+                "name": "result",
+                "text": "Rounded number"
+            }
+        ]
+    },
+    "exampleProjectId": "nPvVW2",
+    "isReleased": true
+}

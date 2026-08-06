@@ -1,0 +1,158 @@
+{
+    "summary": "Simple Audio Player, using HTML5 Audio, does not need WebAudio",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "file"
+            },
+            {
+                "type": 0,
+                "name": "Play",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Volume",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Offset",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Loop",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Rewind on play",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Loading Task",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Play Trigger"
+            },
+            {
+                "type": 1,
+                "name": "Pause"
+            },
+            {
+                "type": 1,
+                "name": "Rewind"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Playing",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Duration",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Current Time",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "Element",
+                "objType": "element"
+            },
+            {
+                "type": 1,
+                "name": "Has Ended"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "82c14cd9-e2e7-4944-a04e-cca1bf3ed63e",
+    "created": 1558014685535,
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "exampleProjectId": "ftHtx3",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "Html.AudioMediaElement renamed to Ops.Html.Elements.AudioMediaElement",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1734352723387
+        },
+        {
+            "message": "Added simple play trigger input button",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1769442324448
+        },
+        {
+            "message": "Clamp volume between 0-1 ",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1772548747691
+        },
+        {
+            "message": "Added output for duration of audio file",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1772548765960
+        },
+        {
+            "message": "Add time input port for scrubbing",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1773760980368
+        },
+        {
+            "message": "Add current time output port",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1773760989516
+        },
+        {
+            "message": "Added active toggle, will unload audio when not checked",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1776245864243
+        },
+        {
+            "message": "Html.Elements.AudioMediaElement renamed to Ops.Audio.AudioPlayer",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1777361943224
+        },
+        {
+            "message": "Added toggle for creating a loading task when loading a file",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1781875475511
+        },
+        {
+            "message": "Added better errorhandling, show ui error instead of console output for network and decoding errors",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1782993522077
+        }
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

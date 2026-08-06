@@ -1,0 +1,45 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "value",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "result",
+                "subType": "number"
+            }
+        ]
+    },
+    "docs": {
+        "ports": [
+            {
+                "name": "value",
+                "text": "The value"
+            },
+            {
+                "name": "result",
+                "text": "Same as the input `Value`"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "afff634a-b581-4449-b6f7-9ec7863c5d4d",
+    "created": 1717614747783,
+    "changelog": [
+        {
+            "message": "",
+            "type": "new",
+            "author": "pandur",
+            "date": 1719846544682
+        }
+    ],
+    "license": "MIT",
+    "summary": "Patchfield cable routing helper for number cables",
+    "exampleProjectId": "CLMeDg",
+    "isReleased": true
+}

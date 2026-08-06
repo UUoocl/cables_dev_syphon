@@ -1,0 +1,64 @@
+<script id="meta_preview" type="text/x-handlebars-template">
+
+    <style>
+        .previewcontainer
+        {
+            cursor:pointer;
+            padding:10px;
+            border-left:1px solid #000;
+            margin-bottom:5px;
+            position: relative;
+            width:100%;
+        }
+
+        .previewcontainer.paused canvas
+        {
+            opacity: 0.25;
+        }
+
+        .previewcontainer.paused:before
+        {
+            position: absolute;
+            content:"paused";
+            font-size:20px;
+            padding:10px;
+            color:red;
+            z-index: 99999;
+        }
+
+        .activePreview
+        {
+            border-left:1px solid #07F78C;
+        }
+
+        .previewcontainer canvas
+        {
+            transform: scale(1,-1);
+        }
+
+        .previewcontainer canvas
+        {
+            max-height: 200px;
+        }
+
+        .previewcontainer:hover
+        {
+            background-color: #000;
+        }
+    </style>
+
+    <h3>Texture Preview {{numTextures}}</h3>
+
+    <div style="display:flex;flex-flow: column-reverse;" id="meta_preview_textures"></div>
+
+</script>
+
+<script id="meta_preview_texture" type="text/x-handlebars-template">
+
+    <div id="preview{{tex.id}}" onclick="gui.patchView.centerSelectOp('{{tex.opid}}');" class="previewcontainer tt" data-tt="{{tex.title}} {{tex.size}}" data-sort="0">
+        <canvas id="preview_img_{{tex.id}}" style="transform:scale(1 -1)" class="bgPatternBright" ></canvas>
+        <div>
+            {{tex.title}} | <span id="activity{{tex.id}}"></span>
+        </div>
+    </div>
+</script>

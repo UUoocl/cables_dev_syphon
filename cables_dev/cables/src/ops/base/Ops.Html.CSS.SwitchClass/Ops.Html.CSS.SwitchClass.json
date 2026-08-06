@@ -1,0 +1,45 @@
+{
+    "id": "6dd90fb9-7f28-427f-acd8-589f21a906bb",
+    "changelog": [
+        {
+            "message": "Show information in extended title",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1773056256660
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1556285686229,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "HTML Element"
+            },
+            {
+                "type": 5,
+                "name": "Classname"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Element passthrough"
+            }
+        ]
+    },
+    "summary": "add or remove css class to/from a HTML element",
+    "youtubeid": "",
+    "issues": "",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "y-ZC0H",
+    "license": "MIT",
+    "isReleased": true
+}

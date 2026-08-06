@@ -1,0 +1,33 @@
+{
+    "id": "afa79294-aa9c-43bc-a49a-cade000a1de5",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1593236674339
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1593236695284,
+    "layout": {
+        "portsOut": [
+            {
+                "type": "3",
+                "name": "Value"
+            }
+        ]
+    },
+    "summary": "Get a variable array",
+    "issues": "",
+    "youtubeids": [
+        "sUR6b0zvuSY"
+    ],
+    "docs": {
+        "ports": []
+    },
+    "coreLibs": [
+        "vargetset"
+    ],
+    "exampleProjectId": "3LkNp6",
+    "isReleased": true
+}

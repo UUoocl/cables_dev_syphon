@@ -1,0 +1,44 @@
+{
+    "authorName": "pandur",
+    "id": "311e8179-9a7c-43de-9eb2-84577d702974",
+    "created": 1519296680513,
+    "summary": "returns PI (3.141592653589793) * multiply amount",
+    "docs": {
+        "ports": [
+            {
+                "name": "Multiply amount",
+                "text": "PI multiplied by this number - default 1"
+            },
+            {
+                "name": "Pi",
+                "text": "Output"
+            }
+        ]
+    },
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Multiply amount",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Pi",
+                "subType": "number"
+            }
+        ]
+    },
+    "youtubeid": "",
+    "issues": "",
+    "changelog": [
+        {
+            "message": "added a multiply amount",
+            "author": "andro",
+            "date": 1558434978061
+        }
+    ],
+    "isReleased": true
+}

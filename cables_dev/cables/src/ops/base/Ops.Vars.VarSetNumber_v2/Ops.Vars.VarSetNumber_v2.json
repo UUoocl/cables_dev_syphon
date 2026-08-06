@@ -1,0 +1,37 @@
+{
+    "id": "b5249226-6095-4828-8a1c-080654e192fa",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1587021606549,
+            "type": "new"
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1587021615034,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            }
+        ],
+        "portsOut": []
+    },
+    "summary": "set a variable number",
+    "issues": "",
+    "youtubeids": [
+        "sUR6b0zvuSY"
+    ],
+    "coreLibs": [
+        "vargetset"
+    ],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "1tfFT6",
+    "license": "MIT",
+    "isReleased": true
+}

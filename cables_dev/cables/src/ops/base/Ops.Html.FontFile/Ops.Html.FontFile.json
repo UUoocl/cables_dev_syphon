@@ -1,0 +1,59 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "file",
+                "subType": "string"
+            },
+            {
+                "type": "0",
+                "name": "family",
+                "subType": "string"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Loaded",
+                "subType": "number"
+            },
+            {
+                "type": "1",
+                "name": "Loaded Trigger"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "0cf90109-cccd-4633-9c77-8aaf53eae15c",
+    "created": 1518009204879,
+    "summary": "load a font file like .otf, .ttf, .woff",
+    "docs": {
+        "ports": []
+    },
+    "youtubeid": "",
+    "changelog": [
+        {
+            "message": "fixed file loading problems when viewing outside of the editor",
+            "author": "pandur",
+            "date": 1561037914528
+        },
+        {
+            "message": "fixed file loading problems when viewing outside of the editor",
+            "author": "pandur",
+            "date": 1561037915170
+        },
+        {
+            "message": "fixed file loading problems when viewing outside of the editor",
+            "author": "pandur",
+            "date": 1561037917742
+        },
+        {
+            "message": "fixed file loading problems when viewing outside of the editor",
+            "author": "pandur",
+            "date": 1561037918153
+        }
+    ],
+    "exampleProjectId": "xR9zIR",
+    "isReleased": true
+}

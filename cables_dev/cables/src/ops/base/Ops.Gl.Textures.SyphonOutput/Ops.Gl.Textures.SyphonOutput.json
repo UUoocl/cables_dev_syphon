@@ -1,0 +1,42 @@
+{
+    "authorName": "Cables Dev",
+    "id": "c44464f8-2222-4cb5-8d59-333a7f5a9e44",
+    "created": 1772043180000,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            },
+            {
+                "type": 2,
+                "name": "Texture",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Server Name",
+                "subType": "string"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 0,
+                "name": "Success",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "Publish a texture to a system Syphon server under a custom name",
+    "changelog": [
+        {
+            "message": "Initial Syphon Output Op implementation",
+            "author": "Cables Dev",
+            "date": 1772043180000
+        }
+    ]
+}

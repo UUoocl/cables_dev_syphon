@@ -1,0 +1,25 @@
+{
+    "summary": "Returns the current time of the timeline",
+    "layout": {
+        "portsIn": [],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "time",
+                "subType": "number"
+            }
+        ]
+    },
+    "docs": {
+        "ports": [
+            {
+                "name": "time",
+                "text": "The current time of the timeline (in seconds)"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "3ab26f26-a12a-4c48-9411-20591a5f569d",
+    "created": 1541051831546,
+    "isReleased": true
+}

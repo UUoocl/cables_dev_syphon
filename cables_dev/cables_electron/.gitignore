@@ -1,0 +1,30 @@
+gen/
+
+.DS_Store
+.vscode
+
+# misc
+.DS_Store
+.idea/
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#Node modules folder
+node_modules
+ui/
+dist/
+public/js/
+public/libs/
+public/libs_core/
+ops/
+cables.json
+cables_env_*.json
+

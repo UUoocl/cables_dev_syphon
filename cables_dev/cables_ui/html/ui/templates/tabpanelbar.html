@@ -1,0 +1,45 @@
+
+<script id="tabpanel_bar" type="text/x-handlebars-template">
+
+    <div class="tabs" style="position:relative;">
+
+
+        {{#each tabs}}
+            <div class="tabcontainer">
+                <div id="editortab{{id}}" data-id="{{id}}" class="tab {{#if options.wasChanged}} unsaved {{/if}} {{#if options.closable}} closable {{/if}} {{#if active}} active {{/if}}{{#if options.infotext}} info {{/if}}" style="{{#if options.showTitle}}{{else}} min-width:19px !important;max-width:19px !important;padding-left: 10px; {{/if}}" {{#if options.infotext}} data-info="{{options.infotext}}"{{/if}}>
+                    {{#if icon }} <span class="tabicon icon-{{icon}} icon fleft"></span> &nbsp;{{/if}}
+                    {{#if icon }}{{else}}{{#if options.type }}{{else}} <span class="tabicon icon-file icon fleft"></span> &nbsp;{{/if}}{{/if}}
+
+                    {{#compare options.type '==' 'glsl' }}<span class="fileTypeColor_gl">GL</span>&nbsp; {{/compare}}
+                    {{#compare options.type '==' 'js' }}<span class="fileTypeColor_js">JS</span>&nbsp; {{/compare}}
+                    {{#compare options.type '==' 'css' }}<span class="fileTypeColor_css">CSS</span>&nbsp; {{/compare}}
+
+                    {{#if options.showTitle }}{{title}}{{/if}}
+                    {{#if unsaved }} ! {{/if}}
+                </div>
+            </div>
+        {{/each}}
+        <div style="clear:both;"></div>
+    </div>
+
+    <div id="editortabList{{id}}" style="display:none;position: absolute;z-index: 99;width: 30px;height: 34px;left: 0px;top: 0px;background-color:var(--color-02);cursor:pointer;">
+        <div class="tt icon icon-menu" style="margin-top:10px;margin:7px;margin-right:12px;" onclick="" data-tt=""></div>
+    </div>
+
+</script>
+
+
+<script id="tabpanel_toolbar" type="text/x-handlebars-template">
+
+    <div class="tabtoolbar" id="toolbarContent{{id}}" style="float:left;"></div>
+
+    {{#if options.closable}}
+        <button
+            tabindex="0" onkeypress="ele.keyClick(event,this)"
+            id="closetab{{id}}"
+            data-id="{{id}}"
+            class="icon-x icon icon-1_5x fright iconhover closetabx" ></button>
+    {{/if}}
+    <div style="clear:both;"></div>
+
+</script>

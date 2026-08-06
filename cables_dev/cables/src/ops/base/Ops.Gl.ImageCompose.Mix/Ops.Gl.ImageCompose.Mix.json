@@ -1,0 +1,45 @@
+{
+    "summary": "simple mix/fade of two input images ",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "Render"
+            },
+            {
+                "type": "2",
+                "name": "Texture 1",
+                "objType": "texture"
+            },
+            {
+                "type": "0",
+                "name": "Fade",
+                "subType": "number"
+            },
+            {
+                "type": "2",
+                "name": "Texture 2",
+                "objType": "texture"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "dbd68d4d-60ff-427f-8a76-c931fb8bb59b",
+    "created": 1705930771662,
+    "changelog": [],
+    "issues": "",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "CDaQK2",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

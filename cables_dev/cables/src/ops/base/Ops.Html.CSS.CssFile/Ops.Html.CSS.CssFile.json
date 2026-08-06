@@ -1,0 +1,48 @@
+{
+    "id": "baae1ab2-116c-4c18-ad93-37ced0aafdd6",
+    "created": 1712225481948,
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1712225481950
+        },
+        {
+            "message": "Reload button added",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1773056505093
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "CSS File"
+            },
+            {
+                "type": 5,
+                "name": "Media"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Reload"
+            }
+        ],
+        "portsOut": []
+    },
+    "summary": "load a css asset file",
+    "license": "MIT",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "lc4mY8",
+    "isReleased": true
+}

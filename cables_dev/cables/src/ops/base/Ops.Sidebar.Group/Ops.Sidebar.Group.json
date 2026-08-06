@@ -1,0 +1,56 @@
+{
+    "authorName": "pandur",
+    "id": "86ea2333-b51c-48ed-94c2-8b7b6e9ff34c",
+    "created": 1518205018582,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "link"
+            },
+            {
+                "type": 5,
+                "name": "Text"
+            },
+            {
+                "type": 0,
+                "name": "Show Title",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Default Minimized",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Visible",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "next"
+            },
+            {
+                "type": 2,
+                "name": "childs"
+            }
+        ]
+    },
+    "summary": "organize sidebar elements into groups",
+    "docs": {
+        "ports": []
+    },
+    "issues": "",
+    "youtubeids": [],
+    "changelog": [
+        {
+            "message": "react properly to disconnecting parent",
+            "author": "stephan",
+            "date": 1643888105549
+        }
+    ],
+    "isReleased": true
+}

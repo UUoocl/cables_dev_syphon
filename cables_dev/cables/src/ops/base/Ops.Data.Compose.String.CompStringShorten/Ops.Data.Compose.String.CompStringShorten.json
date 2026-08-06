@@ -1,0 +1,36 @@
+{
+    "id": "f651619e-6353-4496-8910-cb0d8ea7af17",
+    "changelog": [],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            },
+            {
+                "type": 0,
+                "name": "Direction index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Num Chars",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "created": 1689760770988,
+    "summary": "Remove characters from the beginning or end of a string",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "Yqj7eG",
+    "isReleased": true
+}

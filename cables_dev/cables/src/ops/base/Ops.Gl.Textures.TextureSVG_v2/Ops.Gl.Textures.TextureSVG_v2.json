@@ -1,0 +1,101 @@
+{
+    "id": "e4f3d8f1-8a49-460a-896c-4d7adcda2494",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1599662324663
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1599662335078,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "File"
+            },
+            {
+                "type": 0,
+                "name": "Texture width",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Texture height",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Wrap index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Filter index",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Texture",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Loaded",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "Load a SVG image and convert to a texture of pixels",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "File",
+                "text": "File to load"
+            },
+            {
+                "name": "Texture width",
+                "text": "Width of the texture"
+            },
+            {
+                "name": "Texture height",
+                "text": "Height of the texture"
+            },
+            {
+                "name": "Wrap index",
+                "text": "Wrap mode for texture - pick with an integer"
+            },
+            {
+                "name": "Wrap",
+                "text": "Current wrap mode"
+            },
+            {
+                "name": "Filter index",
+                "text": "Filter mode for texture - pick with an integer"
+            },
+            {
+                "name": "Filter",
+                "text": "Current filter mode"
+            },
+            {
+                "name": "Texture",
+                "text": "texture out"
+            },
+            {
+                "name": "Loaded",
+                "text": "is true when texture has been created"
+            }
+        ]
+    },
+    "exampleProjectId": "oqCKY6",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

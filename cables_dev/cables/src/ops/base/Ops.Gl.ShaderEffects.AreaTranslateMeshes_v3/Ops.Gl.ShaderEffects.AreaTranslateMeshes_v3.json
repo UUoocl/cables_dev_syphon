@@ -1,0 +1,84 @@
+{
+    "id": "69f7a5b5-4824-441a-960c-e7b13b17790d",
+    "authorName": "pandur",
+    "created": 1631620354495,
+    "changelog": [
+        {
+            "message": "cloned op from Ops.Gl.ShaderEffects.AreaTranslateMeshes",
+            "author": "pandur",
+            "date": 1602169347292
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "Size",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Strength",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "x",
+                "group": "Area Position",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "y",
+                "group": "Area Position",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "z",
+                "group": "Area Position",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Multiply x",
+                "group": "Axis Multiply",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Multiply y",
+                "group": "Axis Multiply",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Multiply z",
+                "group": "Axis Multiply",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "coreLibs": [
+        "cgl_shadermodifier",
+        "cgl"
+    ],
+    "summary": "Change the position of all meshes inside of the area of influence",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "yWVQC-",
+    "isReleased": true
+}

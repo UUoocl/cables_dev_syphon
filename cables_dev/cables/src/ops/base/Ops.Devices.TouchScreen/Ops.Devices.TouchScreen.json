@@ -1,0 +1,124 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Disable Scaling",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Disable Scroll",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "HDPI Coordinates",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Area index",
+                "values": [
+                    "Canvas",
+                    "Document"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Normalize Coordinates",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Flip Y",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Touched",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Fingers",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Finger 1 X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Finger 1 Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Finger 1 Force",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Finger 2 X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Finger 2 Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Finger 2 Force",
+                "subType": "number"
+            },
+            {
+                "type": 3,
+                "name": "Events"
+            },
+            {
+                "type": 1,
+                "name": "Touch Start"
+            },
+            {
+                "type": 1,
+                "name": "Touch End"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "cedffacf-0f09-4342-bd21-540bd9c8037d",
+    "created": 1504871697605,
+    "summary": "touch screen input: e.g. position of fingers ",
+    "docs": {
+        "ports": [
+            {
+                "name": "Flip Y",
+                "text": "Only applies to Finger1"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "respect \"normalize\" setting for finger 2, add \"force\" output for finger 2",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1680075893549
+        }
+    ],
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

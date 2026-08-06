@@ -1,0 +1,59 @@
+.cablesCssUi
+{
+
+    .numberinput-value
+    {
+        position: absolute;
+        // display: none;
+        // outline: none;
+        border:none;
+
+        background-color: transparent !important;
+        padding:0px;
+        width:100%;
+
+        &:hover
+        {
+            background-color: transparent !important;
+        }
+    }
+
+    .numberinputFocussed
+    {
+        // border-bottom: 1px solid var(--color-special) !important;
+        // outline:none !important;
+    }
+
+
+    .numberinput,.numberinput-value
+    {
+        padding-left: 5px;
+        padding-right: 5px;
+        height:18px;
+        width:140px;
+        border-radius: 2px;
+        font-family: monospace;
+        font-size: var(--font-size-default);
+    }
+
+    .numberinput-value
+    {
+        overflow: hidden;
+        color:var(--color-13);
+        margin-left:-5px;
+    }
+
+    .numberinput
+    {
+        background-color: $color-background-input;
+        color:var(--color-11);
+        user-select: none;
+        cursor:ew-resize;
+    }
+
+    .valueinputtype-string
+    {
+        cursor:pointer !important;
+    }
+
+}

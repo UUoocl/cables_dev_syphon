@@ -1,0 +1,60 @@
+{
+    "id": "9cf8120c-807a-4adc-9007-6830187553d5",
+    "created": 1732781761113,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1732781761139
+        },
+        {
+            "message": "Html.ElementAccessibility renamed to Ops.Html.Attributes.ElementAccessibility",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1733744762919
+        },
+        {
+            "message": "Add aria Label and labeledBy",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1734605533446
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Element",
+                "group": "Element"
+            },
+            {
+                "type": 5,
+                "name": "aria Label"
+            },
+            {
+                "type": 5,
+                "name": "aria Labeled By"
+            },
+            {
+                "type": 0,
+                "name": "aria hidden",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "HTML Element"
+            }
+        ]
+    },
+    "summary": "Element Accessibility properties for screen reader",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "R5XS8x",
+    "isReleased": true
+}

@@ -1,0 +1,67 @@
+{
+    "id": "26f446cc-9107-4164-8209-5254487fa132",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1579793372912
+        },
+        {
+            "message": "fix infinite loop bug, when activated no dupes and min max is the same number",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1671034348389
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1579793391418,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Generate"
+            },
+            {
+                "type": 0,
+                "name": "min",
+                "group": "Value Range",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "max",
+                "group": "Value Range",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Integer",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "No consecutive duplicates",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "next"
+            },
+            {
+                "type": 0,
+                "name": "result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "generate random number between min and max (was: random2)",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "s3FP7f",
+    "isReleased": true
+}

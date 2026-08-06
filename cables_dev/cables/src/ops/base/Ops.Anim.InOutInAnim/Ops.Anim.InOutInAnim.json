@@ -1,0 +1,98 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            },
+            {
+                "type": 0,
+                "name": "Duration In",
+                "group": "In Anim",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Easing In index",
+                "group": "In Anim",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Value In",
+                "group": "In Anim",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Hold duration",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Duration Out",
+                "group": "Out Anim",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Easing Out index",
+                "group": "Out Anim",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Value Out",
+                "group": "Out Anim",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Start"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Started"
+            },
+            {
+                "type": 1,
+                "name": "Middle"
+            },
+            {
+                "type": 1,
+                "name": "finished"
+            }
+        ]
+    },
+    "summary": "Animates after a trigger from 1 to 0 to 1",
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "ae46d30d-9ea6-417b-968b-e7b5726afdde",
+    "created": 1510654829404,
+    "exampleProjectId": "HwVRrT",
+    "issues": "",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "fixed crash when duration was 0",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1716823191623
+        }
+    ],
+    "license": "MIT",
+    "isReleased": true
+}

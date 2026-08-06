@@ -1,0 +1,36 @@
+{
+    "id": "c4e4e933-136e-479e-8de8-0b35b75d9217",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1678290937881
+        },
+        {
+            "message": "Ops.User.pandur.patchinput2 renamed to Ops.Dev.Ui.PatchInput",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1678290956529
+        },
+        {
+            "message": "Ops.Dev.Ui.PatchInput renamed to Ops.Ui.SubPatchInput",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1702029916865
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1678290941769,
+    "layout": {
+        "portsIn": [],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "a1jf8yr1w",
+                "uititle": "Filter index",
+                "subType": "number"
+            }
+        ]
+    },
+    "isReleased": true
+}

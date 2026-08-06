@@ -1,0 +1,41 @@
+{
+    "updated": 1540486169974,
+    "authorName": "pandur",
+    "id": "c71d4b27-ebde-4c51-a88a-95a4db1a01ae",
+    "created": 1539329457443,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Value",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Num",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "String",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "converts a number to a string with num decimal places, adds 0's",
+    "docs": {
+        "ports": []
+    },
+    "todos": [
+        {
+            "message": "needs new string type output",
+            "author": "pandur",
+            "id": "5d4249fc-88d7-4b56-80dd-f226a88ff7ca",
+            "date": 1558351256513
+        }
+    ],
+    "exampleProjectId": "ps8ZHq",
+    "isReleased": true
+}

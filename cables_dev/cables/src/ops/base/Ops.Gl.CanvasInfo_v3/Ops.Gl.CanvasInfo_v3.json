@@ -1,0 +1,90 @@
+{
+    "summary": "the size of the canvas in pixels, aspect ratio and pixel density",
+    "layout": {
+        "portsIn": [],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "CSS Width",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "CSS Height",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Pixel Ratio",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Pixel Width",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Pixel Height",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Aspect Ratio",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Landscape",
+                "subType": "boolean"
+            },
+            {
+                "type": 2,
+                "name": "Canvas",
+                "objType": "element"
+            },
+            {
+                "type": 2,
+                "name": "Canvas Parent",
+                "objType": "element"
+            },
+            {
+                "type": 1,
+                "name": "Resized"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "be186ff9-427e-409f-b6a4-f8d957bf7bc7",
+    "created": 1708689721771,
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "new output: landscape - true if canvas width & height",
+            "author": "pandur",
+            "date": 1550644352354,
+            "type": "feature"
+        },
+        {
+            "message": "Fixed HDPI/Retina calculation of pixel numbers",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1708694160875
+        },
+        {
+            "message": "Added output \"resize\", which will be triggered when canvas size has changed",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1736415803884
+        }
+    ],
+    "license": "MIT",
+    "exampleProjectId": "2yaD8i",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

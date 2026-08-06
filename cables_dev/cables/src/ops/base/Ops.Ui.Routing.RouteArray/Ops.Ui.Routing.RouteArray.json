@@ -1,0 +1,34 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array In"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Array Out"
+            }
+        ]
+    },
+    "docs": {
+        "ports": []
+    },
+    "authorName": "pandur",
+    "id": "4a560a77-dedf-4367-841b-1d9334403c41",
+    "created": 1717676691500,
+    "changelog": [
+        {
+            "message": "",
+            "type": "new",
+            "author": "pandur",
+            "date": 1719846554955
+        }
+    ],
+    "license": "MIT",
+    "summary": "Patchfield cable routing helper for array cables",
+    "exampleProjectId": "CLMeDg",
+    "isReleased": true
+}

@@ -1,0 +1,52 @@
+
+
+
+#keypresenter
+{
+    position: absolute;
+    left:90px;
+    bottom:20px;
+    // border:1px solid red;
+    width:500px;
+    height:170px;
+    z-index: $zindex_highest+1;
+    pointer-events: none;
+
+    .kp-line
+    {
+        margin:0;
+        padding:0;
+
+        opacity: 0;
+        animation: fadeOut 4s linear;
+    }
+
+    .kp-ele
+    {
+        background-color: black;
+        border-radius: 8px;
+        margin:2px;
+        padding:10px;
+        padding-left:15px;
+        padding-right:15px;
+        font-size: 20px;
+        pointer-events: none;
+        display: inline-block;
+
+        .icon {
+            mask-size: 100%;
+            mask-repeat: no-repeat;
+            mask-position: center center;
+            display: inline-block;
+            background-color: white;
+            min-width: 20px;
+            min-height: 20px;
+        }
+    }
+
+    @keyframes fadeOut {
+        0% {opacity: 1;}
+        100% {opacity: 0;}
+    }
+
+}

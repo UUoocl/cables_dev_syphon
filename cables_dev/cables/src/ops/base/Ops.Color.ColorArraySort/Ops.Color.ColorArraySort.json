@@ -1,0 +1,79 @@
+{
+    "id": "ee97fe25-7600-42b9-9649-bc5c6bb94e43",
+    "created": 1728553623769,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1732009302664,
+            "type": "new"
+        },
+        {
+            "message": "Fix sorting of arrays with RGBA/RGB strides",
+            "type": "bugfix",
+            "author": "franck",
+            "date": 1738148488907
+        },
+        {
+            "message": "Added an \"Alpha\" sorting option",
+            "type": "feature",
+            "author": "franck",
+            "date": 1738148523731
+        },
+        {
+            "message": "Added a \"Reverse Sort\" check button",
+            "type": "feature",
+            "author": "franck",
+            "date": 1738148533205
+        },
+        {
+            "message": "Added user warning if array is not dividable by 3 or 4",
+            "type": "improvement",
+            "author": "franck",
+            "date": 1738148541940
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Colors"
+            },
+            {
+                "type": 0,
+                "name": "Sort index",
+                "values": [
+                    "No",
+                    "Luminance",
+                    "Hue",
+                    "Saturation",
+                    "Lightness"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Input Format index",
+                "values": [
+                    "RGBA",
+                    "RGB"
+                ],
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "New Colors"
+            }
+        ]
+    },
+    "exampleProjectId": "zKfluu",
+    "docs": {
+        "ports": []
+    },
+    "summary": "Sort an array of colors by saturation/lightness etc.",
+    "isReleased": true
+}

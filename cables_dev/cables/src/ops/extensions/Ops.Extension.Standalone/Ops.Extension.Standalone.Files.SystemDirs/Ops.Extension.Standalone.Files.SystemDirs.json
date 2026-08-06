@@ -1,0 +1,83 @@
+{
+    "id": "699023ff-8297-441d-ab21-5234d904ed0d",
+    "layout": {
+        "portsIn": [],
+        "portsOut": [
+            {
+                "type": 5,
+                "name": "Home"
+            },
+            {
+                "type": 5,
+                "name": "Downloads"
+            },
+            {
+                "type": 5,
+                "name": "Documents"
+            },
+            {
+                "type": 5,
+                "name": "Desktop"
+            },
+            {
+                "type": 5,
+                "name": "Exe"
+            },
+            {
+                "type": 5,
+                "name": "Patch"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "license": "MIT",
+    "created": 1724316833337,
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1724316833338
+        },
+        {
+            "message": "add patchdir output port",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1770825929988
+        }
+    ],
+    "coreLibs": [
+        "standalone_electron"
+    ],
+    "summary": "Get Default System Directories Paths",
+    "exampleProjectId": "7hftun",
+    "docs": {
+        "ports": [
+            {
+                "name": "Home",
+                "text": "OS home directory"
+            },
+            {
+                "name": "Downloads",
+                "text": "OS downloads directory"
+            },
+            {
+                "name": "Documents",
+                "text": "OS documents directory"
+            },
+            {
+                "name": "Desktop",
+                "text": "OS desktop directory"
+            },
+            {
+                "name": "Exe",
+                "text": "location of cables executable"
+            },
+            {
+                "name": "Patch",
+                "text": "directory of currently opened patchfile"
+            }
+        ]
+    },
+    "isReleased": true
+}

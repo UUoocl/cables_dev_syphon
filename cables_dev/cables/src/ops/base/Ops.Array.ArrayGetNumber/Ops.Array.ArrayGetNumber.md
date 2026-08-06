@@ -1,0 +1,1 @@
+Example: If you have an array `[100, 200, 300]` setting the `Index` to `1` will return `200`. Please note that the first index is `0`, not `1`!

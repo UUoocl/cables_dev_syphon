@@ -1,0 +1,53 @@
+{
+    "summary": "Switch, trigger one or the other trigger port based on the input value",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "exe"
+            },
+            {
+                "type": "0",
+                "name": "boolean",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "then"
+            },
+            {
+                "type": "1",
+                "name": "else"
+            }
+        ]
+    },
+    "docs": {
+        "ports": [
+            {
+                "name": "exe",
+                "text": "Executes the op"
+            },
+            {
+                "name": "boolean",
+                "text": "The boolean value to check for truthyness"
+            },
+            {
+                "name": "then",
+                "text": "Triggers when the input value is `true`"
+            },
+            {
+                "name": "else",
+                "text": "Triggers when the input value is `false`"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "99892fda-8821-4660-ac57-3103d1546924",
+    "created": 1519743353368,
+    "youtubeid": "3dYztfuw4lA",
+    "issues": "",
+    "exampleProjectId": "F9tjX8",
+    "isReleased": true
+}

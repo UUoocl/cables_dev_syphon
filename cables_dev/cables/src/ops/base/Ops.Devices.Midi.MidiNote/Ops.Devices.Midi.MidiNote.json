@@ -1,0 +1,142 @@
+{
+    "authorName": "simod",
+    "id": "517ed1fc-6110-4611-9cc7-8dd459191c65",
+    "created": 1551785410213,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "MIDI Event In",
+                "group": "MIDI"
+            },
+            {
+                "type": 0,
+                "name": "MIDI Channel index",
+                "group": "MIDI",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Note index",
+                "group": "Note",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Normalize Velocity index",
+                "group": "Note",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Toggle Gate",
+                "group": "Note",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "learn"
+            },
+            {
+                "type": 1,
+                "name": "clear"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "MIDI Event Out"
+            },
+            {
+                "type": 1,
+                "name": "Trigger Out"
+            },
+            {
+                "type": 0,
+                "name": "Current Note",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Velocity",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Gate",
+                "subType": "boolean"
+            },
+            {
+                "type": 3,
+                "name": "Velocity Array"
+            }
+        ]
+    },
+    "summary": "Read a single midi note",
+    "issues": "",
+    "youtubeids": [
+        "eDlaFD_d5lc"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "MIDI Event In",
+                "text": "Midi event in"
+            },
+            {
+                "name": "MIDI Channel",
+                "text": "Pick a midi channel from 1 to 16"
+            },
+            {
+                "name": "Note",
+                "text": "The selected note to output"
+            },
+            {
+                "name": "Normalize Velocity",
+                "text": "Enable to normalize values from 0 to 1 or -1 to 1"
+            },
+            {
+                "name": "Toggle Gate",
+                "text": "When activated, playing a note turns the gate on. Playing it again turns it off."
+            },
+            {
+                "name": "learn",
+                "text": "Click and then press a midi note to automatically select it"
+            },
+            {
+                "name": "clear",
+                "text": "reset op to default state"
+            },
+            {
+                "name": "MIDI Event Out",
+                "text": "Midi event out - passes all midi data through to allow midi ops to be stacked"
+            },
+            {
+                "name": "Trigger Out",
+                "text": "Triggers when the selected midi note comes in"
+            },
+            {
+                "name": "Current Note",
+                "text": "If no note has been selected it will output all changing note numbers else it outputs selected note"
+            },
+            {
+                "name": "Velocity",
+                "text": "Velocity is normally between 0-127 unless Normalise velocity is enabled"
+            },
+            {
+                "name": "Gate",
+                "text": "True when the note is on else false. When toggle is activated, true when note comes in. False when note comes in again."
+            }
+        ]
+    },
+    "exampleProjectId": "dfF3DI",
+    "changelog": [
+        {
+            "message": "learned input parameter are transfered to remote viewer",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1671034717358
+        }
+    ],
+    "isReleased": true
+}

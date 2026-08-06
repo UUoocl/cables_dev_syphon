@@ -1,0 +1,37 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Value",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Trigger"
+            }
+        ]
+    },
+    "summary": "trigger if a value decreases / gets smaller",
+    "docs": {
+        "ports": [
+            {
+                "name": "Value",
+                "text": "Value to evaluate"
+            },
+            {
+                "name": "Trigger",
+                "text": "Trigger out if value decreases"
+            }
+        ]
+    },
+    "authorName": "andro",
+    "id": "16ec4069-3682-461e-95ff-1d86e3f44512",
+    "created": 1536260087428,
+    "issues": "",
+    "youtubeids": [],
+    "exampleProjectId": "AFiCfe",
+    "isReleased": true
+}

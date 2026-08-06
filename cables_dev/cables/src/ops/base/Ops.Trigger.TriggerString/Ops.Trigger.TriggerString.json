@@ -1,0 +1,59 @@
+{
+    "id": "217482b8-2ee6-4609-b7ad-4550e6aaa371",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1584970208818
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1584970271852,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "Trigger"
+            },
+            {
+                "type": "5",
+                "name": "String"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "Next"
+            },
+            {
+                "type": "5",
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "trigger a string",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Trigger",
+                "text": "trigger to output the string"
+            },
+            {
+                "name": "String",
+                "text": "String to output on trigger"
+            },
+            {
+                "name": "Next",
+                "text": "trigger out"
+            },
+            {
+                "name": "Result",
+                "text": "String output"
+            }
+        ]
+    },
+    "exampleProjectId": "VHsHue",
+    "isReleased": true
+}

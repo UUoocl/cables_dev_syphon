@@ -1,0 +1,39 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "URL",
+                "subType": "string"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "2",
+                "name": "Result"
+            },
+            {
+                "type": "0",
+                "name": "Connected",
+                "subType": "number"
+            },
+            {
+                "type": "2",
+                "name": "Connection"
+            },
+            {
+                "type": "1",
+                "name": "Received Data"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "d45aca4c-1c62-4261-80b3-d338a3203bf6",
+    "created": 1524496393613,
+    "summary": "create a websocket connection and receive data from it",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "gu7DBo",
+    "isReleased": true
+}

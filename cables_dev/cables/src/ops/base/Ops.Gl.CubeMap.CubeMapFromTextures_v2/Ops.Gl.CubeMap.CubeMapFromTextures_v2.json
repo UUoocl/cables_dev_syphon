@@ -1,0 +1,107 @@
+{
+    "id": "44e837c5-ecd8-42cf-9be6-4db2283b9cbf",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "simod",
+            "date": 1586341613579
+        },
+        {
+            "message": "Ops.User.cables.CubeMapFromTextures_v2 renamed to Ops.Gl.CubeMap.CubeMapFromTextures_v2",
+            "author": "simod",
+            "date": 1586341858874
+        },
+        {
+            "message": "handle prefixassetpath correctly for url input",
+            "type": "feature",
+            "author": "stephan",
+            "date": 1733143192209
+        }
+    ],
+    "authorName": "simod",
+    "created": 1586341622293,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "posx"
+            },
+            {
+                "type": 5,
+                "name": "negx"
+            },
+            {
+                "type": 5,
+                "name": "posy"
+            },
+            {
+                "type": 5,
+                "name": "negy"
+            },
+            {
+                "type": 5,
+                "name": "posz"
+            },
+            {
+                "type": 5,
+                "name": "negz"
+            },
+            {
+                "type": 0,
+                "name": "Flip Y",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "cubemap"
+            }
+        ]
+    },
+    "summary": "generate a cubemap from 6 textures",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "posx",
+                "text": "positive x file input"
+            },
+            {
+                "name": "negx",
+                "text": "negative x file input"
+            },
+            {
+                "name": "posy",
+                "text": "positive y file input"
+            },
+            {
+                "name": "negy",
+                "text": "negative y file input"
+            },
+            {
+                "name": "posz",
+                "text": "positive z file input"
+            },
+            {
+                "name": "negz",
+                "text": "negative z file input"
+            },
+            {
+                "name": "Flip Y",
+                "text": "flip cubemap along the y axis"
+            },
+            {
+                "name": "cubemap",
+                "text": "cubemap texture output"
+            }
+        ]
+    },
+    "exampleProjectId": "-QPf26",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

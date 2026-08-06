@@ -1,0 +1,1 @@
+Trigger any of the trigger ports to set a specific value. Can be easily used with Ops.Anim.SimpleAnim to animate the value change.

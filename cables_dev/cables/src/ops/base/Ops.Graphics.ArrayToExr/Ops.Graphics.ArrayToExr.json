@@ -1,0 +1,66 @@
+{
+    "id": "b9989c26-9dc3-48af-ac8b-bc562bebbdef",
+    "created": 1737726100205,
+    "license": "MIT",
+    "authorName": "pandur",
+    "credits": [
+        {
+            "title": "three.js .exr exporter",
+            "author": "mr doob",
+            "url": "https://github.com/mrdoob/three.js/blob/master/examples/jsm/exporters/EXRExporter.js",
+            "licence": "MIT"
+        }
+    ],
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1737726100238
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array"
+            },
+            {
+                "type": 0,
+                "name": "Width",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Height",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "ZIP compression",
+                "subType": "boolean"
+            },
+            {
+                "type": 5,
+                "name": "Filename"
+            },
+            {
+                "type": 1,
+                "name": "Download"
+            }
+        ]
+    },
+    "dependencies": [
+        {
+            "src": "./lib_fflate.module.js",
+            "type": "module",
+            "export": "fflate"
+        }
+    ],
+    "exampleProjectId": "PoAXNA",
+    "docs": {
+        "ports": []
+    },
+    "summary": "convert and download an array of numbers as an .exr image file",
+    "isReleased": true
+}

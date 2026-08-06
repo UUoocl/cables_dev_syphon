@@ -1,0 +1,67 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "eae9a731-3712-4891-9c22-dc7f4d80ce66",
+    "created": 1504901445752,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "execute"
+            },
+            {
+                "type": "0",
+                "name": "diffuse r",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "diffuse g",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "diffuse b",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "diffuse a",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Double Sided",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "next"
+            },
+            {
+                "type": "2",
+                "name": "Shader"
+            }
+        ]
+    },
+    "summary": "simple shaded material",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "fixed: now works on ios again",
+            "author": "pandur",
+            "date": 1548264683950
+        }
+    ],
+    "issues": "",
+    "youtubeids": [],
+    "exampleProjectId": "PAvm26",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

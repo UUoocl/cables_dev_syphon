@@ -1,0 +1,76 @@
+{
+    "authorName": "stephan",
+    "id": "f8fd1e41-d56a-4046-83a1-2ca194c828fc",
+    "created": 1610123183069,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Array"
+            },
+            {
+                "type": 5,
+                "name": "Path"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 3,
+                "name": "Output"
+            },
+            {
+                "type": 0,
+                "name": "Found",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "returns the array at the position defined by a path",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": [
+            {
+                "name": "Path",
+                "text": "path to array (i.e. data.numbers)"
+            },
+            {
+                "name": "Output",
+                "text": "array of values"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "cloned op from Ops.Json.ObjectGetArrayByPath",
+            "author": "cables",
+            "date": 1610123183069
+        },
+        {
+            "message": "Ops.User.cables.ArrayGetArrayByPath renamed to Ops.Json.ArrayGetArrayByPath",
+            "author": "cables",
+            "date": 1610123306143
+        },
+        {
+            "message": "change errorlevels, show hint when no path provided",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1736850792768
+        },
+        {
+            "message": "change \"found\" port to boolNum type",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1741354650893
+        },
+        {
+            "message": "show full path in extended title",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1747829069910
+        }
+    ],
+    "exampleProjectId": "uqXSWr",
+    "license": "MIT",
+    "isReleased": true
+}

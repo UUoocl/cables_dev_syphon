@@ -1,0 +1,578 @@
+{
+    "_id": "6a73bedadbd5d892717f6138",
+    "shortId": "ZHLVsr",
+    "name": "CablesSyphon",
+    "description": "",
+    "userId": "6a73beda7052d866a15f15b1",
+    "cachedUsername": "",
+    "created": 1785970394107,
+    "updated": 1785980838469,
+    "visibility": "private",
+    "ops": [
+        {
+            "opId": "4ea2d7b0-ca74-45db-962b-4d1965ac20c0",
+            "id": "y114e1tq3",
+            "attribs": {},
+            "uiAttribs": {
+                "height": 150,
+                "resizable": true,
+                "translate": {
+                    "x": 236.9513108527855,
+                    "y": -156.1735312655852
+                }
+            },
+            "portsIn": [
+                {
+                    "name": "Show Info",
+                    "value": 0
+                },
+                {
+                    "name": "Visualize outside 0-1 index",
+                    "value": 1
+                },
+                {
+                    "name": "Visualize outside 0-1",
+                    "value": "Anim"
+                },
+                {
+                    "name": "Alpha index",
+                    "value": 0
+                },
+                {
+                    "name": "Alpha",
+                    "value": "A"
+                },
+                {
+                    "name": "Convert RGBE",
+                    "value": 0
+                },
+                {
+                    "name": "Channels index",
+                    "value": 0
+                },
+                {
+                    "name": "Channels",
+                    "value": "RGB"
+                },
+                {
+                    "name": "Type index",
+                    "value": 0
+                },
+                {
+                    "name": "Type",
+                    "value": "Automatic"
+                },
+                {
+                    "name": "Show Color",
+                    "value": 0
+                },
+                {
+                    "name": "X",
+                    "value": 0.5
+                },
+                {
+                    "name": "Y",
+                    "value": 0.5
+                },
+                {
+                    "name": "Mip Level",
+                    "value": 0
+                }
+            ],
+            "portsOut": [
+                {
+                    "name": "Info",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "opId": "f1029550-d877-42da-9b1e-63a5163a0350",
+            "id": "ml9js2zcd",
+            "attribs": {},
+            "uiAttribs": {
+                "translate": {
+                    "x": -136.50965892919953,
+                    "y": -280.83521010280606
+                }
+            },
+            "portsIn": [
+                {
+                    "name": "Max Pixel Density (DPR)",
+                    "value": 2
+                },
+                {
+                    "name": "FPS Limit",
+                    "value": 0
+                },
+                {
+                    "name": "Reduce FPS unfocussed",
+                    "value": 0
+                },
+                {
+                    "name": "Transparent",
+                    "value": 0
+                },
+                {
+                    "name": "Active",
+                    "value": 1
+                },
+                {
+                    "name": "Focus canvas",
+                    "value": 1
+                }
+            ],
+            "portsOut": [
+                {
+                    "name": "trigger",
+                    "links": [
+                        {
+                            "portIn": "Update",
+                            "portOut": "trigger",
+                            "objIn": "czn7593g4",
+                            "objOut": "ml9js2zcd"
+                        },
+                        {
+                            "portIn": "Update",
+                            "portOut": "trigger",
+                            "objIn": "qcumxvw73",
+                            "objOut": "ml9js2zcd"
+                        },
+                        {
+                            "portIn": "render",
+                            "portOut": "trigger",
+                            "objIn": "4pj7kjrbx",
+                            "objOut": "ml9js2zcd"
+                        }
+                    ]
+                },
+                {
+                    "name": "width",
+                    "value": 640
+                },
+                {
+                    "name": "height",
+                    "value": 320
+                },
+                {
+                    "name": "Pixel Density",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "opId": "b33364f8-1111-4cb5-8d59-222a7f5a9e33",
+            "id": "czn7593g4",
+            "attribs": {},
+            "uiAttribs": {
+                "translate": {
+                    "x": 173.11711039288488,
+                    "y": -215.95404297184783
+                }
+            },
+            "portsIn": [
+                {
+                    "name": "Server index",
+                    "value": 1
+                },
+                {
+                    "name": "Server",
+                    "value": "OBS Syphon6"
+                }
+            ],
+            "portsOut": [
+                {
+                    "name": "Texture",
+                    "links": [
+                        {
+                            "portIn": "Texture In",
+                            "portOut": "Texture",
+                            "objIn": "y114e1tq3",
+                            "objOut": "czn7593g4"
+                        }
+                    ]
+                },
+                {
+                    "name": "Width",
+                    "value": 1920
+                },
+                {
+                    "name": "Height",
+                    "value": 1080
+                }
+            ]
+        },
+        {
+            "opId": "ec55d252-3843-41b1-b731-0482dbd9e72b",
+            "id": "6418vohq5",
+            "attribs": {},
+            "uiAttribs": {
+                "translate": {
+                    "x": 107.11154602260359,
+                    "y": 23.105328199599754
+                }
+            },
+            "portsIn": [
+                {
+                    "name": "r",
+                    "value": 0.011393093925271769
+                },
+                {
+                    "name": "g",
+                    "value": 0.5875487212640804
+                },
+                {
+                    "name": "b",
+                    "value": 0.3455599804236027
+                },
+                {
+                    "name": "a",
+                    "value": 1
+                },
+                {
+                    "name": "colorizeTexture",
+                    "value": 0
+                },
+                {
+                    "name": "Vertex Colors",
+                    "value": 0
+                },
+                {
+                    "name": "Alpha Mask Source index",
+                    "value": 0
+                },
+                {
+                    "name": "Alpha Mask Source",
+                    "value": "Luminance"
+                },
+                {
+                    "name": "Opacity TexCoords Transform",
+                    "value": 0
+                },
+                {
+                    "name": "Discard Transparent Pixels",
+                    "value": 0
+                },
+                {
+                    "name": "diffuseRepeatX",
+                    "value": 1
+                },
+                {
+                    "name": "diffuseRepeatY",
+                    "value": 1
+                },
+                {
+                    "name": "Tex Offset X",
+                    "value": 0
+                },
+                {
+                    "name": "Tex Offset Y",
+                    "value": 0
+                },
+                {
+                    "name": "Crop TexCoords",
+                    "value": 0
+                },
+                {
+                    "name": "billboard",
+                    "value": 0
+                }
+            ],
+            "portsOut": [
+                {
+                    "name": "trigger",
+                    "links": [
+                        {
+                            "portIn": "render",
+                            "portOut": "trigger",
+                            "objIn": "f4rskhvd1",
+                            "objOut": "6418vohq5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "opId": "cc8c3ede-7103-410b-849f-a645793cab39",
+            "id": "f4rskhvd1",
+            "attribs": {},
+            "uiAttribs": {
+                "translate": {
+                    "x": 107.11154602260359,
+                    "y": 84.96928838418542
+                }
+            },
+            "portsIn": [
+                {
+                    "name": "render",
+                    "title": "Trigger"
+                },
+                {
+                    "name": "Render Mesh",
+                    "value": 1,
+                    "title": "Render"
+                },
+                {
+                    "name": "width",
+                    "value": 1
+                },
+                {
+                    "name": "height",
+                    "value": 1
+                },
+                {
+                    "name": "pivot x index",
+                    "value": 1
+                },
+                {
+                    "name": "pivot x",
+                    "value": "center"
+                },
+                {
+                    "name": "pivot y index",
+                    "value": 1
+                },
+                {
+                    "name": "pivot y",
+                    "value": "center"
+                },
+                {
+                    "name": "axis index",
+                    "value": 0
+                },
+                {
+                    "name": "axis",
+                    "value": "xy"
+                },
+                {
+                    "name": "Flip TexCoord X",
+                    "value": 0
+                },
+                {
+                    "name": "Flip TexCoord Y",
+                    "value": 1
+                },
+                {
+                    "name": "num columns",
+                    "value": 1
+                },
+                {
+                    "name": "num rows",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "opId": "c44464f8-2222-4cb5-8d59-333a7f5a9e44",
+            "id": "qcumxvw73",
+            "attribs": {},
+            "uiAttribs": {
+                "translate": {
+                    "x": -136.50965892919953,
+                    "y": 204.79674304714794
+                }
+            },
+            "portsIn": [
+                {
+                    "name": "Server Name",
+                    "value": "Cables Output"
+                }
+            ],
+            "portsOut": [
+                {
+                    "name": "Success",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "opId": "41eec5c7-c480-477a-be81-04c3efac8357",
+            "id": "4pj7kjrbx",
+            "attribs": {},
+            "uiAttribs": {
+                "translate": {
+                    "x": 33.26446502594601,
+                    "y": -83.08568195519032
+                }
+            },
+            "portsIn": [
+                {
+                    "name": "Size index",
+                    "value": 0
+                },
+                {
+                    "name": "Size",
+                    "value": "Canvas"
+                },
+                {
+                    "name": "texture width",
+                    "value": 640
+                },
+                {
+                    "name": "texture height",
+                    "value": 320
+                },
+                {
+                    "name": "Auto Aspect",
+                    "value": 1
+                },
+                {
+                    "name": "filter index",
+                    "value": 1
+                },
+                {
+                    "name": "filter",
+                    "value": "linear"
+                },
+                {
+                    "name": "Wrap index",
+                    "value": 1
+                },
+                {
+                    "name": "Wrap",
+                    "value": "Repeat"
+                },
+                {
+                    "name": "MSAA index",
+                    "value": 0
+                },
+                {
+                    "name": "MSAA",
+                    "value": "none"
+                },
+                {
+                    "name": "Pixel Format index",
+                    "value": 4
+                },
+                {
+                    "name": "Pixel Format",
+                    "value": "RGBA 8bit ubyte"
+                },
+                {
+                    "name": "Depth",
+                    "value": 1
+                },
+                {
+                    "name": "Clear",
+                    "value": 1
+                }
+            ],
+            "portsOut": [
+                {
+                    "name": "trigger",
+                    "links": [
+                        {
+                            "portIn": "render",
+                            "portOut": "trigger",
+                            "objIn": "6418vohq5",
+                            "objOut": "4pj7kjrbx"
+                        }
+                    ]
+                },
+                {
+                    "name": "texture",
+                    "links": [
+                        {
+                            "portIn": "Texture",
+                            "portOut": "texture",
+                            "objIn": "qcumxvw73",
+                            "objOut": "4pj7kjrbx"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "settings": {
+        "licence": "none"
+    },
+    "userList": [
+        {
+            "username": "",
+            "_id": "6a73beda7052d866a15f15b1",
+            "profile_theme": "dark",
+            "isStaff": false,
+            "usernameLowercase": "",
+            "isAdmin": false,
+            "theme": "dark",
+            "created": 1785970394107
+        }
+    ],
+    "teams": [],
+    "log": [],
+    "ui": {
+        "viewBox": {},
+        "renderer": {
+            "w": 640,
+            "h": 320,
+            "s": 1
+        },
+        "timeline": {},
+        "texPreview": {},
+        "bookmarks": [],
+        "viewBoxesGl": {
+            "0": {
+                "x": 299.63228385371616,
+                "y": -68.1716416483363,
+                "z": 547.2600322240036
+            }
+        },
+        "outline": {
+            "include": {
+                "bookmarks": true,
+                "subpatches": true,
+                "commented": true,
+                "comments": true,
+                "areas": true,
+                "animated": true,
+                "customOps": true,
+                "colored": true
+            },
+            "includeUnsavedIndicator": true,
+            "only": {}
+        }
+    },
+    "summary": {
+        "title": "CablesSyphon"
+    },
+    "opsHash": "96f1d86117656b889e4b20eddd12cc251b0da272",
+    "buildInfo": {
+        "updateWarning": false,
+        "core": {
+            "timestamp": 1785969991150,
+            "created": "2026-08-05T22:46:31.150Z",
+            "git": {
+                "branch": "develop",
+                "commit": "9d513d5eebbf1fe14b5775d06bc2b982471c7de1",
+                "date": "1785956413",
+                "message": "auto commit"
+            }
+        },
+        "ui": {
+            "timestamp": 1785969996019,
+            "created": "2026-08-05T22:46:36.019Z",
+            "git": {
+                "branch": "develop",
+                "commit": "e25c9cb25122ff7cb20fea39e9357d012feb05f5",
+                "date": "1785947958",
+                "message": "fileTypeColor_"
+            }
+        },
+        "api": {
+            "timestamp": 1785980073658,
+            "created": "2026-08-06T01:34:33.658Z",
+            "git": {
+                "branch": "develop",
+                "commit": "0d756d7066ac716e63a9773ff57a36541d7bb49d",
+                "date": "1785938847",
+                "message": "ignore namespace visibility when running unpackaged"
+            },
+            "platform": {
+                "npm": "11.16.0",
+                "node": "24.18.1"
+            }
+        }
+    },
+    "updatedByUser": "",
+    "screenshot": "data:image/png;base64,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"
+}

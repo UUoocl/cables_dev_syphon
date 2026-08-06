@@ -1,0 +1,73 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "Size",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Strength",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Smooth",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "WorldSpace",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "x",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "z",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "6c40cfcb-75c8-4c64-bc13-c37faaea73df",
+    "created": 1504998113882,
+    "summary": "deform a spherical area of a mesh",
+    "docs": {
+        "ports": []
+    },
+    "youtubeid": "",
+    "changelog": [
+        {
+            "message": " added core lib: cgl_shadermodifier",
+            "author": "pandur",
+            "date": 1623936941749
+        }
+    ],
+    "coreLibs": [
+        "cgl_shadermodifier",
+        "cgl"
+    ],
+    "exampleProjectId": "CQ0wmo",
+    "isReleased": true
+}

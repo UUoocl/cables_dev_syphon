@@ -1,0 +1,43 @@
+{
+    "updated": 1518868429004,
+    "authorName": "pandur",
+    "id": "023d1e35-1231-4c50-a044-4a0e63609ba5",
+    "created": 1518868364510,
+    "layout": {
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "on press"
+            },
+            {
+                "type": "0",
+                "name": "key code"
+            },
+            {
+                "type": "0",
+                "name": "Char"
+            }
+        ]
+    },
+    "summary": "triggers when a key is pressed",
+    "docs": {
+        "ports": [
+            {
+                "name": "on press",
+                "text": "Triggers every time a keyboard key has been pressed (when focus is on the canvas / preview panel)."
+            },
+            {
+                "name": "key code",
+                "text": "The key code for the last pressed key  "
+            }
+        ]
+    },
+    "exampleProjectId": "lmGgPZ",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

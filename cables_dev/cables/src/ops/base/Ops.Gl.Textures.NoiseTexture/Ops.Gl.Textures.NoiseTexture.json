@@ -1,0 +1,151 @@
+{
+    "id": "b781bc6b-b2cf-44fe-80eb-a840e430d27d",
+    "authorName": "pandur",
+    "created": 1544452851096,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Width",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Height",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Filter index",
+                "values": [
+                    "nearest",
+                    "linear"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Wrap index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Color",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Pixel Format index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Integer",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Seed",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Channel R",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Min R",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Max R",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Channel G",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Min G",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Max G",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Channel B",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Min B",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Max B",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Channel A",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Min A",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Max A",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Texture",
+                "objType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Total Pixel",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Simple noisetexture",
+    "issues": "",
+    "docs": {
+        "ports": []
+    },
+    "youtubeids": [],
+    "exampleProjectId": "Lv4hay",
+    "changelog": [
+        {
+            "message": "Added random parameters for alpha channel",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1716976668653
+        },
+        {
+            "message": "Texture creation will create a loading job and only run before rendering a frame",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1723124135500
+        }
+    ],
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,76 @@
+{
+    "author": "55d744634cdc152216eb9aad",
+    "authorName": "pandur",
+    "id": "3a4b0a78-4172-41c7-8248-95cb0856ecc8",
+    "created": 1511644281921,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Trigger"
+            },
+            {
+                "type": 0,
+                "name": "Duration",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value True",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Value False",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Reset"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Activated"
+            },
+            {
+                "type": 1,
+                "name": "Ended"
+            },
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Sets output to `1` when triggered, turns back to `0` automatically after x seconds",
+    "docs": {
+        "ports": [
+            {
+                "name": "Trigger",
+                "text": "When triggered, `Result` is set to `Value True`"
+            },
+            {
+                "name": "Duration",
+                "text": "Duration in seconds when to automatically reset the `Result` to `Value False`"
+            },
+            {
+                "name": "Value True",
+                "text": "The value to use when `Trigger` is triggered"
+            },
+            {
+                "name": "Value False",
+                "text": "The value to use after the time is over"
+            },
+            {
+                "name": "Result",
+                "text": "Either `1` (directly after `Trigger` was triggered), or `0`"
+            }
+        ]
+    },
+    "exampleProjectId": "F3r9L5",
+    "license": "MIT",
+    "isReleased": true
+}

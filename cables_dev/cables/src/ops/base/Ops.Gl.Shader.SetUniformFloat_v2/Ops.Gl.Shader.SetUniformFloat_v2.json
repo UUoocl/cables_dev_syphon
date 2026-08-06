@@ -1,0 +1,69 @@
+{
+    "authorName": "pandur",
+    "id": "9e6328da-457d-4d80-a881-dcab25a0e0f8",
+    "created": 1662556221198,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Render"
+            },
+            {
+                "type": 0,
+                "name": "Uniform index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Z",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "W",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 5,
+                "name": "Type"
+            },
+            {
+                "type": 0,
+                "name": "Found",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "set a uniform value of the current shader",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "cloned op from Ops.Gl.Shader.SetUniformValue",
+            "author": "pandur",
+            "date": 1662556221199
+        }
+    ],
+    "exampleProjectId": "5W7X2f",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

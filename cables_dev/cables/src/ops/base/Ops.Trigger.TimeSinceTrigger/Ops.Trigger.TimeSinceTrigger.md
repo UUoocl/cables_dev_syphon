@@ -1,0 +1,1 @@
+Time elapsed since last trigger

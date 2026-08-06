@@ -1,0 +1,114 @@
+{
+    "summary": "get the state of your keyboards arrow keys",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "canvas only",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Cursor Keys",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "WASD",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Degree",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Up",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Up Pressed"
+            },
+            {
+                "type": 0,
+                "name": "Down",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Down Pressed"
+            },
+            {
+                "type": 0,
+                "name": "Left",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Left Pressed"
+            },
+            {
+                "type": 0,
+                "name": "Right",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Right Pressed"
+            },
+            {
+                "type": 0,
+                "name": "Any Button Pressed",
+                "subType": "number"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "65930ca9-c923-453f-b8c4-144eda13fa0a",
+    "created": 1542699465378,
+    "youtubeid": "",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "m5V6VB",
+    "changelog": [
+        {
+            "message": "Fixed: Active toggle was not working",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1715183037901
+        },
+        {
+            "message": "Added trigger outputs for each directional key",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1715418169833
+        },
+        {
+            "message": "Added output for directional degree and if any button is pressed",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1724335223757
+        },
+        {
+            "message": "Fix \"hanging key\" problem, when resizing/changing focus of the canvas rapidly",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1769079610813
+        }
+    ],
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

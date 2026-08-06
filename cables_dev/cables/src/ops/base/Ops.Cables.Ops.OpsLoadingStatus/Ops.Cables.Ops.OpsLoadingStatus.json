@@ -1,0 +1,55 @@
+{
+    "id": "8eeaab19-a215-4db1-b63e-5f8976cc8052",
+    "created": 1775139773013,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1775139773014
+        },
+        {
+            "message": "Get ops in current patch that have a specific tag",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1777910367948
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 3,
+                "name": "Ops"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Min Num Ops",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Progress",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Loading",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "isReleased": true,
+    "summary": "Get loading status of an array of ops",
+    "docs": {
+        "ports": []
+    }
+}

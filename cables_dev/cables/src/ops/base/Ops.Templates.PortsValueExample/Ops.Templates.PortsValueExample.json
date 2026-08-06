@@ -1,0 +1,27 @@
+{
+    "authorName": "andro",
+    "id": "362a1c2f-c4e8-41eb-944b-d16c73a8d27b",
+    "created": 1537174432415,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "0",
+                "name": "Number in ",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Value out",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Is a template for creating Value ports",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "rWJICn",
+    "isReleased": true
+}

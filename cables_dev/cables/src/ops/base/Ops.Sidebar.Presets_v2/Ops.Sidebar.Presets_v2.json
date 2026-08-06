@@ -1,0 +1,121 @@
+{
+    "authorName": "pandur",
+    "id": "9ef53cbc-f47b-4631-92f1-470bd40c2866",
+    "created": 1591882841418,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "link"
+            },
+            {
+                "type": 5,
+                "name": "Text"
+            },
+            {
+                "type": 1,
+                "name": "Add Preset"
+            },
+            {
+                "type": 1,
+                "name": "Update current Preset"
+            },
+            {
+                "type": 5,
+                "name": "Preset Title 0"
+            },
+            {
+                "type": 2,
+                "name": "Preset 0"
+            },
+            {
+                "type": 5,
+                "name": "Preset Title 1"
+            },
+            {
+                "type": 2,
+                "name": "Preset 1"
+            },
+            {
+                "type": 5,
+                "name": "Preset Title 2"
+            },
+            {
+                "type": 2,
+                "name": "Preset 2"
+            },
+            {
+                "type": 5,
+                "name": "Preset Title 3"
+            },
+            {
+                "type": 2,
+                "name": "Preset 3"
+            },
+            {
+                "type": 5,
+                "name": "Preset Title 4"
+            },
+            {
+                "type": 2,
+                "name": "Preset 4"
+            },
+            {
+                "type": 5,
+                "name": "Preset Title 5"
+            },
+            {
+                "type": 2,
+                "name": "Preset 5"
+            },
+            {
+                "type": 5,
+                "name": "Preset Title 6"
+            },
+            {
+                "type": 2,
+                "name": "Preset 6"
+            },
+            {
+                "type": 5,
+                "name": "Preset Title 7"
+            },
+            {
+                "type": 2,
+                "name": "Preset 7"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Children"
+            },
+            {
+                "type": 0,
+                "name": "Index",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "manage sidebar presets",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "react properly to disconnecting parent",
+            "author": "stephan",
+            "date": 1643888121397,
+            "type": "improvement"
+        },
+        {
+            "message": "add op title to preset json",
+            "type": "improvement",
+            "author": "stephan",
+            "date": 1717403566911
+        }
+    ],
+    "license": "MIT",
+    "exampleProjectId": "KKabBN",
+    "isReleased": true
+}

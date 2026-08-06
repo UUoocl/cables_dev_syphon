@@ -1,0 +1,36 @@
+{
+    "id": "6dbb866c-b57a-4875-9f1d-22172162eaa8",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1600117343664
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1600117397013,
+    "summary": "output current frames per second",
+    "docs": {
+        "ports": []
+    },
+    "layout": {
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "FPS",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "MS",
+                "subType": "number"
+            }
+        ]
+    },
+    "license": "MIT",
+    "exampleProjectId": "KhFA8i",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

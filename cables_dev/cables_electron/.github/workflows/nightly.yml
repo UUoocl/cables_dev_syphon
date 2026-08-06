@@ -1,0 +1,65 @@
+name: nightly build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  draft_release:
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      date: ${{ steps.date.outputs.date }}
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+      - name: create release
+        id: create_release
+        uses: softprops/action-gh-release@v3
+        with:
+          name: "${{ steps.date.outputs.date }}-nightly"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: v${{ steps.date.outputs.date }}-nightly
+          draft: false
+          prerelease: true
+  linux:
+    uses: ./.github/workflows/build.yml
+    needs: draft_release
+    with:
+      runner: ubuntu-latest
+      target: linux
+      branch: develop
+      build_version: ${{ needs.draft_release.outputs.date }}-nightly
+      exe_name: cables-${{ needs.draft_release.outputs.date }}-nightly
+      tag_name: ${{ needs.draft_release.outputs.date }}-nightly
+      upload_url: ${{ needs.draft_release.outputs.upload_url }}
+      release_type: "prerelease"
+    secrets: inherit
+  win:
+    uses: ./.github/workflows/build.yml
+    needs: draft_release
+    with:
+      runner: windows-latest
+      target: win
+      branch: develop
+      build_version: ${{ needs.draft_release.outputs.date }}-nightly
+      exe_name: cables-${{ needs.draft_release.outputs.date }}-nightly
+      tag_name: ${{ needs.draft_release.outputs.date }}-nightly
+      upload_url: ${{ needs.draft_release.outputs.upload_url }}
+      release_type: "prerelease"
+    secrets: inherit
+  mac:
+    uses: ./.github/workflows/build.yml
+    needs: draft_release
+    with:
+      runner: macos-14
+      target: mac
+      branch: develop
+      build_version: ${{ needs.draft_release.outputs.date }}-nightly
+      exe_name: cables-${{ needs.draft_release.outputs.date }}-nightly
+      tag_name: ${{ needs.draft_release.outputs.date }}-nightly
+      upload_url: ${{ needs.draft_release.outputs.upload_url }}
+      release_type: "prerelease"
+      sign: true
+      notarize: true
+    secrets: inherit

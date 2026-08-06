@@ -1,0 +1,32 @@
+{
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Number",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "returns the largest integer less than or equal to a given number",
+    "docs": {
+        "ports": [
+            {
+                "name": "Result",
+                "text": "floored number"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "0c77617c-b688-4b55-addf-2cbcaabf98af",
+    "created": 1540980206914,
+    "exampleProjectId": "nPvVW2",
+    "isReleased": true
+}

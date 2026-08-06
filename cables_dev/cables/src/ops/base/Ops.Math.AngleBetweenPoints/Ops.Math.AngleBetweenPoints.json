@@ -1,0 +1,39 @@
+{
+    "summary": "outputs the angle between two points (degree)",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Point 1 X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Point 1 Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Point 2 X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Point 2 Y",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Angle",
+                "subType": "number"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "03e20aba-a22a-40de-9287-a32fc495a643",
+    "created": 1527697177118,
+    "exampleProjectId": "aMsTGc",
+    "isReleased": true
+}

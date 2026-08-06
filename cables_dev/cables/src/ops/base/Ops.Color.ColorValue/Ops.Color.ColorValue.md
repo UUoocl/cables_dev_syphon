@@ -1,0 +1,1 @@
+The color can be either picked with the color picker or entered directly.

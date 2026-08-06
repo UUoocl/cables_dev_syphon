@@ -1,0 +1,34 @@
+{
+    "authorName": "pandur",
+    "id": "b436e831-36f5-4e0c-838e-4a82c4b07ec0",
+    "created": 1582794993082,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "String"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "Ops.User.pandur.ParseBoolean2 renamed to Ops.Boolean.ParseBoolean_v2",
+            "author": "pandur",
+            "date": 1582795056810
+        }
+    ],
+    "summary": "parse boolean from string/number",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "exampleProjectId": "2nXYet",
+    "isReleased": true
+}

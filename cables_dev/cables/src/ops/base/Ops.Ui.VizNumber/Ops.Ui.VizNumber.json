@@ -1,0 +1,47 @@
+{
+    "id": "2b60d12d-2884-4ad0-bda4-0caeb6882f5c",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1637676931322,
+            "type": "new op"
+        },
+        {
+            "message": "Show name of connected port for better readability",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1773067790903
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Number",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "created": 1637676964149,
+    "summary": "Displays input string on the patchfield",
+    "issues": "",
+    "youtubeids": [
+        "-1vMiU6BcDg"
+    ],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "gkySnR",
+    "caniusequery": "",
+    "license": "MIT",
+    "isReleased": true
+}

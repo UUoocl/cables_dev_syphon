@@ -1,0 +1,54 @@
+name: jsdocs develop
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+    paths:
+      - "shared/**"
+      - "jsdoc/**"
+  schedule:
+    - cron: '0 3 * * *'
+
+env:
+  JDOC_APP_ID: "fdb282ef-1a12-4ed8-8859-ac16c5ea3390"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: checkout cables
+      uses: actions/checkout@v4
+      with:
+        repository: "cables-gl/cables"
+        ref: develop
+        token: ${{ secrets.undev_token }}
+        path: "cables/"
+    - name: checkout cables ui
+      uses: actions/checkout@v4
+      with:
+        repository: "cables-gl/cables_ui"
+        ref: develop
+        token: ${{ secrets.undev_token }}
+        path: "cables_ui/"
+    - name: checkout cables electron
+      uses: actions/checkout@v4
+      with:
+        repository: "cables-gl/cables_electron"
+        path: "cables_electron/"
+        ref: develop
+    - name: build jsdoc
+      run: |
+        cd jsdoc/
+        npm install --no-save
+        npm run build:dev
+    - name: Deploy jsdocs to netlify
+      uses: netlify/actions/cli@master
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ env.JDOC_APP_ID }}
+      with:
+        args: deploy --dir=jsdoc/dist --prod
+        secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'

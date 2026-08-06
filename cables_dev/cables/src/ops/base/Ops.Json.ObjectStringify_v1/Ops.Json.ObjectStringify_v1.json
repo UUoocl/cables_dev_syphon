@@ -1,0 +1,41 @@
+{
+    "updated": 1519028076261,
+    "authorName": "pandur",
+    "id": "c8c84e44-9f18-44f8-89fd-39e58cc77d4e",
+    "created": 1519028073803,
+    "layout": {
+        "portsIn": [
+            {
+                "type": "2",
+                "name": "Object"
+            },
+            {
+                "type": "0",
+                "name": "Pretty Print"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "0",
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "convert an object to a JSON string (stringify)",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "Ops.Json.ObjectToJSON renamed to Ops.Json.ObjectStringify_v0",
+            "author": "pandur",
+            "date": 1654583976568
+        },
+        {
+            "message": "Ops.Json.ObjectStringify_v0 renamed to Ops.Json.ObjectStringify_v1",
+            "author": "pandur",
+            "date": 1665557241345
+        }
+    ],
+    "isReleased": true
+}

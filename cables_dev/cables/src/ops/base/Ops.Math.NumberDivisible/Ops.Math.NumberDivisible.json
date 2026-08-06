@@ -1,0 +1,29 @@
+{
+    "authorName": "pandur",
+    "id": "4059e4ee-da93-490a-a00c-6fe0f0ee8efc",
+    "created": 1515962918465,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Number",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Divisor",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "is a number capable of being divided.",
+    "exampleProjectId": "-IqoJ5",
+    "isReleased": true
+}

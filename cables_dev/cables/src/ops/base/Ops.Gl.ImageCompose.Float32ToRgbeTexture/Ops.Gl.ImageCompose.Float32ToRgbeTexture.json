@@ -1,0 +1,39 @@
+{
+    "id": "ae3585c4-b49a-4dd5-b7be-1f53a90bb060",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1642868426174
+        }
+    ],
+    "coreLibs": [
+        "cgl_copytexture",
+        "cgl"
+    ],
+    "authorName": "pandur",
+    "created": 1646228077372,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "summary": "Convert a Float32 bit/HDR texture to RGBE format (only positive numbers)",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "dXLhW2",
+    "isReleased": true
+}

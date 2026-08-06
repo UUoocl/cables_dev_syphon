@@ -1,0 +1,111 @@
+.cablesCssUi
+{
+    .treetable
+    {
+
+        tr:nth-child(odd)
+        {
+            td
+            {
+                padding-top:1px !important;
+                padding-bottom:1px !important;
+                padding-left:5px;
+                background-color: #262626;
+            }
+        }
+        tr:nth-child(even)
+        {
+            td
+            {
+                padding-top:1px !important;
+                padding-bottom:1px !important;
+                padding-left:5px;
+                background-color: #1e1e1e;
+            }
+        }
+        // tr:hover
+        // {
+        //     td
+        //     {
+        //         background-color: #444;
+        //     }
+        // }
+
+        .treebutton
+        {
+            background-color: var(--color-04);
+            border-radius: 4px;
+            padding:1   px;
+            padding-left:8px;
+            padding-right:8px;
+            // border:1px solid var(--color-special);
+
+            &:hover
+            {
+                color:var(--color-special);
+            }
+
+            &.object {
+                background-color:var(--color_port_object);
+                color: black;
+            }
+
+            &.string {
+                background-color:var(--color_port_string);
+                color: black;
+            }
+
+            &.number {
+                background-color:var(--color_port_number);
+                color: black;
+            }
+
+            &.array {
+                background-color:var(--color_port_array);
+                color: black;
+            }
+        }
+
+        .node-hidden
+        {
+            opacity: 0.25;;
+        }
+
+        td
+        {
+            white-space: nowrap;
+            vertical-align: top;
+        }
+
+
+        .ident
+        {
+            width:7px;
+            background-size: contain;
+        }
+
+        .identBgLevel0
+        {
+            background-size: contain;
+        }
+
+        .identBg
+        {
+            background-size: contain;
+        }
+
+
+        tr.active
+        {
+            td
+            {
+                background-color: var(--color-05);
+                a
+                {
+                    color:var(--color-special)
+                }
+            }
+        }
+
+    }
+}

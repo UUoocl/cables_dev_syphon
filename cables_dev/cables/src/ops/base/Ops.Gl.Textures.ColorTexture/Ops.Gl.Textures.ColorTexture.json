@@ -1,0 +1,46 @@
+{
+    "summary": "Simple texture filled with one color",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "r",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "g",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "b",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "a",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "texture_out",
+                "objType": "texture"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "59b94270-0364-4c0f-a9fc-ba2561696a23",
+    "created": 1520152882433,
+    "exampleProjectId": "QuT1X2",
+    "docs": {
+        "ports": []
+    },
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,55 @@
+{
+    "id": "5f9ce320-1e8d-49cb-9927-337e0b3f4d45",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1554448366922
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1554448375543,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "number1",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "number2",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "result",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "result is true if number 1 is greater or equals number 2",
+    "issues": "",
+    "docs": {
+        "ports": [
+            {
+                "name": "number1",
+                "text": "1st number to compare to number 2"
+            },
+            {
+                "name": "number2",
+                "text": "2nd number to compare to number 1"
+            },
+            {
+                "name": "result",
+                "text": "True if number 1 is greater or equal to number 2"
+            }
+        ]
+    },
+    "caniusequery": "",
+    "youtubeids": [],
+    "exampleProjectId": "",
+    "isReleased": true
+}

@@ -1,0 +1,76 @@
+{
+    "id": "00d2a6ea-5843-43d0-9428-dbc47c112e6e",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1599663115666
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1599663137521,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Texture",
+                "objType": "texture"
+            },
+            {
+                "type": 1,
+                "name": "Download"
+            },
+            {
+                "type": 0,
+                "name": "Format index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Quality",
+                "subType": "number"
+            },
+            {
+                "type": 5,
+                "name": "Filename"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Finished",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "Download a texture as png file",
+    "issues": "",
+    "youtubeids": [
+        "YFvVsEPirRc"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "Texture",
+                "text": "Texture in to capture"
+            },
+            {
+                "name": "Download",
+                "text": "Trigger to download the texture/image"
+            },
+            {
+                "name": "Filename",
+                "text": "The name of the downloaded file"
+            },
+            {
+                "name": "Finished",
+                "text": "When the texture is downloaded outputs true"
+            }
+        ]
+    },
+    "exampleProjectId": "15LaTs",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

@@ -1,0 +1,62 @@
+{
+    "id": "a4deea80-db97-478f-ad1a-5ee30f2f47cc",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1572343023205
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1572343026896,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Execute"
+            },
+            {
+                "type": 0,
+                "name": "Repeats",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Direction index",
+                "values": [
+                    "Forward",
+                    "Backward"
+                ],
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 0,
+                "name": "index",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Triggers all ops below x times (for loop / while)",
+    "issues": "",
+    "youtubeids": [
+        "jiOLZaMUH78",
+        "DW9U5tv1GHM"
+    ],
+    "docs": {
+        "ports": [
+            {
+                "name": "Repeats",
+                "text": "How often the loop should be executed"
+            }
+        ]
+    },
+    "exampleProjectId": "VFAfgg",
+    "license": "MIT",
+    "isReleased": true
+}

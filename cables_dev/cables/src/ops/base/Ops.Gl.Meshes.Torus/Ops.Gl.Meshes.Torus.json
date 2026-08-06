@@ -1,0 +1,60 @@
+{
+    "summary": "Draw a torus (doughnut, donut, ring mesh)",
+    "layout": {
+        "portsIn": [
+            {
+                "type": "1",
+                "name": "render"
+            },
+            {
+                "type": "0",
+                "name": "sides",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "rings",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "innerRadius",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "outerRadius",
+                "subType": "number"
+            },
+            {
+                "type": "0",
+                "name": "Draw",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": "1",
+                "name": "trigger"
+            },
+            {
+                "type": "2",
+                "name": "geometry"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "d921e008-21b9-4cf5-84a2-4dedca34f0c8",
+    "created": 1518894913872,
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "ECMhQ6",
+    "issues": "",
+    "caniusequery": "",
+    "youtubeids": [],
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

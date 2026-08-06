@@ -1,0 +1,104 @@
+{
+    "authorName": "pandur",
+    "id": "e5d64a7d-b161-4f85-907e-e10a34691733",
+    "created": 1516101816037,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "render"
+            },
+            {
+                "type": 0,
+                "name": "enable depth testing",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "fill",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "width",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "opacity",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "diffuse r",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "diffuse g",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "diffuse b",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Fill R",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Fill G",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Fill B",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "trigger"
+            }
+        ]
+    },
+    "summary": "Renders following meshes as wireframes",
+    "docs": {
+        "ports": [
+            {
+                "name": "fill",
+                "text": "If set, background will be drawn (currently the color cannot be chosen)."
+            },
+            {
+                "name": "width",
+                "text": "Line thickness"
+            },
+            {
+                "name": "opacity",
+                "text": "Opacity, used for stroke and fill. `0` = invisible, `1` = fully visible"
+            },
+            {
+                "name": "trigger",
+                "text": "Executes the next op"
+            }
+        ]
+    },
+    "changelog": [
+        {
+            "message": "code cleanup - ports ",
+            "author": "andro",
+            "date": 1559050588755
+        }
+    ],
+    "issues": "",
+    "youtubeids": [],
+    "exampleProjectId": "bRlSDe",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

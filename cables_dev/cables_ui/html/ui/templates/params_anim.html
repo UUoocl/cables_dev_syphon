@@ -1,0 +1,39 @@
+<script id="params_anim" type="text/x-handlebars-template">
+
+
+        <div class="panel_head">
+            <h2 class="nomargin">anim: {{anim.name}}</h2>
+{{anim.keys.length}} keys - {{length}}s
+        </div>
+
+    <div class="content">
+        <br/>
+        <br/>
+        loop:
+        <a id="ap_loop_off" class="button-left button-small {{#compare anim.loop '==' 0}} button-active{{/compare}}">off</a>
+        <a id="ap_loop_repeat" class="button-middle button-small {{#compare anim.loop '==' 1}} button-active{{/compare}}">repeat</a>
+        <a id="ap_loop_mirror" class="button-middle button-small {{#compare anim.loop '==' 2}} button-active{{/compare}}">mirror</a>
+        <a id="ap_loop_offset" class="button-right button-small {{#compare anim.loop '==' 3}} button-active{{/compare}}">offset</a>
+        <hr/>
+        <br/>
+        <a id="ap_paste" class="button-small">paste keys</a>
+        <a id="ap_paste_at_time" class="button-small">paste at cursor</a>
+        <br/>
+        <a id="ap_select" class="button-small">select all keys</a>
+        <br/>
+        <a id="ap_size" class="button-small">
+            <span  class="nomargin icon icon-scaling"></span> size
+        </a>
+        <br/>
+        <a id="ap_spreadsheet" class="button-small">
+            <span  class="nomargin icon icon-spreadsheet"></span> open in spreadsheet
+        </a>
+        <a id="ap_debug" class="button-small">debug</a>
+        <br/><br/>
+        {{#each errors}}
+        - {{.}}<br/>
+        {{/each}}
+
+    </div>
+
+</script>

@@ -1,0 +1,48 @@
+{
+    "id": "c36594f2-8fa1-4b5b-816e-32dbb097c522",
+    "created": 1749562386831,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1749562386832
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Element",
+                "objType": "element"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Element out"
+            },
+            {
+                "type": 0,
+                "name": "X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Make a HTML element draggable to move it around with the mouse",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "WSi9iO",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}

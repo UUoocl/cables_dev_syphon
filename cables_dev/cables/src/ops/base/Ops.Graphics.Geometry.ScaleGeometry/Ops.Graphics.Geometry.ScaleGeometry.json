@@ -1,0 +1,82 @@
+{
+    "authorName": "pandur",
+    "id": "7730e67b-5916-4481-bcd1-54fa6e3a1d02",
+    "created": 1521756312631,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Geometry"
+            },
+            {
+                "type": 0,
+                "name": "Method index",
+                "values": [
+                    "Factor",
+                    "Target Size X",
+                    "Target Size Y",
+                    "Target Size Z"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Scale",
+                "uititle": "Target Size X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Multiply X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Multiply Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Multiply Z",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Result",
+                "objType": "geometry"
+            }
+        ]
+    },
+    "summary": "Scaling of geometry vertices",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "Ops.Gl.Geometry.ScaleGeometry renamed to Ops.Graphics.Geometry.ScaleGeometry",
+            "type": "rename",
+            "author": "pandur",
+            "date": 1685951099728
+        },
+        {
+            "message": "Add scaling multiplier per axis",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1776780213543
+        },
+        {
+            "message": "Added option for scaling to a target size for each axis",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1776780288029
+        }
+    ],
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true,
+    "license": "MIT",
+    "exampleProjectId": "1o9Lrn"
+}

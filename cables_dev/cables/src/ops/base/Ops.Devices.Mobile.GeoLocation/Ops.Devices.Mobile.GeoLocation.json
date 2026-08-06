@@ -1,0 +1,41 @@
+{
+    "summary": "tries to get the geo coordinates from the mobile device/browser",
+    "layout": {
+        "portsIn": [],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Browser Support",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Latitude",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Longitude",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "Data"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "id": "7d9ae643-d011-417e-afe3-b3acb78a6d63",
+    "created": 1542699582684,
+    "exampleProjectId": "kIZ3Ms",
+    "license": "MIT",
+    "changelog": [
+        {
+            "message": "Does no longer output coordinates, when the location update did not contain coordinates",
+            "type": "bugfix",
+            "author": "pandur",
+            "date": 1719850372788
+        }
+    ],
+    "isReleased": true
+}

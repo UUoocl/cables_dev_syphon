@@ -1,0 +1,37 @@
+{
+    "id": "62b13e0a-8f31-457f-bb43-23bf67f44036",
+    "created": 1770387016214,
+    "license": "MIT",
+    "authorName": "pandur",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "pandur",
+            "date": 1770387016237
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Object"
+            },
+            {
+                "type": 5,
+                "name": "Search"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Result"
+            }
+        ]
+    },
+    "summary": "Search for any value anywhere in an object",
+    "docs": {
+        "ports": []
+    },
+    "isReleased": true
+}

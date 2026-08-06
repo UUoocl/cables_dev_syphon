@@ -1,0 +1,59 @@
+{
+    "id": "c85b449b-fb4e-40b3-928e-5eea6a5d0ebc",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1680618448912,
+            "type": "new"
+        },
+        {
+            "message": "Added clear toggle, object will not be cleared when triggered",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1733484226758
+        },
+        {
+            "message": "Added a reset trigger button to set itback to an empty object",
+            "type": "improvement",
+            "author": "pandur",
+            "date": 1733843551415
+        }
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            },
+            {
+                "type": 0,
+                "name": "Clear",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Reset"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Next"
+            },
+            {
+                "type": 2,
+                "name": "Result"
+            }
+        ]
+    },
+    "authorName": "pandur",
+    "created": 1680618476170,
+    "summary": "Compose an Object",
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "Theojz",
+    "license": "MIT",
+    "isReleased": true
+}

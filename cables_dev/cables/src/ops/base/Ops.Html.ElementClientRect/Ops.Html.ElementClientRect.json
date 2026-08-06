@@ -1,0 +1,90 @@
+{
+    "id": "7a046f98-2adc-4f8e-ad47-c600e3ef5bca",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1612194768714,
+            "type": "new"
+        },
+        {
+            "message": "Added parameter to switch between CSS pixels or Display pixels",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1708341904175
+        },
+        {
+            "message": "New option to select Position source relation: in canvas or absolute in document",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1759754887943
+        }
+    ],
+    "authorName": "pandur",
+    "created": 1612194849967,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Update"
+            },
+            {
+                "type": 2,
+                "name": "Element",
+                "objType": "element"
+            },
+            {
+                "type": 0,
+                "name": "Pixel Units index",
+                "values": [
+                    "CSS Pixels",
+                    "Display Pixels"
+                ],
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Position index",
+                "values": [
+                    "In Canvas",
+                    "Absolute"
+                ],
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Width",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Height",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "get html element absolute position and size in pixels on screen",
+    "issues": "",
+    "youtubeids": [],
+    "docs": {
+        "ports": []
+    },
+    "exampleProjectId": "1Z8oLu",
+    "license": "MIT",
+    "coreLibs": [
+        "cgl"
+    ],
+    "isReleased": true
+}
