@@ -1,0 +1,242 @@
+import { CablesConstants, ele } from "cables-shared-client";
+import Tab from "../../elements/tabpanel/tab.js";
+import { gui } from "../../gui.js";
+import { getHandleBarHtml } from "../../utils/handlebars.js";
+import { fileUploader } from "../../dialogs/upload.js";
+import namespace from "../../namespaceutils.js";
+import { platform } from "../../platform.js";
+import ModalDialog from "../../dialogs/modaldialog.js";
+
+/**
+ * tab to manage op dependencies like libs or npm-modules
+ *
+ * @export
+ * @class OpDependencyTab
+ * @extends {Tab}
+ */
+export default class OpDependencyTab extends Tab
+{
+    constructor(tabs, title, options = {})
+    {
+        super(title, options);
+        this._tabs = tabs || gui.mainTabs;
+        this._tabs.addTab(this);
+        gui.maintabPanel.show(true);
+        this.html(this.getHtml());
+        this._initEventListeners();
+    }
+
+    getHtml()
+    {
+        const templateOptions = {
+            ...this.options,
+            "acceptedFileTypesUpload": CablesConstants.FILETYPES.opdependency,
+            "docsUrl": platform.getCablesDocsUrl()
+        };
+        return getHandleBarHtml("op_add_dependency_" + this.options.depSource, templateOptions);
+    }
+
+    activate()
+    {
+        this.active = true;
+        this.contentEle.style.display = "block";
+        this.toolbarContainerEle.style.display = "block";
+        this.emitEvent(Tab.EVENT_ACTIVATE);
+    }
+
+    _initEventListeners()
+    {
+        const depSource = this.options.depSource;
+        const viewId = this.options.viewId;
+        const opName = this.options.opDoc.name;
+        const opDoc = this.options.opDoc;
+
+        const selector = "addopdependency_" + depSource + "_" + viewId;
+        const depsEle = ele.byId(selector);
+
+        if (depsEle)
+        {
+            const srcEle = depsEle.querySelector(".depSrc");
+            const submitEle = depsEle.querySelector(".cblbutton.add");
+            const depTypeEle = depsEle.querySelector("input[name='depType']");
+            const exportNameEle = depsEle.querySelector(".exportName");
+            const typeSelectEle = depsEle.querySelector("select.type");
+
+            if (typeSelectEle)
+            {
+                const depType = typeSelectEle.value;
+                if (depType === "module")
+                {
+                    exportNameEle.addEventListener("input", this._exportNameChange.bind(this));
+                }
+
+                typeSelectEle.addEventListener("change", () =>
+                {
+                    depTypeEle.value = typeSelectEle.value;
+                    const usageEles = depsEle.querySelectorAll(".usage");
+                    usageEles.forEach((usageEle) => { ele.hide(usageEle); });
+                    const usageEle = depsEle.querySelector(".usage." + typeSelectEle.value);
+
+                    if (exportNameEle && typeSelectEle.value === "module")
+                    {
+                        exportNameEle.removeEventListener("input", this._exportNameChange.bind(this));
+                        exportNameEle.addEventListener("input", this._exportNameChange.bind(this));
+                        ele.show(exportNameEle);
+                    }
+                    else
+                    {
+                        exportNameEle.removeEventListener("input", this._exportNameChange.bind(this));
+                        ele.hide(exportNameEle);
+                    }
+                    if (usageEle)
+                    {
+                        ele.show(usageEle);
+                    }
+                });
+            }
+
+            const warningEle = depsEle.querySelector(".warning-error");
+            if (warningEle && depTypeEle.value === "op")
+            {
+                srcEle.addEventListener("input", () =>
+                {
+                    if (namespace.isOpNameValid(srcEle.value))
+                    {
+                        ele.hide(warningEle);
+                    }
+                    else
+                    {
+                        ele.show(warningEle);
+                    }
+                });
+            }
+
+            let fileInput = null;
+            const selectFileButton = depsEle.querySelector(".cblbutton.upload");
+            if (selectFileButton)
+            {
+                fileInput = depsEle.querySelector("input[type='file']");
+                selectFileButton.addEventListener("click", () => { fileInput.click(); });
+                fileInput.addEventListener("change", () =>
+                {
+                    srcEle.value = fileInput.files[0].name;
+                    if (depTypeEle && depTypeEle.value === "static") {
+                        const usageEle = depsEle.querySelector(".usage.static code");
+                        if (usageEle) usageEle.innerText = "staticAttachments[\"" + fileInput.files[0].name.replace(".", "_") + "\"]";
+                    }
+                });
+            }
+            submitEle.addEventListener("click", () =>
+            {
+                if (submitEle.disabled) return;
+                const depSrc = srcEle.value;
+                if (!depSrc) return;
+                submitEle.innerText = "working...";
+                submitEle.disabled = true;
+
+                let exportName = null;
+                if (exportNameEle)
+                {
+                    const exportNameInput = exportNameEle.querySelector("input");
+                    if (exportNameInput) exportName = exportNameInput.value;
+                }
+
+                const depType = depTypeEle.value;
+                if (fileInput && fileInput.files && fileInput.files.length > 0)
+                {
+                    let filename = fileInput.files[0].name;
+                    if (depType === "static" && !filename.startsWith("att_bin_")) filename = "att_bin_" + filename;
+                    fileUploader.uploadFile(fileInput.files[0], filename, opDoc.id, (err, newFilename) =>
+                    {
+                        if (!err)
+                        {
+                            if (depType !== "static")
+                            {
+                                gui.serverOps.addOpDependency(opDoc.id, "./" + newFilename, depType, exportName, () =>
+                                {
+                                    submitEle.innerText = "Add";
+                                    submitEle.disabled = false;
+                                    gui.emitEvent("refreshManageOp", opName);
+                                });
+                            }
+                            else
+                            {
+                                gui.serverOps.loadOpDependencies(opName, (op) =>
+                                {
+                                    submitEle.innerText = "Add";
+                                    submitEle.disabled = false;
+                                    gui.emitEvent("refreshManageOp", opName);
+                                }, true);
+
+                            }
+                        }
+                        else
+                        {
+                            submitEle.innerText = "Add";
+                            submitEle.disabled = false;
+
+                            let html = "";
+                            html += "Failed to add op dependency for " + opName + ": " + depSrc + "<br/><br/>";
+                            html += "Try removing any older version of this dependency first.";
+                            new ModalDialog({
+                                "title": "Error adding op-dependency",
+                                "showOkButton": true,
+                                "html": html
+                            });
+                        }
+                    });
+                }
+                else if (depType === "lib")
+                {
+                    gui.serverOps.addOpLib(opName, depSrc, () =>
+                    {
+                        submitEle.innerText = "Add";
+                        submitEle.disabled = false;
+                    });
+                }
+                else if (depType === "corelib")
+                {
+                    gui.serverOps.addCoreLib(opName, depSrc, () =>
+                    {
+                        submitEle.innerText = "Add";
+                        submitEle.disabled = false;
+                    });
+                }
+                else
+                {
+                    gui.serverOps.addOpDependency(opDoc.id, depSrc, depType, exportName, () =>
+                    {
+                        submitEle.innerText = "Add";
+                        submitEle.disabled = false;
+                        gui.emitEvent("refreshManageOp", opName);
+                    });
+                }
+            });
+        }
+    }
+
+    /**
+     *
+     * @param {InputEvent} event
+     */
+    _exportNameChange(event)
+    {
+        const exportNameEle = event.currentTarget;
+        if (!exportNameEle) return;
+
+        const depSource = this.options.depSource;
+        const viewId = this.options.viewId;
+
+        const selector = "addopdependency_" + depSource + "_" + viewId;
+        const depsEle = ele.byId(selector);
+
+        if (depsEle) {
+
+            const usageEle = depsEle.querySelector(".usage.module code");
+            if (usageEle) {
+                const exportNameInput = exportNameEle.querySelector("input");
+                if (exportNameInput) usageEle.innerText = exportNameInput.value;
+            }
+        }
+    }
+}

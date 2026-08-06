@@ -1,0 +1,125 @@
+@import 'fonts';
+
+.introjs-helperLayer {
+  background: rgba(255, 255, 255, 0.2) !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border: 1px solid var(--color-special) !important;
+}
+
+.introjs-overlay {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.introjs-tooltip {
+  font-family: $text-font;
+  // background-color: white !important;
+  background-color: var(--color-01) !important;
+  border: 1px solid var(--color-special) !important;
+  // border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 20px !important;
+}
+
+.introjs-tooltipReferenceLayer {
+  border: none !important;
+  border-radius: 0 !important;
+  z-index: $z-index-intro-tooltip;
+}
+
+.introjs-tooltiptext {
+  font-family: $text-font;
+  color: #EEE !important;
+}
+
+.introjs-helperNumberLayer {
+  padding: 20px !important;
+  display: none !important;
+  background-color: black !important;
+  background: black !important;
+  text-shadow: none !important;
+  color: white !important;
+  box-shadow: none !important;
+  border-radius: 1px solid var(--color-special) !important;
+  left: -13px !important;
+  top: -13px !important;
+}
+
+.introjs-tooltipbuttons {
+  margin-top: 16px;
+}
+
+.introjs-button {
+  font-family: $text-font;
+  padding: 8px 14px !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  border: none;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  background-image: none !important;
+  background-color: var(--color-05) !important;
+  color: var(--color-10) !important;
+
+  &:hover {
+    background-color: var(--color-07) !important;
+    color: var(--color-13) !important;
+  }
+
+  &.introjs-disabled {
+    cursor: not-allowed !important;
+    color: var(--color-07) !important;
+    background-color: var(--color-03) !important;
+
+    &:hover {
+      color: var(--color-07) !important;
+      background-color: var(--color-03) !important;
+    }
+  }
+}
+
+.introjs-skipbutton {
+  color: var(--color-03);
+  float: left;
+
+  &:after {
+    clear: both;
+  }
+}
+
+.introjs-progress {
+  margin: 23px 0 5px 0 !important;
+  background-color: var(--color-04);
+}
+
+.introjs-progressbar {
+  background-color: var(--color-special);;
+}
+
+.introjs-showElement {
+    max-width: calc(100% - 320px);
+  /* z-index: $z-index-intro-element-to-be-explained; */
+}
+
+.introjs-arrow {
+  &.right {
+    border-left-color: var(--color-special) !important;
+  }
+
+  &.left {
+    border-right-color: var(--color-special) !important;
+  }
+
+  &.top {
+    border-bottom-color: var(--color-special) !important;
+  }
+
+  &.bottom {
+    border-top-color: var(--color-special) !important;
+  }
+}

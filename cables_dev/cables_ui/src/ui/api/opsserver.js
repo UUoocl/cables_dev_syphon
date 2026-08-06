@@ -1,0 +1,2271 @@
+import { ele, Logger, TalkerAPI } from "cables-shared-client";
+import { Op, Patch, utils } from "cables";
+import ModalDialog from "../dialogs/modaldialog.js";
+import { GuiText } from "../text.js";
+import { notifyError } from "../elements/notification.js";
+import defaultOps from "../defaultops.js";
+import ModalError from "../dialogs/modalerror.js";
+import subPatchOpUtil from "../subpatchop_util.js";
+import ModalIframe from "../dialogs/modaliframe.js";
+import LibLoader from "./libloader.js";
+import namespace from "../namespaceutils.js";
+import { gui } from "../gui.js";
+import { platform } from "../platform.js";
+import { editorSession } from "../elements/tabpanel/editor_session.js";
+import { userSettings } from "../components/usersettings.js";
+import { portType } from "../core_constants.js";
+import { createEditor } from "../components/editor.js";
+import { ModalOpName } from "../dialogs/modalopname.js";
+import { CmdOps } from "../commands/cmd_op.js";
+
+// todo: merge serverops and opdocs.js and/or response from server ? ....
+
+function capitalize(str)
+{
+    if (!str) return "";
+    const s = (str[0].toUpperCase() + str.slice(1));
+    return s;
+}
+
+export default class ServerOps
+{
+
+    /** @type {Op[]} */
+    #ops = [];
+    #log = new Logger("opsserver");
+    #patchId;
+    opIdsChangedOnServer = {};
+    loaded = false;
+    saveOpsInProgress = {};
+
+    constructor(patchId, next)
+    {
+        this.#patchId = patchId;
+
+        editorSession.addListener("op",
+            (name, data) =>
+            {
+                editorSession.startLoadingTab();
+                const lastTab = userSettings.get("editortab");
+
+                if (data && data.opId)
+                {
+                    name = {
+                        "opId": data.opId,
+                        "objName": name
+                    };
+                }
+
+                this.edit(name, false, () =>
+                {
+                    gui.mainTabs.activateTabByName(lastTab);
+                    userSettings.set("editortab", lastTab);
+                    editorSession.finishLoadingTab();
+                });
+            }
+        );
+
+        editorSession.addListener("attachment", (name, data) =>
+        {
+            editorSession.startLoadingTab();
+            if (data && data.opname)
+            {
+                const lastTab = userSettings.get("editortab");
+                this.editAttachment(data.opname, data.name, false, () =>
+                {
+                    gui.mainTabs.activateTabByName(lastTab);
+                    userSettings.set("editortab", lastTab);
+                    editorSession.finishLoadingTab();
+                }, true);
+            }
+            else
+            {
+                this.#log.log("no data", data);
+            }
+        }
+        );
+
+        CABLESUILOADER.preload.opDocsAll.opDocs.forEach((newOp) =>
+        {
+            this.#ops.push(newOp);
+        });
+
+        gui.opDocs.addCoreOpDocs();
+        this.load(next);
+    }
+
+    addOpIdChangedOnServer(opId, data = {})
+    {
+        if (!opId) return;
+        if (!this.opIdsChangedOnServer.hasOwnProperty(opId))
+        {
+            this.opIdsChangedOnServer[opId] = data;
+        }
+    }
+
+    removeOpIdChangedOnSever(opId)
+    {
+        if (!opId) return;
+        delete this.opIdsChangedOnServer[opId];
+    }
+
+    /**
+     * @param {Function} cb
+     */
+    load(cb)
+    {
+        platform.talkerAPI.send(TalkerAPI.CMD_GET_PROJECT_OPS, {}, (err, res) =>
+        {
+            if (err) this.#log.error(err);
+
+            res = res || [];
+
+            res.forEach((newOp) =>
+            {
+                this.#ops.push(newOp);
+            });
+            if (gui.opDocs)
+            {
+                gui.opDocs.addOpDocs(res);
+            }
+
+            /*
+             * ops added to opdocs so they are available in opsearch
+             * make sure all libraries are loaded for ops that are actually used in project (or in blueprints)
+             */
+            const usedOps = res.filter((op) => { return op && op.usedInProject; });
+            this.loadOpsLibs(usedOps, () =>
+            {
+
+                gui.corePatch().logStartup("Ops loaded");
+                if (cb) cb(this.#ops);
+                this.loaded = true;
+                incrementStartup();
+            });
+        });
+    }
+
+    isServerOp(name)
+    {
+        for (let i = 0; i < this.#ops.length; i++) if (this.#ops[i].name === name) return true;
+        return false;
+    }
+
+    create(name, cb, openEditor, options = {})
+    {
+        gui.savingTitleAnimStart("Creating Op...");
+
+        const createRequest = {
+            "opname": name
+        };
+        if (options && options.opTargetDir) createRequest.opTargetDir = options.opTargetDir;
+
+        platform.talkerAPI.send(TalkerAPI.CMD_CREATE_OP, createRequest, (err, res) =>
+        {
+            if (err)
+            {
+                gui.serverOps.showApiError(err);
+                gui.savingTitleAnimEnd();
+                if (cb) cb();
+            }
+            else
+            {
+                function done()
+                {
+                    gui.opSelect().reload();
+                    gui.endModalLoading();
+                    gui.savingTitleAnimEnd();
+                    if (cb) cb(res);
+                }
+
+                if (!options.noLoadOp)
+                {
+                    this.loadOp(res, (newOps) =>
+                    {
+                        if (openEditor)
+                        {
+                            gui.maintabPanel.show(true);
+                            this.edit(res.name, false, null, true);
+                        }
+                        gui.serverOps.execute(res.name, () =>
+                        {
+                            done();
+                        });
+                    });
+                }
+                else done();
+            }
+        });
+    }
+
+    saveOpLayout(op)
+    {
+        this.timeoutsLayouts = this.timeoutsLayouts || {};
+
+        clearTimeout(this.timeoutsLayouts[op.objName]);
+        this.timeoutsLayouts[op.objName] = setTimeout(() =>
+        {
+            this._saveOpLayout(op);
+        }, 500);
+    }
+
+    _getOpLayout(op)
+    {
+        if (!op)
+        {
+            this.#log.error("saveoplayout: no op!");
+            return;
+        }
+        let i = 0;
+        const opObj = {
+            "portsIn": [],
+            "portsOut": []
+        };
+
+        for (i = 0; i < op.portsIn.length; i++)
+        {
+            if (op.portsIn[i].uiAttribs && op.portsIn[i].uiAttribs.hideParams === true)
+            {
+                this.#log.log("no hidden params in layout and doc");
+                // no hidden ports in layout and documentation
+                continue;
+            }
+            const l = {
+                "type": op.portsIn[i].type,
+                "name": op.portsIn[i].name
+            };
+
+            if (op.portsIn[i].uiAttribs.title) l.uititle = op.portsIn[i].uiAttribs.title;
+            if (op.portsIn[i].uiAttribs.values) l.values = op.portsIn[i].uiAttribs.values;
+            if (op.portsIn[i].uiAttribs.longPort) l.longPort = op.portsIn[i].uiAttribs.longPort;
+
+            if (op.portsIn[i].uiAttribs.group) l.group = op.portsIn[i].uiAttribs.group;
+            if (op.portsIn[i].uiAttribs.hidePort) continue;
+            if (op.portsIn[i].type === portType.number)
+            {
+                if (op.portsIn[i].uiAttribs.display === "bool") l.subType = "boolean";
+                else if (op.portsIn[i].uiAttribs.display === "boolnum") l.subType = "boolean";
+                else if (op.portsIn[i].uiAttribs.type === "string") l.subType = "string";
+                else if (op.portsIn[i].uiAttribs.increment === "integer") l.subType = "integer";
+                else if (op.portsIn[i].uiAttribs.display === "dropdown") l.subType = "select box";
+                else l.subType = "number";
+            }
+
+            if (op.portsIn[i].uiAttribs.objType) l.objType = op.portsIn[i].uiAttribs.objType;
+            opObj.portsIn.push(l);
+        }
+
+        for (i = 0; i < op.portsOut.length; i++)
+        {
+            const l = {
+                "type": op.portsOut[i].type,
+                "name": op.portsOut[i].name
+            };
+
+            if (op.portsOut[i].uiAttribs.title) l.uititle = op.portsOut[i].uiAttribs.title;
+            if (op.portsOut[i].uiAttribs.longPort) l.longPort = op.portsOut[i].uiAttribs.longPort;
+
+            if (op.portsOut[i].uiAttribs.hidePort) continue;
+            if (op.portsOut[i].type == portType.number)
+            {
+                if (op.portsOut[i].uiAttribs.display === "bool") l.subType = "boolean";
+                else if (op.portsOut[i].uiAttribs.display === "boolnum") l.subType = "boolean";
+                else if (op.portsOut[i].uiAttribs.type === "string") l.subType = "string";
+                else if (op.portsOut[i].uiAttribs.display === "dropdown") l.subType = "dropdown";
+                else if (op.portsOut[i].uiAttribs.display === "file") l.subType = "url";
+                else l.subType = "number";
+            }
+
+            if (op.portsOut[i].uiAttribs.objType) l.objType = op.portsOut[i].uiAttribs.objType;
+            opObj.portsOut.push(l);
+        }
+
+        return opObj;
+    }
+
+    _saveOpLayout(op)
+    {
+        if (!op)
+        {
+            this.#log.error("saveoplayout: no op!");
+            return;
+        }
+
+        const opObj = this._getOpLayout(op);
+
+        // check if layout has changed...
+        const l = gui.opDocs.getOpDocById(op.opId);
+        if (l && (JSON.stringify(l.layout) == JSON.stringify(opObj))) return false; // has not changed
+
+        platform.talkerAPI.send(TalkerAPI.CMD_SAVE_OP_LAYOUT, {
+            "opname": op.opId,
+            "layout": opObj
+        }, (err, res) =>
+        {
+            if (err)
+            {
+                this.#log.error(err);
+            }
+            else
+            {
+                if (l) l.layout = opObj;
+                gui.emitEvent("refreshManageOp", op.objName);
+            }
+        });
+        return true; // has changed
+    }
+
+    /**
+     * @param {string} opIdentifier
+     * @param {function} [next]
+     * @param {object} [options]
+     * @param {boolean} [reloadDependencies=true]
+     */
+    execute(opIdentifier, next = null, options = {}, reloadDependencies = true)
+    {
+        options = options || {};
+        gui.savedState.pause();
+
+        let oldOps = null;
+        if (opIdentifier.indexOf(".") > 0)
+        {
+            oldOps = gui.corePatch().getOpsByObjName(opIdentifier);
+        }
+        else
+        {
+            oldOps = gui.corePatch().getOpsByOpId(opIdentifier);
+        }
+
+        let name = opIdentifier;
+        if (oldOps.length > 0) name = oldOps[0].objName;
+
+        for (let i = 0; i < oldOps.length; i++)
+        {
+            if (oldOps[i].uiAttribs) delete oldOps[i].uiAttribs.uierrors;
+        }
+
+        gui.jobs().start({ "id": "executeop" });
+
+        this.loadOpDependencies(name, () =>
+        {
+            gui.corePatch().reloadOp(name, (num, newOps) =>
+            {
+                for (let i = 0; i < newOps.length; i++) if (newOps[i].checkLinkTimeWarnings)newOps[i].checkLinkTimeWarnings();
+
+                if (newOps.length > 0)
+                {
+                    this.saveOpLayout(newOps[0]);
+                }
+                gui.jobs().finish("executeop");
+
+                gui.savedState.resume();
+                if (next) next(newOps, options.refOldOp);
+                gui.corePatch().emitEvent("opReloaded", name, newOps[0]);
+            }, options.refOldOp);
+        }, reloadDependencies);
+    }
+
+    clone(oldname, name, cb, options)
+    {
+        options = options || { "openEditor": true };
+
+        gui.savingTitleAnimStart("Cloning Op...");
+
+        const cloneRequest = {
+            "opname": oldname,
+            "name": name
+        };
+        if (options.opTargetDir) cloneRequest.opTargetDir = options.opTargetDir;
+
+        platform.talkerAPI.send(TalkerAPI.CMD_CLONE_OP, cloneRequest, (err, res) =>
+        {
+            if (err)
+            {
+                this.#log.log("err res", res);
+                gui.savingTitleAnimEnd();
+                const dialogOptions = {
+                    "title": "Could not create new op",
+                    "text": err.msg
+                };
+                const parts = name.split("_v");
+                if (err.code === 409 && parts.length)
+                {
+                    const nextVersion = parts[0] + "_v" + (parseFloat(parts[1]) + 1);
+                    dialogOptions.choice = true;
+                    dialogOptions.okButton = {
+                        "text": "Try " + nextVersion,
+                        "callback": () =>
+                        {
+                            CmdOps.createVersionSelectedOp(name);
+                        }
+                    };
+                }
+                else
+                {
+                    dialogOptions.showOkButton = true;
+                }
+                new ModalDialog(dialogOptions);
+                return;
+            }
+
+            const finished = () =>
+            {
+                this.loadOp(res, () =>
+                {
+                    if (options.openEditor) this.edit(name);
+
+                    // loadingModal.setTask("loading new op: " + name);
+                    gui.serverOps.execute(name, () =>
+                    {
+                        gui.opSelect().reload();
+                        gui.savingTitleAnimEnd();
+                        if (cb) cb();
+                    });
+                });
+            };
+
+            if (res && res.attachments && res.attachments[subPatchOpUtil.blueprintSubpatchAttachmentFilename]) // subpatch op
+            {
+                const sub = JSON.parse(res.attachments[subPatchOpUtil.blueprintSubpatchAttachmentFilename]);
+
+                Patch.replaceOpIds(sub, {
+                    "oldIdAsRef": true
+                });
+
+                platform.talkerAPI.send(TalkerAPI.CMD_SAVE_OP_ATTACHMENT, {
+                    "opname": name,
+                    "name": subPatchOpUtil.blueprintSubpatchAttachmentFilename,
+                    "content": JSON.stringify(sub)
+                }, (errr, re) =>
+                {
+                    if (re && re.data && re.data.updated) gui.patchView.store.setServerDate(re.data.updated);
+                    finished();
+                });
+            }
+            else
+            {
+                finished();
+            }
+        });
+    }
+
+    addOpLib(opName, libName, next)
+    {
+        if (libName === "---") return;
+        platform.talkerAPI.send(TalkerAPI.CMD_ADD_OP_LIBRARY, {
+            "opname": opName,
+            "name": libName
+        }, (err, res) =>
+        {
+            if (err)
+            {
+                if (err.msg === "NO_OP_RIGHTS")
+                {
+                    let html = "";
+                    html += "you are not allowed to add libraries to this op.<br/><br/>";
+                    html += "to modify this op, try cloning it";
+                    new ModalDialog({
+                        "title": "error adding library",
+                        "showOkButton": true,
+                        "html": html
+                    });
+                }
+                else
+                {
+                    let html = "";
+                    html += err.msg + "<br/><br/>";
+                    new ModalDialog({
+                        "title": "error adding library",
+                        "showOkButton": true,
+                        "html": html
+                    });
+                }
+            }
+            else
+            {
+                gui.serverOps.loadOpDependencies(opName, () =>
+                {
+                    this.#log.log("lib added!", opName, libName);
+                    gui.emitEvent("refreshManageOp", opName);
+                    if (next) next();
+                }, true);
+            }
+        });
+    }
+
+    removeOpLib(opName, libName, next)
+    {
+        const modal = new ModalDialog({
+            "title": "Really remove library from op?",
+            "text": "Delete " + libName + " from " + opName + "?",
+            "choice": true
+        });
+        modal.on("onSubmit", () =>
+        {
+            platform.talkerAPI.send(TalkerAPI.CMD_REMOVE_OP_LIBRARY, {
+                "opname": opName,
+                "name": libName
+            }, (err, res) =>
+            {
+                if (err)
+                {
+                    new ModalDialog({
+                        "warning": true,
+                        "title": "ERROR",
+                        "html": "unable to remove library: " + err.msg
+                    });
+                }
+                else
+                {
+                    gui.serverOps.loadOpDependencies(opName, () =>
+                    {
+                        this.#log.log("lib removed!", opName, libName);
+                        gui.emitEvent("refreshManageOp", opName);
+                        if (next) next();
+                    }, true);
+                }
+            });
+        });
+    }
+
+    addCoreLib(opName, libName, next, options = {})
+    {
+        if (libName === "---") return;
+
+        platform.talkerAPI.send(TalkerAPI.CMD_ADD_OP_CORELIB, {
+            "opname": opName,
+            "name": libName
+        }, (err, res) =>
+        {
+            if (err)
+            {
+                if (err.msg === "NO_OP_RIGHTS")
+                {
+                    let html = "";
+                    html += "you are not allowed to add libraries to this op.<br/><br/>";
+                    html += "to modify this op, try cloning it";
+                    new ModalDialog({
+                        "title": "error adding core-lib",
+                        "showOkButton": true,
+                        "html": html
+                    });
+                }
+                else
+                {
+                    let html = "";
+                    html += err.msg + "<br/><br/>";
+                    new ModalDialog({
+                        "title": "error adding core-lib",
+                        "showOkButton": true,
+                        "html": html
+                    });
+                }
+            }
+            else
+            {
+                gui.serverOps.loadOpDependencies(opName, () =>
+                {
+                    this.#log.log("corelib added!", opName, libName);
+
+                    gui.emitEvent("refreshManageOp", opName);
+                    if (next) next();
+                }, true);
+            }
+        });
+    }
+
+    removeCoreLib(opName, libName, next)
+    {
+        const modal = new ModalDialog({
+            "title": "Really remove corelib from op?",
+            "text": "Delete " + libName + " from " + opName + "?",
+            "choice": true
+        });
+        modal.on("onSubmit", () =>
+        {
+            platform.talkerAPI.send(TalkerAPI.CMD_REMOVE_OP_CORELIB, {
+                "opname": opName,
+                "name": libName
+            }, (err, res) =>
+            {
+                if (err)
+                {
+                    new ModalDialog({
+                        "warning": true,
+                        "title": "ERROR",
+                        "html": "unable to remove corelib: " + err.msg
+                    });
+                }
+                else
+                {
+                    gui.serverOps.loadOpDependencies(opName, () =>
+                    {
+                        this.#log.log("corelib removed!", opName, libName);
+                        gui.emitEvent("refreshManageOp", opName);
+
+                        if (next) next();
+                    }, true);
+                }
+            });
+        });
+    }
+
+    addOpDependency(opId, depSrc, depType, exportName, next = null)
+    {
+        if (!opId || !depSrc || !depType) return;
+
+        let talkerCmd = TalkerAPI.CMD_ADD_OP_DEPENDENCY;
+
+        /** @type {any} */
+        let talkerPayload = {
+            "opName": opId,
+            "src": depSrc,
+            "type": depType,
+            "export": exportName
+        };
+        gui.jobs().start({
+            "id": "addOpDependency",
+            "title": "adding " + depSrc + " to " + opId
+        });
+        platform.talkerAPI.send(talkerCmd, talkerPayload, (err, res) =>
+        {
+            gui.jobs().finish("addOpDependency");
+
+            if (err)
+            {
+                let html = "";
+                if (err.msg === "NO_OP_RIGHTS")
+                {
+                    html += "You are not allowed to add dependencies to this op.<br/><br/>";
+                    html += "to modify this op, try cloning it";
+                }
+                else if (err.msg === "NPM_ERROR" && err.data)
+                {
+                    const opText = err.data.opName || opId ? " for " + err.data.opName || opId : "";
+                    html += "Failed dependency " + opText + ": " + err.data.stderr;
+                }
+                else if (err.msg === "FAILED_TO_ADD_DEPENDENCY" && depType === "op")
+                {
+                    html += "Failed to add op dependency to " + depSrc + "<br/><br/>";
+                    html += "Try removing any older version of this dependency first.";
+                }
+                else if (err.msg === "OP_DOES_NOT_EXIST" && depType === "op")
+                {
+                    const opText = err.data.opName || opId;
+                    html += "Failed to add op dependency to " + opText + "<br/><br/>";
+                    html += "Target op " + depSrc + " does not exist!";
+                }
+                else
+                {
+                    html += err.msg;
+                    this.#log.error(err.msg, err);
+                }
+                new ModalDialog({
+                    "title": "Error adding op-dependency",
+                    "showOkButton": true,
+                    "html": html
+                });
+                if (next) next(err);
+            }
+            gui.serverOps.loadOpDependencies(opId, (op) =>
+            {
+                this.#log.info("op-dependency added: " + opId + " " + depSrc);
+                if (res && res.data && res.data.stdout) this.#log.info("npm: " + res.data.stdout);
+                if (next) next(null, op);
+            }, true);
+        });
+    }
+
+    removeOpDependency(opId, depSrc, depType, next = null, confirmed = false)
+    {
+        let opName = this.getOpNameByIdentifier(opId) || opId;
+        const _remove = () =>
+        {
+            gui.jobs().start({
+                "id": "removeOpDependency",
+                "title": "removing " + depSrc + " from " + opId
+            });
+            platform.talkerAPI.send(TalkerAPI.CMD_REMOVE_OP_DEPENDENCY, {
+                "opName": opId,
+                "src": depSrc,
+                "type": depType
+            }, (err, res) =>
+            {
+                gui.jobs().finish("removeOpDependency");
+                if (err)
+                {
+                    this.#log.warn("unable to remove op-dependency: " + err.msg);
+                    gui.emitEvent("refreshManageOp", opId);
+                }
+                else
+                {
+                    gui.serverOps.loadOpDependencies(opId, () =>
+                    {
+                        this.#log.log("op-dependency removed!", opName, depSrc);
+                        if (next) next();
+                    }, true);
+                }
+            });
+        };
+
+        if (!confirmed)
+        {
+            const modalOptions = {
+                "title": "Really remove dependency from op?",
+                "text": "Remove " + depSrc + " from " + opName + "?",
+                "choice": true
+            };
+            if (depType === "op")
+            {
+                let depOpName = this.getOpNameByIdentifier(depSrc);
+                if (!depOpName) depOpName = "op dependency";
+                modalOptions.text = "Remove " + depOpName + " from " + opName + "?";
+            }
+            const modal = new ModalDialog(modalOptions);
+            modal.on("onSubmit", _remove);
+        }
+        else
+        {
+            _remove();
+        }
+
+    }
+
+    deleteAttachment(opName, opId, attName)
+    {
+        const modal = new ModalDialog({
+            "title": "Delete attachment from op?",
+            "text": "Delete " + attName + " from " + opName + "?",
+            "choice": true
+        });
+        modal.on("onSubmit", () =>
+        {
+            platform.talkerAPI.send(TalkerAPI.CMD_REMOVE_OP_ATTACHMENT, {
+                "opname": opId,
+                "name": attName
+            }, (err, res) =>
+            {
+                if (!err)
+                {
+                    if (res && res.data && res.data.name)
+                    {
+                        const opDoc = gui.opDocs.getOpDocByName(opName);
+                        if (opDoc)
+                        {
+                            if (opDoc.attachmentFiles) opDoc.attachmentFiles = opDoc.attachmentFiles.filter((att) => { return att !== res.data.name; });
+                        }
+                    }
+                    gui.serverOps.loadOpDependencies(opName, () =>
+                    {
+                        gui.emitEvent("refreshManageOp", opName);
+                    }, true);
+
+                }
+                else
+                {
+                    this.showApiError(err);
+                }
+
+            });
+        });
+    }
+
+    addAttachmentDialog(opName)
+    {
+        let opid = opName;
+        const docs = gui.opDocs.getOpDocByName(opName);
+        if (docs && docs) opid = docs.id;
+
+        let html = "Use this attachment in " + opName + " by accessing <code>attachments[\"my_attachment\"]</code>.";
+        new ModalDialog({
+            "title": "Create attachment",
+            "text": html,
+            "prompt": true,
+            "promptOk": (attName) =>
+            {
+                platform.talkerAPI.send(TalkerAPI.CMD_ADD_OP_ATTACHMENT, {
+                    "opname": opid,
+                    "name": attName
+                }, (err, res) =>
+                {
+                    if (err)
+                    {
+                        this.showApiError(err);
+                        return;
+                    }
+
+                    if (res && res.data && res.data.name)
+                    {
+                        const opDoc = gui.opDocs.getOpDocByName(opName);
+                        if (opDoc)
+                        {
+                            if (!opDoc.attachmentFiles) opDoc.attachmentFiles = [];
+                            if (opDoc.attachmentFiles && !opDoc.attachmentFiles.includes(res.data.name)) opDoc.attachmentFiles.push(res.data.name);
+                        }
+                    }
+
+                    this.editAttachment(opName, "att_" + attName);
+                    gui.emitEvent("refreshManageOp", opName);
+                });
+            }
+        });
+    }
+
+    testServer()
+    {
+        let opname = platform.getPatchOpsNamespace() + "test_" + utils.shortId();
+        let attachmentName = "att_test.js";
+
+        const cont = "// " + utils.uuid();
+
+        const atts = {};
+        atts[attachmentName] = cont;
+
+        CABLES.shittyTest = CABLES.shittyTest || 1;
+
+        platform.talkerAPI.send(TalkerAPI.CMD_CREATE_OP, {
+            "opname": opname
+        }, (err3, res) =>
+        {
+            platform.talkerAPI.send(TalkerAPI.CMD_UPDATE_OP, {
+                "opname": opname,
+                "update": {
+                    "attachments": atts
+                }
+
+                /*
+                 * "name": attachmentName,
+                 * "content": cont,
+                 */
+            }, (err) =>
+            {
+                if (err)
+                {
+                    this.showApiError(err);
+                }
+
+                platform.talkerAPI.send(TalkerAPI.CMD_GET_OP_ATTACHMENT, {
+                    "opname": opname,
+                    "name": attachmentName
+                }, (err2, res2) =>
+                {
+                    if (err2)
+                    {
+                        this.showApiError(err);
+                        return;
+                    }
+
+                    if (res.content.trim() != cont.trim()) this.#log.error("response", res.content, cont); else this.#log.log("ok");
+
+                    CABLES.shittyTest++;
+                    if (CABLES.shittyTest < 30) setTimeout(() => { this.testServer(); }, 100); else CABLES.shittyTest = 0;
+                });
+            });
+        });
+    }
+
+    createDialog(name, options)
+    {
+        options = options || {};
+        if (!options.hasOwnProperty("showEditor")) options.showEditor = true;
+
+        if (!platform.checkOpCreate()) return;
+
+        let suggestedNamespace = platform.getPatchOpsNamespace();
+        let suggestedName = name;
+        if (!suggestedName) suggestedName = suggestedNamespace + platform.getDefaultOpName();
+
+        const dialogOptions = {
+            "title": "Create operator",
+            "shortName": suggestedName,
+            "type": "patch",
+            "suggestedNamespace": suggestedNamespace,
+            "showReplace": false,
+            "sourceOpName": null,
+            "rename": false,
+            "hasOpDirectories": platform.frontendOptions.hasOpDirectories
+        };
+
+        new ModalOpName(dialogOptions, (newNamespace, newName, cbOptions) =>
+        {
+            let opname = newName;
+            this.create(opname, (newOp) =>
+            {
+                gui.closeModal();
+
+                opname = newOp && newOp.name ? newOp.name : opname;
+
+                gui.serverOps.loadOpDependencies(opname, function ()
+                {
+                    // add new op
+                    gui.patchView.addOp(opname, {
+                        "onOpAdd": (op) =>
+                        {
+                            op.setUiAttrib({
+                                "translate": {
+                                    "x": gui.patchView.patchRenderer.viewBox.mousePatchX,
+                                    "y": gui.patchView.patchRenderer.viewBox.mousePatchY
+                                }
+                            });
+
+                            if (op) gui.patchView.focusOp(op.id);
+                            if (op) gui.patchView.patchRenderer.viewBox.animateScrollTo(gui.patchView.patchRenderer.viewBox.mousePatchX, gui.patchView.patchRenderer.viewBox.mousePatchY);
+                            if (options.cb) options.cb(op);
+                        }
+                    });
+                });
+            }, options.showEditor, cbOptions);
+        });
+    }
+
+    renameDialogIframe(opName)
+    {
+        if (!platform.isTrustedPatch())
+        {
+            new ModalDialog({
+                "title": "You need write access in the patch to rename ops",
+                "showOkButton": true
+            });
+            return;
+        }
+
+        const iframeSrc = platform.getCablesUrl() + "/op/rename?iframe=true&op=" + opName + "&new=" + opName + "&p=" + gui.patchId;
+        const modal = new ModalIframe({
+            "title": "Rename Op",
+            "src": iframeSrc
+        });
+        const iframeEle = modal.iframeEle;
+        const talkerAPI = new TalkerAPI(iframeEle.contentWindow);
+        const renameListenerId = talkerAPI.addEventListener(TalkerAPI.CMD_UI_OP_RENAMED, (newOp) =>
+        {
+            talkerAPI.removeEventListener(renameListenerId);
+            const renameDoneListenerId = talkerAPI.addEventListener(TalkerAPI.CMD_UI_CLOSE_RENAME_DIALOG, () =>
+            {
+                talkerAPI.removeEventListener(renameDoneListenerId);
+                gui.closeModal();
+            });
+            this._afterOpRename(newOp);
+        });
+    }
+
+    // rename dialog for non-api platforms like electron
+    renameDialog(oldName)
+    {
+        if (!platform.frontendOptions.opRenameInEditor) return;
+
+        if (gui.showGuestWarning()) return;
+
+        this.#log.log("renamedialog");
+
+        let name = "";
+        let parts = oldName.split(".");
+        if (parts) name = parts[parts.length - 1];
+        let suggestedNamespace = namespace.getNamespace(oldName);
+
+        const dialogOptions = {
+            "title": "Rename operator",
+            "shortName": name,
+            "type": "patch",
+            "suggestedNamespace": suggestedNamespace,
+            "showReplace": false,
+            "sourceOpName": oldName,
+            "rename": true,
+            "hasOpDirectories": false
+        };
+
+        new ModalOpName(dialogOptions, (newNamespace, newName, cbOptions) =>
+        {
+            const opname = newName;
+
+            let nameOrId = oldName;
+            const doc = gui.opDocs.getOpDocByName(oldName);
+            if (doc && doc.id) nameOrId = doc.id;
+            cbOptions = cbOptions || { "openEditor": true };
+            const renameRequest = {
+                "opname": nameOrId,
+                "name": opname,
+                "namespace": newNamespace
+            };
+            if (cbOptions.opTargetDir) renameRequest.opTargetDir = cbOptions.opTargetDir;
+
+            platform.talkerAPI.send(TalkerAPI.CMD_ELECTRON_RENAME_OP, renameRequest, (err, res) =>
+            {
+                if (err)
+                {
+                    this.#log.log("err res", res);
+                    new ModalDialog({
+                        "warning": true,
+                        "title": "Could not rename op"
+                    });
+                }
+                else
+                {
+                    gui.closeModal();
+                    this._afterOpRename(res.data);
+                }
+            });
+        });
+    }
+
+    deleteDialog(opName)
+    {
+        if (!platform.frontendOptions.opDeleteInEditor) return;
+
+        if (gui.showGuestWarning()) return;
+
+        const modal = new ModalDialog({
+            "title": "Really delete op?",
+            "text": "Delete " + opName + "?",
+            "choice": true
+        });
+        modal.on("onSubmit", () =>
+        {
+            platform.talkerAPI.send(TalkerAPI.CMD_ELECTRON_DELETE_OP, { "opName": opName }, (err, res) =>
+            {
+                if (err)
+                {
+                    new ModalDialog({
+                        "title": "Failed to delete op",
+                        "text": err.message
+                    });
+                }
+                else
+                {
+                    const patch = gui.corePatch();
+                    const ops = patch.getOpsByObjName(opName);
+                    ops.forEach((op) =>
+                    {
+                        patch.deleteOp(op.id, true);
+                    });
+                }
+            });
+        });
+    }
+
+    _deletePropertyByPath(obj, path)
+    {
+        if (!obj || !path)
+        {
+            return;
+        }
+
+        if (typeof path === "string")
+        {
+            path = path.split(".");
+        }
+
+        for (let i = 0; i < path.length - 1; i++)
+        {
+            obj = obj[path[i]];
+
+            if (typeof obj === "undefined")
+            {
+                return;
+            }
+        }
+
+        delete obj[path.pop()];
+    }
+
+    _afterOpRename(newOp)
+    {
+
+        this.#log.info("renamed op" + newOp.objName + "to" + newOp.oldName);
+        this.loadOp(newOp, () =>
+        {
+            let properties = newOp.oldName.split(".");
+            properties.shift();
+            const path = properties.join(".");
+            this._deletePropertyByPath(Ops, path);
+            const usedOps = gui.corePatch()
+                .getOpsByOpId(newOp.opId);
+            usedOps.forEach((usedOp) =>
+            {
+                gui.patchView.replaceOp(usedOp.id, newOp.objName);
+            });
+            gui.opSelect().reload();
+            gui.opSelect().prepare();
+        }, true);
+    }
+
+    cloneDialog(oldName, origOp)
+    {
+        if (gui.showGuestWarning()) return;
+
+        if (gui.project().isOpExample)
+        {
+            notifyError("Not possible in op example patch!");
+            return;
+        }
+
+        let name = "";
+        let parts = oldName.split(".");
+        if (parts) name = parts[parts.length - 1];
+        let suggestedNamespace = platform.getPatchOpsNamespace();
+        if (namespace.isTeamOp(oldName)) suggestedNamespace = namespace.getNamespace(oldName);
+
+        const dialogOptions = {
+            "title": "Clone operator",
+            "shortName": name,
+            "type": "patch",
+            "suggestedNamespace": suggestedNamespace,
+            "showReplace": true,
+            "sourceOpName": oldName,
+            "rename": false,
+            "hasOpDirectories": platform.frontendOptions.hasOpDirectories
+        };
+
+        new ModalOpName(dialogOptions, (newNamespace, newName, cbOptions) =>
+        {
+            const opname = newName;
+
+            let nameOrId = oldName;
+            const doc = gui.opDocs.getOpDocByName(oldName);
+
+            if (doc && doc.id) nameOrId = doc.id;
+
+            gui.serverOps.clone(nameOrId, opname, () =>
+            {
+                gui.closeModal();
+
+                gui.serverOps.loadOpDependencies(opname, function ()
+                {
+                    if (cbOptions && cbOptions.replace)
+                    {
+                        // replace existing ops
+                        const ops = gui.corePatch()
+                            .getOpsByObjName(oldName);
+                        for (let i = 0; i < ops.length; i++)
+                        {
+                            gui.patchView.replaceOp(ops[i].id, opname);
+                        }
+                    }
+                    else
+                    {
+                        // add new op
+                        gui.patchView.addOp(opname, {
+                            "onOpAdd": (op) =>
+                            {
+                                op.setUiAttrib({
+                                    "translate": {
+                                        "x": gui.patchView.patchRenderer.viewBox.mousePatchX,
+                                        "y": gui.patchView.patchRenderer.viewBox.mousePatchY
+                                    }
+                                });
+
+                                if (op)
+                                {
+                                    if (origOp) gui.patchView.copyOpInputPorts(origOp, op);
+
+                                    gui.patchView.focusOp(op.id);
+                                    gui.patchView.patchRenderer.viewBox.animateScrollTo(gui.patchView.patchRenderer.viewBox.mousePatchX, gui.patchView.patchRenderer.viewBox.mousePatchY);
+                                }
+                            }
+                        });
+                    }
+                });
+            }, { "opTargetDir": cbOptions.opTargetDir });
+        });
+    }
+
+    editDependency(op, dependencyName, readableName, readOnly, cb, fromListener = false)
+    {
+        let opname = op;
+        let opId = opname;
+
+        if (typeof opname == "object")
+        {
+            opname = op.objName;
+            opId = op.opId;
+        }
+        else
+        {
+            const docs = gui.opDocs.getOpDocByName(opname);
+            if (docs) opId = docs.id; else this.#log.warn("could not find opid for ", opname);
+        }
+
+        const parts = opname.split(".");
+        const shortname = parts[parts.length - 1];
+        const title = shortname + "/" + readableName;
+        const userInteraction = !fromListener;
+
+        let existingTab = gui.maintabPanel.tabs.getTabByTitle(title);
+        if (existingTab)
+        {
+            gui.mainTabs.activateTabByName(existingTab.title);
+            gui.maintabPanel.show(true);
+            return;
+        }
+
+        let editorObj = null;
+        gui.jobs().start({
+            "id": "load_dependency_" + readableName,
+            "title": "loading dependency " + readableName
+        });
+
+        const apiParams = {
+            "opname": opId,
+            "name": dependencyName
+        };
+
+        const editorTab = createEditor({
+            "title": title,
+            "name": opId, // "content": content,
+            "loading": true,
+            "syntax": "js",
+            "editorObj": editorObj,
+            "allowEdit": !!readOnly,
+            "showSaveButton": true,
+            "onClose": (which) =>
+            {
+                if (editorObj && editorObj.name) editorSession.remove(editorObj.type, editorObj.name);
+            }
+        });
+
+        platform.talkerAPI.send(TalkerAPI.CMD_GET_OP_DEPENDENCY, apiParams, (err, res) =>
+        {
+            gui.jobs().finish("load_dependency_" + dependencyName);
+
+            if (err)
+            {
+                this.showApiError(err);
+                this.#log.error("error opening dependency " + dependencyName);
+                this.#log.log(err);
+                if (editorObj) editorSession.remove(editorObj.type, editorObj.name);
+                return;
+            }
+
+            if (!res || !res.data || res.data.content === undefined)
+            {
+                if (err) this.#log.log("[editDependency] err", err);
+                if (editorObj) editorSession.remove(editorObj.type, editorObj.name);
+                return;
+            }
+
+            editorObj = editorSession.rememberOpenEditor("dependency", title, {
+                "opname": opname,
+                "opid": opId,
+                "name": dependencyName
+            }, true);
+
+            const content = res.data.content || "";
+            editorTab.setContent(content);
+
+            if (editorObj)
+            {
+                editorTab.on("save", (_setStatus, _content) =>
+                {
+                    gui.savingTitleAnimStart("Saving dependency...");
+                    platform.talkerAPI.send(TalkerAPI.CMD_SAVE_OP_DEPENDENCY, {
+                        "opname": opId,
+                        "name": dependencyName,
+                        "content": _content
+                    }, (errr, re) =>
+                    {
+                        if (platform.warnOpEdit(opname)) notifyError("WARNING: op editing on live environment");
+
+                        if (errr)
+                        {
+                            notifyError("error: op not saved");
+                            this.#log.warn("[opDependencySave]", errr);
+                            return;
+                        }
+
+                        if (re && re.data && re.data.updated) gui.patchView.store.setServerDate(re.data.updated);
+
+                        _setStatus("Saved " + dependencyName);
+
+                        subPatchOpUtil.executeBlueprintIfMultiple(opname, () =>
+                        {
+                            gui.opParams.refresh();
+                            gui.savingTitleAnimEnd();
+                        });
+                    });
+                });
+            }
+
+            if (cb) cb(); else gui.maintabPanel.show(userInteraction);
+        });
+
+        if (!editorObj && title)
+        {
+            gui.mainTabs.activateTabByName(title);
+            gui.maintabPanel.show(userInteraction);
+        }
+    }
+
+    editAttachment(op, attachmentName, readOnly, cb, fromListener = false)
+    {
+        let opname = op;
+        let opId = opname;
+
+        if (typeof opname == "object")
+        {
+            opname = op.objName;
+            opId = op.opId;
+        }
+        else
+        {
+            const docs = gui.opDocs.getOpDocByName(opname);
+            if (docs) opId = docs.id; else this.#log.warn("could not find opid for ", opname);
+        }
+
+        const parts = opname.split(".");
+        const shortname = parts[parts.length - 1];
+        const title = shortname + "/" + attachmentName;
+        const userInteraction = !fromListener;
+
+        let existingTab = gui.maintabPanel.tabs.getTabByTitle(title);
+        if (existingTab)
+        {
+            gui.mainTabs.activateTabByName(existingTab.title);
+            gui.maintabPanel.show(true);
+            return;
+        }
+
+        let editorObj = null;
+        gui.jobs().start({
+            "id": "load_attachment_" + attachmentName,
+            "title": "loading attachment " + attachmentName
+        });
+
+        const apiParams = {
+            "opname": opId,
+            "name": attachmentName
+        };
+        let syntax = "text";
+
+        if (attachmentName.endsWith(".wgsl") || attachmentName.endsWith("_wgsl")) syntax = "glsl";
+        if (attachmentName.endsWith(".glsl") || attachmentName.endsWith("_glsl")) syntax = "glsl";
+        if (attachmentName.endsWith(".frag") || attachmentName.endsWith("_frag")) syntax = "glsl";
+        if (attachmentName.endsWith(".vert") || attachmentName.endsWith("_vert")) syntax = "glsl";
+        if (attachmentName.endsWith(".json") || attachmentName.endsWith("_json")) syntax = "json";
+        if (attachmentName.endsWith(".js") || attachmentName.endsWith("_js")) syntax = "js";
+        if (attachmentName.endsWith(".css") || attachmentName.endsWith("_css")) syntax = "css";
+
+        const lastTab = userSettings.get("editortab");
+        let inactive = false;
+        if (fromListener) if (lastTab !== title) inactive = true;
+
+        // let editorTab = new EditorTab({
+        const editorTab = createEditor({
+            "title": title,
+            "name": opId, // "content": content,
+            "loading": true,
+            "syntax": syntax,
+            "editorObj": editorObj,
+            "allowEdit": this.canEditAttachment(gui.user, opname),
+            "showSaveButton": true,
+            "inactive": inactive,
+            "onClose": (which) =>
+            {
+                if (editorObj && editorObj.name) editorSession.remove(editorObj.type, editorObj.name);
+            }
+        });
+
+        platform.talkerAPI.send(TalkerAPI.CMD_GET_OP_ATTACHMENT, apiParams, (err, res) =>
+        {
+            if (err)
+            {
+                this.showApiError(err);
+                return;
+            }
+
+            gui.jobs().finish("load_attachment_" + attachmentName);
+
+            if (err || !res || res.content === undefined)
+            {
+                if (err) this.#log.log("[editAttachment] err", err);
+                if (editorObj) editorSession.remove(editorObj.type, editorObj.name);
+                return;
+            }
+
+            editorObj = editorSession.rememberOpenEditor("attachment", title, {
+                "opname": opname,
+                "opid": opId,
+                "name": attachmentName
+            }, true);
+
+            if (err || !res || res.content == undefined)
+            {
+                if (err) this.#log.log("[editAttachment] err", err);
+                if (editorObj) editorSession.remove(editorObj.type, editorObj.name);
+                return;
+            }
+            const content = res.content || "";
+            editorTab.setContent(content);
+
+            if (editorObj)
+            {
+                editorTab.on("save", (_setStatus, _content) =>
+                {
+                    gui.savingTitleAnimStart("Saving Attachment...");
+                    platform.talkerAPI.send(TalkerAPI.CMD_SAVE_OP_ATTACHMENT, {
+                        "opname": opId,
+                        "name": attachmentName,
+                        "content": _content
+                    }, (errr, re) =>
+                    {
+                        if (platform.warnOpEdit(opname)) notifyError("WARNING: op editing on live environment");
+
+                        if (errr)
+                        {
+                            notifyError("error: op not saved");
+                            this.#log.warn("[opAttachmentSave]", errr);
+                            return;
+                        }
+
+                        if (re && re.data && re.data.updated) gui.patchView.store.setServerDate(re.data.updated);
+
+                        _setStatus("Saved " + attachmentName);
+
+                        if (attachmentName == subPatchOpUtil.blueprintPortJsonAttachmentFilename)
+                        {
+                            let ports = null;
+                            try
+                            {
+                                ports = JSON.parse(_content);
+                            }
+                            catch (e)
+                            {
+                                ports = { "ports": [] };
+                            }
+
+                            subPatchOpUtil.savePortJsonSubPatchOpAttachment(ports, opname, () =>
+                            {
+                                subPatchOpUtil.executeBlueprintIfMultiple(opname, () =>
+                                {
+                                    gui.opParams.refresh();
+                                    gui.savingTitleAnimEnd();
+                                });
+                            });
+                        }
+                        else subPatchOpUtil.executeBlueprintIfMultiple(opname, () =>
+                        {
+                            gui.opParams.refresh();
+                            gui.savingTitleAnimEnd();
+                        });
+                    });
+                });
+            }
+
+            if (cb) cb(); else gui.maintabPanel.show(userInteraction);
+        }, (err) =>
+        {
+            gui.jobs().finish("load_attachment_" + attachmentName);
+            this.#log.error("error opening attachment " + attachmentName);
+            this.#log.log(err);
+            if (editorObj) editorSession.remove(editorObj.type, editorObj.name);
+        });
+
+        if (!editorObj && title)
+        {
+            gui.mainTabs.activateTabByName(title);
+            gui.maintabPanel.show(userInteraction);
+        }
+    }
+
+    getOpEditorTitle(opname)
+    {
+        const parts = opname.split(".");
+        return "Op " + parts[parts.length - 1];
+
+    }
+
+    // Shows the editor and displays the code of an op in it
+    /**
+     * @param {string} opname
+     * @param {boolean} [readOnly]
+     * @param {function} [cb]
+     * @param {boolean} [userInteraction]
+     */
+    edit(opname, readOnly, cb, userInteraction)
+    {
+        if (gui.isGuestEditor())
+        {
+            new ModalDialog({
+                "warning": true,
+                "title": "Demo Editor",
+                "html": GuiText.guestHint
+            });
+            return;
+        }
+
+        let opid = opname;
+
+        if (typeof opname == "object")
+        {
+            // todo remove if not happening anymore
+            console.error("edit op needs opname");
+            opid = op.opId;
+            opname = op.objName;
+        }
+        else
+        {
+            const docs = gui.opDocs.getOpDocByName(opname);
+            if (!docs) return this.#log.warn("[opsserver] could not find docs", opname);
+            opid = docs.id;
+
+            if (!opid) this.#log.warn("[opsserver]deprecated: use serverOps.edit with op not just opname!");
+        }
+
+        if (!opname || opname == "")
+        {
+            this.#log.error("UNKNOWN OPNAME ", opname);
+            return;
+        }
+
+        gui.jobs()
+            .start({
+                "id": "load_opcode_" + opname,
+                "title": "loading op code " + opname
+            });
+
+        const editorObj = editorSession.rememberOpenEditor("op", opname);
+        let editorTab;
+
+        if (editorObj)
+        {
+            editorTab = createEditor({
+                "title": this.getOpEditorTitle(opname),
+                "name": editorObj.name,
+                "loading": true,
+                "singleton": true,
+                "syntax": "js",
+                "allowEdit": this.canEditOp(gui.user, editorObj.name),
+                "allowEditReason": this.canEditOpReason(gui.user, editorObj.name),
+                "showSaveButton": true,
+                "editorObj": editorObj,
+                "onClose": (which) =>
+                {
+                    if (which.editorObj) editorSession.remove(which.editorObj.type, which.editorObj.name);
+                }
+            });
+
+            platform.talkerAPI.send(TalkerAPI.CMD_GET_OP_CODE, {
+                "opname": opid,
+                "projectId": this.#patchId
+            }, (er, rslt) =>
+            {
+                gui.jobs().finish("load_opcode_" + opname);
+
+                if (er)
+                {
+                    notifyError("Error receiving op code!");
+                    editorTab.setContent("");
+                    editorSession.remove("op", opname);
+                    if (gui && gui.patchView && gui.patchView.store) gui.patchView.store.opCrashed = true;
+                    return;
+                }
+                editorTab.setContent(rslt.code);
+                const oldCode = rslt.code;
+
+                if (!readOnly && editorTab)
+                {
+
+                    editorTab.on("save", (setStatus, content, editor) =>
+                    {
+                        gui.savingTitleAnimStart("Saving Op...");
+                        this.saveOpsInProgress[opname] = true;
+
+                        // platform.talkerAPI.send(TalkerAPI.CMD_GET_OP_CODE, {
+                        //     "opname": opid,
+                        //     "projectId": this.#patchId
+                        // }, (er, rslt) =>
+                        // {
+                        //     if (rslt.code != oldCode)
+                        //     {
+                        //         console.log("HAS CHANGED!!!!!!!!");
+                        //         new ModalDialog({
+                        //             "title": "file changed serverside",
+                        //             "text": "file was overwritten",
+                        //         });
+                        //         console.log("oldcode:", oldCode);
+                        //     }
+
+                        // });
+
+                        platform.talkerAPI.send(
+                            TalkerAPI.CMD_SAVE_OP_CODE,
+                            {
+                                "opname": opid,
+                                "code": content,
+                                "format": userSettings.get("formatcode") || false
+                            },
+                            (err, res) =>
+                            {
+                                const selOps = gui.patchView.getSelectedOps();
+                                let selOpTranslate = null;
+                                if (selOps && selOps.length > 0) selOpTranslate = selOps[0].uiAttribs.translate;
+
+                                if (err)
+                                {
+                                    gui.endModalLoading();
+                                    setStatus(err.msg || "Unknown error");
+                                    return;
+                                }
+
+                                if (!res.success)
+                                {
+                                    gui.savingTitleAnimEnd();
+
+                                    if (res && res.error && res.error.line != undefined) setStatus("Error: Line " + res.error.line + " : " + res.error.message, true); else if (err) setStatus("Error: " + err.msg || "Unknown error");
+                                }
+                                else
+                                {
+                                    if (res.updated) gui.patchView.store.setServerDate(res.updated);
+                                    if (platform.warnOpEdit(opname)) notifyError("WARNING: op editing on live environment");
+                                    if (!Patch.getOpClass(opname)) gui.opSelect().reload();
+
+                                    gui.serverOps.execute(opid, () =>
+                                    {
+                                        setStatus("Saved " + opname);
+                                        editor.focus();
+
+                                        if (selOpTranslate) for (let i = 0; i < gui.corePatch().ops.length; i++)
+                                            if (gui.corePatch().ops[i].uiAttribs &&
+                                                 gui.corePatch().ops[i].uiAttribs.translate &&
+                                                 gui.corePatch().ops[i].uiAttribs.translate.x == selOpTranslate.x &&
+                                                 gui.corePatch().ops[i].uiAttribs.translate.y == selOpTranslate.y)
+                                            {
+                                                gui.opParams.show(gui.corePatch().ops[i].id);
+                                                gui.patchView.setSelectedOpById(gui.corePatch().ops[i].id);
+                                            }
+
+                                        gui.savingTitleAnimEnd();
+                                        gui.endModalLoading();
+                                    });
+                                }
+                            },
+                            (result) =>
+                            {
+                                setStatus("ERROR: not saved - " + result.msg);
+                                this.#log.log("err result", result);
+
+                                // gui.endModalLoading();
+                                gui.savingTitleAnimEnd();
+                            });
+                    });
+                }
+                else
+                {
+                    console.log("no editortab?");
+                }
+
+                if (cb) cb(); else gui.maintabPanel.show(userInteraction);
+            });
+        }
+        else
+        {
+            gui.jobs().finish("load_opcode_" + opname);
+
+            let name = gui.mainTabs.getUniqueTitle(opname);
+            gui.mainTabs.activateTabByName(name);
+            gui.maintabPanel.show(userInteraction);
+        }
+    }
+
+    getOpLibs(opName)
+    {
+        const perf = gui.uiProfiler.start("[opsserver] getOpLibs");
+        const opDoc = gui.opDocs.getOpDocByName(opName);
+        const libs = [];
+        if (opDoc && opDoc.libs)
+        {
+            for (let j = 0; j < opDoc.libs.length; j++)
+            {
+                const libName = opDoc.libs[j];
+                libs.push({
+                    "name": libName,
+                    "type": "commonjs",
+                    "src": libName,
+                    "op": opDoc.name
+                });
+            }
+        }
+        perf.finish();
+        return libs;
+    }
+
+    getCoreLibs(opName)
+    {
+        const perf = gui.uiProfiler.start("[opsserver] getCoreLibs");
+        const opDoc = gui.opDocs.getOpDocByName(opName);
+        const coreLibs = [];
+        if (opDoc && opDoc.coreLibs)
+        {
+            for (let j = 0; j < opDoc.coreLibs.length; j++)
+            {
+                const libName = opDoc.coreLibs[j];
+                coreLibs.push({
+                    "name": libName,
+                    "type": "corelib",
+                    "src": libName,
+                    "op": opDoc.name
+                });
+            }
+        }
+        perf.finish();
+        return coreLibs;
+    }
+
+    getOpDeps(opThing)
+    {
+        const perf = gui.uiProfiler.start("[opsserver] getOpDeps");
+
+        let opDoc = null;
+        if (typeof opThing === "string") opDoc = gui.opDocs.getOpDocByName(opThing); else
+        {
+            if (opThing.opId)
+            {
+                // probably serialized patch
+                opDoc = gui.opDocs.getOpDocById(opThing.opId);
+            }
+            else if (opThing.objName)
+            {
+                // probably op instance
+                opDoc = gui.opDocs.getOpDocByName(opThing.objName);
+            }
+            else
+            {
+                // probably opDoc object
+                opDoc = gui.opDocs.getOpDocById(opThing.id);
+            }
+        }
+
+        perf.finish();
+        if (!opDoc)
+            return [];
+
+        const perf2 = gui.uiProfiler.start("[opsserver] getOpDeps2 ");
+        const opLibs = this.getOpLibs(opDoc.name);
+        const opCoreLibs = this.getCoreLibs(opDoc.name);
+        const opDependencies = [];
+        if (opDoc && opDoc.dependencies)
+        {
+            const platformDeps = platform.getSupportedOpDependencyTypes();
+            const opDeps = opDoc.dependencies.filter((dep) => { return platformDeps.includes(dep.type); });
+            for (let i = 0; i < opDeps.length; i++)
+            {
+                const dep = opDeps[i];
+                dep.op = opDoc.name;
+                opDependencies.push(dep);
+            }
+        }
+        perf2.finish();
+
+        return [...opLibs, ...opCoreLibs, ...opDependencies];
+    }
+
+    loadOpDependencies(opIdentifier, _next, reload = false)
+    {
+        if (!opIdentifier) this.#log.error("no opIdentifier:", opIdentifier);
+        let project = { "ops": [{ "objName": opIdentifier }] };
+        if (!opIdentifier.startsWith("Ops.")) project = { "ops": [{ "opId": opIdentifier }] };
+        this.loadProjectDependencies(project, _next, reload);
+    }
+
+    loadProjectDependencies(proj, _next, loadAll = false)
+    {
+        let missingOps = [];
+        if (loadAll)
+        {
+            missingOps = proj.ops;
+        }
+        else
+        {
+            missingOps = this.getMissingOps(proj);
+        }
+        this.loadOps(missingOps, (newOps, newIds) =>
+        {
+            const perf2 = gui.uiProfiler.start("[opsserver] loadProjectDependencies");
+
+            if (gui && gui.opSelect() && newOps.length > 0)
+            {
+                gui.opSelect().reload();
+                gui.opSelect().prepare();
+            }
+
+            if (proj && proj.ops)
+            {
+                for (let i = 0; i < proj.ops.length; i++)
+                {
+                    if (proj.ops[i])
+                    {
+                        if (newIds.hasOwnProperty(proj.ops[i].opId))
+                        {
+                            proj.ops[i].opId = newIds[proj.ops[i].opId];
+                        }
+                    }
+                }
+            }
+
+            perf2.finish();
+            this.loadOpsLibs(proj.ops, () =>
+            {
+                if (_next)
+                {
+                    proj.ops = proj.ops ? proj.ops.filter((op) => { return this.isLoaded(op); }) : [];
+                    _next(proj, newOps);
+                }
+            });
+        });
+    }
+
+    opCodeLoaded(op)
+    {
+        return CABLES && CABLES.OPS && (CABLES.OPS.hasOwnProperty(op.opId) || CABLES.OPS.hasOwnProperty(op.id));
+    }
+
+    loadOpLibs(op, finishedCb)
+    {
+        this.loadOpsLibs([op], finishedCb);
+    }
+
+    loadOpsLibs(ops, finishedCb)
+    {
+        if (!ops || ops.length === 0)
+        {
+            finishedCb();
+            return;
+        }
+
+        let depsToLoad = {};
+
+        ops.forEach((op) =>
+        {
+            const opDeps = this.getOpDeps(op);
+            opDeps.forEach((lib) => { depsToLoad[lib.src] = lib; });
+        });
+        new LibLoader(Object.values(depsToLoad), finishedCb);
+    }
+
+    finished()
+    {
+        return this.loaded;
+    }
+
+    canEditOp(user, opName)
+    {
+        if (!platform.isTrustedPatch()) return false;
+        if (!user) return false;
+        if (user.isAdmin) return true;
+        const op = this.#ops.find((o) => { return o.name === opName; });
+        if (!op) return false;
+        return op.allowEdit || false;
+    }
+
+    canEditOpReason(user, opName)
+    {
+        if (!platform.isTrustedPatch()) return "Untrusted patch";
+        if (!user) return "no user";
+        const op = this.#ops.find((o) => { return o.name === opName; });
+        if (op && !op.allowEdit) return "no rights";
+        return "unknown";
+    }
+
+    canEditAttachment(user, opName)
+    {
+        return this.canEditOp(user, opName);
+    }
+
+    getMissingOps(proj)
+    {
+        const perf = gui.uiProfiler.start("[opsserver] getMissingOps");
+
+        let missingOps = [];
+        const missingOpsFound = [];
+        if (proj.ops) proj.ops.forEach((op) =>
+        {
+            const opIdentifier = this.getOpIdentifier(op);
+            if (!missingOpsFound.includes(opIdentifier))
+            {
+                const opInfo = {
+                    "opId": op.opId,
+                    "objName": op.objName
+                };
+                if (!this.isLoaded(op))
+                {
+                    missingOps.push(opInfo);
+                    missingOpsFound.push(opIdentifier);
+                }
+            }
+        });
+        missingOps = missingOps.filter((obj, index) => { return missingOps.findIndex((item) => { return item.opId === obj.opId; }) === index; });
+
+        perf.finish();
+        return missingOps;
+    }
+
+    isLoaded(op)
+    {
+        const perf = gui.uiProfiler.start("[opsserver] isloaded");
+        const opDocs = gui.opDocs.getOpDocs();
+        const opIdentifier = this.getOpIdentifier(op);
+        // FIXME: this is very convoluted since opdocs have .id and .name but projectops have .opId and .objName and the likes...unify some day :/
+        let foundOp = opDocs.find((loadedOp) => { return loadedOp.id === opIdentifier; });
+        if (!foundOp) foundOp = opDocs.find((loadedOp) => { return loadedOp.objName === opIdentifier; });
+        if (!foundOp) foundOp = opDocs.find((loadedOp) => { return loadedOp.name === opIdentifier; });
+        if (!foundOp) foundOp = this.#ops.find((loadedOp) => { return loadedOp.id === opIdentifier; });
+        if (!foundOp) foundOp = this.#ops.find((loadedOp) => { return op.objName && loadedOp.objName === opIdentifier; });
+        if (!foundOp) foundOp = this.#ops.find((loadedOp) => { return op.name && loadedOp.name === opIdentifier; });
+        let loaded = false;
+        if (foundOp)
+        {
+            // we found an op in opdocs, check if we also have the code and needed libraries
+            loaded = this.opCodeLoaded(foundOp);
+        }
+        perf.finish();
+        return loaded;
+    }
+
+    loadOps(ops, cb)
+    {
+        let count = ops.length;
+        const newOps = [];
+        const newIds = {};
+        if (count === 0)
+        {
+            cb(newOps, newIds);
+        }
+        else
+        {
+            ops.forEach((op) =>
+            {
+                this.loadOp(op, (createdOps) =>
+                {
+                    if (createdOps)
+                    {
+                        createdOps.forEach((newOp) =>
+                        {
+                            if (newOp.oldOpId) newIds[newOp.oldOpId] = newOp.opId;
+                            newOps.push(newOp);
+                        });
+                    }
+                    count--;
+                    if (count === 0)
+                    {
+                        cb(newOps, newIds);
+                    }
+                });
+            });
+        }
+    }
+
+    loadOp(op, cb, forceReload = false)
+    {
+        if (op)
+        {
+            const opIdentifier = this.getOpIdentifier(op);
+            let oldName = this.getOpNameByIdentifier(opIdentifier);
+            gui.jobs().start({
+                "id": "getopdocs",
+                "title": "load opdocs for " + oldName || opIdentifier
+            });
+            platform.talkerAPI.send(TalkerAPI.CMD_GET_OP_DOCS, opIdentifier, (err, res) =>
+            {
+                gui.jobs().finish("getopdocs");
+                if (err)
+                {
+                    if (opIdentifier && !oldName)
+                    {
+                        // try to get opname from last paste, as a last resort
+                        const pasteData = gui.patchView.currentOpPaste;
+                        if (pasteData && pasteData.ops)
+                        {
+                            const pastedOp = pasteData.ops.find((clipboardOp) => { return clipboardOp.opId === opIdentifier || clipboardOp.objName === opIdentifier; });
+                            if (pastedOp && pastedOp.objName)
+                            {
+                                oldName = pastedOp.objName;
+                            }
+                            else
+                            {
+                                const errorReport = gui.patchView.store.createErrorReport("Op not found: " + opIdentifier + " (name: " + oldName + ")");
+                                gui.patchView.store.sendErrorReport(errorReport, false);
+                            }
+                        }
+                        else
+                        {
+                            const errorReport = gui.patchView.store.createErrorReport("Op not found: " + opIdentifier + " (name: " + oldName + ")");
+                            gui.patchView.store.sendErrorReport(errorReport, false);
+                        }
+                    }
+                    this._opNotFoundModal(opIdentifier, oldName, err, cb);
+                }
+                else
+                {
+                    let allIdentifiers = [opIdentifier];
+                    if (res.newOps && res.newOps.length > 0)
+                    {
+                        res.newOps.forEach((newOp) =>
+                        {
+                            if (newOp.opId) allIdentifiers.push(newOp.opId);
+                            const clipboardJson = gui.patchView.currentOpPaste;
+                            if (clipboardJson)
+                            {
+                                try
+                                {
+                                    if (clipboardJson.ops)
+                                    {
+                                        gui.patchView.newPatchOpPaste = JSON.stringify(clipboardJson);
+                                    }
+                                }
+                                catch (e) { /* ignore non-json clipboard data */ }
+                            }
+                        });
+                    }
+
+                    let lid = "missingops_" + utils.uuid();
+                    const missingOpUrl = [];
+                    allIdentifiers.forEach((identifier) =>
+                    {
+                        let url = CABLESUILOADER.noCacheUrl(platform.getCablesUrl() + "/api/op/" + identifier) + "?p=" + this.#patchId;
+                        if (platform.config.previewMode) url += "&preview=true";
+                        missingOpUrl.push(url);
+                    });
+
+                    gui.jobs().start({
+                        "id": "missingops",
+                        "title": "load missing ops"
+                    });
+
+                    loadjs.ready(lid, () =>
+                    {
+                        let newOps = res.newOps;
+                        if (!err && res && res.opDocs)
+                        {
+                            let collectionsToLoad = [];
+                            res.opDocs.forEach((opDoc) =>
+                            {
+                                const opName = opDoc.name;
+                                if (opName)
+                                {
+                                    if (namespace.isCollectionOp(opName))
+                                    {
+                                        collectionsToLoad.push(namespace.getCollectionName(opName));
+                                    }
+                                }
+                                this.#ops.push(opDoc);
+                            });
+                            if (forceReload && oldName)
+                            {
+                                const oldDocs = gui.opDocs.getOpDocByName(oldName);
+                                if (oldDocs) gui.opDocs.removeOpDoc(oldDocs);
+                            }
+                            if (gui.opDocs)
+                            {
+                                gui.opDocs.addOpDocs(res.opDocs);
+                            }
+                            collectionsToLoad = utils.uniqueArray(collectionsToLoad);
+                            collectionsToLoad.forEach((collectionNamespace) =>
+                            {
+                                this.loadCollectionOps(collectionNamespace, () =>
+                                {
+                                    gui.opSelect().reload();
+                                });
+                            });
+                        }
+                        gui.jobs().finish("missingops");
+                        cb(newOps);
+                    });
+                    loadjs(missingOpUrl, lid, {
+                        "before": (path, scriptEl) => { scriptEl.setAttribute("crossorigin", "use-credentials"); },
+                        "error": (urls) =>
+                        {
+                            this._opNotFoundModal(opIdentifier, oldName, err, cb);
+                        }
+                    });
+                }
+            });
+        }
+        else
+        {
+            incrementStartup();
+            cb();
+        }
+    }
+
+    loadCollectionOps(name, cb = null)
+    {
+        if (!name)
+        {
+            if (cb) cb();
+            return;
+        }
+        let endpoint = "";
+        let collectionName = namespace.getCollectionName(name);
+        if (namespace.isExtension(collectionName))
+        {
+            endpoint = "/api/ops/code/extension/";
+        }
+        else if (namespace.isTeamNamespace(collectionName))
+        {
+            endpoint = "/api/ops/code/team/";
+        }
+
+        if (endpoint)
+        {
+            const collectionOpUrl = [];
+            let apiUrl = CABLESUILOADER.noCacheUrl(platform.getCablesUrl() + endpoint + collectionName);
+            if (platform.config.previewMode) apiUrl += "?preview=true";
+            collectionOpUrl.push(apiUrl);
+            const lid = "collection ops" + collectionName + utils.uuid();
+            gui.jobs().start({ "id": "getCollectionOpDocs" });
+            platform.talkerAPI.send(TalkerAPI.CMD_GET_COLLECTION_OPDOCS, { "name": collectionName }, (err, res) =>
+            {
+                gui.jobs().finish("getCollectionOpDocs");
+                if (!err && res && res.opDocs)
+                {
+                    gui.jobs().start({ "id": "loadjsopdocs" });
+                    loadjs.ready(lid, () =>
+                    {
+                        gui.jobs().finish("loadjsopdocs");
+                        res.opDocs.forEach((newOp) =>
+                        {
+                            this.#ops.push(newOp);
+                        });
+                        if (gui.opDocs)
+                        {
+                            gui.opDocs.addOpDocs(res.opDocs);
+                        }
+                        incrementStartup();
+                        if (cb) cb();
+                    });
+                }
+                else
+                {
+                    incrementStartup();
+                    if (cb) cb();
+                }
+            });
+            loadjs(collectionOpUrl, lid, { "before": (path, scriptEl) => { scriptEl.setAttribute("crossorigin", "use-credentials"); } });
+        }
+        else
+        {
+            incrementStartup();
+            if (cb) cb();
+        }
+    }
+
+    showApiError(err)
+    {
+        if (err && err.msg == "ILLEGAL_OPS")
+        {
+            new ModalDialog({
+                "title": "Namespace Hierarchy Problem",
+                "showOkButton": true,
+                "html": "SubPatchOp can not contain this op because of their namespaces: <br/><br/><span class=\"warning-error-level2\">" + err.data.msg + "</span><br/><br/>Try to move or create the op outside of the subPatch."
+            });
+        }
+        else
+        {
+            const options = {
+                "title": "Error/Invalid response from server",
+                "codeText": JSON.stringify(err, false, 4)
+            };
+
+            if (err && err.data && err.data.msg) options.text = err.data.msg;
+
+            new ModalError(options);
+        }
+    }
+
+    getOpIdentifier(op)
+    {
+        if (!op) return undefined;
+        return op.opId || op.objName || op.id;
+    }
+
+    getOpNameByIdentifier(opIdentifier)
+    {
+        if (!opIdentifier) return undefined;
+        if (opIdentifier.startsWith(defaultOps.prefixes.op)) return opIdentifier;
+        const opDoc = gui.opDocs.getOpDocById(opIdentifier);
+        return opDoc ? opDoc.name : undefined;
+    }
+
+    _opNotFoundModal(opIdentifier, oldName, err = {}, cb = null)
+    {
+        let title = "Failed to load op";
+        let footer = "";
+        let otherEnvName = "dev.cables.gl";
+        let editorLink = "https://" + otherEnvName + "/edit/" + gui.project().shortId;
+        let otherEnvButton = "Try " + otherEnvName;
+        let errMsg = "";
+        let opLinks = [];
+        let hideEnvButton = false;
+        if (err && err.data)
+        {
+            if (err.data.text) errMsg = err.data.text;
+            if (err.data.footer) footer = err.data.footer;
+            if (err.data.otherEnvName)
+            {
+                otherEnvButton = "Try " + err.data.otherEnvName;
+            }
+            if (err.data.reasons)
+            {
+                opLinks = err.data.reasons;
+                if (oldName)
+                {
+                    for (let i = 0; i < opLinks.length; i++)
+                    {
+                        if (opLinks[i] === opIdentifier) opLinks[i] = oldName;
+                    }
+                }
+            }
+            if (err.data.otherEnvUrl) editorLink = err.data.otherEnvUrl + "/edit/" + gui.project().shortId;
+            if (err.data.otherEnvButton) otherEnvButton = err.data.otherEnvButton;
+            if (err.data.editorLink) editorLink = err.data.editorLink;
+            if (err.data.hideEnvButton) hideEnvButton = true;
+        }
+        else
+        {
+            if (oldName)
+            {
+                opLinks.push(oldName);
+            }
+            else
+            {
+                opLinks.push(opIdentifier);
+            }
+        }
+
+        const continueLoadingCallback = () =>
+        {
+            gui.patchView.store.opCrashed = true;
+            if (cb) cb([]);
+        };
+
+        const tryOtherEnvCallback = () =>
+        {
+            window.open(editorLink);
+        };
+
+        const modalOptions = {
+            "title": title,
+            "footer": footer,
+            "text": errMsg,
+            "notices": opLinks
+        };
+        if (!hideEnvButton)
+        {
+            modalOptions.choice = true;
+            modalOptions.okButton = { "text": otherEnvButton };
+            modalOptions.cancelButton = {
+                "text": "Continue loading",
+                "callback": continueLoadingCallback
+            };
+        }
+        else
+        {
+            modalOptions.okButton = { "text": "Continue loading", "callback": continueLoadingCallback };
+            modalOptions.showOkButton = true;
+        }
+        const modal = new ModalDialog(modalOptions);
+        if (!hideEnvButton)
+        {
+            modal.on("onSubmit", tryOtherEnvCallback);
+            modal.on("onClose", continueLoadingCallback);
+        }
+    }
+}

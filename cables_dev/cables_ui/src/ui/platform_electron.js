@@ -1,0 +1,261 @@
+import { ele, TalkerAPI } from "cables-shared-client";
+import { Platform } from "./platform.js";
+import ModalDialog from "./dialogs/modaldialog.js";
+import { notify, notifyError } from "./elements/notification.js";
+import { gui } from "./gui.js";
+import { GuiText } from "./text.js";
+
+/**
+ * platform for standalone / electron version
+ *
+ * @export
+ * @class PlatformElectron
+ * @extends {Platform}
+ */
+export default class PlatformElectron extends Platform
+{
+    constructor(cfg)
+    {
+        super(cfg);
+
+        this.paths = cfg.paths;
+
+        this.frontendOptions.npm = true;
+        this.frontendOptions.isElectron =
+        this.frontendOptions.openLocalFiles =
+        this.frontendOptions.selectableDownloadPath =
+        this.frontendOptions.dragDropLocalFiles =
+        this.frontendOptions.showLocalAssetDirOpen =
+        this.frontendOptions.showLocalOpDirButton =
+        this.frontendOptions.editOpSummary =
+        this.frontendOptions.hasOpDirectories =
+        this.frontendOptions.hasAssetDirectories =
+        this.frontendOptions.showWelcome =
+        this.frontendOptions.showBuildInfoMenuLink =
+        this.frontendOptions.opDependencies =
+        this.frontendOptions.showOpenPatch =
+        this.frontendOptions.showExport =
+        this.frontendOptions.showExportPatch =
+        this.frontendOptions.opRenameInEditor =
+        this.frontendOptions.opDeleteInEditor =
+        this.frontendOptions.showSetProjectTitle =
+        this.frontendOptions.showStartUpLog = true;
+        this.frontendOptions.showFormatCodeButton = false;
+
+        this.bindHrTimer();
+    }
+
+    bindHrTimer()
+    {
+        const process = window.nodeRequire("node:process");
+        const startTime = process.hrtime();
+        performance.now = () =>
+        {
+            let t = process.hrtime(startTime);
+            return t[0] * 1000 + t[1] / 1000000;
+        };
+    }
+
+    isElectron()
+    {
+        return true;
+    }
+
+    getCablesVersion()
+    {
+        let version = "Electron Standalone";
+
+        if (CABLESUILOADER && CABLESUILOADER.buildInfo && CABLESUILOADER.buildInfo.api && CABLESUILOADER.buildInfo.api.version) version += " v" + CABLESUILOADER.buildInfo.api.version;
+        else version += " development version";
+        return version;
+    }
+
+    getCablesDocsUrl()
+    {
+        return this._cfg.communityUrl || "https://cables.gl";
+    }
+
+    getIssueTrackerUrl()
+    {
+        return "https://github.com/cables-gl/cables_electron/issues";
+    }
+
+    getCablesStaticUrl()
+    {
+        return "";
+    }
+
+    noCacheUrl(url)
+    {
+        let separator = "?";
+        if (url.includes("?")) separator = "&";
+        return url + separator + "nc=" + (Date.now() + "").substr(-6);
+    }
+
+    showFileSelect(inputId, filterType, opId, previewId)
+    {
+        let value = null;
+        let inputEle = null;
+        if (inputId)
+        {
+            inputEle = ele.byQuery(inputId);
+            if (inputEle) value = inputEle.value;
+        }
+        this.talkerAPI.send(TalkerAPI.CMD_ELECTRON_SELECT_FILE, { "url": value, "filter": filterType, "opId": opId }, (_err, file) =>
+        {
+            const op = gui.corePatch().getOpById(opId);
+            if (file && inputEle)
+            {
+                gui.savedState.setUnSaved("filemanager", op.getSubPatch());
+                inputEle.value = file;
+                const event = document.createEvent("Event");
+                event.initEvent("input", true, true);
+                inputEle.dispatchEvent(event);
+            }
+            gui.opParams.show(op);
+        });
+    }
+
+    createBackup()
+    {
+        const showBackupDialog = () =>
+        {
+            this.talkerAPI.send(TalkerAPI.CMD_CREATE_PATCH_BACKUP, {}, (err, result) =>
+            {
+                if (result.success) notify("Backup created!");
+            });
+        };
+
+        if (!gui.getSavedState())
+        {
+            new ModalDialog({
+                "choice": true,
+                "cancelButton": {
+                    "text": "Backup last saved state",
+                    "callback": showBackupDialog
+                },
+                "title": "Backup",
+                "warning": true,
+                "text": GuiText.projectBackupNotSaved,
+            });
+
+            return;
+        }
+
+        showBackupDialog();
+    }
+
+    showGitBranchWarning() {}
+
+    currentUserIsPatchOwner()
+    {
+        return true;
+    }
+
+    /**
+     * @param {string} projectId
+     * @param {"html"|"patch"} [exportType] (used in electron)
+     */
+    exportPatch(projectId, exportType = "html")
+    {
+        let talkerCommand = TalkerAPI.CMD_ELECTRON_EXPORT_PATCH_HTML;
+        if (exportType === "patch") talkerCommand = TalkerAPI.CMD_ELECTRON_EXPORT_PATCH;
+        gui.jobs().start({ "id": "exportPatch", "title": "export patch", "indicator": "canvas" });
+        this.talkerAPI.send(talkerCommand, { "projectId": projectId }, (err, result) =>
+        {
+            const modalOptions = {
+                "title": "Patch Export"
+            };
+            gui.jobs().finish("exportPatch");
+            if (err || result.error)
+            {
+                const message = err?.msg || result?.msg || "";
+                modalOptions.warning = true;
+                modalOptions.text = "Failed to export patch:<br/>" + message;
+            }
+            else
+            {
+                modalOptions.showOkButton = true;
+                modalOptions.okButton = {
+                    "text": "Show",
+                    "callback": (a, b, c) =>
+                    {
+                        CABLES.CMD.ELECTRON.openFileManager(result.data.url);
+                    }
+                };
+                modalOptions.text = "Successfully exported patch:";
+            }
+            if (result && result.data && result.data.log)
+            {
+                modalOptions.notices = result.data.log.map((l) => { return l.text; });
+            }
+            new ModalDialog(modalOptions);
+        });
+    }
+
+    getPatchOpsNamespace()
+    {
+        return "Ops.Local.";
+    }
+
+    isSaving()
+    {
+        return false;
+    }
+
+    getDefaultOpName()
+    {
+        return this.getPatchOpsNamespace() + super.getDefaultOpName();
+    }
+
+    initRouting(cb)
+    {
+        super.initRouting(cb);
+        this.talkerAPI.addEventListener(TalkerAPI.CMD_ELECTRON_EXECUTE_OP, (options, _next) =>
+        {
+            if (options && options.name)
+            {
+                gui.serverOps.execute(options.id || options.name, () =>
+                {
+                    if (options.forceReload && options.name)
+                    {
+                        const editorTab = gui.mainTabs.getTabByDataId(options.name);
+                        if (
+                            editorTab &&
+                            editorTab.editor &&
+                            options.hasOwnProperty("code")
+                        )
+                        {
+                            editorTab.editor.setContent(options.code, true);
+                        }
+                    }
+                    notify("reloaded op " + options.name);
+                });
+            }
+        });
+    }
+
+    /**
+     * @see {@link ./platform.js}
+     * @returns {boolean}
+     */
+    checkOpCreate()
+    {
+        if (!super.checkOpCreate()) return false;
+        if (!this.config.currentPatchDir)
+        {
+            notifyError("Please save your new project before creating ops!");
+            return false;
+        }
+        return true;
+    }
+
+    savePatch(options, cb)
+    {
+        this.talkerAPI.send(TalkerAPI.CMD_SAVE_PATCH, options, (err, r) =>
+        {
+            if (r && r.currentPatchDir) this.config.currentPatchDir = r.currentPatchDir;
+            cb(err, r);
+        });
+    }
+}

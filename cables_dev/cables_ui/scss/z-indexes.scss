@@ -1,0 +1,30 @@
+
+$zindex_lowest :0;     // patch / canvas / params etc
+$zindex_superlow :9;     // patchfield menu iconbar and subpatchnav
+$zindex_low :20;
+$zindex_over :30;       // menu / subpatchnav / tabs / timeline etc
+$zindex_high :40;       // color picker / splitter
+$zindex_highest :50;    // modal / splitter etc
+
+
+$zindex_canvas:$zindex_lowest;
+$zindex_patchfield:$zindex_lowest - 1;
+
+.cablesCssUi
+{
+
+    #meta,#options
+    {
+        z-index: $zindex_lowest + 1;
+    }
+
+    .menubar,#subpatch_nav,#bgpreviewButtonsContainer,#bgpreview,.cbl_iconbarContainer
+    {
+        z-index: $zindex_over;
+    }
+}
+
+.gluiPreviewLayer
+{
+    z-index: $zindex_lowest + 1;
+}

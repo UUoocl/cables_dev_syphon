@@ -1,0 +1,234 @@
+import { ele } from "cables-shared-client";
+import { CgContext } from "cables-corelibs";
+import { gui } from "../../gui.js";
+import { userSettings } from "../usersettings.js";
+
+/**
+ * the icon bar below the renderer canvas
+ */
+export default class CanvasUi
+{
+    #cg;
+    #canvasEle;
+
+    /**
+     * @param {import("cables-corelibs").CgContext} [_cg]
+     * @param {HTMLCanvasElement} [_canvEle]
+     */
+    constructor(_cg = null, _canvEle)
+    {
+        this.#cg = _cg;
+        this.#canvasEle = _canvEle || _cg?.canvas;
+
+        this.isCanvasFocussed = false;
+        this.minimized = false;
+
+        this._elCanvasIconbarContainer = this._elCanvasIconbarContainer || ele.byId("canvasicons");
+        this._elCanvasIconbar = this._elCanvasIconbar || ele.byId("canvasIconBar");
+        this._elcanvasCtxSwitcher = this._elcanvasCtxSwitcher || ele.byId("canvasCtxSwitcher");
+        this._elCanvasInfoSize = this._elCanvasInfoSize || ele.byId("canvasInfoSize");
+        this._elSplitterRightPanel = this._elSplitterRightPanel || ele.byId("splitterRightPanel");
+        this._elCanvasInfoFps = this._elCanvasInfoFps || document.getElementById("canvasInfoFPS");
+        this._elCtxSwitcher = this._elCtxSwitcher || document.getElementById("canvasCtxSwitcher");
+
+        this._elCanvasInfoMs = this._elCanvasInfoMs || document.getElementById("canvasInfoMS");
+        this._elInfoVersion = ele.byId("canvasInfoVersion");
+
+        this._elCanvasInfoSizeOverlay = ele.byId("canvasInfoOverlay");
+
+        this._elCanvasIconbarContainer.addEventListener("click", () =>
+        {
+            this.#canvasEle.focus();
+        });
+
+        this._elCanvasInfoSize.addEventListener("pointerenter", () =>
+        {
+            this._elCanvasInfoSizeOverlay.style.top = this._elCanvasInfoSize.getBoundingClientRect().y + 30 + "px";
+            this._elCanvasInfoSizeOverlay.style.left = this._elCanvasInfoSize.getBoundingClientRect().x + "px";
+            // this._elCanvasInfoSizeOverlay.innerHTML = "";
+            this._elCanvasInfoSizeOverlay.classList.remove("hidden");
+        });
+        this._elCanvasInfoSize.addEventListener("pointerleave", () =>
+        {
+            this._elCanvasInfoSizeOverlay.classList.add("hidden");
+        });
+
+        if (this._elInfoVersion)
+        {
+            if (this.#cg && this.#cg.glVersion == 1)
+            {
+                this._elCanvasInfoVer = this._elCanvasInfoVer || document.getElementById("canvasInfoVersion");
+                this._elCanvasInfoVer.innerHTML = "WebGL 1";
+            }
+            else this._elInfoVersion.remove();
+        }
+
+        if (this.#cg)
+        {
+
+            if (this.#cg && this.#cg.on)
+                this.#cg.on("resize", () =>
+                {
+                    this.updateSizeDisplay();
+                });
+
+            if (this.#cg)
+                this.#cg.fpsCounter?.on("performance", (perf) =>
+                {
+                    const p = gui.uiProfiler.start("[canvasUi] on performance");
+
+                    // if (this.isCanvasFocussed)
+                    // {
+                    if (this._oldFps != perf.fps) this._elCanvasInfoFps.innerHTML = perf.fps + " FPS";
+                    this._oldFps = perf.fps;
+
+                    if (this.#cg.profileData)
+                    {
+                        let ms = ((Math.round(this.#cg.profileData.profileOnAnimFrameOps * 100) / 100) || "0.0") + "ms";
+
+                        if (window.gui && gui.patchView.patchRenderer.vizLayer && gui.patchView.patchRenderer.vizLayer.renderMs > 3)
+                        {
+                            ms += " vizLayer: " + Math.round(gui.patchView.patchRenderer.vizLayer.renderMs) + "ms";
+                        }
+
+                        if (this._oldMs != ms) this._elCanvasInfoMs.innerHTML = ms;
+                        this._oldMs = ms;
+                    }
+                    // }
+
+                    p.finish();
+                });
+        }
+        else
+        {
+
+            setInterval(() =>
+            {
+
+                const canvas = this.#canvasEle;
+                if (canvas.dataset.perfms) this._elCanvasInfoMs.innerHTML = canvas.dataset.perfms + " ms";
+                if (canvas.dataset.perfms) this._elCanvasInfoFps.innerHTML = canvas.dataset.perffps + " fps";
+            }, 1000);
+        }
+
+        this.#canvasEle.setAttribute("tabindex", 0);
+
+        this.#canvasEle.addEventListener("focus", () =>
+        {
+            const p = gui.uiProfiler.start("[canvasUi] on focus");
+
+            this.showCanvasModal(true);
+            gui.canvasManager.setCurrentCanvas(this.#canvasEle);
+            p.finish();
+        });
+
+        document.body.addEventListener("pointerdown",
+            (e) =>
+            {
+                if (this.isCanvasFocussed &&
+                    !e.target.classList.contains("item") &&
+                    !e.target.classList.contains("icon") &&
+                    e.target != this.#canvasEle
+                ) this.showCanvasModal(false);
+            },
+            true);
+    }
+
+    updateCanvasIconBar()
+    {
+        if (!this._elCanvasIconbarContainer) return;
+
+        const perf = gui.uiProfiler.start("[canvasUi] updateCanvasIconBar");
+
+        const splitterPatchRect = this._elSplitterRightPanel.getBoundingClientRect();
+        const bodyRect = document.body.getBoundingClientRect();
+
+        perf.finish();
+    }
+
+    updateSizeDisplay()
+    {
+        if (!gui.corePatch().cgl) return;
+
+        const canvas = this.#canvasEle;
+
+        const ctx = gui.canvasManager.currentContextCg();
+
+        this._elCanvasInfoAspect = this._elCanvasInfoAspect || document.getElementById("canvasInfoAspect");
+
+        let sizeStr = canvas.width + "x" + canvas.height;
+        if (ctx && ctx.pixelDensity != 1) sizeStr += " (" + Math.round(ctx.pixelDensity * 100) / 100 + "x)";
+
+        gui.canvasManager.updateCanvasUi();
+
+        if (this._oldSizeStr != sizeStr) this._elCanvasInfoSize.innerHTML = sizeStr;
+        this._oldSizeStr = sizeStr;
+
+        this.updateIconState();
+
+        let str = "<table>";
+        if (ctx) str += "<tr><td>Canvas API</td><td>" + ctx.getGApiName() + "</td></tr>";
+        str += "<tr><td>Canvas id</td><td>" + canvas.id + "</td></tr>";
+        str += "<tr><td>Canvas CSS Size:</td><td><code>" + canvas.clientWidth + "&nbsp;x&nbsp;" + canvas.clientHeight + "</td></tr>";
+        str += "<tr><td>Canvas Pixel Size:</td><td><code>" + canvas.width + " x " + canvas.height + "</td></tr>";
+        str += "<tr><td>Device Pixel Ratio/Density:</td><td><code>" + window.devicePixelRatio + "</td></tr>";
+        if (ctx) str += "<tr><td>Canvas Pixel Ratio/Density:</td><td><code>" + ctx.pixelDensity + "</td></tr>";
+        str += "</table>";
+        this._elCanvasInfoSizeOverlay.innerHTML = str;
+
+        return sizeStr;
+    }
+
+    updateIconState()
+    {
+        const act = userSettings.get("overlaysShow");
+        const icon = ele.byId("canvUitoggleOverlay");
+        if (icon)
+            if (act)icon.classList.add("icon-highlight");
+            else icon.classList.remove("icon-highlight");
+    }
+
+    /**
+     * @param {boolean} show
+     */
+    showCanvasModal(show)
+    {
+        if (userSettings.get("hideCanvasUi")) return;
+
+        const perf = gui.uiProfiler.start("[canvasUi] showCanvasModal");
+
+        this._elCanvasModalDarkener = this._elCanvasModalDarkener || document.getElementById("canvasmodal");
+
+        this.updateSizeDisplay();
+        this.updateCanvasIconBar();
+
+        this.isCanvasFocussed = show;
+        if (this.isCanvasFocussed) this._elCanvasIconbar.classList.add("focussed");
+        else this._elCanvasIconbar.classList.remove("focussed");
+
+        if (show)
+        {
+            if (gui.canvasManager.mode == gui.canvasManager.CANVASMODE_PATCHBG)
+            {
+                ele.hide(this._elCanvasModalDarkener);
+            }
+            else
+            {
+                if (!this._showing) ele.show(this._elCanvasModalDarkener);
+            }
+
+        }
+        else
+        {
+            setTimeout(() =>
+            {
+            // ele.hide(this._elCanvasIconbarContainer);
+                ele.hide(this._elCanvasModalDarkener);
+            }, 100);
+        }
+
+        this._showing = show;
+
+        perf.finish();
+    }
+}

@@ -1,0 +1,35 @@
+$text-font: "SourceSansPro", sans-serif;
+$headline-font: "SourceSansPro";
+
+:root
+{
+    --font-size-off: 0px;
+    --font-size-small: calc(12px + var(--font-size-off));
+    --font-size-default: calc(14px + var(--font-size-off));
+    --font-size-bigger: calc(16px + var(--font-size-off));
+    --font-size-big: calc(18px + var(--font-size-off));
+}
+
+
+
+@font-face {
+  font-family: 'SourceCodePro';
+  src: url('../fonts/SourceCodePro-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('../fonts/SourceSansPro-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('../fonts/SourceSansPro-Bold.ttf');
+  font-weight: 800;
+  font-style: normal;
+}

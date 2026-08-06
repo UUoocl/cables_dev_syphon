@@ -1,0 +1,49 @@
+import { Logger } from "cables-shared-client";
+import { gui } from "../gui.js";
+import { platform } from "../platform.js";
+
+/**
+ * Handlebars template helper functions
+ */
+const handleBarsPrecompiled = {};
+
+const log = new Logger("handlebarsjs");
+
+export function handleBarPrecompiled(name)
+{
+    let template = handleBarsPrecompiled[name];
+    if (template) return template;
+
+    const source = document.getElementById(name);
+    if (!source || !source.innerHTML)
+    {
+        log.warn("template not found", "template " + name + " not found...");
+        return;
+    }
+    const p = handleBarsPrecompiled[name] = Handlebars.compile(source.innerHTML);
+    return p;
+}
+
+/**
+ * @param {string} name
+ * @param {object} obj
+ */
+export function getHandleBarHtml(name, obj)
+{
+    let perf = gui.uiProfiler.start("getHandleBarHtml");
+
+    const template = handleBarPrecompiled(name);
+    if (!template) return "error: missing handlebars template: " + name;
+
+    obj = obj || {};
+    obj.frontendOptions = platform.frontendOptions;
+    obj.cablesUrl = platform.getCablesUrl();
+    obj.cablesDocsUrl = obj.cablesUrl;
+    if (platform.getCablesDocsUrl)obj.cablesDocsUrl = platform.getCablesDocsUrl();
+
+    const html = template(obj, { "allowProtoMethodsByDefault": true, "allowProtoPropertiesByDefault": true });
+
+    if (perf)perf.finish();
+
+    return html;
+}

@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "target": "ESNext",
+        "checkJs": true,
+        "allowJs": true,
+        "moduleResolution": "bundler",
+        "typeRoots": [
+            "cables/node_modules/@webgpu/types"
+        ]
+    },
+    "include": [
+        "shared/api/**/*",
+        "shared/client/src/**/*",
+        "cables_ui/src/**/*",
+        "cables/src/core/**/*",
+        "cables/src/corelibs/**/*"
+    ]
+}

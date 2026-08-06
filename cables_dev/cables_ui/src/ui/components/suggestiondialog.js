@@ -1,0 +1,221 @@
+import { ele, ModalBackground } from "cables-shared-client";
+import { Op, Port } from "cables";
+import { getHandleBarHtml } from "../utils/handlebars.js";
+import { gui } from "../gui.js";
+import { DomEvents } from "../theme.js";
+
+/** @typedef SuggestionItem
+ * @property {String} [name]
+ * @property {String} [class]
+ * @property {Array} [classNames]
+ * @property {Number} [id]
+ * @property {Number} [rot] - internal: do not set manually
+ * @property {Number} [top] - internal: do not set manually
+ * @property {Number} [left] - internal: do not set manually
+ * @property {String} [shortName] - internal: do not set manually
+ * @property {String} [classname] - class
+ * @property {Port} [p] - port
+ * @property {String} [op] - op id
+ * @property {Number} [spacing] - extra spacing
+ * @property {Boolean} [isBoundToVar]
+ * @property {Function} [cb] - [callback]
+*/
+
+/**
+ * show suggestion dialog (rotary mouse select menu)
+ *
+ * @export
+ * @class SuggestionDialog
+ */
+export default class SuggestionDialog
+{
+    #eleDialog;
+    #action;
+    #cb;
+    #options;
+
+    /**
+     * @param {SuggestionItem[]} suggestions
+     * @param {Op} op
+     * @param {MouseEvent} mouseEvent
+     * @param {Function} cb
+     * @param {Function} _action
+     * @param {boolean} [_showSelect]
+     * @param {Function} [cbCancel]
+     */
+    constructor(suggestions, op, mouseEvent, cb, _action, _showSelect, cbCancel, options = {})
+    {
+        this.createTime = performance.now();
+        this.#options = options;
+        this.#cb = cb;
+        this.#action = _action;
+        this.#eleDialog = document.createElement("div");// ele.byId("suggestionDialog");
+        document.body.appendChild(this.#eleDialog);
+        this.#eleDialog.classList.add("suggestionDialog");
+
+        if (!mouseEvent) console.log("no mouseevent........");
+
+        if (!options.tease)
+        {
+            this._bg = new ModalBackground();
+            this._bg.on("hide", () =>
+            {
+                this.close();
+                if (cbCancel)cbCancel();
+            });
+        }
+
+        this.doShowSelect = _showSelect;
+
+        if (!suggestions)
+        {
+            if (cb)cb();
+            return;
+        }
+
+        if (!options.tease)
+            CABLES.UI.suggestions = this;
+
+        let sugDegree = 6;
+        const sugHeight = 23;
+
+        if (suggestions.length > 10)sugDegree = 3;
+
+        let y = 0;
+        for (let i = 0; i < suggestions.length; i++)
+        {
+            y += sugHeight;
+            if (suggestions[i].class == "groupname")y -= sugHeight * 0.7;
+            suggestions[i].id = i;
+            suggestions[i].rot = (((i) - (suggestions.length / 2)) * sugDegree);
+            suggestions[i].left = 15 - Math.abs(((i) - ((suggestions.length - 1) / 2)) * 3) / 2;
+            suggestions[i].top = y - (suggestions.length * sugHeight / 2) - sugHeight + (suggestions[i].spacing || 0);
+            suggestions[i].shortName = suggestions[i].name.substr(4, suggestions[i].name.length);
+            if (suggestions[i].name) suggestions[i].shortName = suggestions[i].name;
+        }
+
+        this.#eleDialog.innerHTML = getHandleBarHtml("suggestions", {
+            suggestions,
+            _showSelect
+        });
+
+        const sugeles = this.#eleDialog.getElementsByClassName("suggestion");
+        for (let i = 0; i < sugeles.length; i++)
+        {
+            sugeles[i].addEventListener("click", (e) =>
+            {
+                if (CABLES.UI.suggestions)
+                    CABLES.UI.suggestions.action(e.target.dataset.id);
+            });
+
+            sugeles[i].addEventListener(DomEvents.POINTER_ENTER, (e) =>
+            {
+                for (let i = 0; i < suggestions.length; i++)
+                    if (suggestions[i].id == e.target.dataset.id && suggestions[i].p)
+                    {
+                        this.lastPortHover = suggestions[i].p;
+
+                        suggestions[i].p.setUiAttribs({ "hover": true });
+                    }
+            });
+
+            sugeles[i].addEventListener(DomEvents.POINTER_LEAVE, (e) =>
+            {
+                for (let i = 0; i < suggestions.length; i++)
+                    if (suggestions[i].id == e.target.dataset.id && suggestions[i].p)
+                        suggestions[i].p.setUiAttribs({ "hover": false });
+            });
+        }
+
+        if (this._bg) this._bg.show();
+
+        if (!options.hide) ele.show(this.#eleDialog);
+
+        this.#eleDialog.style.left = mouseEvent.clientX + "px";
+        this.#eleDialog.style.top = mouseEvent.clientY + "px";
+
+        if (options.opacity) this.#eleDialog.style.opacity = options.opacity;
+        for (let i = 0; i < suggestions.length; i++)
+        {
+            suggestions[i].rot = (((i) - (suggestions.length / 2)) * sugDegree);
+            const left = 15 - Math.abs(((i) - ((suggestions.length - 1) / 2)) * 3);
+
+            suggestions[i].shortName = suggestions[i].name.substr(4, suggestions[i].name.length);
+
+            const sugEle = this.#eleDialog.getElementsByClassName("suggestion" + i)[0];
+
+            if (suggestions[i].class)sugEle.classList.add(suggestions[i].class);
+            if (suggestions[i].classNames)
+            {
+                for (let ic = 0; ic < suggestions[i].classNames.length; ic++)
+                {
+                    sugEle.classList.add(suggestions[i].classNames[ic]);
+                }
+            }
+
+            if (!options.noAnim)
+                sugEle.animate([
+                    { "left": -left + "px", "opacity": 0 },
+                    { "left": 0 + "px", "opacity": 1 },
+                ], {
+                    "duration": 150 + i * 50,
+                    "easing": "ease-out",
+                    "iterations": 1,
+                });
+
+            suggestions[i].id = i;
+        }
+    }
+
+    close()
+    {
+        this.#eleDialog.innerHTML = "";
+
+        ele.hide(this.#eleDialog);
+        if (this._bg) this._bg.hide();
+        if (this.lastPortHover) this.lastPortHover.setUiAttribs({ "hover": false });
+
+        if (!this.#options.tease) CABLES.UI.suggestions = null;
+        gui.patchView.focus();
+        this.#eleDialog.remove();
+
+        if (this.lastPortHover) this.lastPortHover.setUiAttribs({ "hover": false });
+    }
+
+    showSelect()
+    {
+        if (!this.#options.tease) CABLES.UI.suggestions = this;
+        if (this.#cb) this.#cb();
+        else this.close();
+    }
+
+    show()
+    {
+        if (!this.#options.tease) CABLES.UI.suggestions = this;
+        ele.show(this.#eleDialog);
+    }
+
+    hide()
+    {
+        ele.hide(this.#eleDialog);
+    }
+
+    /**
+     * @param {number} x
+     * @param {number} y
+     */
+    setPos(x, y)
+    {
+        this.#eleDialog.style.left = x + "px";
+        this.#eleDialog.style.top = y + "px";
+    }
+
+    /**
+     * @param {string} id
+     */
+    action(id)
+    {
+        this.close();
+        this.#action(id);
+    }
+}

@@ -1,0 +1,170 @@
+import { ele } from "cables-shared-client";
+import { userSettings } from "../components/usersettings.js";
+import Gui, { gui } from "../gui.js";
+import { DomEvents } from "../theme.js";
+
+const splitpane = {};
+window.splitpane = splitpane;
+splitpane.listeners = [];
+
+export default initSplitPanes;
+
+function initSplitPanes()
+{
+    ele.byId("splitterRightPanel").addEventListener(DomEvents.POINTER_DOWN, function (ev)
+    {
+        gui.pauseProfiling();
+        ev.preventDefault();
+        splitpane.bound = true;
+        function mm(e)
+        {
+            gui.pauseInteractionSplitpanes();
+
+            gui.pauseProfiling();
+            e.preventDefault();
+
+            let pos = (window.innerWidth - e.clientX) * (1 / gui.corePatch().cgl.canvasScale);
+            pos = Math.max(320, pos);
+
+            gui.userSettings.set(Gui.PREF_LAYOUT_RIGHT_PANEL_WIDTH, pos);
+            gui.rightPanelWidth = Math.ceil(pos);
+
+            gui.setLayout();
+            gui.emitEvent(Gui.EVENT_RESIZE_CANVAS);
+            gui.canvasManager.getCanvasUiBar()?.updateCanvasIconBar();
+        }
+
+        document.addEventListener(DomEvents.POINTER_MOVE, mm);
+        splitpane.listeners.push(mm);
+    });
+
+    ele.byId("splitterRightPanel").addEventListener(DomEvents.POINTER_UP, function (_e)
+    {
+        gui.resumeInteractionSplitpanes();
+    });
+
+    ele.byId("splitterMaintabs").addEventListener(DomEvents.POINTER_UP, function (_e)
+    {
+        gui.resumeInteractionSplitpanes();
+    });
+
+    function resizeTabs(_ev)
+    {
+        gui.pauseProfiling();
+        splitpane.bound = true;
+        function mm(e)
+        {
+            gui.pauseInteractionSplitpanes();
+
+            gui.editorWidth = e.clientX;
+            if (gui.editorWidth < 30)gui.editorWidth = 30;
+            userSettings.set(Gui.PREF_LAYOUT_EDITORWIDTH, gui.editorWidth);
+            gui.setLayout();
+            gui.mainTabs.emitEvent("resize");
+        }
+
+        document.addEventListener(DomEvents.POINTER_MOVE, mm, { "passive": false });
+        splitpane.listeners.push(mm);
+    }
+
+    ele.byId("splitterMaintabs").addEventListener(DomEvents.POINTER_DOWN, resizeTabs, { "passive": false });
+
+    ele.byId("splitterRenderer").addEventListener(DomEvents.POINTER_DOWN, function (ev)
+    {
+        ev.preventDefault();
+        splitpane.bound = true;
+        function mm(e)
+        {
+            e.preventDefault();
+            gui.rendererHeight = e.clientY * (1 / gui.corePatch().cgl.canvasScale);
+            gui.setLayout();
+            gui.canvasManager.getCanvasUiBar()?.updateCanvasIconBar();
+        }
+
+        document.addEventListener(DomEvents.POINTER_MOVE, mm);
+        splitpane.listeners.push(mm);
+    });
+
+    ele.byId("splitterBottomTabs").addEventListener(DomEvents.POINTER_DOWN,
+        function (ev)
+        {
+            ev.preventDefault();
+            splitpane.bound = true;
+            function mm(e)
+            {
+                gui.pauseInteractionSplitpanes();
+                e.preventDefault();
+                gui.bottomTabPanel.setHeight(window.innerHeight - e.clientY);
+                gui.setLayout();
+            }
+
+            document.addEventListener(DomEvents.POINTER_MOVE, mm);
+            splitpane.listeners.push(mm);
+        });
+
+    function resizeRenderer(ev)
+    {
+        if (gui.canvasManager.mode == gui.canvasManager.CANVASMODE_PATCHBG) return;
+
+        if (ev.shiftKey)
+        {
+            if (!splitpane.rendererAspect) splitpane.rendererAspect = gui.rendererWidth / gui.rendererHeight;
+        }
+        else splitpane.rendererAspect = 0.0;
+
+        ev.preventDefault();
+        splitpane.bound = true;
+
+        /**
+         * @param {Object} e
+         */
+        function mm(e)
+        {
+            gui.pauseInteractionSplitpanes();
+            let x = e.clientX - 10;
+            let y = e.clientY + 20;
+
+            if (x === undefined && e.touches && e.touches.length > 0)
+            {
+                x = e.touches[0].clientX;
+                y = e.touches[0].clientY;
+            }
+
+            gui.rendererWidth = Math.floor((window.innerWidth - x) * (1 / gui.corePatch().cgl.canvasScale) + 3);
+
+            if (gui.canvasManager.mode == gui.canvasManager.CANVASMODE_FLOAT)
+                gui.rendererWidth -= gui._elOptions.getBoundingClientRect().width;
+
+            if (splitpane.rendererAspect) gui.rendererHeight = Math.floor(1 / splitpane.rendererAspect * gui.rendererWidth);
+            else gui.rendererHeight = Math.floor(y * (1 / gui.corePatch().cgl.canvasScale) - 38);
+
+            gui.setLayout();
+            gui.canvasManager.getCanvasUiBar()?.updateCanvasIconBar();
+            gui.canvasManager.focus();
+            gui.emitEvent(Gui.EVENT_RESIZE_CANVAS);
+            e.preventDefault();
+        }
+
+        document.addEventListener(DomEvents.POINTER_MOVE, mm);
+        splitpane.listeners.push(mm);
+    }
+
+    ele.byId("splitterRendererWH").addEventListener(DomEvents.POINTER_DOWN, resizeRenderer, { "passive": false });
+
+    function stopSplit(_e)
+    {
+        if (splitpane.listeners.length > 0)
+        {
+            for (let i = 0; i < splitpane.listeners.length; i++)
+                document.removeEventListener(DomEvents.POINTER_MOVE, splitpane.listeners[i]);
+
+            gui.resumeInteractionSplitpanes();
+
+            splitpane.listeners.length = 0;
+            splitpane.bound = false;
+            gui.setLayout();
+        }
+    }
+
+    document.addEventListener(DomEvents.POINTER_UP, stopSplit);
+}

@@ -1,0 +1,334 @@
+import { Anim, AnimKey } from "cables";
+import { Events } from "cables-shared-client";
+import GlRect from "../gldraw/glrect.js";
+import GlText from "../gldraw/gltext.js";
+import { GlTimeline } from "./gltimeline.js";
+import GlSpline from "../gldraw/glspline.js";
+import { TlKeys } from "./tlkeys.js";
+import undo from "../utils/undo.js";
+import { gui } from "../gui.js";
+import { GlSplineDrawer } from "../gldraw/glsplinedrawer.js";
+
+export class TlKey extends Events
+{
+    static EVENT_POSCHANGE = "posChanged";
+    static EVENT_HOVERCHANGE = "hoverChanged";
+
+    /** @type {GlTimeline} */
+    #glTl = null;
+
+    /** @type {AnimKey} */
+    key = null;
+
+    /** @type {GlRect} */
+    rect = null;
+
+    /** @type {GlRect} */
+    areaRect = null;
+
+    /** @type {GlRect} */
+    cp1r = null;
+
+    /** @type {GlRect} */
+    cp2r = null;
+
+    /** @type {GlSpline} */
+    cp1s = null;
+
+    /** @type {GlSpline} */
+    cp2s = null;
+
+    /** @type {GlText} */
+    text = null;
+    #bezCpSize = 10;
+
+    /** @type {TlKeys} */
+    tlkeys = null;
+
+    #hidden = false;
+    #clipAnim;
+
+    /**
+     * @param {GlTimeline} gltl
+     * @param {TlKeys} tlkeys
+     * @param {AnimKey} key
+     * @param {GlRect} [rect]
+     */
+    constructor(gltl, tlkeys, key, rect)
+    {
+        super();
+        this.tlkeys = tlkeys;
+        this.key = key;
+        this.#glTl = gltl;
+        this.rect = rect || this.#glTl.rects.createRect({ "draggable": true, "interactive": true, "name": "key" });
+
+        key.anim.on(Anim.EVENT_KEY_DELETE, (k) =>
+        {
+            if (k == this.key) this.dispose();
+        });
+    }
+
+    hide()
+    {
+        this.#hidden = true;
+        this.rect.visible = false;
+        this.update();
+    }
+
+    show()
+    {
+        this.#hidden = false;
+        this.rect.visible = true;
+        this.update();
+    }
+
+    get isHidden()
+    {
+        return this.#hidden;
+    }
+
+    update()
+    {
+        if (this.#hidden) return;
+
+        const keyRect = this.rect;
+        const key = this.key;
+        const isClip = key.getEasing() == Anim.EASING_CLIP;
+        if (!this.areaRect && (key.uiAttribs.color || isClip))
+        {
+            const t = this.#glTl.rects.createRect({ "name": "key color", "draggable": false, "interactive": false });
+
+            if (isClip)
+            {
+                t.setColorArray(gui.theme.colors_timeline.key_cliparea);
+                t.setBorder(2);
+            }
+            else
+            {
+                if (key.uiAttribs.color)
+                {
+                    t.setColorHex(key.uiAttribs.color);
+                }
+            }
+            this.areaRect = t;
+        }
+        if (this.areaRect)
+        {
+            if (!this.#glTl.isGraphLayout())
+            {
+                if (isClip && !this.tlkeys.shouldDrawGraphSpline())
+                    this.areaRect.setPosition(this.areaRect.x, this.areaRect.y, -0.57);
+                else
+                    this.areaRect.setPosition(this.areaRect.x, this.areaRect.y, -0.17);
+            }
+            else this.areaRect.setPosition(this.areaRect.x, this.areaRect.y, -0.3);
+
+            if (!(key.uiAttribs.color || isClip)) this.areaRect = this.areaRect.dispose();
+        }
+
+        if (!(key.uiAttribs.text || key.clipId) && this.text) this.text = this.text.dispose();
+
+        if (key.uiAttribs.text || key.clipId)
+        {
+            let thetext = key.clipId || key.uiAttribs.text;
+
+            if (thetext.startsWith(GlTimeline.CLIP_VAR_PREFIX))
+                thetext = thetext.substring(GlTimeline.CLIP_VAR_PREFIX.length, thetext.length);
+
+            if (!this.text)
+            {
+                this.text = new GlText(this.#glTl.texts, thetext);
+                this.text.setParentRect(keyRect);
+            }
+
+            if (!this.text.text != thetext) this.text.text = thetext;
+
+            if (key.clipId && this.text.text != key.clipId)
+            {
+                const v = gui.corePatch().getVar(key.clipId);
+                if (v)
+                {
+                    const anim = v.getValue();
+                    if (this.#clipAnim != anim)
+                    {
+                        this.#clipAnim = anim;
+                        if (anim)
+                        {
+                            anim.on(Anim.EVENT_CHANGE, () =>
+                            {
+                                this.tlkeys.updateSoon();
+                            });
+                        }
+
+                    }
+                }
+            }
+        }
+
+        if (this.rect && this.#glTl.isGraphLayout() && !this.cp1r && !isClip)
+        {
+            const bezRect = this.#glTl.rects.createRect({ "name": "bezrect", "draggable": true, "interactive": true });
+
+            bezRect.data.key = key;
+            this.cp1r = bezRect;
+            if (!this.cp1s)
+            {
+                this.#glTl.splines.on(GlSplineDrawer.EVENT_CLEARED, () =>
+                {
+                    if (this.cp1s) this.cp1s = this.cp1s.dispose();
+                    if (this.cp2s) this.cp2s = this.cp2s.dispose();
+                });
+            }
+
+            if (this.cp1s) this.cp1s = this.cp1s.dispose();
+            if (this.cp2s) this.cp2s = this.cp2s.dispose();
+
+            this.cp1s = new GlSpline(this.#glTl.splines, "cp1");
+            this.cp1s.setParentRect(this.rect.parent);
+            this.cp1s.setColorArray(gui.theme.colors_timeline.key_bezier);
+
+            const bezRect2 = this.#glTl.rects.createRect({ "name": "bezrect2", "draggable": true, "interactive": true });
+            bezRect2.data.key = key;
+            this.cp2r = bezRect2;
+
+            this.cp2s = new GlSpline(this.#glTl.splines, "cp2");
+            this.cp2s.setParentRect(this.rect.parent);
+            this.cp2s.setColorArray(gui.theme.colors_timeline.key_bezier);
+
+            this.bindBezCp(bezRect, key.bezCp1, key, 0);
+            this.bindBezCp(bezRect2, key.bezCp2, key, 1);
+        }
+        if (this.#glTl.isGraphLayout() && this.cp1r && this.cp1r.visible && key.getEasing() != Anim.EASING_CUBICSPLINE)
+        {
+            this.cp1r.visible = false;
+            this.cp2r.visible = false;
+            this.cp1s.setPoints([0, 0, 0, 0, 0, 0]);
+            this.cp2s.setPoints([0, 0, 0, 0, 0, 0]);
+        }
+        if (this.#glTl.isGraphLayout() && this.cp1r && !this.cp1r.visible && key.getEasing() == Anim.EASING_CUBICSPLINE)
+        {
+            this.cp1r.visible = true;
+            this.cp2r.visible = true;
+        }
+    }
+
+    /**
+     * @param {GlRect} bezRect
+     * @param {number[]} _cp
+     * @param {AnimKey} key
+     * @param {number} dir
+     */
+    bindBezCp(bezRect, _cp, key, dir)
+    {
+        bezRect.setShape(GlRect.SHAPE_FILLED_CIRCLE);
+        bezRect.setSize(this.#bezCpSize + dir * 3, this.#bezCpSize + dir * 3);
+        bezRect.setParent(this.rect.parent);
+        bezRect.draggableMove = true;
+
+        /** @type {Object} */
+        let oldValues = {};
+
+        bezRect.on(GlRect.EVENT_POINTER_HOVER, (r, _e) =>
+        {
+            if (bezRect.color[3] == 0) return;
+            this.#glTl.setHoverKeyRect(bezRect);
+            this.emitEvent(TlKey.EVENT_HOVERCHANGE);
+        });
+
+        bezRect.on(GlRect.EVENT_POINTER_UNHOVER, () =>
+        {
+            if (this.#glTl.hoverKeyRect == bezRect) this.#glTl.setHoverKeyRect(null);
+        });
+
+        bezRect.on(GlRect.EVENT_DRAGSTART, (_rect, _x, _y, button, e) =>
+        {
+            if (bezRect.color[3] == 0) return;
+            if (this.#glTl.isSelecting()) return;
+            TlKeys.dragStartX = e.offsetX;
+            TlKeys.dragStartY = e.offsetY;
+            if (button == 1 && !TlKeys.dragStarted)
+            {
+                oldValues = this.#glTl.serializeSelectedKeys();
+                TlKeys.dragBezCp = key.bezCp1;// [cp[0], cp[1]];
+                if (dir == 1) TlKeys.dragBezCp = key.bezCp2;
+
+                TlKeys.dragStarted = true;
+                TlKeys.startDragTime = this.#glTl.view.pixelToTime(e.offsetX);
+                TlKeys.startDragValue = this.tlkeys.animLine.pixelToValue(e.offsetY);
+            }
+        });
+
+        bezRect.on(GlRect.EVENT_DRAG, (rect, offx, offy, button, e) =>
+        {
+            this.click = false;
+            if (this.#glTl.isSelecting()) return;
+            if (TlKeys.startDragTime == -1111)
+            {
+                // console.log("cant drag bez...", TlKeys.dragStarted, this.#glTl.isSelecting());
+                return;
+            }
+
+            if (button == 1 && bezRect == this.#glTl.hoverKeyRect)
+            {
+                let offX = e.offsetX;
+                let offY = e.offsetY;
+
+                let offTime = this.#glTl.view.pixelToTime(offX) - TlKeys.startDragTime;
+                let offVal = TlKeys.startDragValue - this.tlkeys.animLine.pixelToValue(offY);
+
+                let nt = offTime + TlKeys.dragBezCp[0];
+                let nv = offVal + TlKeys.dragBezCp[1];
+
+                if (dir == 0)
+                {
+                    nt = Math.min(nt, 0);
+                    if (!key.uiAttribs.bezFree) this.#glTl.selSelectedKeysCP2(nt * -1, nv * -1);
+                    this.#glTl.selSelectedKeysCP1(nt, nv);
+                }
+                if (dir == 1)
+                {
+                    nt = Math.max(nt, 0);
+                    if (!key.uiAttribs.bezFree) this.#glTl.selSelectedKeysCP1(nt * -1, nv * -1);
+                    this.#glTl.selSelectedKeysCP2(nt, nv);
+                }
+
+                this.emitEvent(TlKey.EVENT_POSCHANGE);
+                this.#glTl.setHoverKeyRect(bezRect);
+            }
+        });
+
+        bezRect.on(GlRect.EVENT_DRAGEND, () =>
+        {
+            this.#glTl.needsUpdateAll = "draggedbez";
+            TlKeys.dragStarted = false;
+
+            undo.add({
+                "title": "timeline move keys",
+                "undo": () =>
+                {
+                    this.#glTl.deserializeKeys(oldValues);
+                },
+                redo() {}
+            });
+        });
+
+    }
+
+    removeBezCp()
+    {
+        if (this.cp1r) this.cp1r = this.cp1r.dispose();
+        if (this.cp2r) this.cp2r = this.cp2r.dispose();
+        if (this.cp1s) this.cp1s = this.cp1s.dispose();
+        if (this.cp2s) this.cp2s = this.cp2s.dispose();
+    }
+
+    dispose()
+    {
+        this.removeBezCp();
+        if (this.rect) this.rect.visible = false;
+        if (this.rect) this.rect = this.rect.dispose();
+        if (this.text) this.text = this.text.dispose();
+        if (this.areaRect) this.areaRect = this.areaRect.dispose();
+        this.tlkeys.updateSoon();
+    }
+}

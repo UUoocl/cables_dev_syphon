@@ -1,0 +1,863 @@
+$border-radius-popups:12px;
+
+
+
+@import 'fonts';
+@import 'svgicons';
+@import 'icons';
+@import 'z-indexes';
+
+@import 'libs/introjs';
+@import 'components/patch';
+
+// import last
+@import 'libs/cutegrids.scss';
+@import 'libs/introjs-custom-styles';
+
+.cablesCssUi
+{
+    display:inline;
+}
+
+.cablesCssUi
+{
+    .findToggle
+    {
+        user-select: none;
+        padding: 8px;
+        padding-bottom: 3px;
+        padding-top: 3px;
+        margin-right: 4px;
+        border-radius: 4px;
+        margin-top: 3px;
+        background-color: var(--color-04);
+        font-size: var(--font-size-small);
+        opacity: 0.5;
+        display: inline-block;
+    }
+    .findToggleActive
+    {
+        opacity: 1.0;
+        background-color: var(--color-05);
+        color:var(--color-special);
+    }
+
+}
+
+@keyframes flash {
+    from {
+          background: rgba(0,255,255,0.8);;
+    }
+    to {
+          background: rgba(0,255,255,0.0);
+    }
+  }
+
+.cblUiHtmlEleOverlay
+{
+    animation: flash 0.25s ease-in-out 0s;
+    pointer-events: none;
+    z-index: 99999999;
+    position: absolute;
+    border:1px solid var(--color-special);
+}
+
+.nomargin
+{
+    margin:0px !important;
+}
+
+html,body { // ipad overscroll fix...
+    position: fixed;
+    overflow: hidden;
+    width:100vw;
+    height:100vh;
+    overscroll-behavior:none;
+    overscroll-behavior-x: none;
+}
+
+body
+{
+    padding: 0px;
+    margin:0px;
+    background-color: $background-color-dark;
+    overflow: hidden;
+    font-family: $text-font;
+    font-size: var(--font-size-default);
+}
+
+
+.cablesCssUi
+{
+    color:var(--text-color);
+
+    *,*:hover
+    {
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    select// was: *
+    {
+        color:var(--text-color);
+    }
+
+    h3,h2
+    {
+        font-weight: normal;
+        margin-bottom:4px;
+    }
+
+    h3
+    {
+        font-size: 1.17em !important;
+    }
+
+    h2
+    {
+        font-size: 1.5em !important;
+        color:var(--color-13);
+    }
+
+    h1
+    {
+        font-size: 2em !important;
+    }
+
+    .hljs
+    {
+        margin: 0 !important;
+    }
+
+    p
+    {
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    hr
+    {
+        border:none;
+        border-top: 1px solid var(--color-01);
+        height:1px;
+    }
+
+    canvas
+    {
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .noselect
+    {
+        user-select: none;
+    }
+
+    .selectable
+    {
+        user-select:text !important;
+
+        *
+        {
+            user-select:text !important;
+        }
+    }
+
+    .clickable {cursor:pointer;}
+    .clear { clear:both; }
+    .fleft { float:left; }
+    .fright { float:right !important; }
+    .mainColor { color:$mainColor; }
+    .SourceCodePro,monospace,.monospace { font-family: SourceCodePro,monospace;}
+    .padded { padding:15px; }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+
+
+    a.link
+    {
+        text-decoration: underline !important;
+    }
+
+    a.link:hover
+    {
+        color:var(--color-special);
+    }
+
+    a
+    {
+        color:$color-text-link;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    input
+    {
+        background-color: var(--color-07);
+        color: var(--color-13);
+        border:none;
+
+        &.invalid
+        {
+            border:1px solid red;
+        }
+    }
+
+    input[type="text"]
+    {
+        padding: 10px 12px;
+        height: 18px;
+        // outline: none;
+        font-size: var(--font-size-default);
+        border-radius: 0;
+    }
+
+    textarea
+    {
+        width:500px;
+        height:300px;
+    }
+
+    input[type="text"]
+    {
+        background-color: $color-background-input;
+        border-radius: 4px;
+        padding:0px;
+        padding-left:4px;
+        border:1px solid var(--text-color);
+        margin-bottom: 3px;
+        border-radius: 0;
+        border: none;
+    }
+
+    .valuetext
+    {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        float:left;
+        min-width:80%;
+        margin-right:5px;
+        min-height: 18px;
+    }
+
+    .valuetext.inspectable
+    {
+        min-width: 60%;
+    }
+
+    // all text input color, border and focus border / sizes can be individual for each and are defined wherever...
+    input.medium,.opsearchInput,input[type=text], input[type=search],#commentTextarea,#tagInput
+    {
+        background-color: var(--color-05);
+        color:$mainColor;
+        border: 1px solid transparent !important;
+        border-radius: 2px;
+
+        &:focus
+        {
+            background-color: var(--color-05);
+            color: var(--color-13);
+        }
+    }
+
+    input.medium
+    {
+        font-size: 18px;
+        padding:5px;
+        width:100%;
+    }
+
+    input[type=search]::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        color: red;
+        width:20px;
+        height:20px;
+        background-image: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6L6 18M6 6l12 12'/%3E%3C/svg%3E");
+        cursor: pointer;
+    }
+
+    input[type=text], input[type=search]
+    {
+        // background-color: $text-input-background-color;
+        // color: $text-input-color;
+        // border: 1px solid $text-input-border-color;
+        padding: 8px 9px !important; // TODO: Correct, looks bad in op settings
+        width: 100%;
+
+        &::-webkit-input-placeholder {
+            color: var(--color-09);
+        }
+        &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: var(--color-09);
+            opacity:  1;
+        }
+        &::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: var(--color-09);
+            opacity:  1;
+        }
+        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: var(--color-09);
+        }
+        &::-ms-input-placeholder { /* Microsoft Edge */
+            color: var(--color-09);
+        }
+    }
+
+    input[type=text]:hover, input[type=search]:hover
+    {
+        background-color: $text-input-background-color-hover;
+        color: $text-input-color-hover;
+        border: 1px solid $text-input-border-color-hover;
+    }
+
+    input[type=search].big-search {
+        font-size: 20px;
+    }
+
+    .list
+    {
+        a
+        {
+            color:$color-text-link;
+        }
+
+        td
+        {
+            border-bottom: 1px solid var(--color-02);
+            padding-bottom: 4px;
+            padding-top: 4px;
+        }
+
+        .filename
+        {
+            display: block;
+            float:left;
+            max-width: 180px;
+            overflow:hidden;
+        }
+    }
+
+    //:not(.cm-content *)::selection, // TODO: why cant i scope codemirror so their rules are used in .cm-content
+     &::selection
+    {
+        background: #00FF85 !important;
+        color: black !important;
+
+    }
+
+
+    // scrollbar
+    $color-scrollbar-thumb: #444;
+    $color-scrollbar-background: transparent;
+
+    ::-webkit-scrollbar, &::-webkit-scrollbar {
+        height: 12px;
+        width: 12px;
+        background: $color-scrollbar-background;
+        opacity: 0.5;
+    }
+
+
+    ::-webkit-scrollbar-thumb, &::-webkit-scrollbar-thumb {
+        background: $color-scrollbar-thumb;
+        -webkit-border-radius: 1px;
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-corner, &::-webkit-scrollbar-corner {
+        background: $color-scrollbar-background;
+    }
+
+    body,div
+    {
+        scrollbar-color:$color-scrollbar-thumb $color-scrollbar-background;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    .help
+    {
+        a
+        {
+            text-decoration: underline;
+
+            &:before
+            {
+                font-family: arial;
+                content:"\f08e";
+                margin-right: 5px;
+                display:inline-block;
+            }
+        }
+        table
+        {
+            width:100%;
+
+            tr
+            {
+                border-bottom: var(--color-03);
+
+                td
+                {
+                    vertical-align:top;
+                    border-bottom: 1px solid var(--color-02);
+                    padding-bottom: 7px;
+                    padding-left: 6px;
+                    padding-right: 6px;
+                }
+
+                th
+                {
+                    color:white;
+                    text-align: left;
+                    font-weight: normal;
+                    padding-top: 13px;
+                    padding-bottom: 13px;
+                    font-size: var(--font-size-default);
+                }
+            }
+        }
+    }
+
+    .splitter
+    {
+        background-color:var(--color-splitter);
+        z-index: $zindex_canvas;
+        position: absolute;
+        display: block;
+    }
+
+    #splitterBottomTabs
+    {
+        height:4px;
+        cursor:ns-resize;
+        z-index: $zindex_over;
+    }
+
+
+    #splitterRendererWH
+    {
+        height:15px !important;
+        width:15px !important;
+        cursor:ne-resize;
+    }
+
+    #splitterRenderer
+    {
+        height:4px;
+        right:0px;
+        cursor:ns-resize;
+    }
+
+
+    #splitterRightPanel,#splitterEditor,#splitterMaintabs,.splitterTimeline
+    {
+        width:4px;
+        height:100%;
+        cursor:ew-resize;
+    }
+
+    /* #splitterPatch */
+    /* { */
+        /* background-color: transparent; */
+    /* } */
+
+    .clone
+    {
+        background-color: var(--color-02);
+        max-width:720px;
+        padding:0px;
+        font-size: var(--font-size-default);
+        color: var(--color-10);
+        height:38px;
+        line-height: 40px;
+        text-align: right;
+        display: flex;
+
+        span
+        {
+            margin-top: 10px;
+        }
+
+        input, select
+        {
+            font-size: var(--font-size-default);
+        }
+
+        select
+        {
+            padding-left:10px;
+            border: 1px solid transparent !important;
+            border-radius: 10px;
+            margin-right: 10px;
+            max-width: 300px;
+            min-width: 200px;
+        }
+    }
+
+    #opNameDialogConsequences, #opNameDialogHints, #opcreateerrors
+    {
+        h3
+        {
+            margin:0px;
+        }
+        padding:10px !important;
+        background-color:var(--color-03) !important;
+        margin-bottom: 10px;
+    }
+    #opcreateerrors
+    {
+        border-left:5px solid red;
+    }
+
+    #opNameDialogConsequences
+    {
+        border-left:5px solid #5CB59E;
+    }
+
+    #opNameDialogHints
+    {
+        border-left:5px solid #EBA605;
+    }
+
+    #notify
+    {
+        position: absolute;
+        top:55px;
+        right:20px;
+        background-color: var(--color-03);
+        padding:10px;
+        opacity: 0.8;
+        border-radius: 5px;
+        z-index: $zindex_highest;
+        display: none;
+    }
+
+    #delayed
+    {
+        position: absolute;
+        top:20px;
+        background-color: var(--color-03);
+        padding:10px;
+        border-radius: 5px;
+        z-index: $zindex_over;
+        display: block;
+    }
+
+    input
+    {
+        &::placeholder
+        {
+            color:$color-input-placeholder;
+        }
+
+    }
+
+    .underline
+    {
+        text-decoration: underline;
+        &:hover
+        {
+            color: var(--color-special);
+        }
+    }
+
+    #undev
+    {
+        position: absolute;
+        right: 8px;
+        bottom: 4px;
+        width: 68px;
+        height: 19px;
+        background-color: var(--color-07);
+        mask-repeat: no-repeat;
+        display: block;
+        z-index: $zindex_over;
+    }
+
+    .shaderErrorCode
+    {
+        user-select: text !important;
+    }
+
+    .uploadarea
+    {
+        text-align: center;
+        background-color:var(--color-01);
+        border:2px dashed var(--color-04);
+        width:100%;
+        padding-top:100px;
+        padding-bottom:100px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+
+
+    #uploaddialog
+    {
+        max-width:720px;
+    }
+
+    .uploadareaActive
+    {
+        border:2px dashed var(--color-09) !important;
+        color: var(--color-special);
+    }
+
+    .tip
+    {
+        background-color:var(--color-01);
+
+        p
+        {
+            line-height:25px;
+        }
+
+        code
+        {
+            background-color: var(--color-04);
+            border: 1px solid var(--color-06);
+            border-radius: 4px;
+            padding:2px;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+
+    }
+
+    #uiperfcontainer
+    {
+        /* max-height: 50%; */
+        /* overflow: scroll; */
+        /* z-index: $zindex_high; */
+        /* padding:20px; */
+        /* position:absolute; */
+        /* background-color: #000; */
+        /* bottom:0px; */
+        /* display:none; */
+        font-family: monospace;
+    }
+
+    #uiperf
+    {
+        td
+        {
+            color:#fff;
+        }
+
+        .highlighted
+        {
+            td
+            {
+                color:var(--color-special) !important;
+                background-color: #444;
+            }
+        }
+
+        .col_inactive
+        {
+            color:#777;
+        }
+
+        .col_recent
+        {
+            color:#bbb;
+        }
+
+        .col_active
+        {
+            color:#fff;
+        }
+    }
+
+    #bgpreviewButtonsContainer
+    {
+        position:absolute;
+    }
+
+    #bgpreviewButtons
+    {
+        display:block;
+    }
+
+    #bgpreviewButtons
+    {
+        margin-right:10px;
+        margin-top:10px;
+    }
+
+    #bgpreview
+    {
+        display:none;
+        position:absolute;
+        pointer-events: none;
+        transform:scale(1,-1);
+    }
+
+    .colorButton
+    {
+        color:black;
+        padding-left:5px;
+        padding-right:5px;
+    }
+
+
+    .patch_summary
+    {
+        padding:10px !important;
+    }
+
+    .nobreak
+    {
+        white-space: nowrap;
+    }
+
+
+    .portType_0_background { background-color:var(--color_link_value) !important; }
+    .portType_1_background { background-color:var(--color_link_function) !important; }
+    .portType_2_background { background-color:var(--color_link_object) !important; }
+    .portType_3_background { background-color:var(--color_link_array) !important; }
+    .portType_4_background { background-color:var(--color_port_dynamic) !important; }
+    .portType_5_background { background-color:var(--color_link_string) !important; }
+
+}
+
+
+.formtable
+{
+    select
+    {
+        padding:5px !important;
+        background-color: var(--color-04) !important;
+        color: var(--color-11);
+    }
+    input
+    {
+        background-color: var(--color-05);
+        color: var(--color-11);
+        padding:5px !important;
+        padding-left:10px !important;
+    }
+}
+
+
+
+@import 'components/draglist.scss';
+@import 'components/searchbox.scss';
+@import 'components/opselect.scss';
+@import 'components/modal.scss';
+@import 'components/cmdpalette.scss';
+@import 'components/project_settings.scss';
+@import 'components/nav';
+@import 'components/files';
+@import 'components/editor';
+@import 'components/timeline';
+@import 'components/changelog';
+@import 'components/tooltip';
+@import 'components/meta';
+@import 'components/meta_table';
+@import 'components/keypresenter';
+@import 'components/contextmenu';
+@import 'components/valueinput';
+@import 'components/treetable';
+@import 'components/params.scss';
+@import 'components/projectsearch.scss';
+@import 'components/canvas.scss';
+@import 'components/op-doc.scss';
+@import 'libs/iztoast.scss';
+@import 'libs/highlightjs-monokai';
+@import 'components/tabpanel.scss';
+@import 'components/log.scss';
+@import 'components/item_manager.scss';
+@import 'components/iconbar.scss';
+@import 'components/colorrick.scss';
+@import 'components/collapsable.scss';
+@import 'components/gradienteditor.scss';
+@import 'components/buttons.scss';
+@import 'components/preferences.scss';
+@import 'components/cellmate.scss';
+
+
+.cablesCssUi
+{
+    .hidden { display:none !important;}
+
+    .portSuggest0 { border-left:4px solid var(--color_link_value) !important; }
+    .portSuggest1 { border-left:4px solid var(--color_link_function) !important; }
+    .portSuggest2 { border-left:4px solid var(--color_link_object) !important; }
+    .portSuggest3 { border-left:4px solid var(--color_link_array) !important; }
+    .portSuggest4 { border-left:4px solid var(--color_port_dynamic) !important; }
+    .portSuggest5 { border-left:4px solid var(--color_link_string) !important; }
+
+    .portSuggest0Linked { border-left:10px solid var(--color_link_value) !important; color:#888;}
+    .portSuggest1Linked { border-left:10px solid var(--color_link_function) !important; color:#888;}
+    .portSuggest2Linked { border-left:10px solid var(--color_link_object) !important; color:#888;}
+    .portSuggest3Linked { border-left:10px solid var(--color_link_array) !important; color:#888;}
+    .portSuggest4Linked { border-left:10px solid var(--color_port_dynamic) !important; color:#888;}
+    .portSuggest5Linked { border-left:10px solid var(--color_link_string) !important; color:#888;}
+
+    .scrollPage
+    {
+        overflow:auto;
+
+        #mainContainer
+        {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        #cablescanvas
+        {
+            z-index: 9999 !important;
+        }
+
+        #cablescanvas,#meta
+        {
+            position: fixed !important;
+            right:15px !important;
+        }
+    }
+
+    .cursorAvatar
+    {
+        width:20px;
+        height:20px;
+        // border:1px solid red;
+        z-index: 1000;
+        position: absolute;
+        border-radius: 100%;
+        border:2px solid black;
+        pointer-events: none;
+    }
+
+    .patchfield
+    {
+        border: 0px solid transparent;
+        outline: 0px !important;
+        position: absolute;
+    }
+
+    // ,input[type=text]:active, input[type=text]:focus, input[type=search]:active, input[type=search]:focus
+    *:focus-visible{
+        outline: 2px solid var(--color-special) !important;
+    }
+
+    canvas:focus-visible{
+        outline:none !important;
+    }
+
+}
+*:focus{
+    outline: none;
+    /* outline-color:var(--color-special); */
+}
