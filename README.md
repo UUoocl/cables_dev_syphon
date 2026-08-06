@@ -15,7 +15,7 @@ This workspace contains the development environment for a custom version of Cabl
 ## Prerequisites
 
 - **macOS** (Syphon is a macOS-only texture sharing framework).
-- **Node.js** (v20+ or v24+).
+- **Node.js** (v24.18.1).
 - **Xcode Command Line Tools** (required to compile the native module).
 - **Python 3** (required by `node-gyp` for compilation).
 
