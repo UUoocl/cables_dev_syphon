@@ -1,5 +1,5 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-const syphonBridge = require("./build/Release/syphon_bridge.node");
+const appleBridge = require("./build/Release/apple_framework_bridge.node");
 
-export default syphonBridge;
+export default appleBridge;

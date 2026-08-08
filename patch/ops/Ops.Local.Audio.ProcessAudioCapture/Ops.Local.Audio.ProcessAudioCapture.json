@@ -1,0 +1,62 @@
+{
+    "authorName": "Cables Dev",
+    "id": "b33364f8-2222-4cb5-8d59-222a7f5a9e34",
+    "created": 1772043180000,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Start"
+            },
+            {
+                "type": 1,
+                "name": "Stop"
+            },
+            {
+                "type": 1,
+                "name": "Refresh Processes"
+            },
+            {
+                "type": 0,
+                "name": "Process",
+                "values": [
+                    "None"
+                ],
+                "subType": "string"
+            },
+            {
+                "type": 0,
+                "name": "Volume",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Mute",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Audio Out",
+                "objType": "audioNode"
+            },
+            {
+                "type": 0,
+                "name": "Capturing",
+                "subType": "boolean"
+            }
+        ]
+    },
+    "summary": "Capture audio from a running process using ScreenCaptureKit",
+    "changelog": [
+        {
+            "message": "Initial Process Audio Capture Op implementation",
+            "author": "Cables Dev",
+            "date": 1772043180000
+        }
+    ],
+    "coreLibs": [
+        "webaudio"
+    ]
+}

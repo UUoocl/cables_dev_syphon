@@ -1,9 +1,10 @@
 {
   "targets": [
     {
-      "target_name": "syphon_bridge",
+      "target_name": "apple_framework_bridge",
       "sources": [
-        "syphon_bridge.mm"
+        "syphon_bridge.mm",
+        "screencapturekit_bridge.mm"
       ],
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")"
@@ -22,7 +23,11 @@
             "-framework Metal",
             "-framework IOSurface",
             "-framework CoreVideo",
-            "-framework Foundation"
+            "-framework Foundation",
+            "-framework ScreenCaptureKit",
+            "-framework AVFoundation",
+            "-framework CoreMedia",
+            "-framework AppKit"
           ],
           "xcode_settings": {
             "FRAMEWORK_SEARCH_PATHS": [
@@ -43,6 +48,10 @@
               "-framework IOSurface",
               "-framework CoreVideo",
               "-framework Foundation",
+              "-framework ScreenCaptureKit",
+              "-framework AVFoundation",
+              "-framework CoreMedia",
+              "-framework AppKit",
               "-Wl,-rpath,@loader_path/../../../reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal/lib",
               "-Wl,-rpath,@loader_path/../Frameworks"
             ]

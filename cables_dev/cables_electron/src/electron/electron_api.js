@@ -1,5 +1,5 @@
 import { app, desktopCapturer, ipcMain, net, shell, sharedTexture } from "electron";
-import syphonBridge from "cables-electron-syphon";
+import appleBridge from "cables-electron-syphon";
 import fs from "fs";
 import path from "path";
 import mkdirp from "mkdirp";
@@ -71,7 +71,7 @@ class ElectronApi
 
         ipcMain.handle("syphonGetServers", () =>
         {
-            return syphonBridge.getServers();
+            return appleBridge.getServers();
         });
 
         let currentClientActive = false;
@@ -79,12 +79,12 @@ class ElectronApi
         {
             if (currentClientActive)
             {
-                syphonBridge.stopClient();
+                appleBridge.stopClient();
                 currentClientActive = false;
             }
             
             const senderFrame = event.senderFrame || event.sender.mainFrame;
-            const success = syphonBridge.initClient(serverDesc, (ioSurfaceBuffer, width, height) =>
+            const success = appleBridge.initClient(serverDesc, (ioSurfaceBuffer, width, height) =>
             {
                 try
                 {
@@ -128,7 +128,7 @@ class ElectronApi
         {
             if (currentClientActive)
             {
-                syphonBridge.stopClient();
+                appleBridge.stopClient();
                 currentClientActive = false;
             }
             return true;
@@ -139,10 +139,10 @@ class ElectronApi
         {
             if (currentPublishActive)
             {
-                syphonBridge.stopServer();
+                appleBridge.stopServer();
                 currentPublishActive = false;
             }
-            const success = syphonBridge.initServer(serverName);
+            const success = appleBridge.initServer(serverName);
             currentPublishActive = success;
             return success;
         });
@@ -151,7 +151,7 @@ class ElectronApi
         {
             if (currentPublishActive)
             {
-                syphonBridge.stopServer();
+                appleBridge.stopServer();
                 currentPublishActive = false;
             }
             return true;
@@ -161,8 +161,50 @@ class ElectronApi
         {
             if (currentPublishActive)
             {
-                syphonBridge.publishPixelFrame(pixelBuffer, width, height);
+                appleBridge.publishPixelFrame(pixelBuffer, width, height);
             }
+        });
+
+        // ScreenCaptureKit Audio Capture
+        let currentAudioCaptureActive = false;
+        ipcMain.handle("syphonGetAudioSources", () =>
+        {
+            return appleBridge.getAudioSources();
+        });
+
+        ipcMain.handle("syphonStartAudioCapture", (event, pid) =>
+        {
+            if (currentAudioCaptureActive)
+            {
+                appleBridge.stopAudioCapture();
+                currentAudioCaptureActive = false;
+            }
+            
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            const success = appleBridge.startAudioCapture(pid, (leftChannel, rightChannel) =>
+            {
+                try
+                {
+                    senderFrame.send("syphonAudioFrame", leftChannel, rightChannel);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending audio frame:", e);
+                }
+            });
+            
+            currentAudioCaptureActive = success;
+            return success;
+        });
+
+        ipcMain.handle("syphonStopAudioCapture", () =>
+        {
+            if (currentAudioCaptureActive)
+            {
+                appleBridge.stopAudioCapture();
+                currentAudioCaptureActive = false;
+            }
+            return true;
         });
 
         ipcMain.on("cablesConfig", (event, _cmd, _data) =>

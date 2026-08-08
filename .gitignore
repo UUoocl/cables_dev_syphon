@@ -15,3 +15,6 @@ reference/
 Antigravity/
 
 **/.DS_Store
+
+# Local API builds
+cables_dev/cables_api/

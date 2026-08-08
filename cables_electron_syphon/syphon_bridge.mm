@@ -5,6 +5,7 @@
 #import <Syphon/Syphon.h>
 #include <napi.h>
 #include <mutex>
+#include "screencapturekit_bridge.h"
 
 static id<MTLDevice> g_Device = nil;
 static id<MTLCommandQueue> g_CommandQueue = nil;
@@ -416,7 +417,10 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
     exports.Set(Napi::String::New(env, "publishPixelFrame"), Napi::Function::New(env, PublishPixelFrame));
     exports.Set(Napi::String::New(env, "initClient"), Napi::Function::New(env, InitClient));
     exports.Set(Napi::String::New(env, "stopClient"), Napi::Function::New(env, StopClient));
+    
+    InitAudioCapture(env, exports);
+    
     return exports;
 }
 
-NODE_API_MODULE(syphon_bridge, Init)
+NODE_API_MODULE(apple_framework_bridge, Init)

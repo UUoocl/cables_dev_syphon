@@ -43,6 +43,7 @@
         "productName": "cables",
         "appId": "gl.cables.standalone",
         "nodeVersion": "24.18.1",
+        "npmRebuild": false,
         "asar": true,
         "includeSubNodeModules": true,
         "electronLanguages": [
@@ -108,6 +109,11 @@
             "entitlements": "resources/build/entitlements.mac.plist",
             "entitlementsInherit": "resources/build/entitlements.mac.plist",
             "category": "public.app-category.developer-tools",
+            "extendInfo": {
+                "NSMicrophoneUsageDescription": "cables needs access to the microphone to capture and process audio input.",
+                "NSCameraUsageDescription": "cables needs access to the camera to capture video input.",
+                "NSScreenCaptureUsageDescription": "cables needs screen recording permissions to capture screen and process audio/video."
+            },
             "target": [
                 {
                     "target": "dmg",
@@ -115,6 +121,12 @@
                         "x64",
                         "arm64"
                     ]
+                }
+            ],
+            "extraFiles": [
+                {
+                    "from": "../../reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal/lib/Syphon.framework",
+                    "to": "Frameworks/Syphon.framework"
                 }
             ]
         },
