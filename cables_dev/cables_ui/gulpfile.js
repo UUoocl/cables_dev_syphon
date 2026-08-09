@@ -213,6 +213,13 @@ function _analyze(done)
     done();
 }
 
+function _fonts(done)
+{
+    return gulp
+        .src("fonts/**/*", { "encoding": false })
+        .pipe(gulp.dest("dist/fonts/"));
+}
+
 /*
  * -------------------------------------------------------------------------------------------
  * MAIN TASKS
@@ -227,6 +234,7 @@ const defaultSeries = gulp.series(
     _scripts_ui_webpack,
     _scripts_talkerapi,
     _sass,
+    _fonts,
 );
 
 /**

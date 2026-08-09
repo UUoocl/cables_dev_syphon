@@ -23,16 +23,16 @@ This workspace contains the development environment for a custom version of Cabl
 
 ## How to Build and Run
 
-1. **Install and Link Dependencies**
-   Navigate to the Electron project directory and install the packages. This will automatically compile the native Apple Frameworks bridge package (`cables_apple_frameworks`) using `node-gyp`:
+1. **Install and Build the Environment**
+   Run the automated setup script in the root of the workspace directory. This will verify dependencies, download missing frameworks, install dependencies, copy fonts, compile the native `cables_apple_frameworks` addon, and build all packages in sequence:
    ```bash
-   cd cables_dev/cables_electron
-   npm install
+   ./setup_dev_env.sh
    ```
 
 2. **Run Cables Standalone**
-   Start the development server and watch task:
+   Navigate to the Electron project directory and start the development server:
    ```bash
+   cd cables_dev/cables_electron
    npm run start
    ```
 
