@@ -436,8 +436,158 @@ Napi::Value DetectHumanPose3d(const Napi::CallbackInfo& info) {
     return worker->Promise();
 }
 
+
+// ----------------------------------------------------
+// Asynchronous Worker: Human Hand Tracking
+// ----------------------------------------------------
+class HandWorker : public Napi::AsyncWorker {
+public:
+    HandWorker(Napi::Env env, Napi::Buffer<uint8_t>& pixelBuf, int width, int height, float minConfidence)
+        : Napi::AsyncWorker(env), _deferred(Napi::Promise::Deferred::New(env)), _width(width), _height(height), _minConfidence(minConfidence) {
+        _pixels.assign(pixelBuf.Data(), pixelBuf.Data() + pixelBuf.Length());
+    }
+    
+    Napi::Promise Promise() {
+        return _deferred.Promise();
+    }
+    
+    void Execute() override {
+        @autoreleasepool {
+            CVPixelBufferRef pixelBuffer = NULL;
+            NSDictionary *options = @{
+                (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
+                (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
+                (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
+                (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
+            };
+            
+            CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
+            if (status != kCVReturnSuccess || !pixelBuffer) {
+                SetError("Failed to create CVPixelBuffer inside worker (status: " + std::to_string(status) + ")");
+                return;
+            }
+            
+            CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+            uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
+            for (int i = 0; i < _width * _height; i++) {
+                baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
+                baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
+                baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
+                baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
+            }
+            CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+            
+            VNDetectHumanHandPoseRequest *request = [[VNDetectHumanHandPoseRequest alloc] init];
+            VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
+            NSError *error = nil;
+            BOOL success = [handler performRequests:@[request] error:&error];
+            CVPixelBufferRelease(pixelBuffer);
+            
+            if (!success || error) {
+                NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
+                SetError("Vision hand pose detection failed: " + std::string([errDesc UTF8String]));
+                return;
+            }
+            
+            NSArray *observations = request.results;
+            for (VNHumanHandPoseObservation *observation in observations) {
+                NSError *keypointError = nil;
+                NSDictionary<VNHumanHandPoseObservationJointName, VNRecognizedPoint *> *recognizedPoints = 
+                    [observation recognizedPointsForJointsGroupName:VNHumanHandPoseObservationJointsGroupNameAll error:&keypointError];
+                
+                std::unordered_map<std::string, std::vector<float>> handMap;
+                if (recognizedPoints && !keypointError) {
+                    for (VNHumanHandPoseObservationJointName jointName in recognizedPoints) {
+                        VNRecognizedPoint *point = [recognizedPoints objectForKey:jointName];
+                        if (point && point.confidence >= _minConfidence) {
+                            handMap[[jointName UTF8String]] = { (float)point.x, (float)point.y, (float)point.confidence };
+                        }
+                    }
+                }
+                
+                std::string chiralityStr = "unknown";
+                if (@available(macOS 12.0, *)) {
+                    if (observation.chirality == VNChiralityLeft) {
+                        chiralityStr = "left";
+                    } else if (observation.chirality == VNChiralityRight) {
+                        chiralityStr = "right";
+                    }
+                }
+                
+                _hands.push_back({ handMap, chiralityStr });
+            }
+        }
+    }
+    
+    void OnOK() override {
+        if (IsIsolateTerminating()) return;
+        
+        Napi::Env env = Env();
+        Napi::HandleScope scope(env);
+        
+        Napi::Array handsArray = Napi::Array::New(env, _hands.size());
+        for (size_t i = 0; i < _hands.size(); i++) {
+            Napi::Object handObj = Napi::Object::New(env);
+            for (auto const& [jointName, vals] : _hands[i].joints) {
+                Napi::Object ptObj = Napi::Object::New(env);
+                ptObj.Set("x", Napi::Number::New(env, vals[0]));
+                ptObj.Set("y", Napi::Number::New(env, vals[1]));
+                ptObj.Set("confidence", Napi::Number::New(env, vals[2]));
+                
+                handObj.Set(jointName, ptObj);
+            }
+            handObj.Set("chirality", Napi::String::New(env, _hands[i].chirality));
+            handsArray.Set(i, handObj);
+        }
+        
+        _deferred.Resolve(handsArray);
+    }
+    
+    void OnError(const Napi::Error& err) override {
+        if (IsIsolateTerminating()) return;
+        _deferred.Reject(err.Value());
+    }
+    
+private:
+    struct HandData {
+        std::unordered_map<std::string, std::vector<float>> joints;
+        std::string chirality;
+    };
+    
+    Napi::Promise::Deferred _deferred;
+    int _width;
+    int _height;
+    float _minConfidence;
+    std::vector<uint8_t> _pixels;
+    std::vector<HandData> _hands;
+};
+
+Napi::Value DetectHumanHand(const Napi::CallbackInfo& info) {
+    Napi::Env env = info.Env();
+    
+    if (info.Length() < 4 || !info[0].IsBuffer() || !info[1].IsNumber() || !info[2].IsNumber() || !info[3].IsNumber()) {
+        Napi::TypeError::New(env, "Arguments expected: Buffer (pixels), Number (width), Number (height), Number (minConfidence)").ThrowAsJavaScriptException();
+        return env.Undefined();
+    }
+    
+    Napi::Buffer<uint8_t> buffer = info[0].As<Napi::Buffer<uint8_t>>();
+    int width = info[1].As<Napi::Number>().Int32Value();
+    int height = info[2].As<Napi::Number>().Int32Value();
+    float minConfidence = info[3].As<Napi::Number>().FloatValue();
+    
+    if (width <= 0 || height <= 0 || buffer.Length() < width * height * 4) {
+        Napi::TypeError::New(env, "Invalid buffer length for given dimensions").ThrowAsJavaScriptException();
+        return env.Undefined();
+    }
+    
+    HandWorker* worker = new HandWorker(env, buffer, width, height, minConfidence);
+    worker->Queue();
+    return worker->Promise();
+}
+
 void InitVision(Napi::Env env, Napi::Object exports) {
     exports.Set(Napi::String::New(env, "processSegmentation"), Napi::Function::New(env, ProcessSegmentation));
     exports.Set(Napi::String::New(env, "detectHumanPose"), Napi::Function::New(env, DetectHumanPose));
     exports.Set(Napi::String::New(env, "detectHumanPose3d"), Napi::Function::New(env, DetectHumanPose3d));
+    exports.Set(Napi::String::New(env, "detectHumanHand"), Napi::Function::New(env, DetectHumanHand));
 }

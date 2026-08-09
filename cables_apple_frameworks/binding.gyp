@@ -32,6 +32,7 @@
             "-framework Vision"
           ],
           "xcode_settings": {
+            "MACOSX_DEPLOYMENT_TARGET": "14.0",
             "FRAMEWORK_SEARCH_PATHS": [
               "<(module_root_dir)/frameworks"
             ],

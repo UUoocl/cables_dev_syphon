@@ -1,0 +1,53 @@
+{
+    "authorName": "Cables Standalone",
+    "id": "a78912e5-cccc-4e4f-b912-555566668888",
+    "created": 1772052470000,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Render"
+            },
+            {
+                "type": 0,
+                "name": "Texture",
+                "subType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Min Confidence",
+                "subType": "number"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Hands Array",
+                "subType": "array"
+            },
+            {
+                "type": 0,
+                "name": "Detected Hands",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "On Hands Detected"
+            }
+        ]
+    },
+    "summary": "Detects human hand joint poses in a texture using native macOS Apple Vision",
+    "changelog": [
+        {
+            "message": "Initial HumanHand implementation",
+            "author": "Cables Standalone",
+            "date": 1772052470000
+        }
+    ],
+    "coreLibs": []
+}

@@ -192,6 +192,11 @@ class ElectronApi
             return appleBridge.detectHumanPose3d(pixels, w, h);
         });
 
+        ipcMain.handle("syphonDetectHumanHand", (event, pixels, w, h, minConfidence) =>
+        {
+            return appleBridge.detectHumanHand(pixels, w, h, minConfidence);
+        });
+
         ipcMain.handle("syphonStartAudioCapture", (event, pid) =>
         {
             if (currentAudioCaptureActive)

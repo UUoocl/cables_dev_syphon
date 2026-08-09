@@ -4,6 +4,8 @@ node_modules/
 
 # Build artifacts & compiled addons
 **/build/
+!cables_dev/cables_electron/resources/build/
+!cables_dev/cables_electron/resources/build/**
 **/dist/
 **/*.node
 
@@ -18,3 +20,5 @@ Antigravity/
 
 # Local API builds
 cables_dev/cables_api/
+
+cables_dev/cables/src/ops/extensions

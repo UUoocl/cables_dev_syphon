@@ -27,4 +27,5 @@ public/libs_core/
 ops/
 cables.json
 cables_env_*.json
+!cables_env_dist.json
 
