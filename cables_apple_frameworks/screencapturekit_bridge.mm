@@ -21,7 +21,7 @@ static bool g_AudioCaptureActive = false;
 @implementation AudioCaptureDelegate
 
 - (void)stream:(SCStream *)stream didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer ofType:(SCStreamOutputType)type {
-    NSLog(@"[Audio Capture Delegate] didOutputSampleBuffer called, type: %ld", (long)type);
+    // NSLog(@"[Audio Capture Delegate] didOutputSampleBuffer called, type: %ld", (long)type);
     if (type == SCStreamOutputTypeAudio) {
         @autoreleasepool {
             CMAudioFormatDescriptionRef formatDesc = CMSampleBufferGetFormatDescription(sampleBuffer);
@@ -83,7 +83,7 @@ static bool g_AudioCaptureActive = false;
             
             int numChannels = asbd->mChannelsPerFrame;
             int numFrames = (int)CMSampleBufferGetNumSamples(sampleBuffer);
-            NSLog(@"[Audio Capture Delegate] Received Audio Frame: Channels=%d, Frames=%d, SampleRate=%f", numChannels, numFrames, asbd->mSampleRate);
+            // NSLog(@"[Audio Capture Delegate] Received Audio Frame: Channels=%d, Frames=%d, SampleRate=%f", numChannels, numFrames, asbd->mSampleRate);
             
             auto leftChannel = std::make_shared<std::vector<float>>(numFrames, 0.0f);
             auto rightChannel = std::make_shared<std::vector<float>>(numFrames, 0.0f);
@@ -126,7 +126,7 @@ static bool g_AudioCaptureActive = false;
             std::lock_guard<std::mutex> lock(g_AudioCallbackMutex);
             if (g_AudioCaptureActive && g_AudioCallback) {
                 auto callback = [leftChannel, rightChannel, numFrames](Napi::Env env, Napi::Function jsCallback) {
-                    NSLog(@"[Audio Capture Delegate] Thread-safe callback executing in JS thread for %d frames", numFrames);
+                    // NSLog(@"[Audio Capture Delegate] Thread-safe callback executing in JS thread for %d frames", numFrames);
                     Napi::Float32Array leftArray = Napi::Float32Array::New(env, numFrames);
                     Napi::Float32Array rightArray = Napi::Float32Array::New(env, numFrames);
                     
@@ -140,7 +140,7 @@ static bool g_AudioCaptureActive = false;
                     NSLog(@"[Audio Capture Delegate] NonBlockingCall failed with status: %d", nstatus);
                 }
             } else {
-                NSLog(@"[Audio Capture Delegate] Callback inactive: active=%d, callbackSet=%d", g_AudioCaptureActive, (g_AudioCallback ? 1 : 0));
+                // NSLog(@"[Audio Capture Delegate] Callback inactive: active=%d, callbackSet=%d", g_AudioCaptureActive, (g_AudioCallback ? 1 : 0));
             }
         }
     }

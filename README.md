@@ -7,7 +7,7 @@ This workspace contains the development environment for a custom version of Cabl
 ## Workspace Structure
 
 - **`cables_dev/cables_electron/`**: The Electron standalone wrapper for the Cables editor and engine.
-- **`cables_electron_syphon/`**: A standalone Node-API native bridge module linking Electron/Node.js to macOS system graphics frameworks (`Metal`, `IOSurfaceRef`, `CoreVideo`) and the `Syphon.framework`.
+- **`cables_apple_frameworks/`**: A standalone Node-API native bridge module linking Electron/Node.js to macOS system graphics frameworks (`Metal`, `IOSurfaceRef`, `CoreVideo`) and the `Syphon.framework`.
 - **`reference/`**: Reference source code and build assets for the OBS Studio Syphon Server plugin.
 
 ---
@@ -24,7 +24,7 @@ This workspace contains the development environment for a custom version of Cabl
 ## How to Build and Run
 
 1. **Install and Link Dependencies**
-   Navigate to the Electron project directory and install the packages. This will automatically compile the native Syphon bridge package (`cables_electron_syphon`) using `node-gyp`:
+   Navigate to the Electron project directory and install the packages. This will automatically compile the native Apple Frameworks bridge package (`cables_apple_frameworks`) using `node-gyp`:
    ```bash
    cd cables_dev/cables_electron
    npm install
@@ -42,7 +42,7 @@ This workspace contains the development environment for a custom version of Cabl
 To support custom video sharing and rendering integrations, several modifications were made to the core `cables_dev/cables_electron` standalone application:
 
 ### 1. Syphon Support
-*   **Dependency Integration**: Added the custom native addon `"cables-electron-syphon": "file:../../cables_electron_syphon"` as a development dependency inside [package.json](cables_dev/cables_electron/package.json). This compiles and binds the macOS native bridge automatically on `npm install`.
+*   **Dependency Integration**: Added the custom native addon `"cables-apple-frameworks": "file:../../cables_apple_frameworks"` as a development dependency inside [package.json](cables_dev/cables_electron/package.json). This compiles and binds the macOS native bridge automatically on `npm install`.
 *   **Main Process API Extensions**: Modified [electron_api.js](cables_dev/cables_electron/src/electron/electron_api.js) to import the bridge and register IPC channels:
     *   `syphonGetServers`: Queries active system-wide Syphon streams.
     *   `syphonSubscribe` & `syphonUnsubscribe`: Creates and destroys native clients, managing the shared texture stream.

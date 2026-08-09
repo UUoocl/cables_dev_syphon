@@ -1,7 +1,7 @@
 {
-  "name": "cables-electron-syphon",
+  "name": "cables-apple-frameworks",
   "version": "1.0.0",
-  "description": "Native Syphon bridge for Electron/Node.js",
+  "description": "Native Apple frameworks bridge for Electron/Node.js",
   "main": "index.js",
   "type": "module",
   "scripts": {

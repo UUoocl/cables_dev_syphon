@@ -1,5 +1,5 @@
 import { app, desktopCapturer, ipcMain, net, shell, sharedTexture } from "electron";
-import appleBridge from "cables-electron-syphon";
+import appleBridge from "cables-apple-frameworks";
 import fs from "fs";
 import path from "path";
 import mkdirp from "mkdirp";

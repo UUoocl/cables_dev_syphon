@@ -1,4 +1,4 @@
-# cables-electron-syphon
+# cables-apple-frameworks
 
 Native macOS Apple Syphon bridge for Electron and Node.js. This module facilitates high-performance, GPU-accelerated, and real-time video sharing between Cables Standalone and other Syphon-compatible applications (such as OBS Studio, MadMapper, Resolume, or custom VJ tools) on macOS.
 

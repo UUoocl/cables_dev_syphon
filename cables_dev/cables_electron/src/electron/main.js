@@ -18,7 +18,7 @@ import helper from "../utils/helper_util.js";
 import Npm from "../../node_modules/npm/lib/npm.js";
 import opsUtil from "../utils/ops_util.js";
 import cables from "../cables.js";
-import appleBridge from "cables-electron-syphon";
+import appleBridge from "cables-apple-frameworks";
 
 app.commandLine.appendSwitch("disable-http-cache", "true");
 if (!app.commandLine.hasSwitch("dont-force-dgpu")) app.commandLine.appendSwitch("force_high_performance_gpu", "true");

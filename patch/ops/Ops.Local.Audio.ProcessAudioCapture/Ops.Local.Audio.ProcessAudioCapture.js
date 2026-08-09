@@ -147,7 +147,7 @@ function handleAudioFrame(event, leftChannel, rightChannel) {
                     if (leftChannel[i] !== 0) nonZeroL++;
                 }
             }
-            console.log(`[ProcessAudioCapture] Received frame #${frameCount}. L-len: ${leftChannel ? leftChannel.length : 'null'}, R-len: ${rightChannel ? rightChannel.length : 'null'}, nonZeroSamples: ${nonZeroL}`);
+            // console.log(`[ProcessAudioCapture] Received frame #${frameCount}. L-len: ${leftChannel ? leftChannel.length : 'null'}, R-len: ${rightChannel ? rightChannel.length : 'null'}, nonZeroSamples: ${nonZeroL}`);
         }
         ringBuffer.write(leftChannel, rightChannel);
     }
@@ -172,17 +172,17 @@ function startCapture() {
     ringBuffer = new AudioRingBuffer();
     frameCount = 0;
     
-    console.log("[ProcessAudioCapture] AudioContext state before capture:", audioCtx.state);
+    // console.log("[ProcessAudioCapture] AudioContext state before capture:", audioCtx.state);
     if (audioCtx.state === "suspended") {
         audioCtx.resume().then(() => {
-            console.log("[ProcessAudioCapture] AudioContext resumed successfully, state:", audioCtx.state);
+            // console.log("[ProcessAudioCapture] AudioContext resumed successfully, state:", audioCtx.state);
         }).catch((err) => {
             console.error("[ProcessAudioCapture] Failed to resume AudioContext:", err);
         });
     }
     
     ipcRenderer.invoke("syphonStartAudioCapture", pid).then((success) => {
-        console.log("[ProcessAudioCapture] syphonStartAudioCapture success result:", success);
+        // console.log("[ProcessAudioCapture] syphonStartAudioCapture success result:", success);
         if (success) {
             isCapturing = true;
             outCapturing.set(true);

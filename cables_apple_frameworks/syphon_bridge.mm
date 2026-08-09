@@ -278,9 +278,9 @@ Napi::Value InitClient(const Napi::CallbackInfo& info) {
         description = NapiObjectToNSDictionary(info[0].As<Napi::Object>());
     }
     
-    NSLog(@"[Syphon Bridge] InitClient starting...");
-    NSLog(@"[Syphon Bridge] g_Device is: %@", g_Device);
-    NSLog(@"[Syphon Bridge] description dictionary is: %@", description);
+    // NSLog(@"[Syphon Bridge] InitClient starting...");
+    // NSLog(@"[Syphon Bridge] g_Device is: %@", g_Device);
+    // NSLog(@"[Syphon Bridge] description dictionary is: %@", description);
     
     if (g_SyphonClient) {
         [g_SyphonClient stop];
@@ -385,7 +385,7 @@ Napi::Value InitClient(const Napi::CallbackInfo& info) {
     }];
     
     BOOL valid = g_SyphonClient != nil && g_SyphonClient.isValid;
-    NSLog(@"[Syphon Bridge] InitClient finished. g_SyphonClient: %@, isValid: %s", g_SyphonClient, valid ? "YES" : "NO");
+    // NSLog(@"[Syphon Bridge] InitClient finished. g_SyphonClient: %@, isValid: %s", g_SyphonClient, valid ? "YES" : "NO");
     return Napi::Boolean::New(env, valid);
 }
 
