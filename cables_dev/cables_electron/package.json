@@ -125,7 +125,7 @@
             ],
             "extraFiles": [
                 {
-                    "from": "../../reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal/lib/Syphon.framework",
+                    "from": "../../cables_apple_frameworks/frameworks/Syphon.framework",
                     "to": "Frameworks/Syphon.framework"
                 }
             ]

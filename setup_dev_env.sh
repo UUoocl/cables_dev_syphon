@@ -7,14 +7,10 @@ NC='\033[0m'
 
 echo -e "${GREEN}Starting build and installation of the custom Cables local dev environment...${NC}"
 
-# Step 1: Check and install missing prebuilt dependencies (Syphon.framework)
-if [ ! -d "reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal/lib/Syphon.framework" ]; then
-    echo -e "${RED}OBS dependencies containing Syphon.framework are missing. Downloading...${NC}"
-    mkdir -p reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal
-    curl -L -o reference/obs-deps.tar.xz https://github.com/obsproject/obs-deps/releases/download/2025-08-23/macos-deps-2025-08-23-universal.tar.xz
-    tar -xJf reference/obs-deps.tar.xz -C reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal
-    rm reference/obs-deps.tar.xz
-    echo -e "${GREEN}OBS dependencies downloaded and extracted successfully.${NC}"
+# Step 1: Verify bundled dependencies (Syphon.framework)
+if [ ! -d "cables_apple_frameworks/frameworks/Syphon.framework" ]; then
+    echo -e "${RED}Error: Syphon.framework missing from cables_apple_frameworks/frameworks/${NC}"
+    exit 1
 fi
 
 # Step 2: Install cables_dev root dependencies

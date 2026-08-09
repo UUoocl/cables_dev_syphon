@@ -18,7 +18,7 @@
       "conditions": [
         ["OS=='mac'", {
           "libraries": [
-            "-F<(module_root_dir)/../reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal/lib",
+            "-F<(module_root_dir)/frameworks",
             "-framework Syphon",
             "-framework Metal",
             "-framework IOSurface",
@@ -31,18 +31,18 @@
           ],
           "xcode_settings": {
             "FRAMEWORK_SEARCH_PATHS": [
-              "<(module_root_dir)/../reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal/lib"
+              "<(module_root_dir)/frameworks"
             ],
             "OTHER_CFLAGS": [
               "-fobjc-arc",
-              "-F<(module_root_dir)/../reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal/lib"
+              "-F<(module_root_dir)/frameworks"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
               "-fobjc-arc",
-              "-F<(module_root_dir)/../reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal/lib"
+              "-F<(module_root_dir)/frameworks"
             ],
             "OTHER_LDFLAGS": [
-              "-F<(module_root_dir)/../reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal/lib",
+              "-F<(module_root_dir)/frameworks",
               "-framework Syphon",
               "-framework Metal",
               "-framework IOSurface",
@@ -52,7 +52,7 @@
               "-framework AVFoundation",
               "-framework CoreMedia",
               "-framework AppKit",
-              "-Wl,-rpath,@loader_path/../../../reference/syphon-server-plugin/.deps/obs-deps-2025-08-23-universal/lib",
+              "-Wl,-rpath,@loader_path/../../frameworks",
               "-Wl,-rpath,@loader_path/../Frameworks"
             ]
           }

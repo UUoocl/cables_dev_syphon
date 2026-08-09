@@ -6,7 +6,7 @@
     "userId": "6a73beda7052d866a15f15b1",
     "cachedUsername": "",
     "created": 1785970394107,
-    "updated": 1786297279549,
+    "updated": 1786303647560,
     "visibility": "private",
     "ops": [
         {
@@ -159,11 +159,11 @@
                 },
                 {
                     "name": "width",
-                    "value": 640
+                    "value": 527
                 },
                 {
                     "name": "height",
-                    "value": 320
+                    "value": 329
                 },
                 {
                     "name": "Pixel Density",
@@ -184,7 +184,7 @@
             "portsIn": [
                 {
                     "name": "Server",
-                    "value": "OBS Syphon6"
+                    "value": "None"
                 }
             ],
             "portsOut": [
@@ -438,11 +438,11 @@
                 },
                 {
                     "name": "texture width",
-                    "value": 640
+                    "value": 527
                 },
                 {
                     "name": "texture height",
-                    "value": 320
+                    "value": 329
                 },
                 {
                     "name": "Auto Aspect",
@@ -1185,11 +1185,11 @@
             "portsIn": [
                 {
                     "name": "Process index",
-                    "value": 0
+                    "value": 7
                 },
                 {
                     "name": "Process",
-                    "value": "None"
+                    "value": "MainStage (5679)"
                 },
                 {
                     "name": "Volume",
@@ -1279,8 +1279,8 @@
     "ui": {
         "viewBox": {},
         "renderer": {
-            "w": 640,
-            "h": 320,
+            "w": 527,
+            "h": 329,
             "s": 1
         },
         "timeline": {},
@@ -1288,9 +1288,9 @@
         "bookmarks": [],
         "viewBoxesGl": {
             "0": {
-                "x": 380.1389533111677,
-                "y": -403.20819528331356,
-                "z": 863.2835729078182
+                "x": 293.5619378814797,
+                "y": -312.8186495663182,
+                "z": 1200
             }
         },
         "outline": {
@@ -1311,37 +1311,37 @@
     "summary": {
         "title": "CablesSyphon"
     },
-    "opsHash": "09fda1be5cceafa1d5ef54b17d310dcb8d535fe5",
+    "opsHash": "ba4cc3918b556f04c34043765113c44eb970a8f7",
     "buildInfo": {
         "updateWarning": false,
         "core": {
-            "timestamp": 1786296702376,
-            "created": "2026-08-09T17:31:42.376Z",
+            "timestamp": 1786302536121,
+            "created": "2026-08-09T19:08:56.121Z",
             "git": {
                 "branch": "main",
-                "commit": "01b643ebc66879b57021b8984c97cc7d3ec17dde",
-                "date": "1786296065",
-                "message": "clean-up: renaming from syphon to apple framework"
+                "commit": "7864ba09e428c51becd590f319fbfa0737bdea6d",
+                "date": "1786302015",
+                "message": "refactor: update sdf_font metadata and simplify developer environment setup script"
             }
         },
         "ui": {
-            "timestamp": 1786296708100,
-            "created": "2026-08-09T17:31:48.100Z",
+            "timestamp": 1786302543496,
+            "created": "2026-08-09T19:09:03.496Z",
             "git": {
                 "branch": "main",
-                "commit": "01b643ebc66879b57021b8984c97cc7d3ec17dde",
-                "date": "1786296065",
-                "message": "clean-up: renaming from syphon to apple framework"
+                "commit": "7864ba09e428c51becd590f319fbfa0737bdea6d",
+                "date": "1786302015",
+                "message": "refactor: update sdf_font metadata and simplify developer environment setup script"
             }
         },
         "api": {
-            "timestamp": 1786297228223,
-            "created": "2026-08-09T17:40:28.223Z",
+            "timestamp": 1786302674837,
+            "created": "2026-08-09T19:11:14.837Z",
             "git": {
                 "branch": "main",
-                "commit": "01b643ebc66879b57021b8984c97cc7d3ec17dde",
-                "date": "1786296065",
-                "message": "clean-up: renaming from syphon to apple framework"
+                "commit": "7864ba09e428c51becd590f319fbfa0737bdea6d",
+                "date": "1786302015",
+                "message": "refactor: update sdf_font metadata and simplify developer environment setup script"
             },
             "platform": {
                 "npm": "11.16.0",

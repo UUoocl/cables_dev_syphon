@@ -7,8 +7,7 @@ This workspace contains the development environment for a custom version of Cabl
 ## Workspace Structure
 
 - **`cables_dev/cables_electron/`**: The Electron standalone wrapper for the Cables editor and engine.
-- **`cables_apple_frameworks/`**: A standalone Node-API native bridge module linking Electron/Node.js to macOS system graphics frameworks (`Metal`, `IOSurfaceRef`, `CoreVideo`) and the `Syphon.framework`.
-- **`reference/`**: Reference source code and build assets for the OBS Studio Syphon Server plugin.
+- **`cables_apple_frameworks/`**: A standalone Node-API native bridge module linking Electron/Node.js to macOS system graphics frameworks (`Metal`, `IOSurfaceRef`, `CoreVideo`) and bundled `frameworks/Syphon.framework`.
 
 ---
 
