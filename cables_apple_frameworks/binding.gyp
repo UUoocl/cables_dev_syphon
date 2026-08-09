@@ -4,7 +4,8 @@
       "target_name": "apple_framework_bridge",
       "sources": [
         "syphon_bridge.mm",
-        "screencapturekit_bridge.mm"
+        "screencapturekit_bridge.mm",
+        "vision_bridge.mm"
       ],
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")"
@@ -27,7 +28,8 @@
             "-framework ScreenCaptureKit",
             "-framework AVFoundation",
             "-framework CoreMedia",
-            "-framework AppKit"
+            "-framework AppKit",
+            "-framework Vision"
           ],
           "xcode_settings": {
             "FRAMEWORK_SEARCH_PATHS": [
@@ -52,6 +54,7 @@
               "-framework AVFoundation",
               "-framework CoreMedia",
               "-framework AppKit",
+              "-framework Vision",
               "-Wl,-rpath,@loader_path/../../frameworks",
               "-Wl,-rpath,@loader_path/../Frameworks"
             ]

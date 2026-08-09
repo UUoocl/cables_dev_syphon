@@ -326,8 +326,89 @@ Napi::Value StopAudioCapture(const Napi::CallbackInfo& info) {
     return env.Undefined();
 }
 
+// getWindowList()
+Napi::Array GetWindowList(const Napi::CallbackInfo& info) {
+    Napi::Env env = info.Env();
+    
+    CFArrayRef windowList = CGWindowListCopyWindowInfo(
+        kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements,
+        kCGNullWindowID
+    );
+    
+    if (!windowList) {
+        return Napi::Array::New(env, 0);
+    }
+    
+    CFIndex count = CFArrayGetCount(windowList);
+    NSMutableArray *filteredList = [NSMutableArray array];
+    
+    for (CFIndex i = 0; i < count; i++) {
+        CFDictionaryRef dict = (CFDictionaryRef)CFArrayGetValueAtIndex(windowList, i);
+        
+        // Filter windows: must be normal windows (layer 0)
+        CFNumberRef layerRef = (CFNumberRef)CFDictionaryGetValue(dict, kCGWindowLayer);
+        int layer = 0;
+        if (layerRef) {
+            CFNumberGetValue(layerRef, kCFNumberIntType, &layer);
+        }
+        
+        if (layer != 0) {
+            continue;
+        }
+        
+        CFStringRef ownerNameRef = (CFStringRef)CFDictionaryGetValue(dict, kCGWindowOwnerName);
+        CFStringRef windowNameRef = (CFStringRef)CFDictionaryGetValue(dict, kCGWindowName);
+        CFNumberRef pidRef = (CFNumberRef)CFDictionaryGetValue(dict, kCGWindowOwnerPID);
+        CFNumberRef windowIdRef = (CFNumberRef)CFDictionaryGetValue(dict, kCGWindowNumber);
+        
+        NSString *ownerName = ownerNameRef ? (__bridge NSString *)ownerNameRef : @"";
+        NSString *windowName = windowNameRef ? (__bridge NSString *)windowNameRef : @"";
+        
+        // Skip windows without titles or owner names
+        if ([windowName length] == 0 && [ownerName length] == 0) {
+            continue;
+        }
+        
+        int pid = 0;
+        if (pidRef) {
+            CFNumberGetValue(pidRef, kCFNumberIntType, &pid);
+        }
+        
+        uint32_t windowId = 0;
+        if (windowIdRef) {
+            CFNumberGetValue(windowIdRef, kCFNumberSInt32Type, &windowId);
+        }
+        
+        NSMutableDictionary *item = [NSMutableDictionary dictionary];
+        [item setObject:ownerName forKey:@"ownerName"];
+        [item setObject:windowName forKey:@"title"];
+        [item setObject:@(pid) forKey:@"pid"];
+        [item setObject:@(windowId) forKey:@"id"];
+        
+        [filteredList addObject:item];
+    }
+    
+    CFRelease(windowList);
+    
+    Napi::Array arr = Napi::Array::New(env, [filteredList count]);
+    for (NSUInteger i = 0; i < [filteredList count]; i++) {
+        NSDictionary *item = [filteredList objectAtIndex:i];
+        Napi::Object obj = Napi::Object::New(env);
+        
+        obj.Set("ownerName", Napi::String::New(env, [[item objectForKey:@"ownerName"] UTF8String]));
+        obj.Set("title", Napi::String::New(env, [[item objectForKey:@"title"] UTF8String]));
+        obj.Set("pid", Napi::Number::New(env, [[item objectForKey:@"pid"] intValue]));
+        obj.Set("id", Napi::Number::New(env, [[item objectForKey:@"id"] unsignedIntValue]));
+        
+        arr.Set(i, obj);
+    }
+    
+    return arr;
+}
+
 void InitAudioCapture(Napi::Env env, Napi::Object exports) {
     exports.Set(Napi::String::New(env, "getAudioSources"), Napi::Function::New(env, GetAudioSources));
     exports.Set(Napi::String::New(env, "startAudioCapture"), Napi::Function::New(env, StartAudioCapture));
     exports.Set(Napi::String::New(env, "stopAudioCapture"), Napi::Function::New(env, StopAudioCapture));
+    exports.Set(Napi::String::New(env, "getWindowList"), Napi::Function::New(env, GetWindowList));
 }

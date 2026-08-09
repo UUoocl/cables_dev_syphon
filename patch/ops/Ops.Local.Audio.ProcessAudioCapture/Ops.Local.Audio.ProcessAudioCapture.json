@@ -18,20 +18,34 @@
             },
             {
                 "type": 0,
-                "name": "Process",
+                "name": "Process index",
                 "values": [
                     "None"
                 ],
-                "subType": "string"
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Window Index",
+                "group": "Window Selection",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Window ID",
+                "group": "Window Selection",
+                "subType": "integer"
             },
             {
                 "type": 0,
                 "name": "Volume",
+                "group": "Volume Settings",
                 "subType": "number"
             },
             {
                 "type": 0,
                 "name": "Mute",
+                "group": "Volume Settings",
                 "subType": "boolean"
             }
         ],

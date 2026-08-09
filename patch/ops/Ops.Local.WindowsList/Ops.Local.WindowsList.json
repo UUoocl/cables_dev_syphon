@@ -1,0 +1,44 @@
+{
+    "authorName": "Cables Dev",
+    "id": "e44485c2-3333-4f91-ba22-111c8d8b2a55",
+    "created": 1772051240000,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Refresh"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Windows",
+                "subType": "array"
+            },
+            {
+                "type": 0,
+                "name": "Formatted Names",
+                "subType": "array"
+            },
+            {
+                "type": 0,
+                "name": "PIDs",
+                "subType": "array"
+            },
+            {
+                "type": 0,
+                "name": "Window IDs",
+                "subType": "array"
+            }
+        ]
+    },
+    "summary": "Retrieve a list of active onscreen windows via CoreGraphics",
+    "changelog": [
+        {
+            "message": "Initial Windows List Op implementation",
+            "author": "Cables Dev",
+            "date": 1772051240000
+        }
+    ],
+    "coreLibs": []
+}

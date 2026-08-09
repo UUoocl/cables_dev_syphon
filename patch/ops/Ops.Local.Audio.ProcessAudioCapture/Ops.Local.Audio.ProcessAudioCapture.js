@@ -3,6 +3,8 @@ const
     inStop = op.inTriggerButton("Stop"),
     inRefresh = op.inTriggerButton("Refresh Processes"),
     inProcess = op.inSwitch("Process", ["None"], "None"),
+    inWindowIndex = op.inInt("Window Index", -1),
+    inWindowId = op.inInt("Window ID", -1),
     inGain = op.inFloatSlider("Volume", 1),
     inMute = op.inBool("Mute", false),
     
@@ -10,6 +12,7 @@ const
     outCapturing = op.outBoolNum("Capturing", false);
 
 op.setPortGroup("Volume Settings", [inGain, inMute]);
+op.setPortGroup("Window Selection", [inWindowIndex, inWindowId]);
 
 const audioCtx = CABLES.WEBAUDIO.createAudioContext(op);
 const bufferSize = 4096;
@@ -124,13 +127,20 @@ function stopScriptNode() {
 function refreshProcessList() {
     if (!ipcRenderer) return;
     
-    ipcRenderer.invoke("syphonGetAudioSources").then((list) => {
+    ipcRenderer.invoke("syphonGetWindowList").then((list) => {
         processes = list || [];
         const names = ["None"];
         processes.forEach((p) => {
-            names.push(`${p.name} (${p.pid})`);
+            names.push(`${p.ownerName} - ${p.title || "Untitled Window"} (PID: ${p.pid}, ID: ${p.id})`);
         });
         inProcess.setUiAttribs({ "values": names });
+        
+        // Trigger selection update if values are already set
+        if (inWindowIndex.get() >= 0) {
+            inWindowIndex.onChange();
+        } else if (inWindowId.get() >= 0) {
+            inWindowId.onChange();
+        }
     }).catch((err) => {
         op.logError("[ProcessAudioCapture] Failed to get processes:", err);
     });
@@ -165,7 +175,7 @@ function startCapture() {
     op.setUiError("noProcess", null);
     op.setUiError("captureFailed", null);
     
-    const match = selected.match(/\((\d+)\)$/);
+    const match = selected.match(/PID:\s*(\d+)/);
     if (!match) return;
     const pid = parseInt(match[1], 10);
     
@@ -225,6 +235,28 @@ inRefresh.onTriggered = () => {
 
 inProcess.onChange = () => {
     stopCapture();
+};
+
+inWindowIndex.onChange = () => {
+    const idx = inWindowIndex.get();
+    if (idx === undefined || idx === null || idx < 0 || idx >= processes.length) return;
+    
+    const found = processes[idx];
+    if (found) {
+        const label = `${found.ownerName} - ${found.title || "Untitled Window"} (PID: ${found.pid}, ID: ${found.id})`;
+        inProcess.set(label);
+    }
+};
+
+inWindowId.onChange = () => {
+    const targetId = inWindowId.get();
+    if (targetId === undefined || targetId === null || targetId < 0) return;
+    
+    const found = processes.find(p => p.id === targetId);
+    if (found) {
+        const label = `${found.ownerName} - ${found.title || "Untitled Window"} (PID: ${found.pid}, ID: ${found.id})`;
+        inProcess.set(label);
+    }
 };
 
 inGain.onChange = () => {

@@ -43,20 +43,19 @@ mkdir -p dist/img
 cp ../cables_electron/resources/assets/library/fonts_msdf/WorkSans-Regular.ttf.png dist/img/worksans-regular.png
 cd ..
 
-# Step 6: Install and build cables_electron package
-echo -e "${GREEN}Installing and building cables_electron package...${NC}"
-cd cables_electron
-npm install
-npm run build
-cd ..
-
-# Step 7: Compile native Apple Frameworks addon
+# Step 6: Compile native Apple Frameworks addon
 echo -e "${GREEN}Installing and compiling cables_apple_frameworks...${NC}"
 cd ../cables_apple_frameworks
 npm install
 npm run install
+cd ../cables_dev
 
-cd ..
+# Step 7: Install and build cables_electron package
+echo -e "${GREEN}Installing and building cables_electron package...${NC}"
+cd cables_electron
+npm install
+npm run build
+cd ../..
 
 echo -e "${GREEN}Local development environment setup completed successfully!${NC}"
 echo -e "To start the development server, run:"

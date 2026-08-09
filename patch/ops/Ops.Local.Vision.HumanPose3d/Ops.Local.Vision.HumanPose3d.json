@@ -1,0 +1,48 @@
+{
+    "authorName": "Cables Dev",
+    "id": "a78912e5-cccc-4e4f-b912-555566667777",
+    "created": 1772052460000,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Render"
+            },
+            {
+                "type": 0,
+                "name": "Texture",
+                "subType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Poses Array",
+                "subType": "array"
+            },
+            {
+                "type": 0,
+                "name": "Detected Poses",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "On Poses Detected"
+            }
+        ]
+    },
+    "summary": "Detects 3D human body joint poses in a texture using native macOS Apple Vision",
+    "changelog": [
+        {
+            "message": "Initial HumanPose3d implementation",
+            "author": "Cables Dev",
+            "date": 1772052460000
+        }
+    ],
+    "coreLibs": []
+}

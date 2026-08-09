@@ -172,6 +172,26 @@ class ElectronApi
             return appleBridge.getAudioSources();
         });
 
+        ipcMain.handle("syphonGetWindowList", () =>
+        {
+            return appleBridge.getWindowList();
+        });
+
+        ipcMain.handle("syphonProcessSegmentation", (event, pixels, w, h, quality) =>
+        {
+            return appleBridge.processSegmentation(pixels, w, h, quality);
+        });
+
+        ipcMain.handle("syphonDetectHumanPose", (event, pixels, w, h, minConfidence) =>
+        {
+            return appleBridge.detectHumanPose(pixels, w, h, minConfidence);
+        });
+
+        ipcMain.handle("syphonDetectHumanPose3d", (event, pixels, w, h) =>
+        {
+            return appleBridge.detectHumanPose3d(pixels, w, h);
+        });
+
         ipcMain.handle("syphonStartAudioCapture", (event, pid) =>
         {
             if (currentAudioCaptureActive)

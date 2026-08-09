@@ -1,0 +1,63 @@
+{
+    "authorName": "Cables Dev",
+    "id": "d88812a3-7777-4c0a-9d9b-333e7e7e8b99",
+    "created": 1772052440000,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Render"
+            },
+            {
+                "type": 0,
+                "name": "Texture",
+                "subType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Quality Level",
+                "values": [
+                    "Accurate",
+                    "Balanced",
+                    "Fast"
+                ],
+                "subType": "string"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Segmentation Mask",
+                "objType": "texture"
+            },
+            {
+                "type": 1,
+                "name": "On Mask Ready"
+            },
+            {
+                "type": 0,
+                "name": "Mask Width",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Mask Height",
+                "subType": "number"
+            }
+        ]
+    },
+    "summary": "Isolates a person from an input texture using native macOS Apple Vision framework in the main process",
+    "changelog": [
+        {
+            "message": "Initial Person Segmentation Op implementation",
+            "author": "Cables Dev",
+            "date": 1772052440000
+        }
+    ],
+    "coreLibs": []
+}

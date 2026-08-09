@@ -4,8 +4,10 @@
 #import <CoreVideo/CoreVideo.h>
 #import <Syphon/Syphon.h>
 #include <napi.h>
+#include <v8.h>
 #include <mutex>
 #include "screencapturekit_bridge.h"
+#include "vision_bridge.h"
 
 static id<MTLDevice> g_Device = nil;
 static id<MTLCommandQueue> g_CommandQueue = nil;
@@ -363,6 +365,14 @@ Napi::Value InitClient(const Napi::CallbackInfo& info) {
             CFRetain(g_ClientSurface);
             
             auto callback = [](Napi::Env env, Napi::Function jsCallback, IOSurfaceRef surfaceRef) {
+                v8::Isolate* isolate = v8::Isolate::GetCurrent();
+                if (isolate && isolate->IsExecutionTerminating()) {
+                    if (surfaceRef) {
+                        CFRelease(surfaceRef);
+                    }
+                    return;
+                }
+                
                 // Wrap the pointer into an 8-byte Buffer
                 Napi::Buffer<IOSurfaceRef> buf = Napi::Buffer<IOSurfaceRef>::New(env, 1);
                 *buf.Data() = surfaceRef;
@@ -419,6 +429,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
     exports.Set(Napi::String::New(env, "stopClient"), Napi::Function::New(env, StopClient));
     
     InitAudioCapture(env, exports);
+    InitVision(env, exports);
     
     return exports;
 }
