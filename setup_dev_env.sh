@@ -39,17 +39,12 @@ cd ..
 # Step 5: Install and build cables_ui package (includes building fonts)
 echo -e "${GREEN}Installing and building cables_ui package...${NC}"
 cd cables_ui
+cp ../cables_electron/resources/assets/library/fonts_msdf/WorkSans-Regular.ttf.font.json src/ui/glpatch/sdf_font.json
 npm install
 npm run build
 # Deploy MSDF editor canvas font texture
 mkdir -p dist/img
-if [ -f "../../cables_ui/cables_ui/dist/img/worksans-regular.png" ]; then
-    cp ../../cables_ui/cables_ui/dist/img/worksans-regular.png dist/img/worksans-regular.png
-elif [ -f "../cables_ui/dist/img/worksans-regular.png" ]; then
-    cp ../cables_ui/dist/img/worksans-regular.png dist/img/worksans-regular.png
-else
-    cp ../cables_electron/resources/assets/library/fonts_msdf/WorkSans-Regular.ttf.png dist/img/worksans-regular.png
-fi
+cp ../cables_electron/resources/assets/library/fonts_msdf/WorkSans-Regular.ttf.png dist/img/worksans-regular.png
 cd ..
 
 # Step 6: Install and build cables_electron package
