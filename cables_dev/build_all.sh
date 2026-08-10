@@ -40,6 +40,10 @@ npm run build
 cd ..
 
 echo -e ""
+echo -e "${GREEN}SYNCING APPLE FRAMEWORK OPS...${NC}"
+./sync_apple_framework_ops.sh
+
+echo -e ""
 echo -e "${GREEN}BUILDING CORE...${NC}"
 cd cables
 npm run build

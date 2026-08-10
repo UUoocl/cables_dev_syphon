@@ -51,6 +51,9 @@ $NPM_EXE install
 $NPM_EXE run build
 cd ..
 
+echo "SYNCING APPLE FRAMEWORK OPS"
+./sync_apple_framework_ops.sh
+
 echo "BUILDING cables"
 cd cables
 # git pull

@@ -26,6 +26,9 @@ npm run build
 cd ..
 
 # Step 4: Install and build cables core package
+echo -e "${GREEN}Syncing Apple Framework ops...${NC}"
+./sync_apple_framework_ops.sh
+
 echo -e "${GREEN}Installing and building cables core package...${NC}"
 cd cables
 npm install
