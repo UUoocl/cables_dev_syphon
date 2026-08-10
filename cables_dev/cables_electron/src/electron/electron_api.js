@@ -197,6 +197,121 @@ class ElectronApi
             return appleBridge.detectHumanHand(pixels, w, h, minConfidence);
         });
 
+        ipcMain.handle("syphonDetectHumanFace", (event, pixels, w, h) =>
+        {
+            return appleBridge.detectHumanFace(pixels, w, h);
+        });
+
+        ipcMain.handle("startMouseMonitor", (event, pps) =>
+        {
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            const success = appleBridge.startMouseMonitor((mouseEvent) =>
+            {
+                try
+                {
+                    senderFrame.send("mouseEvent", mouseEvent);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending mouse event:", e);
+                }
+            }, pps);
+            return success;
+        });
+
+        ipcMain.handle("stopMouseMonitor", () =>
+        {
+            return appleBridge.stopMouseMonitor();
+        });
+
+        ipcMain.handle("emitMouseAction", (event, action) =>
+        {
+            return appleBridge.emitMouseAction(action);
+        });
+
+        ipcMain.handle("startKeyboardMonitor", (event) =>
+        {
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            const success = appleBridge.startKeyboardMonitor((keyEvent) =>
+            {
+                try
+                {
+                    senderFrame.send("keyboardEvent", keyEvent);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending keyboard event:", e);
+                }
+            });
+            return success;
+        });
+
+        ipcMain.handle("stopKeyboardMonitor", () =>
+        {
+            return appleBridge.stopKeyboardMonitor();
+        });
+
+        ipcMain.handle("emitKeyboardAction", (event, action) =>
+        {
+            return appleBridge.emitKeyboardAction(action);
+        });
+
+        ipcMain.handle("initSpeechRecognizer", (event) =>
+        {
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            appleBridge.initSpeechRecognizer((speechEvent) =>
+            {
+                try
+                {
+                    senderFrame.send("speechEvent", speechEvent);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending speech event:", e);
+                }
+            });
+        });
+
+        ipcMain.handle("startSpeechRecognizer", (event, locale, deviceUID, silenceDuration) =>
+        {
+            return appleBridge.startSpeechRecognizer(locale, deviceUID, silenceDuration);
+        });
+
+        ipcMain.handle("stopSpeechRecognizer", () =>
+        {
+            return appleBridge.stopSpeechRecognizer();
+        });
+
+        ipcMain.handle("setSpeechLocale", (event, locale) =>
+        {
+            return appleBridge.setSpeechLocale(locale);
+        });
+
+        ipcMain.handle("setSpeechAudioDevice", (event, deviceUID) =>
+        {
+            return appleBridge.setSpeechAudioDevice(deviceUID);
+        });
+
+        ipcMain.handle("setSpeechSilenceDuration", (event, duration) =>
+        {
+            return appleBridge.setSpeechSilenceDuration(duration);
+        });
+
+        ipcMain.handle("resetSpeechRecognizer", () =>
+        {
+            return appleBridge.resetSpeechRecognizer();
+        });
+
+        ipcMain.handle("refreshSpeechAudioDevices", () =>
+        {
+            return appleBridge.refreshSpeechAudioDevices();
+        });
+
+        ipcMain.handle("getActiveApp", () =>
+        {
+            return appleBridge.getActiveApp();
+        });
+
         ipcMain.handle("syphonStartAudioCapture", (event, pid) =>
         {
             if (currentAudioCaptureActive)

@@ -438,6 +438,215 @@ Napi::Value DetectHumanPose3d(const Napi::CallbackInfo& info) {
 
 
 // ----------------------------------------------------
+// Asynchronous Worker: Human Face Detection
+// ----------------------------------------------------
+class FaceWorker : public Napi::AsyncWorker {
+public:
+    FaceWorker(Napi::Env env, Napi::Buffer<uint8_t>& pixelBuf, int width, int height)
+        : Napi::AsyncWorker(env), _deferred(Napi::Promise::Deferred::New(env)), _width(width), _height(height) {
+        _pixels.assign(pixelBuf.Data(), pixelBuf.Data() + pixelBuf.Length());
+    }
+    
+    Napi::Promise Promise() {
+        return _deferred.Promise();
+    }
+    
+    void Execute() override {
+        @autoreleasepool {
+            CVPixelBufferRef pixelBuffer = NULL;
+            NSDictionary *options = @{
+                (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
+                (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
+                (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
+                (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
+            };
+            
+            CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
+            if (status != kCVReturnSuccess || !pixelBuffer) {
+                SetError("Failed to create CVPixelBuffer inside face worker (status: " + std::to_string(status) + ")");
+                return;
+            }
+            
+            CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+            uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
+            for (int i = 0; i < _width * _height; i++) {
+                baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
+                baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
+                baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
+                baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
+            }
+            CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+            
+            VNDetectFaceLandmarksRequest *request = [[VNDetectFaceLandmarksRequest alloc] init];
+            VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
+            NSError *error = nil;
+            BOOL success = [handler performRequests:@[request] error:&error];
+            CVPixelBufferRelease(pixelBuffer);
+            
+            if (!success || error) {
+                NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
+                SetError("Vision face detection failed: " + std::string([errDesc UTF8String]));
+                return;
+            }
+            
+            NSArray<VNFaceObservation *> *results = request.results;
+            if (!results) return;
+            
+            for (VNFaceObservation *observation in results) {
+                FaceResult resFace;
+                resFace.confidence = observation.confidence;
+                
+                CGRect box = observation.boundingBox;
+                resFace.boundingBox.x = box.origin.x;
+                resFace.boundingBox.y = 1.0 - (box.origin.y + box.size.height);
+                resFace.boundingBox.w = box.size.width;
+                resFace.boundingBox.h = box.size.height;
+                
+                resFace.roll = observation.roll ? observation.roll.floatValue : 0.0;
+                resFace.yaw = observation.yaw ? observation.yaw.floatValue : 0.0;
+                resFace.pitch = observation.pitch ? observation.pitch.floatValue : 0.0;
+                
+                VNFaceLandmarks2D *landmarks = observation.landmarks;
+                if (landmarks) {
+                    NSDictionary<NSString *, VNFaceLandmarkRegion2D *>* regions = @{
+                        @"faceContour": landmarks.faceContour,
+                        @"leftEye": landmarks.leftEye,
+                        @"rightEye": landmarks.rightEye,
+                        @"leftEyebrow": landmarks.leftEyebrow,
+                        @"rightEyebrow": landmarks.rightEyebrow,
+                        @"nose": landmarks.nose,
+                        @"noseCrest": landmarks.noseCrest,
+                        @"medianLine": landmarks.medianLine,
+                        @"outerLips": landmarks.outerLips,
+                        @"innerLips": landmarks.innerLips,
+                        @"leftPupil": landmarks.leftPupil,
+                        @"rightPupil": landmarks.rightPupil
+                    };
+                    
+                    for (NSString* name in regions) {
+                        VNFaceLandmarkRegion2D* region = regions[name];
+                        if (!region) continue;
+                        
+                        std::vector<LandmarkPoint> pts;
+                        const CGPoint* points = region.normalizedPoints;
+                        size_t pointCount = region.pointCount;
+                        
+                        for (size_t p = 0; p < pointCount; ++p) {
+                            CGPoint pt = points[p];
+                            LandmarkPoint resPt;
+                            resPt.x = box.origin.x + pt.x * box.size.width;
+                            resPt.y = 1.0 - (box.origin.y + pt.y * box.size.height);
+                            pts.push_back(resPt);
+                        }
+                        resFace.landmarks[[name UTF8String]] = pts;
+                    }
+                }
+                _faces.push_back(resFace);
+            }
+        }
+    }
+    
+    void OnOK() override {
+        if (IsIsolateTerminating()) return;
+        
+        Napi::Env env = Env();
+        Napi::HandleScope scope(env);
+        
+        Napi::Array facesArray = Napi::Array::New(env, _faces.size());
+        for (size_t i = 0; i < _faces.size(); i++) {
+            const auto& srcFace = _faces[i];
+            Napi::Object faceObj = Napi::Object::New(env);
+            
+            faceObj.Set("confidence", Napi::Number::New(env, srcFace.confidence));
+            
+            Napi::Object boxObj = Napi::Object::New(env);
+            boxObj.Set("x", Napi::Number::New(env, srcFace.boundingBox.x));
+            boxObj.Set("y", Napi::Number::New(env, srcFace.boundingBox.y));
+            boxObj.Set("w", Napi::Number::New(env, srcFace.boundingBox.w));
+            boxObj.Set("h", Napi::Number::New(env, srcFace.boundingBox.h));
+            faceObj.Set("boundingBox", boxObj);
+            
+            faceObj.Set("roll", Napi::Number::New(env, srcFace.roll));
+            faceObj.Set("yaw", Napi::Number::New(env, srcFace.yaw));
+            faceObj.Set("pitch", Napi::Number::New(env, srcFace.pitch));
+            
+            Napi::Object landmarksObj = Napi::Object::New(env);
+            for (const auto& [landmarkName, pts] : srcFace.landmarks) {
+                Napi::Array ptsArr = Napi::Array::New(env, pts.size());
+                for (size_t p = 0; p < pts.size(); ++p) {
+                    Napi::Object ptObj = Napi::Object::New(env);
+                    ptObj.Set("x", Napi::Number::New(env, pts[p].x));
+                    ptObj.Set("y", Napi::Number::New(env, pts[p].y));
+                    ptsArr.Set(p, ptObj);
+                }
+                landmarksObj.Set(landmarkName, ptsArr);
+            }
+            faceObj.Set("landmarks", landmarksObj);
+            
+            facesArray.Set(i, faceObj);
+        }
+        
+        _deferred.Resolve(facesArray);
+    }
+    
+    void OnError(const Napi::Error& err) override {
+        if (IsIsolateTerminating()) return;
+        _deferred.Reject(err.Value());
+    }
+
+private:
+    struct FaceBox {
+        float x;
+        float y;
+        float w;
+        float h;
+    };
+    
+    struct LandmarkPoint {
+        float x;
+        float y;
+    };
+    
+    struct FaceResult {
+        float confidence;
+        FaceBox boundingBox;
+        float roll;
+        float yaw;
+        float pitch;
+        std::unordered_map<std::string, std::vector<LandmarkPoint>> landmarks;
+    };
+
+    Napi::Promise::Deferred _deferred;
+    int _width;
+    int _height;
+    std::vector<uint8_t> _pixels;
+    std::vector<FaceResult> _faces;
+};
+
+Napi::Value DetectHumanFace(const Napi::CallbackInfo& info) {
+    Napi::Env env = info.Env();
+    
+    if (info.Length() < 3 || !info[0].IsBuffer() || !info[1].IsNumber() || !info[2].IsNumber()) {
+        Napi::TypeError::New(env, "Arguments expected: Buffer (pixels), Number (width), Number (height)").ThrowAsJavaScriptException();
+        return env.Undefined();
+    }
+    
+    Napi::Buffer<uint8_t> buffer = info[0].As<Napi::Buffer<uint8_t>>();
+    int width = info[1].As<Napi::Number>().Int32Value();
+    int height = info[2].As<Napi::Number>().Int32Value();
+    
+    if (width <= 0 || height <= 0 || buffer.Length() < width * height * 4) {
+        Napi::TypeError::New(env, "Invalid buffer length for given dimensions").ThrowAsJavaScriptException();
+        return env.Undefined();
+    }
+    
+    FaceWorker* worker = new FaceWorker(env, buffer, width, height);
+    worker->Queue();
+    return worker->Promise();
+}
+
+
+// ----------------------------------------------------
 // Asynchronous Worker: Human Hand Tracking
 // ----------------------------------------------------
 class HandWorker : public Napi::AsyncWorker {
@@ -590,4 +799,5 @@ void InitVision(Napi::Env env, Napi::Object exports) {
     exports.Set(Napi::String::New(env, "detectHumanPose"), Napi::Function::New(env, DetectHumanPose));
     exports.Set(Napi::String::New(env, "detectHumanPose3d"), Napi::Function::New(env, DetectHumanPose3d));
     exports.Set(Napi::String::New(env, "detectHumanHand"), Napi::Function::New(env, DetectHumanHand));
+    exports.Set(Napi::String::New(env, "detectHumanFace"), Napi::Function::New(env, DetectHumanFace));
 }

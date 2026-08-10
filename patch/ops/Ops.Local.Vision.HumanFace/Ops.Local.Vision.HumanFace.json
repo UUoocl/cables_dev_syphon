@@ -1,0 +1,48 @@
+{
+    "authorName": "Cables Standalone",
+    "id": "f2a6111f-c4f4-411a-be35-3c1bbcb8a187",
+    "created": 1782943200000,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "Render"
+            },
+            {
+                "type": 0,
+                "name": "Texture",
+                "subType": "texture"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "Faces Array",
+                "subType": "array"
+            },
+            {
+                "type": 0,
+                "name": "Detected Faces",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "On Faces Detected"
+            }
+        ]
+    },
+    "summary": "Tracks 2D human facial landmarks, bounding boxes, and head orientation in real-time from an input WebGL texture using macOS Apple Vision",
+    "changelog": [
+        {
+            "message": "Initial HumanFace implementation",
+            "author": "Cables Standalone",
+            "date": 1782943200000
+        }
+    ],
+    "coreLibs": []
+}

@@ -8,6 +8,9 @@
 #include <mutex>
 #include "screencapturekit_bridge.h"
 #include "vision_bridge.h"
+#include "input_bridge.h"
+#include "speech_bridge.h"
+#include "active_app_bridge.h"
 
 static id<MTLDevice> g_Device = nil;
 static id<MTLCommandQueue> g_CommandQueue = nil;
@@ -430,6 +433,9 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
     
     InitAudioCapture(env, exports);
     InitVision(env, exports);
+    InitInput(env, exports);
+    InitSpeech(env, exports);
+    InitActiveApp(env, exports);
     
     return exports;
 }

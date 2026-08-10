@@ -5,7 +5,10 @@
       "sources": [
         "syphon_bridge.mm",
         "screencapturekit_bridge.mm",
-        "vision_bridge.mm"
+        "vision_bridge.mm",
+        "input_bridge.mm",
+        "speech_bridge.mm",
+        "active_app_bridge.mm"
       ],
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")"
@@ -29,7 +32,10 @@
             "-framework AVFoundation",
             "-framework CoreMedia",
             "-framework AppKit",
-            "-framework Vision"
+            "-framework Vision",
+            "-framework Speech",
+            "-framework CoreAudio",
+            "-framework AudioToolbox"
           ],
           "xcode_settings": {
             "MACOSX_DEPLOYMENT_TARGET": "14.0",
@@ -56,6 +62,9 @@
               "-framework CoreMedia",
               "-framework AppKit",
               "-framework Vision",
+              "-framework Speech",
+              "-framework CoreAudio",
+              "-framework AudioToolbox",
               "-Wl,-rpath,@loader_path/../../frameworks",
               "-Wl,-rpath,@loader_path/../Frameworks"
             ]

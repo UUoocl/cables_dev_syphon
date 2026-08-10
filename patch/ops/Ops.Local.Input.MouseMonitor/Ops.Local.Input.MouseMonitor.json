@@ -1,0 +1,86 @@
+{
+    "authorName": "Cables Standalone",
+    "id": "f19d27cc-981f-495d-ab90-50d4eb076412",
+    "created": 1782943200000,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "PPS Limit",
+                "subType": "integer"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "On Move"
+            },
+            {
+                "type": 1,
+                "name": "On Click"
+            },
+            {
+                "type": 1,
+                "name": "On Scroll"
+            },
+            {
+                "type": 0,
+                "name": "Pos X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Pos Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Button",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Button Is Down",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Button Is Up",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Scroll Delta X",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Scroll Delta Y",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Running",
+                "subType": "boolean"
+            },
+            {
+                "type": 5,
+                "name": "Status"
+            }
+        ]
+    },
+    "summary": "Streams high-frequency real-time global mouse telemetry (position, clicks, scrolls) directly using native macOS Node-API bindings",
+    "changelog": [
+        {
+            "message": "Initial MouseMonitor implementation",
+            "author": "Cables Standalone",
+            "date": 1782943200000
+        }
+    ],
+    "coreLibs": []
+}

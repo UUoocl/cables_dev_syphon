@@ -112,7 +112,8 @@
             "extendInfo": {
                 "NSMicrophoneUsageDescription": "cables needs access to the microphone to capture and process audio input.",
                 "NSCameraUsageDescription": "cables needs access to the camera to capture video input.",
-                "NSScreenCaptureUsageDescription": "cables needs screen recording permissions to capture screen and process audio/video."
+                "NSScreenCaptureUsageDescription": "cables needs screen recording permissions to capture screen and process audio/video.",
+                "NSSpeechRecognitionUsageDescription": "cables needs speech recognition permissions to transcribe speech to text."
             },
             "target": [
                 {
