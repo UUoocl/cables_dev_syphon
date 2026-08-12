@@ -1112,6 +1112,19 @@ class ElectronApp
     {
         doc.addOpsToLookup([], true);
         const opDocsFile = cables.getOpDocsFile();
+        const currentVersion = app.getVersion();
+        const cachedVersion = settings.get("appVersion");
+
+        if (cachedVersion !== currentVersion)
+        {
+            this._log.logStartup("app version changed, rebuilding cache: " + cachedVersion + " -> " + currentVersion);
+            this._rebuildOpDocCache(() => {
+                settings.set("appVersion", currentVersion);
+                cb();
+            });
+            return;
+        }
+
         if (fs.existsSync(cables.getOpDocsFile()))
         {
             jsonfile.readFile(opDocsFile).then((cachedOpDocs) =>

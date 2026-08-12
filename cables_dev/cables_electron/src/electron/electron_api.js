@@ -312,6 +312,279 @@ class ElectronApi
             return appleBridge.getActiveApp();
         });
 
+        // ====================================================
+        // Human Interface Devices (HID) & Specific Controllers
+        // ====================================================
+
+        // Generic HID API
+        ipcMain.handle("hidGetDevices", () =>
+        {
+            return appleBridge.hidGetDevices();
+        });
+
+        ipcMain.handle("hidStartMonitoring", (event) =>
+        {
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            return appleBridge.hidStartMonitoring((hidEvent) =>
+            {
+                try
+                {
+                    senderFrame.send("hidEvent", hidEvent);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending HID event:", e);
+                }
+            });
+        });
+
+        ipcMain.handle("hidStopMonitoring", () =>
+        {
+            return appleBridge.hidStopMonitoring();
+        });
+
+        ipcMain.handle("hidWriteReport", (event, vendorId, productId, reportType, reportId, data) =>
+        {
+            return appleBridge.hidWriteReport(vendorId, productId, reportType, reportId, data);
+        });
+
+        // BMD Speed Editor API
+        ipcMain.handle("speedEditorStart", (event) =>
+        {
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            return appleBridge.speedEditorStart((evt) =>
+            {
+                try
+                {
+                    senderFrame.send("speedEditorEvent", evt);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending BMD Speed Editor event:", e);
+                }
+            });
+        });
+
+        ipcMain.handle("speedEditorStop", () =>
+        {
+            return appleBridge.speedEditorStop();
+        });
+
+        ipcMain.handle("speedEditorIsConnected", () =>
+        {
+            return appleBridge.speedEditorIsConnected();
+        });
+
+        ipcMain.handle("speedEditorSetLeds", (event, leds) =>
+        {
+            return appleBridge.speedEditorSetLeds(leds);
+        });
+
+        ipcMain.handle("speedEditorSetJogLeds", (event, leds) =>
+        {
+            return appleBridge.speedEditorSetJogLeds(leds);
+        });
+
+        ipcMain.handle("speedEditorSetJogMode", (event, mode) =>
+        {
+            return appleBridge.speedEditorSetJogMode(mode);
+        });
+
+        // Contour Shuttle Pro API
+        ipcMain.handle("shuttleProStart", (event) =>
+        {
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            return appleBridge.shuttleProStart((evt) =>
+            {
+                try
+                {
+                    senderFrame.send("shuttleProEvent", evt);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending Contour Shuttle Pro event:", e);
+                }
+            });
+        });
+
+        ipcMain.handle("shuttleProStop", () =>
+        {
+            return appleBridge.shuttleProStop();
+        });
+
+        ipcMain.handle("shuttleProIsConnected", () =>
+        {
+            return appleBridge.shuttleProIsConnected();
+        });
+
+        // Contour Shuttle Xpress API
+        ipcMain.handle("shuttleXpressStart", (event) =>
+        {
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            return appleBridge.shuttleXpressStart((evt) =>
+            {
+                try
+                {
+                    senderFrame.send("shuttleXpressEvent", evt);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending Contour Shuttle Xpress event:", e);
+                }
+            });
+        });
+
+        ipcMain.handle("shuttleXpressStop", () =>
+        {
+            return appleBridge.shuttleXpressStop();
+        });
+
+        ipcMain.handle("shuttleXpressIsConnected", () =>
+        {
+            return appleBridge.shuttleXpressIsConnected();
+        });
+
+        // 8BitDo Xbox API
+        ipcMain.handle("xboxStart", (event) =>
+        {
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            return appleBridge.xboxStart((evt) =>
+            {
+                try
+                {
+                    senderFrame.send("xboxEvent", evt);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending 8BitDo Xbox event:", e);
+                }
+            });
+        });
+
+        ipcMain.handle("xboxStop", () =>
+        {
+            return appleBridge.xboxStop();
+        });
+
+        ipcMain.handle("xboxIsConnected", () =>
+        {
+            return appleBridge.xboxIsConnected();
+        });
+
+        ipcMain.handle("xboxSendRumble", (event, left, right, leftTrigger, rightTrigger) =>
+        {
+            return appleBridge.xboxSendRumble(left, right, leftTrigger, rightTrigger);
+        });
+
+        // Soomfon Controller API
+        ipcMain.handle("soomfonStart", (event, deviceIndex) =>
+        {
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            const idx = typeof deviceIndex === "number" ? deviceIndex : 0;
+            return appleBridge.soomfonStart(idx, (evt) =>
+            {
+                try
+                {
+                    senderFrame.send("soomfonEvent", evt);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending Soomfon event:", e);
+                }
+            });
+        });
+
+        ipcMain.handle("soomfonStop", () =>
+        {
+            return appleBridge.soomfonStop();
+        });
+
+        ipcMain.handle("soomfonSetKeyImage", (event, key, imageBase64) =>
+        {
+            return appleBridge.soomfonSetKeyImage(key, imageBase64);
+        });
+
+        ipcMain.handle("soomfonSetStretchedImage", (event, imageBase64) =>
+        {
+            return appleBridge.soomfonSetStretchedImage(imageBase64);
+        });
+
+        ipcMain.handle("soomfonSetBrightness", (event, brightness) =>
+        {
+            return appleBridge.soomfonSetBrightness(brightness);
+        });
+
+        // Stream Deck API
+        ipcMain.handle("streamDeckInit", () =>
+        {
+            return appleBridge.streamDeckInit();
+        });
+
+        ipcMain.handle("streamDeckStop", () =>
+        {
+            return appleBridge.streamDeckStop();
+        });
+
+        ipcMain.handle("streamDeckEnumerateDevices", () =>
+        {
+            return appleBridge.streamDeckEnumerateDevices();
+        });
+
+        ipcMain.handle("streamDeckConnect", (event, deviceIndex) =>
+        {
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            const idx = parseInt(deviceIndex, 10);
+            const devIdx = isNaN(idx) ? 0 : idx;
+            return appleBridge.streamDeckConnect(devIdx, (evt) =>
+            {
+                try
+                {
+                    senderFrame.send("streamDeckEvent", evt);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending Stream Deck event:", e);
+                }
+            });
+        });
+
+        ipcMain.handle("streamDeckDisconnect", () =>
+        {
+            return appleBridge.streamDeckDisconnect();
+        });
+
+        ipcMain.handle("streamDeckSetBrightness", (event, percentage) =>
+        {
+            return appleBridge.streamDeckSetBrightness(percentage);
+        });
+
+        ipcMain.handle("streamDeckSetKeyImage", (event, key, imageBase64) =>
+        {
+            if (typeof imageBase64 === "string")
+            {
+                const buffer = Buffer.from(imageBase64, "base64");
+                return appleBridge.streamDeckSetKeyImage(key, buffer);
+            }
+            return appleBridge.streamDeckSetKeyImage(key, imageBase64);
+        });
+
+        ipcMain.handle("streamDeckClearAllKeys", () =>
+        {
+            return appleBridge.streamDeckClearAllKeys();
+        });
+
+        ipcMain.handle("streamDeckSetStretchedImage", (event, imageBase64) =>
+        {
+            if (typeof imageBase64 === "string")
+            {
+                const buffer = Buffer.from(imageBase64, "base64");
+                return appleBridge.streamDeckSetStretchedImage(buffer);
+            }
+            return appleBridge.streamDeckSetStretchedImage(imageBase64);
+        });
+
+
+
         ipcMain.handle("syphonStartAudioCapture", (event, pid) =>
         {
             if (currentAudioCaptureActive)

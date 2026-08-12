@@ -8,7 +8,15 @@
         "vision_bridge.mm",
         "input_bridge.mm",
         "speech_bridge.mm",
-        "active_app_bridge.mm"
+        "active_app_bridge.mm",
+        "hid_bridge.mm",
+        "bmd_speed_editor.mm",
+        "contour_shuttle_pro.mm",
+        "contour_shuttle_xpress.mm",
+        "8bitdo_xbox.mm",
+        "XboxControllerCore.m",
+        "soomfon_controller.mm",
+        "stream_deck.mm"
       ],
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")"
@@ -35,7 +43,8 @@
             "-framework Vision",
             "-framework Speech",
             "-framework CoreAudio",
-            "-framework AudioToolbox"
+            "-framework AudioToolbox",
+            "-framework IOKit"
           ],
           "xcode_settings": {
             "MACOSX_DEPLOYMENT_TARGET": "14.0",
@@ -65,6 +74,7 @@
               "-framework Speech",
               "-framework CoreAudio",
               "-framework AudioToolbox",
+              "-framework IOKit",
               "-Wl,-rpath,@loader_path/../../frameworks",
               "-Wl,-rpath,@loader_path/../Frameworks"
             ]

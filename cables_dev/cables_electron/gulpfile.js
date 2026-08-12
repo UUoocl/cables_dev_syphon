@@ -168,6 +168,22 @@ function _extension_ops_copy(done)
     }
 }
 
+function _copy_shared_constants(done)
+{
+    const source = "../shared/shared_constants.json";
+    const target = "./node_modules/";
+    mkdirp.sync(target);
+    if (fs.existsSync(source))
+    {
+        return gulp.src(source, { "encoding": false }).pipe(gulp.dest(target));
+    }
+    else
+    {
+        console.error("FAILED to copy shared constants from", source, "to", target);
+        done();
+    }
+}
+
 function _ui_copy(done)
 {
     const source = path.join("./src", distConfig.sourcePath.uiDist);
@@ -266,7 +282,8 @@ gulp.task("build", gulp.series(
         _core_ops_copy,
         _extension_ops_copy,
         _libs_copy,
-        _ui_copy
+        _ui_copy,
+        _copy_shared_constants
     ),
 ));
 

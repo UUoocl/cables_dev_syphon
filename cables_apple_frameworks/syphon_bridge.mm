@@ -422,6 +422,15 @@ Napi::Value StopClient(const Napi::CallbackInfo& info) {
     return env.Undefined();
 }
 
+// External initializers for device bridges
+extern void InitHID(Napi::Env env, Napi::Object exports);
+extern void InitBmdSpeedEditor(napi_env env, napi_value exports);
+extern void InitContourShuttlePro(napi_env env, napi_value exports);
+extern void InitContourShuttleXpress(napi_env env, napi_value exports);
+extern void InitEightBitDoXbox(napi_env env, napi_value exports);
+extern void InitSoomfon(napi_env env, napi_value exports);
+extern void InitStreamDeck(napi_env env, napi_value exports);
+
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
     exports.Set(Napi::String::New(env, "getServers"), Napi::Function::New(env, GetServers));
     exports.Set(Napi::String::New(env, "initServer"), Napi::Function::New(env, InitServer));
@@ -436,6 +445,13 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
     InitInput(env, exports);
     InitSpeech(env, exports);
     InitActiveApp(env, exports);
+    InitHID(env, exports);
+    InitBmdSpeedEditor(env, exports);
+    InitContourShuttlePro(env, exports);
+    InitContourShuttleXpress(env, exports);
+    InitEightBitDoXbox(env, exports);
+    InitSoomfon(env, exports);
+    InitStreamDeck(env, exports);
     
     return exports;
 }
