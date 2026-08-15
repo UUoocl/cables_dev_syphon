@@ -1,13 +1,13 @@
 {
-    "id": "7b8f9e10-4321-4def-9876-a1b2c3d4e5f6",
-    "created": 1724238219300,
+    "id": "a3e8d092-126d-4a5f-b71a-5c4f29d345d5",
+    "created": 1724238219500,
     "license": "MIT",
     "authorName": "Antigravity",
     "layout": {
         "portsIn": [
             {
                 "type": 2,
-                "name": "Server Instance"
+                "name": "Client Connection"
             },
             {
                 "type": 5,
@@ -48,61 +48,49 @@
             },
             {
                 "type": 0,
-                "name": "Subscribers Count",
-                "subType": "number"
-            },
-            {
-                "type": 0,
                 "name": "Success",
                 "subType": "boolean"
             }
         ]
     },
-    "coreLibs": [
-        "standalone_electron"
-    ],
-    "summary": "Publishes messages and data payloads to a specific WebSocket channel/topic on the Standalone HttpFileServer broker.",
+    "summary": "Publishes messages and data payloads to a WebSocket channel/topic from a client Cables patch.",
     "docs": {
         "ports": [
             {
-                "name": "Server Instance",
-                "text": "The Server Instance object from Ops.Local.Standalone.HttpFileServer."
+                "name": "Client Connection",
+                "text": "The Client Connection object from Ops.Local.Standalone.WebSocketClient."
             },
             {
                 "name": "Channel",
-                "text": "Name of the channel/topic to publish this message to (e.g. visualState, cameraPos)."
+                "text": "Name of the channel/topic to publish this message to."
             },
             {
                 "name": "Data",
-                "text": "The payload (object, array, string, number) to broadcast."
+                "text": "The payload (object, array, string, number) to publish."
             },
             {
                 "name": "Publish",
-                "text": "Trigger to publish the data to all subscribers of the channel."
+                "text": "Trigger to publish the data."
             },
             {
                 "name": "Target Client ID",
-                "text": "Optional specific client ID to send a direct unicast message to. Leave empty to broadcast to channel subscribers, or '*' to send to all connected clients."
+                "text": "Optional specific client ID for direct unicast messaging."
             },
             {
                 "name": "Send to All Clients",
-                "text": "When true, bypasses channel subscription filters and broadcasts this message to every connected WebSocket client."
+                "text": "Broadcasts this message to all connected clients."
             },
             {
                 "name": "Send to All Channels",
-                "text": "When true, sets the message channel to '*' and publishes across all channels/topics."
+                "text": "Broadcasts this message across all channels/topics."
             },
             {
                 "name": "Retain",
-                "text": "If true, the broker caches this message and immediately sends it to any new client that subscribes to this channel in the future."
+                "text": "If true, requests the broker to retain this message for new subscribers."
             },
             {
                 "name": "On Published",
-                "text": "Fires when the message has been dispatched by the broker."
-            },
-            {
-                "name": "Subscribers Count",
-                "text": "Number of active clients currently subscribed to this channel."
+                "text": "Fires when the message is sent over the WebSocket connection."
             },
             {
                 "name": "Success",

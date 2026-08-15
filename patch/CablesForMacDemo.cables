@@ -6,7 +6,7 @@
     "userId": "6a73beda7052d866a15f15b1",
     "cachedUsername": "",
     "created": 1785970394107,
-    "updated": 1786336703176,
+    "updated": 1786818388837,
     "visibility": "private",
     "ops": [
         {
@@ -1203,7 +1203,7 @@
             "portsOut": [
                 {
                     "name": "Result",
-                    "value": "cables - cables - /Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/CablesSyphon.cables (PID: 46331, ID: 6720)"
+                    "value": "cables - cables - /Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/CablesForMacDemo.cables (PID: 71387, ID: 2097)"
                 },
                 {
                     "name": "Index",
@@ -1698,11 +1698,11 @@
             "portsOut": [
                 {
                     "name": "Pos X",
-                    "value": 2459
+                    "value": 3507
                 },
                 {
                     "name": "Pos Y",
-                    "value": -178
+                    "value": 134
                 },
                 {
                     "name": "Button",
@@ -1722,7 +1722,7 @@
                 },
                 {
                     "name": "Scroll Delta Y",
-                    "value": 8.825363159179688
+                    "value": -2.39166259765625
                 },
                 {
                     "name": "Running",
@@ -1753,15 +1753,15 @@
             "portsOut": [
                 {
                     "name": "Combo",
-                    "value": "escape"
+                    "value": "cmd + s"
                 },
                 {
                     "name": "Key",
-                    "value": "escape"
+                    "value": "s"
                 },
                 {
                     "name": "Modifiers",
-                    "value": ""
+                    "value": "cmd"
                 },
                 {
                     "name": "Running",
@@ -1978,11 +1978,11 @@
                 },
                 {
                     "name": "Process ID",
-                    "value": 46331
+                    "value": 71387
                 },
                 {
                     "name": "Window Title",
-                    "value": "cables - /Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/CablesSyphon.cables *"
+                    "value": "cables - /Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/CablesForMacDemo.cables *"
                 },
                 {
                     "name": "Running",
@@ -1991,6 +1991,209 @@
                 {
                     "name": "Status",
                     "value": "Polling"
+                }
+            ]
+        },
+        {
+            "opId": "e5b927a0-1284-486a-a289-d91811a2f64e",
+            "id": "1kbobdhyl",
+            "attribs": {},
+            "uiAttribs": {
+                "translate": {
+                    "x": 570.3323036837653,
+                    "y": -935.1975288410368
+                }
+            },
+            "portsIn": [
+                {
+                    "name": "Hostname",
+                    "value": "127.0.0.1"
+                },
+                {
+                    "name": "Port",
+                    "value": 8080
+                },
+                {
+                    "name": "Root Directory",
+                    "value": "/Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/"
+                },
+                {
+                    "name": "Auto Start",
+                    "value": 1
+                },
+                {
+                    "name": "Enable SSE",
+                    "value": 1
+                },
+                {
+                    "name": "SSE Route",
+                    "value": "/sse"
+                },
+                {
+                    "name": "SSE Event Name",
+                    "value": "message"
+                },
+                {
+                    "name": "Enable API",
+                    "value": 1
+                },
+                {
+                    "name": "Enable WS",
+                    "value": 1
+                }
+            ],
+            "portsOut": [
+                {
+                    "name": "Running",
+                    "value": 1
+                },
+                {
+                    "name": "Server Instance",
+                    "links": [
+                        {
+                            "portIn": "Server Instance",
+                            "portOut": "Server Instance",
+                            "objIn": "hc0erk9mr",
+                            "objOut": "1kbobdhyl"
+                        },
+                        {
+                            "portIn": "Server Instance",
+                            "portOut": "Server Instance",
+                            "objIn": "36n4nhpb1",
+                            "objOut": "1kbobdhyl"
+                        },
+                        {
+                            "portIn": "Server Instance",
+                            "portOut": "Server Instance",
+                            "objIn": "clcmycibc",
+                            "objOut": "1kbobdhyl"
+                        }
+                    ]
+                },
+                {
+                    "name": "HTTP URL",
+                    "value": "/health"
+                },
+                {
+                    "name": "SSE Active Clients",
+                    "value": 0
+                },
+                {
+                    "name": "WS Active Clients",
+                    "value": 1
+                },
+                {
+                    "name": "Error",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "opId": "7b8f9e10-4321-4def-9876-a1b2c3d4e5f6",
+            "id": "hc0erk9mr",
+            "attribs": {},
+            "uiAttribs": {
+                "translate": {
+                    "x": 618.3323036837653,
+                    "y": -803.4416295329441
+                }
+            },
+            "portsIn": [
+                {
+                    "name": "Channel",
+                    "value": "message"
+                },
+                {
+                    "name": "Target Client ID",
+                    "value": "ws_6kfodxb_msup0t1f"
+                },
+                {
+                    "name": "Retain",
+                    "value": 0
+                }
+            ],
+            "portsOut": [
+                {
+                    "name": "Subscribers Count",
+                    "value": 0
+                },
+                {
+                    "name": "Success",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "opId": "9d0b1c23-6543-4f01-9876-c3d4e5f6a7b8",
+            "id": "36n4nhpb1",
+            "attribs": {},
+            "uiAttribs": {
+                "translate": {
+                    "x": 689.0118199200731,
+                    "y": -869.2466963736446
+                }
+            },
+            "portsIn": [
+                {
+                    "name": "Active",
+                    "value": 1
+                }
+            ],
+            "portsOut": [
+                {
+                    "name": "Active Client Count",
+                    "value": 1
+                },
+                {
+                    "name": "Last Client ID",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "opId": "8c9a0b12-5432-4ef0-9876-b2c3d4e5f6a7",
+            "id": "clcmycibc",
+            "attribs": {},
+            "uiAttribs": {
+                "translate": {
+                    "x": 618.3323036837653,
+                    "y": -728.6262847435827
+                }
+            },
+            "portsIn": [
+                {
+                    "name": "Channel",
+                    "value": "message"
+                },
+                {
+                    "name": "Active",
+                    "value": 1
+                },
+                {
+                    "name": "Auto Parse JSON",
+                    "value": 1
+                }
+            ],
+            "portsOut": [
+                {
+                    "name": "Channel",
+                    "value": ""
+                },
+                {
+                    "name": "Raw Message",
+                    "value": ""
+                },
+                {
+                    "name": "Sender Client ID",
+                    "value": ""
+                },
+                {
+                    "name": "Total Received",
+                    "value": 0
+                },
+                {
+                    "name": "Timestamp",
+                    "value": 0
                 }
             ]
         }
@@ -2024,9 +2227,9 @@
         "bookmarks": [],
         "viewBoxesGl": {
             "0": {
-                "x": 231.43700197711087,
-                "y": -617.8262866815503,
-                "z": 1200
+                "x": 746.1418088013488,
+                "y": -1218.5649876512505,
+                "z": 1225.9240229952688
             }
         },
         "outline": {
@@ -2047,39 +2250,40 @@
     "summary": {
         "title": "CablesForMacDemo"
     },
-    "opsHash": "503b2e72c59a53b60e87abaab130c4e75c24c8c2",
+    "opsHash": "cdeae4554392c2ad06ccd12c6659070bd824b65f",
     "buildInfo": {
         "updateWarning": false,
         "core": {
-            "timestamp": 1786501931291,
-            "created": "2026-08-12T02:32:11.291Z",
+            "timestamp": 1786811367103,
+            "created": "2026-08-15T16:29:27.103Z",
             "git": {
                 "branch": "main",
-                "commit": "2ae7f373b433020f78f6cec2ab10cbd4c64755ee",
-                "date": "1786338946",
-                "message": "feat: add sync_apple_framework_ops script and integrate into setup and build workflows"
+                "commit": "28e9fe7fcd1ebda811d01cc7a7a18bb7a40457c4",
+                "date": "1786528463",
+                "message": "feat: add native support for HID input devices and Stream Deck texture streaming via Apple Frameworks"
             }
         },
         "ui": {
-            "timestamp": 1786501938098,
-            "created": "2026-08-12T02:32:18.098Z",
+            "timestamp": 1786811372851,
+            "created": "2026-08-15T16:29:32.851Z",
             "git": {
                 "branch": "main",
-                "commit": "2ae7f373b433020f78f6cec2ab10cbd4c64755ee",
-                "date": "1786338946",
-                "message": "feat: add sync_apple_framework_ops script and integrate into setup and build workflows"
+                "commit": "28e9fe7fcd1ebda811d01cc7a7a18bb7a40457c4",
+                "date": "1786528463",
+                "message": "feat: add native support for HID input devices and Stream Deck texture streaming via Apple Frameworks"
             }
         },
         "api": {
-            "timestamp": 1786527844833,
-            "created": "2026-08-12T09:44:04.833Z",
+            "timestamp": 1786811396957,
+            "created": "2026-08-15T16:29:56.957Z",
             "git": {
                 "branch": "main",
-                "commit": "2ae7f373b433020f78f6cec2ab10cbd4c64755ee",
-                "date": "1786338946",
-                "message": "feat: add sync_apple_framework_ops script and integrate into setup and build workflows"
+                "commit": "28e9fe7fcd1ebda811d01cc7a7a18bb7a40457c4",
+                "date": "1786528463",
+                "message": "feat: add native support for HID input devices and Stream Deck texture streaming via Apple Frameworks"
             },
             "platform": {
+                "os": ":mac",
                 "npm": "11.16.0",
                 "node": "24.18.1"
             }

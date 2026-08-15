@@ -5,7 +5,7 @@ const
     inAutoParse = op.inBool("Auto Parse JSON", true),
 
     outMessage = op.outTrigger("On Message"),
-    outChannel = op.outString("Channel"),
+    outChannel = op.outString("Message Channel"),
     outData = op.outObject("Data"),
     outRaw = op.outString("Raw Message"),
     outSender = op.outString("Sender Client ID"),
@@ -20,11 +20,11 @@ const handleBrokerMessage = (msgObj) =>
     if (!inActive.get()) return;
     if (!msgObj) return;
 
-    const filterChannel = inChannel.get();
+    const filterChannel = inChannel.get() || "*";
     const msgChannel = msgObj.channel || "";
 
-    // Wildcard '*' or exact channel match
-    if (filterChannel !== "*" && filterChannel !== msgChannel) return;
+    // Wildcard '*' filter, broadcast '*' channel, or exact channel match
+    if (filterChannel !== "*" && msgChannel !== "*" && filterChannel !== msgChannel) return;
 
     messageCount++;
     outTotalReceived.set(messageCount);
@@ -63,7 +63,7 @@ function attachBroker()
     detachBroker();
 
     const serverObj = inServerInstance.get();
-    const broker = serverObj && (serverObj.broker || serverObj.pubsub || null);
+    const broker = serverObj && (serverObj.broker || serverObj.pubsub || serverObj.client || serverObj);
 
     if (broker && typeof broker.on === "function")
     {

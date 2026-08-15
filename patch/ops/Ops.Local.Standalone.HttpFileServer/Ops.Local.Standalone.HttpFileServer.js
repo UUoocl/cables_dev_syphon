@@ -195,17 +195,22 @@ class PubSubBroker extends EventEmitter
 
     publish(channel, data, opts = {})
     {
-        const { senderClientId, targetClientId, retain } = opts;
-        if (!channel || typeof channel !== "string") return 0;
-
-        if (retain)
+        const { senderClientId, targetClientId, retain, sendToAllClients, sendToAllChannels, broadcastAll } = opts;
+        
+        let targetChannel = (channel && typeof channel === "string") ? channel : "message";
+        if (sendToAllChannels || targetChannel === "*" || broadcastAll)
         {
-            this.retained.set(channel, data);
+            targetChannel = "*";
+        }
+
+        if (retain && targetChannel !== "*")
+        {
+            this.retained.set(targetChannel, data);
         }
 
         const messageEnvelope = {
             "type": "message",
-            "channel": channel,
+            "channel": targetChannel,
             "data": data,
             "sender": senderClientId || "patch",
             "timestamp": Date.now()
@@ -213,8 +218,8 @@ class PubSubBroker extends EventEmitter
 
         let recipientCount = 0;
 
-        // Targeted unicast
-        if (targetClientId)
+        // Targeted unicast (unless targetClientId is wildcard '*' or 'all')
+        if (targetClientId && targetClientId !== "*" && targetClientId !== "all" && !sendToAllClients && !broadcastAll)
         {
             const targetClient = this.clients.get(targetClientId);
             if (targetClient && this._sendToClient(targetClient, messageEnvelope))
@@ -222,10 +227,22 @@ class PubSubBroker extends EventEmitter
                 recipientCount++;
             }
         }
+        else if (sendToAllClients || broadcastAll || targetClientId === "*" || targetClientId === "all" || targetChannel === "*")
+        {
+            // Send to ALL connected clients regardless of individual subscriptions
+            this.clients.forEach((client, cid) =>
+            {
+                if (cid === senderClientId && opts.echo !== true) return;
+                if (this._sendToClient(client, messageEnvelope))
+                {
+                    recipientCount++;
+                }
+            });
+        }
         else
         {
             // Send to all subscribers of this channel + wildcard subscribers
-            const directSubscribers = this.channels.get(channel) || new Set();
+            const directSubscribers = this.channels.get(targetChannel) || new Set();
             const wildcardSubscribers = this.channels.get("*") || new Set();
 
             const recipients = new Set([...directSubscribers, ...wildcardSubscribers]);
@@ -244,7 +261,7 @@ class PubSubBroker extends EventEmitter
 
         // Fire internal event for Cables patch operators
         this.emit("message", {
-            "channel": channel,
+            "channel": targetChannel,
             "data": data,
             "sender": senderClientId || "patch",
             "raw": messageEnvelope,
@@ -252,7 +269,7 @@ class PubSubBroker extends EventEmitter
         });
 
         // Also emit channel-specific event
-        this.emit(`channel:${channel}`, data, senderClientId || "patch", messageEnvelope);
+        this.emit(`channel:${targetChannel}`, data, senderClientId || "patch", messageEnvelope);
 
         return recipientCount;
     }
@@ -324,7 +341,9 @@ class PubSubBroker extends EventEmitter
             this.publish(channel, data, {
                 "senderClientId": client.id,
                 "retain": Boolean(parsed.retain),
-                "targetClientId": parsed.targetClientId || null
+                "targetClientId": parsed.targetClientId || null,
+                "sendToAllClients": Boolean(parsed.sendToAllClients || parsed.broadcast || parsed.broadcastAll),
+                "sendToAllChannels": Boolean(parsed.sendToAllChannels)
             });
             return;
         }
@@ -359,10 +378,16 @@ class PubSubBroker extends EventEmitter
         return Array.from(this.channels.keys());
     }
 
-    getSubscriberCount(channel)
+    getSubscriberCount(channel, sendToAllClients = false, sendToAllChannels = false)
     {
-        const set = this.channels.get(channel);
-        return set ? set.size : 0;
+        if (sendToAllClients || sendToAllChannels || channel === "*")
+        {
+            return this.clients.size;
+        }
+        const direct = this.channels.get(channel);
+        const wildcard = this.channels.get("*");
+        const set = new Set([...(direct || []), ...(wildcard || [])]);
+        return set.size;
     }
 
     clear()
