@@ -31,75 +31,85 @@ public:
     void Execute() override {
         @autoreleasepool {
             CVPixelBufferRef pixelBuffer = NULL;
-            NSDictionary *options = @{
-                (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
-                (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
-                (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
-                (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
-            };
-            
-            CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
-            if (status != kCVReturnSuccess || !pixelBuffer) {
-                SetError("Failed to create CVPixelBuffer inside worker (status: " + std::to_string(status) + ")");
-                return;
-            }
-            
-            CVPixelBufferLockBaseAddress(pixelBuffer, 0);
-            uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
-            // Swap Red and Blue channels from RGBA (Cables/WebGL) to BGRA (CoreVideo/macOS preferred)
-            for (int i = 0; i < _width * _height; i++) {
-                baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
-                baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
-                baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
-                baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
-            }
-            CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
-            
-            VNGeneratePersonSegmentationRequest *request = [[VNGeneratePersonSegmentationRequest alloc] init];
-            if (_quality == "accurate") {
-                request.qualityLevel = VNGeneratePersonSegmentationRequestQualityLevelAccurate;
-            } else if (_quality == "fast") {
-                request.qualityLevel = VNGeneratePersonSegmentationRequestQualityLevelFast;
-            } else {
-                request.qualityLevel = VNGeneratePersonSegmentationRequestQualityLevelBalanced;
-            }
-            request.outputPixelFormat = kCVPixelFormatType_OneComponent8;
-            
-            VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
-            NSError *error = nil;
-            BOOL success = [handler performRequests:@[request] error:&error];
-            CVPixelBufferRelease(pixelBuffer);
-            
-            if (!success || error) {
-                NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
-                SetError("Vision segmentation failed: " + std::string([errDesc UTF8String]));
-                return;
-            }
-            
-            VNPixelBufferObservation *observation = request.results.firstObject;
-            if (!observation) {
-                SetError("Vision returned no results");
-                return;
-            }
-            
-            CVPixelBufferRef maskBuffer = observation.pixelBuffer;
-            CVPixelBufferLockBaseAddress(maskBuffer, kCVPixelBufferLock_ReadOnly);
-            
-            _maskW = CVPixelBufferGetWidth(maskBuffer);
-            _maskH = CVPixelBufferGetHeight(maskBuffer);
-            void *maskData = CVPixelBufferGetBaseAddress(maskBuffer);
-            size_t bytesPerRow = CVPixelBufferGetBytesPerRow(maskBuffer);
-            
-            _outputMask.resize(_maskW * _maskH);
-            if (bytesPerRow == _maskW) {
-                memcpy(_outputMask.data(), maskData, _maskW * _maskH);
-            } else {
-                for (size_t y = 0; y < _maskH; y++) {
-                    memcpy(_outputMask.data() + y * _maskW, (uint8_t *)maskData + y * bytesPerRow, _maskW);
+            @try {
+                NSDictionary *options = @{
+                    (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
+                };
+                
+                CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
+                if (status != kCVReturnSuccess || !pixelBuffer) {
+                    SetError("Failed to create CVPixelBuffer inside worker (status: " + std::to_string(status) + ")");
+                    return;
                 }
+                
+                CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+                uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
+                // Swap Red and Blue channels from RGBA (Cables/WebGL) to BGRA (CoreVideo/macOS preferred)
+                for (int i = 0; i < _width * _height; i++) {
+                    baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
+                    baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
+                    baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
+                    baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
+                }
+                CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+                
+                VNGeneratePersonSegmentationRequest *request = [[VNGeneratePersonSegmentationRequest alloc] init];
+                if (_quality == "accurate") {
+                    request.qualityLevel = VNGeneratePersonSegmentationRequestQualityLevelAccurate;
+                } else if (_quality == "fast") {
+                    request.qualityLevel = VNGeneratePersonSegmentationRequestQualityLevelFast;
+                } else {
+                    request.qualityLevel = VNGeneratePersonSegmentationRequestQualityLevelBalanced;
+                }
+                request.outputPixelFormat = kCVPixelFormatType_OneComponent8;
+                
+                VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
+                NSError *error = nil;
+                BOOL success = [handler performRequests:@[request] error:&error];
+                CVPixelBufferRelease(pixelBuffer);
+                pixelBuffer = NULL;
+                
+                if (!success || error) {
+                    NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
+                    SetError("Vision segmentation failed: " + std::string([errDesc UTF8String]));
+                    return;
+                }
+                
+                VNPixelBufferObservation *observation = request.results.firstObject;
+                if (!observation) {
+                    SetError("Vision returned no results");
+                    return;
+                }
+                
+                CVPixelBufferRef maskBuffer = observation.pixelBuffer;
+                CVPixelBufferLockBaseAddress(maskBuffer, kCVPixelBufferLock_ReadOnly);
+                
+                _maskW = CVPixelBufferGetWidth(maskBuffer);
+                _maskH = CVPixelBufferGetHeight(maskBuffer);
+                void *maskData = CVPixelBufferGetBaseAddress(maskBuffer);
+                size_t bytesPerRow = CVPixelBufferGetBytesPerRow(maskBuffer);
+                
+                _outputMask.resize(_maskW * _maskH);
+                if (bytesPerRow == _maskW) {
+                    memcpy(_outputMask.data(), maskData, _maskW * _maskH);
+                } else {
+                    for (size_t y = 0; y < _maskH; y++) {
+                        memcpy(_outputMask.data() + y * _maskW, (uint8_t *)maskData + y * bytesPerRow, _maskW);
+                    }
+                }
+                
+                CVPixelBufferUnlockBaseAddress(maskBuffer, kCVPixelBufferLock_ReadOnly);
+            } @catch (NSException *exception) {
+                if (pixelBuffer) {
+                    CVPixelBufferRelease(pixelBuffer);
+                    pixelBuffer = NULL;
+                }
+                NSString *reason = [exception reason] ? [exception reason] : [exception name];
+                SetError("Vision segmentation exception: " + std::string([reason UTF8String]));
             }
-            
-            CVPixelBufferUnlockBaseAddress(maskBuffer, kCVPixelBufferLock_ReadOnly);
         }
     }
     
@@ -148,7 +158,7 @@ Napi::Value ProcessSegmentation(const Napi::CallbackInfo& info) {
     int height = info[2].As<Napi::Number>().Int32Value();
     std::string quality = info[3].As<Napi::String>().Utf8Value();
     
-    if (width <= 0 || height <= 0 || buffer.Length() < width * height * 4) {
+    if (width <= 0 || height <= 0 || buffer.Length() < (size_t)width * height * 4) {
         Napi::TypeError::New(env, "Invalid buffer length for given dimensions").ThrowAsJavaScriptException();
         return env.Undefined();
     }
@@ -176,57 +186,67 @@ public:
     void Execute() override {
         @autoreleasepool {
             CVPixelBufferRef pixelBuffer = NULL;
-            NSDictionary *options = @{
-                (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
-                (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
-                (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
-                (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
-            };
-            
-            CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
-            if (status != kCVReturnSuccess || !pixelBuffer) {
-                SetError("Failed to create CVPixelBuffer inside worker (status: " + std::to_string(status) + ")");
-                return;
-            }
-            
-            CVPixelBufferLockBaseAddress(pixelBuffer, 0);
-            uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
-            for (int i = 0; i < _width * _height; i++) {
-                baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
-                baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
-                baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
-                baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
-            }
-            CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
-            
-            VNDetectHumanBodyPoseRequest *request = [[VNDetectHumanBodyPoseRequest alloc] init];
-            VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
-            NSError *error = nil;
-            BOOL success = [handler performRequests:@[request] error:&error];
-            CVPixelBufferRelease(pixelBuffer);
-            
-            if (!success || error) {
-                NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
-                SetError("Vision body pose detection failed: " + std::string([errDesc UTF8String]));
-                return;
-            }
-            
-            NSArray *observations = request.results;
-            for (VNHumanBodyPoseObservation *observation in observations) {
-                NSError *keypointError = nil;
-                NSDictionary<VNHumanBodyPoseObservationJointName, VNRecognizedPoint *> *recognizedPoints = 
-                    [observation recognizedPointsForJointsGroupName:VNHumanBodyPoseObservationJointsGroupNameAll error:&keypointError];
+            @try {
+                NSDictionary *options = @{
+                    (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
+                };
                 
-                std::unordered_map<std::string, std::vector<float>> poseMap;
-                if (recognizedPoints && !keypointError) {
-                    for (VNHumanBodyPoseObservationJointName jointName in recognizedPoints) {
-                        VNRecognizedPoint *point = [recognizedPoints objectForKey:jointName];
-                        if (point && point.confidence >= _minConfidence) {
-                            poseMap[[jointName UTF8String]] = { (float)point.x, (float)point.y, (float)point.confidence };
+                CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
+                if (status != kCVReturnSuccess || !pixelBuffer) {
+                    SetError("Failed to create CVPixelBuffer inside worker (status: " + std::to_string(status) + ")");
+                    return;
+                }
+                
+                CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+                uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
+                for (int i = 0; i < _width * _height; i++) {
+                    baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
+                    baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
+                    baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
+                    baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
+                }
+                CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+                
+                VNDetectHumanBodyPoseRequest *request = [[VNDetectHumanBodyPoseRequest alloc] init];
+                VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
+                NSError *error = nil;
+                BOOL success = [handler performRequests:@[request] error:&error];
+                CVPixelBufferRelease(pixelBuffer);
+                pixelBuffer = NULL;
+                
+                if (!success || error) {
+                    NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
+                    SetError("Vision body pose detection failed: " + std::string([errDesc UTF8String]));
+                    return;
+                }
+                
+                NSArray *observations = request.results;
+                for (VNHumanBodyPoseObservation *observation in observations) {
+                    NSError *keypointError = nil;
+                    NSDictionary<VNHumanBodyPoseObservationJointName, VNRecognizedPoint *> *recognizedPoints = 
+                        [observation recognizedPointsForJointsGroupName:VNHumanBodyPoseObservationJointsGroupNameAll error:&keypointError];
+                    
+                    std::unordered_map<std::string, std::vector<float>> poseMap;
+                    if (recognizedPoints && !keypointError) {
+                        for (VNHumanBodyPoseObservationJointName jointName in recognizedPoints) {
+                            VNRecognizedPoint *point = [recognizedPoints objectForKey:jointName];
+                            if (point && point.confidence >= _minConfidence) {
+                                poseMap[[jointName UTF8String]] = { (float)point.x, (float)point.y, (float)point.confidence };
+                            }
                         }
                     }
+                    _poses.push_back(poseMap);
                 }
-                _poses.push_back(poseMap);
+            } @catch (NSException *exception) {
+                if (pixelBuffer) {
+                    CVPixelBufferRelease(pixelBuffer);
+                    pixelBuffer = NULL;
+                }
+                NSString *reason = [exception reason] ? [exception reason] : [exception name];
+                SetError("Vision body pose detection exception: " + std::string([reason UTF8String]));
             }
         }
     }
@@ -281,7 +301,7 @@ Napi::Value DetectHumanPose(const Napi::CallbackInfo& info) {
     int height = info[2].As<Napi::Number>().Int32Value();
     float minConfidence = info[3].As<Napi::Number>().FloatValue();
     
-    if (width <= 0 || height <= 0 || buffer.Length() < width * height * 4) {
+    if (width <= 0 || height <= 0 || buffer.Length() < (size_t)width * height * 4) {
         Napi::TypeError::New(env, "Invalid buffer length for given dimensions").ThrowAsJavaScriptException();
         return env.Undefined();
     }
@@ -309,64 +329,75 @@ public:
     void Execute() override {
         @autoreleasepool {
             CVPixelBufferRef pixelBuffer = NULL;
-            NSDictionary *options = @{
-                (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
-                (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
-                (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
-                (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
-            };
-            
-            CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
-            if (status != kCVReturnSuccess || !pixelBuffer) {
-                SetError("Failed to create CVPixelBuffer inside worker (status: " + std::to_string(status) + ")");
-                return;
-            }
-            
-            CVPixelBufferLockBaseAddress(pixelBuffer, 0);
-            uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
-            for (int i = 0; i < _width * _height; i++) {
-                baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
-                baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
-                baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
-                baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
-            }
-            CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
-            
-            if (@available(macOS 14.0, *)) {
-                VNDetectHumanBodyPose3DRequest *request = [[VNDetectHumanBodyPose3DRequest alloc] init];
-                VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
-                NSError *error = nil;
-                BOOL success = [handler performRequests:@[request] error:&error];
-                CVPixelBufferRelease(pixelBuffer);
+            @try {
+                NSDictionary *options = @{
+                    (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
+                };
                 
-                if (!success || error) {
-                    NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
-                    SetError("Vision 3D body pose detection failed: " + std::string([errDesc UTF8String]));
+                CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
+                if (status != kCVReturnSuccess || !pixelBuffer) {
+                    SetError("Failed to create CVPixelBuffer inside worker (status: " + std::to_string(status) + ")");
                     return;
                 }
                 
-                NSArray *observations = request.results;
-                for (VNHumanBodyPose3DObservation *observation in observations) {
-                    NSError *jointError = nil;
-                    NSDictionary<VNHumanBodyPose3DObservationJointName, VNRecognizedPoint3D *> *recognizedPoints = 
-                        [observation recognizedPointsForJointsGroupName:VNHumanBodyPose3DObservationJointsGroupNameAll error:&jointError];
+                CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+                uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
+                for (int i = 0; i < _width * _height; i++) {
+                    baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
+                    baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
+                    baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
+                    baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
+                }
+                CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+                
+                if (@available(macOS 14.0, *)) {
+                    VNDetectHumanBodyPose3DRequest *request = [[VNDetectHumanBodyPose3DRequest alloc] init];
+                    VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
+                    NSError *error = nil;
+                    BOOL success = [handler performRequests:@[request] error:&error];
+                    CVPixelBufferRelease(pixelBuffer);
+                    pixelBuffer = NULL;
                     
-                    std::unordered_map<std::string, std::vector<float>> poseMap;
-                    if (recognizedPoints && !jointError) {
-                        for (VNHumanBodyPose3DObservationJointName jointName in recognizedPoints) {
-                            VNRecognizedPoint3D *point = [recognizedPoints objectForKey:jointName];
-                            if (point) {
-                                simd_float4 pos = point.position.columns[3];
-                                poseMap[[jointName UTF8String]] = { pos.x, pos.y, pos.z, 1.0f };
-                            }
-                        }
+                    if (!success || error) {
+                        NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
+                        SetError("Vision 3D body pose detection failed: " + std::string([errDesc UTF8String]));
+                        return;
                     }
                     
-                    _poses.push_back({ poseMap, (float)observation.bodyHeight });
+                    NSArray *observations = request.results;
+                    for (VNHumanBodyPose3DObservation *observation in observations) {
+                        NSError *jointError = nil;
+                        NSDictionary<VNHumanBodyPose3DObservationJointName, VNRecognizedPoint3D *> *recognizedPoints = 
+                            [observation recognizedPointsForJointsGroupName:VNHumanBodyPose3DObservationJointsGroupNameAll error:&jointError];
+                        
+                        std::unordered_map<std::string, std::vector<float>> poseMap;
+                        if (recognizedPoints && !jointError) {
+                            for (VNHumanBodyPose3DObservationJointName jointName in recognizedPoints) {
+                                VNRecognizedPoint3D *point = [recognizedPoints objectForKey:jointName];
+                                if (point) {
+                                    simd_float4 pos = point.position.columns[3];
+                                    poseMap[[jointName UTF8String]] = { pos.x, pos.y, pos.z, 1.0f };
+                                }
+                            }
+                        }
+                        
+                        _poses.push_back({ poseMap, (float)observation.bodyHeight });
+                    }
+                } else {
+                    CVPixelBufferRelease(pixelBuffer);
+                    pixelBuffer = NULL;
+                    SetError("VNDetectHumanBodyPose3DRequest requires macOS 14.0 or higher");
                 }
-            } else {
-                CVPixelBufferRelease(pixelBuffer);
-                SetError("VNDetectHumanBodyPose3DRequest requires macOS 14.0 or higher");
+            } @catch (NSException *exception) {
+                if (pixelBuffer) {
+                    CVPixelBufferRelease(pixelBuffer);
+                    pixelBuffer = NULL;
+                }
+                NSString *reason = [exception reason] ? [exception reason] : [exception name];
+                SetError("Vision 3D body pose detection exception: " + std::string([reason UTF8String]));
             }
         }
     }
@@ -426,7 +457,7 @@ Napi::Value DetectHumanPose3d(const Napi::CallbackInfo& info) {
     int width = info[1].As<Napi::Number>().Int32Value();
     int height = info[2].As<Napi::Number>().Int32Value();
     
-    if (width <= 0 || height <= 0 || buffer.Length() < width * height * 4) {
+    if (width <= 0 || height <= 0 || buffer.Length() < (size_t)width * height * 4) {
         Napi::TypeError::New(env, "Invalid buffer length for given dimensions").ThrowAsJavaScriptException();
         return env.Undefined();
     }
@@ -454,94 +485,104 @@ public:
     void Execute() override {
         @autoreleasepool {
             CVPixelBufferRef pixelBuffer = NULL;
-            NSDictionary *options = @{
-                (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
-                (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
-                (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
-                (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
-            };
-            
-            CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
-            if (status != kCVReturnSuccess || !pixelBuffer) {
-                SetError("Failed to create CVPixelBuffer inside face worker (status: " + std::to_string(status) + ")");
-                return;
-            }
-            
-            CVPixelBufferLockBaseAddress(pixelBuffer, 0);
-            uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
-            for (int i = 0; i < _width * _height; i++) {
-                baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
-                baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
-                baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
-                baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
-            }
-            CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
-            
-            VNDetectFaceLandmarksRequest *request = [[VNDetectFaceLandmarksRequest alloc] init];
-            VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
-            NSError *error = nil;
-            BOOL success = [handler performRequests:@[request] error:&error];
-            CVPixelBufferRelease(pixelBuffer);
-            
-            if (!success || error) {
-                NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
-                SetError("Vision face detection failed: " + std::string([errDesc UTF8String]));
-                return;
-            }
-            
-            NSArray<VNFaceObservation *> *results = request.results;
-            if (!results) return;
-            
-            for (VNFaceObservation *observation in results) {
-                FaceResult resFace;
-                resFace.confidence = observation.confidence;
+            @try {
+                NSDictionary *options = @{
+                    (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
+                };
                 
-                CGRect box = observation.boundingBox;
-                resFace.boundingBox.x = box.origin.x;
-                resFace.boundingBox.y = 1.0 - (box.origin.y + box.size.height);
-                resFace.boundingBox.w = box.size.width;
-                resFace.boundingBox.h = box.size.height;
-                
-                resFace.roll = observation.roll ? observation.roll.floatValue : 0.0;
-                resFace.yaw = observation.yaw ? observation.yaw.floatValue : 0.0;
-                resFace.pitch = observation.pitch ? observation.pitch.floatValue : 0.0;
-                
-                VNFaceLandmarks2D *landmarks = observation.landmarks;
-                if (landmarks) {
-                    NSDictionary<NSString *, VNFaceLandmarkRegion2D *>* regions = @{
-                        @"faceContour": landmarks.faceContour,
-                        @"leftEye": landmarks.leftEye,
-                        @"rightEye": landmarks.rightEye,
-                        @"leftEyebrow": landmarks.leftEyebrow,
-                        @"rightEyebrow": landmarks.rightEyebrow,
-                        @"nose": landmarks.nose,
-                        @"noseCrest": landmarks.noseCrest,
-                        @"medianLine": landmarks.medianLine,
-                        @"outerLips": landmarks.outerLips,
-                        @"innerLips": landmarks.innerLips,
-                        @"leftPupil": landmarks.leftPupil,
-                        @"rightPupil": landmarks.rightPupil
-                    };
-                    
-                    for (NSString* name in regions) {
-                        VNFaceLandmarkRegion2D* region = regions[name];
-                        if (!region) continue;
-                        
-                        std::vector<LandmarkPoint> pts;
-                        const CGPoint* points = region.normalizedPoints;
-                        size_t pointCount = region.pointCount;
-                        
-                        for (size_t p = 0; p < pointCount; ++p) {
-                            CGPoint pt = points[p];
-                            LandmarkPoint resPt;
-                            resPt.x = box.origin.x + pt.x * box.size.width;
-                            resPt.y = 1.0 - (box.origin.y + pt.y * box.size.height);
-                            pts.push_back(resPt);
-                        }
-                        resFace.landmarks[[name UTF8String]] = pts;
-                    }
+                CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
+                if (status != kCVReturnSuccess || !pixelBuffer) {
+                    SetError("Failed to create CVPixelBuffer inside face worker (status: " + std::to_string(status) + ")");
+                    return;
                 }
-                _faces.push_back(resFace);
+                
+                CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+                uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
+                for (int i = 0; i < _width * _height; i++) {
+                    baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
+                    baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
+                    baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
+                    baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
+                }
+                CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+                
+                VNDetectFaceLandmarksRequest *request = [[VNDetectFaceLandmarksRequest alloc] init];
+                VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
+                NSError *error = nil;
+                BOOL success = [handler performRequests:@[request] error:&error];
+                CVPixelBufferRelease(pixelBuffer);
+                pixelBuffer = NULL;
+                
+                if (!success || error) {
+                    NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
+                    SetError("Vision face detection failed: " + std::string([errDesc UTF8String]));
+                    return;
+                }
+                
+                NSArray<VNFaceObservation *> *results = request.results;
+                if (!results) return;
+                
+                for (VNFaceObservation *observation in results) {
+                    FaceResult resFace;
+                    resFace.confidence = observation.confidence;
+                    
+                    CGRect box = observation.boundingBox;
+                    resFace.boundingBox.x = box.origin.x;
+                    resFace.boundingBox.y = 1.0 - (box.origin.y + box.size.height);
+                    resFace.boundingBox.w = box.size.width;
+                    resFace.boundingBox.h = box.size.height;
+                    
+                    resFace.roll = observation.roll ? observation.roll.floatValue : 0.0;
+                    resFace.yaw = observation.yaw ? observation.yaw.floatValue : 0.0;
+                    resFace.pitch = observation.pitch ? observation.pitch.floatValue : 0.0;
+                    
+                    VNFaceLandmarks2D *landmarks = observation.landmarks;
+                    if (landmarks) {
+                        NSDictionary<NSString *, VNFaceLandmarkRegion2D *>* regions = @{
+                            @"faceContour": landmarks.faceContour,
+                            @"leftEye": landmarks.leftEye,
+                            @"rightEye": landmarks.rightEye,
+                            @"leftEyebrow": landmarks.leftEyebrow,
+                            @"rightEyebrow": landmarks.rightEyebrow,
+                            @"nose": landmarks.nose,
+                            @"noseCrest": landmarks.noseCrest,
+                            @"medianLine": landmarks.medianLine,
+                            @"outerLips": landmarks.outerLips,
+                            @"innerLips": landmarks.innerLips,
+                            @"leftPupil": landmarks.leftPupil,
+                            @"rightPupil": landmarks.rightPupil
+                        };
+                        
+                        for (NSString* name in regions) {
+                            VNFaceLandmarkRegion2D* region = regions[name];
+                            if (!region) continue;
+                            
+                            std::vector<LandmarkPoint> pts;
+                            const CGPoint* points = region.normalizedPoints;
+                            size_t pointCount = region.pointCount;
+                            
+                            for (size_t p = 0; p < pointCount; ++p) {
+                                CGPoint pt = points[p];
+                                LandmarkPoint resPt;
+                                resPt.x = box.origin.x + pt.x * box.size.width;
+                                resPt.y = 1.0 - (box.origin.y + pt.y * box.size.height);
+                                pts.push_back(resPt);
+                            }
+                            resFace.landmarks[[name UTF8String]] = pts;
+                        }
+                    }
+                    _faces.push_back(resFace);
+                }
+            } @catch (NSException *exception) {
+                if (pixelBuffer) {
+                    CVPixelBufferRelease(pixelBuffer);
+                    pixelBuffer = NULL;
+                }
+                NSString *reason = [exception reason] ? [exception reason] : [exception name];
+                SetError("Vision face detection exception: " + std::string([reason UTF8String]));
             }
         }
     }
@@ -635,7 +676,7 @@ Napi::Value DetectHumanFace(const Napi::CallbackInfo& info) {
     int width = info[1].As<Napi::Number>().Int32Value();
     int height = info[2].As<Napi::Number>().Int32Value();
     
-    if (width <= 0 || height <= 0 || buffer.Length() < width * height * 4) {
+    if (width <= 0 || height <= 0 || buffer.Length() < (size_t)width * height * 4) {
         Napi::TypeError::New(env, "Invalid buffer length for given dimensions").ThrowAsJavaScriptException();
         return env.Undefined();
     }
@@ -663,67 +704,77 @@ public:
     void Execute() override {
         @autoreleasepool {
             CVPixelBufferRef pixelBuffer = NULL;
-            NSDictionary *options = @{
-                (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
-                (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
-                (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
-                (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
-            };
-            
-            CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
-            if (status != kCVReturnSuccess || !pixelBuffer) {
-                SetError("Failed to create CVPixelBuffer inside worker (status: " + std::to_string(status) + ")");
-                return;
-            }
-            
-            CVPixelBufferLockBaseAddress(pixelBuffer, 0);
-            uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
-            for (int i = 0; i < _width * _height; i++) {
-                baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
-                baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
-                baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
-                baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
-            }
-            CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
-            
-            VNDetectHumanHandPoseRequest *request = [[VNDetectHumanHandPoseRequest alloc] init];
-            VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
-            NSError *error = nil;
-            BOOL success = [handler performRequests:@[request] error:&error];
-            CVPixelBufferRelease(pixelBuffer);
-            
-            if (!success || error) {
-                NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
-                SetError("Vision hand pose detection failed: " + std::string([errDesc UTF8String]));
-                return;
-            }
-            
-            NSArray *observations = request.results;
-            for (VNHumanHandPoseObservation *observation in observations) {
-                NSError *keypointError = nil;
-                NSDictionary<VNHumanHandPoseObservationJointName, VNRecognizedPoint *> *recognizedPoints = 
-                    [observation recognizedPointsForJointsGroupName:VNHumanHandPoseObservationJointsGroupNameAll error:&keypointError];
+            @try {
+                NSDictionary *options = @{
+                    (id)kCVPixelBufferCGImageCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferCGBitmapContextCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferMetalCompatibilityKey: @(YES),
+                    (id)kCVPixelBufferIOSurfacePropertiesKey: @{}
+                };
                 
-                std::unordered_map<std::string, std::vector<float>> handMap;
-                if (recognizedPoints && !keypointError) {
-                    for (VNHumanHandPoseObservationJointName jointName in recognizedPoints) {
-                        VNRecognizedPoint *point = [recognizedPoints objectForKey:jointName];
-                        if (point && point.confidence >= _minConfidence) {
-                            handMap[[jointName UTF8String]] = { (float)point.x, (float)point.y, (float)point.confidence };
+                CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, _width, _height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef)options, &pixelBuffer);
+                if (status != kCVReturnSuccess || !pixelBuffer) {
+                    SetError("Failed to create CVPixelBuffer inside worker (status: " + std::to_string(status) + ")");
+                    return;
+                }
+                
+                CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+                uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuffer);
+                for (int i = 0; i < _width * _height; i++) {
+                    baseAddress[i * 4]     = _pixels[i * 4 + 2]; // B
+                    baseAddress[i * 4 + 1] = _pixels[i * 4 + 1]; // G
+                    baseAddress[i * 4 + 2] = _pixels[i * 4];     // R
+                    baseAddress[i * 4 + 3] = _pixels[i * 4 + 3]; // A
+                }
+                CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+                
+                VNDetectHumanHandPoseRequest *request = [[VNDetectHumanHandPoseRequest alloc] init];
+                VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:pixelBuffer options:@{}];
+                NSError *error = nil;
+                BOOL success = [handler performRequests:@[request] error:&error];
+                CVPixelBufferRelease(pixelBuffer);
+                pixelBuffer = NULL;
+                
+                if (!success || error) {
+                    NSString *errDesc = error ? error.localizedDescription : @"Unknown error";
+                    SetError("Vision hand pose detection failed: " + std::string([errDesc UTF8String]));
+                    return;
+                }
+                
+                NSArray *observations = request.results;
+                for (VNHumanHandPoseObservation *observation in observations) {
+                    NSError *keypointError = nil;
+                    NSDictionary<VNHumanHandPoseObservationJointName, VNRecognizedPoint *> *recognizedPoints = 
+                        [observation recognizedPointsForJointsGroupName:VNHumanHandPoseObservationJointsGroupNameAll error:&keypointError];
+                    
+                    std::unordered_map<std::string, std::vector<float>> handMap;
+                    if (recognizedPoints && !keypointError) {
+                        for (VNHumanHandPoseObservationJointName jointName in recognizedPoints) {
+                            VNRecognizedPoint *point = [recognizedPoints objectForKey:jointName];
+                            if (point && point.confidence >= _minConfidence) {
+                                handMap[[jointName UTF8String]] = { (float)point.x, (float)point.y, (float)point.confidence };
+                            }
                         }
                     }
-                }
-                
-                std::string chiralityStr = "unknown";
-                if (@available(macOS 12.0, *)) {
-                    if (observation.chirality == VNChiralityLeft) {
-                        chiralityStr = "left";
-                    } else if (observation.chirality == VNChiralityRight) {
-                        chiralityStr = "right";
+                    
+                    std::string chiralityStr = "unknown";
+                    if (@available(macOS 12.0, *)) {
+                        if (observation.chirality == VNChiralityLeft) {
+                            chiralityStr = "left";
+                        } else if (observation.chirality == VNChiralityRight) {
+                            chiralityStr = "right";
+                        }
                     }
+                    
+                    _hands.push_back({ handMap, chiralityStr });
                 }
-                
-                _hands.push_back({ handMap, chiralityStr });
+            } @catch (NSException *exception) {
+                if (pixelBuffer) {
+                    CVPixelBufferRelease(pixelBuffer);
+                    pixelBuffer = NULL;
+                }
+                NSString *reason = [exception reason] ? [exception reason] : [exception name];
+                SetError("Vision hand pose detection exception: " + std::string([reason UTF8String]));
             }
         }
     }
@@ -784,7 +835,7 @@ Napi::Value DetectHumanHand(const Napi::CallbackInfo& info) {
     int height = info[2].As<Napi::Number>().Int32Value();
     float minConfidence = info[3].As<Napi::Number>().FloatValue();
     
-    if (width <= 0 || height <= 0 || buffer.Length() < width * height * 4) {
+    if (width <= 0 || height <= 0 || buffer.Length() < (size_t)width * height * 4) {
         Napi::TypeError::New(env, "Invalid buffer length for given dimensions").ThrowAsJavaScriptException();
         return env.Undefined();
     }

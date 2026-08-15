@@ -191,7 +191,7 @@ Napi::Value PublishPixelFrame(const Napi::CallbackInfo& info) {
         return Napi::Boolean::New(env, false);
     }
     
-    if (buffer.Length() < width * height * 4) {
+    if (buffer.Length() < (size_t)width * height * 4) {
         Napi::TypeError::New(env, "Invalid buffer length for pixel data").ThrowAsJavaScriptException();
         return env.Undefined();
     }
