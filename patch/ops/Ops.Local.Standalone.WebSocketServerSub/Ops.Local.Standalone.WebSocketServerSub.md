@@ -1,4 +1,4 @@
-# Ops.Local.Standalone.WebSocketSub
+# Ops.Local.Standalone.WebSocketServerSub
 
 Subscribes to messages arriving on a specific WebSocket channel/topic from remote clients or the Cables Standalone server broker.
 

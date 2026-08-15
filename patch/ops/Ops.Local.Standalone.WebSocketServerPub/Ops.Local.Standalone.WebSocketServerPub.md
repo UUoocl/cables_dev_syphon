@@ -1,4 +1,4 @@
-# Ops.Local.Standalone.WebSocketPub
+# Ops.Local.Standalone.WebSocketServerPub
 
 Publishes messages to a specific channel/topic on the Cables Standalone WebSocket server broker.
 

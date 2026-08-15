@@ -33,7 +33,7 @@ function getWebSocketClass()
 }
 
 const
-    inUrl = op.inString("URL", "ws://localhost:8080"),
+    inUrl = op.inString("URL", "ws://127.0.0.1:8080"),
     inActive = op.inBool("Active", true),
     inAutoReconnect = op.inBool("Auto Reconnect", true),
     inReconnectInterval = op.inFloat("Reconnect Interval", 2),

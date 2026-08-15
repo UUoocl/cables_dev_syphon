@@ -102,7 +102,7 @@
             },
             {
                 "name": "Client Connection",
-                "text": "Connection object reference to pass to WebSocketClientSub, WebSocketClientPub, WebSocketSub, or WebSocketPub ops."
+                "text": "Connection object reference to pass to WebSocketClientSub, WebSocketClientPub, WebSocketServerSub, or WebSocketServerPub ops."
             },
             {
                 "name": "Connected",

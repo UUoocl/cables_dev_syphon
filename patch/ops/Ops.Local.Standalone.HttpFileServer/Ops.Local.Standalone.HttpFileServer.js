@@ -508,7 +508,10 @@ function start()
 
     try
     {
-        server.listen(inPort.get(), inHost.get(), (listenErr) =>
+        const host = (inHost.get() || "127.0.0.1").trim() || "127.0.0.1";
+        const port = inPort.get() || 8080;
+
+        server.listen(port, host, (listenErr) =>
         {
             if (listenErr)
             {

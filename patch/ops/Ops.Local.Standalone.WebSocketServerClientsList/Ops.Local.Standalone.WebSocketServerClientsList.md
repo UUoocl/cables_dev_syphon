@@ -1,4 +1,4 @@
-# Ops.Local.Standalone.WebSocketClients
+# Ops.Local.Standalone.WebSocketServerClientsList
 
 Monitors connected WebSocket clients and channel subscription topology from the Standalone HttpFileServer broker.
 
@@ -14,12 +14,14 @@ Connects to `Ops.Local.Standalone.HttpFileServer` and outputs real-time client m
 
 External clients (such as web browsers, Node.js scripts, Python apps, or mobile devices) can connect to the Cables Standalone WebSocket server using standard WebSocket protocols.
 
-1. Connection URL
-Connect to the host and port configured in Ops.Local.Standalone.HttpFileServer (default is 8080):
+### 1. Connection URL
+Connect to the host and port configured in `Ops.Local.Standalone.HttpFileServer` (default is `127.0.0.1:8080`):
 
-text
-ws://localhost:8080
-(Or ws://<your-lan-ip>:8080 for other devices on the same local network).
+```text
+ws://127.0.0.1:8080
+```
+> [!NOTE]
+> The server binds to `127.0.0.1` (loopback interface) by default to guarantee that only local connections from this machine can access the HTTP and WebSocket servers.
 
 2. Message Protocol (JSON)
 All control and data messages use standard JSON strings:

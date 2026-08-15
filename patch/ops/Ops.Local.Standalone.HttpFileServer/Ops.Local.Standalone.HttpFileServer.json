@@ -193,7 +193,7 @@
             },
             {
                 "name": "Server Instance",
-                "text": "Object reference containing server, wss, and pubsub broker for WebSocketPub, WebSocketSub, and WebSocketClients ops."
+                "text": "Object reference containing server, wss, and pubsub broker for WebSocketServerPub, WebSocketServerSub, and WebSocketServerClientsList ops."
             },
             {
                 "name": "HTTP Request",

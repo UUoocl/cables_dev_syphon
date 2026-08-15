@@ -19,7 +19,7 @@ Provides a full-featured client connection manager that supports auto-reconnecti
 
 | Operation | Purpose |
 | :--- | :--- |
-| **[`Ops.Local.Standalone.WebSocketClient`](file:///Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/ops/Ops.Local.Standalone.WebSocketClient/Ops.Local.Standalone.WebSocketClient.js)** | Establishes and manages the WebSocket connection to `ws://localhost:8080` (or remote IP) with automatic reconnect and state sync. |
+| **[`Ops.Local.Standalone.WebSocketClient`](file:///Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/ops/Ops.Local.Standalone.WebSocketClient/Ops.Local.Standalone.WebSocketClient.js)** | Establishes and manages the WebSocket connection to `ws://127.0.0.1:8080` with automatic reconnect and state sync. |
 | **[`Ops.Local.Standalone.WebSocketClientSub`](file:///Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/ops/Ops.Local.Standalone.WebSocketClientSub/Ops.Local.Standalone.WebSocketClientSub.js)** | Subscribes to a specific channel/topic (or `*` for all), handles incoming messages, and automatically resubscribes upon reconnecting. |
 | **[`Ops.Local.Standalone.WebSocketClientPub`](file:///Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/ops/Ops.Local.Standalone.WebSocketClientPub/Ops.Local.Standalone.WebSocketClientPub.js)** | Publishes data payloads to specific channels, specific client IDs, or broadcasts to all clients/channels. |
 
@@ -28,7 +28,7 @@ Provides a full-featured client connection manager that supports auto-reconnecti
 ### 2. How to Use in a Client Cables Patch
 
 ```
-[ Ops.Local.Standalone.WebSocketClient ] (URL: ws://localhost:8080)
+[ Ops.Local.Standalone.WebSocketClient ] (URL: ws://127.0.0.1:8080)
    │
    ├─► [Client Connection] ──► [ Ops.Local.Standalone.WebSocketClientSub ] (Channel: "sensors")
    │                               └─► [On Message] ──► [Data] ──► (Your patch logic)
@@ -45,4 +45,4 @@ Provides a full-featured client connection manager that supports auto-reconnecti
 1. **Automatic Subscription Lifecycle**: When you change the `Channel` port in `WebSocketClientSub`, it automatically sends `unsubscribe` for the old channel and `subscribe` for the new channel.
 2. **Auto-Reconnect with Subscription Recovery**: If the connection drops or the server restarts, `WebSocketClient` automatically reconnects and re-establishes all active channel subscriptions seamlessly.
 3. **Cross-Compatible**: Works inside Cables Standalone for Mac, in separate Electron instances, or inside standard browser-based Cables exports without needing native Node dependencies.
-4. **Interchangeability**: [`Ops.Local.Standalone.WebSocketSub`](file:///Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/ops/Ops.Local.Standalone.WebSocketSub/Ops.Local.Standalone.WebSocketSub.js) and [`Ops.Local.Standalone.WebSocketPub`](file:///Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/ops/Ops.Local.Standalone.WebSocketPub/Ops.Local.Standalone.WebSocketPub.js) have also been updated so their connection inputs accept both `Server Instance` and `Client Connection` objects.
+4. **Interchangeability**: [`Ops.Local.Standalone.WebSocketServerSub`](file:///Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/ops/Ops.Local.Standalone.WebSocketServerSub/Ops.Local.Standalone.WebSocketServerSub.js) and [`Ops.Local.Standalone.WebSocketServerPub`](file:///Users/jonwood/Github_local_dev/cables_standalone_for_mac/patch/ops/Ops.Local.Standalone.WebSocketServerPub/Ops.Local.Standalone.WebSocketServerPub.js) have also been updated so their connection inputs accept both `Server Instance` and `Client Connection` objects.
