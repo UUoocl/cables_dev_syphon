@@ -1,0 +1,235 @@
+{
+    "id": "e5b927a0-1284-486a-a289-d91811a2f64e",
+    "created": 1724238219266,
+    "license": "MIT",
+    "authorName": "Antigravity",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 5,
+                "name": "Hostname"
+            },
+            {
+                "type": 0,
+                "name": "Port",
+                "subType": "integer"
+            },
+            {
+                "type": 5,
+                "name": "Root Directory"
+            },
+            {
+                "type": 0,
+                "name": "Auto Start",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Start Server"
+            },
+            {
+                "type": 1,
+                "name": "Stop Server"
+            },
+            {
+                "type": 0,
+                "name": "Enable SSE",
+                "subType": "boolean"
+            },
+            {
+                "type": 5,
+                "name": "SSE Route"
+            },
+            {
+                "type": 5,
+                "name": "SSE Event Name"
+            },
+            {
+                "type": 2,
+                "name": "SSE Data"
+            },
+            {
+                "type": 1,
+                "name": "Broadcast SSE"
+            },
+            {
+                "type": 0,
+                "name": "Enable API",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Enable WS",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Server Started"
+            },
+            {
+                "type": 1,
+                "name": "Server Stopped"
+            },
+            {
+                "type": 1,
+                "name": "Server Ready"
+            },
+            {
+                "type": 0,
+                "name": "Running",
+                "subType": "boolean"
+            },
+            {
+                "type": 2,
+                "name": "Server Instance"
+            },
+            {
+                "type": 1,
+                "name": "HTTP Request"
+            },
+            {
+                "type": 5,
+                "name": "HTTP URL"
+            },
+            {
+                "type": 2,
+                "name": "HTTP Request Data"
+            },
+            {
+                "type": 2,
+                "name": "HTTP Response Data"
+            },
+            {
+                "type": 0,
+                "name": "SSE Active Clients",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "WS Active Clients",
+                "subType": "number"
+            },
+            {
+                "type": 5,
+                "name": "Error"
+            }
+        ]
+    },
+    "coreLibs": [
+        "standalone_electron"
+    ],
+    "summary": "High-performance HTTP File Server & WebSocket Pub/Sub Broker for Cables Standalone. Hosts static files, SSE streams, REST API endpoints, and real-time WebSocket communication.",
+    "docs": {
+        "ports": [
+            {
+                "name": "Hostname",
+                "text": "Interface to listen on (default 127.0.0.1 for local, or 0.0.0.0 for LAN)."
+            },
+            {
+                "name": "Port",
+                "text": "TCP port number to bind the server to (default 8080)."
+            },
+            {
+                "name": "Root Directory",
+                "text": "Local file system directory to serve files from. Defaults to the current patch directory."
+            },
+            {
+                "name": "Auto Start",
+                "text": "If true, starts the server automatically when the patch loads."
+            },
+            {
+                "name": "Start Server",
+                "text": "Trigger button to manually start the server."
+            },
+            {
+                "name": "Stop Server",
+                "text": "Trigger button to manually stop the server."
+            },
+            {
+                "name": "Enable SSE",
+                "text": "Enable Server-Sent Events endpoint."
+            },
+            {
+                "name": "SSE Route",
+                "text": "URL path for SSE client connections (default /sse)."
+            },
+            {
+                "name": "SSE Event Name",
+                "text": "Name of the SSE event emitted on broadcast."
+            },
+            {
+                "name": "SSE Data",
+                "text": "JSON payload to broadcast to connected SSE clients."
+            },
+            {
+                "name": "Broadcast SSE",
+                "text": "Trigger to broadcast the SSE payload to all clients connected to the SSE route."
+            },
+            {
+                "name": "Enable API",
+                "text": "Enable custom REST API endpoint (/api)."
+            },
+            {
+                "name": "Enable WS",
+                "text": "Enable integrated WebSocket Pub/Sub server."
+            },
+            {
+                "name": "Server Started",
+                "text": "Fires when the HTTP server has started listening."
+            },
+            {
+                "name": "Server Stopped",
+                "text": "Fires when the HTTP server has shut down."
+            },
+            {
+                "name": "Server Ready",
+                "text": "Fires once the server has passed health verification and is ready for connections."
+            },
+            {
+                "name": "Running",
+                "text": "True while the server is actively running."
+            },
+            {
+                "name": "Server Instance",
+                "text": "Object reference containing server, wss, and pubsub broker for WebSocketPub, WebSocketSub, and WebSocketClients ops."
+            },
+            {
+                "name": "HTTP Request",
+                "text": "Fires whenever an incoming HTTP API request is received."
+            },
+            {
+                "name": "HTTP URL",
+                "text": "URL of the most recent HTTP request."
+            },
+            {
+                "name": "HTTP Request Data",
+                "text": "Request details including method, pathname, headers, query, and parsed POST body."
+            },
+            {
+                "name": "HTTP Response Data",
+                "text": "Node.js ServerResponse object allowing custom HTTP response handling."
+            },
+            {
+                "name": "SSE Active Clients",
+                "text": "Number of currently active SSE stream clients."
+            },
+            {
+                "name": "WS Active Clients",
+                "text": "Number of currently active WebSocket clients connected to the server."
+            },
+            {
+                "name": "Error",
+                "text": "Error message string if binding or running fails."
+            }
+        ]
+    },
+    "isReleased": true,
+    "dependencies": [
+        {
+            "src": "ws",
+            "type": "npm"
+        }
+    ]
+}

@@ -1,7 +1,7 @@
 {
     "_id": "6a73bedadbd5d892717f6138",
     "shortId": "ZHLVsr",
-    "name": "CablesSyphon",
+    "name": "CablesForMacDemo",
     "description": "",
     "userId": "6a73beda7052d866a15f15b1",
     "cachedUsername": "",
@@ -2045,42 +2045,41 @@
         }
     },
     "summary": {
-        "title": "CablesSyphon"
+        "title": "CablesForMacDemo"
     },
     "opsHash": "503b2e72c59a53b60e87abaab130c4e75c24c8c2",
     "buildInfo": {
         "updateWarning": false,
         "core": {
-            "timestamp": 1786336216877,
-            "created": "2026-08-10T04:30:16.877Z",
+            "timestamp": 1786501931291,
+            "created": "2026-08-12T02:32:11.291Z",
             "git": {
                 "branch": "main",
-                "commit": "07da7257d2e74d643a1368b94c9d5cb5682a4cdf",
-                "date": "1786319161",
-                "message": "feat: implement HumanHand operator using native macOS Vision framework and update Electron build configuration"
+                "commit": "2ae7f373b433020f78f6cec2ab10cbd4c64755ee",
+                "date": "1786338946",
+                "message": "feat: add sync_apple_framework_ops script and integrate into setup and build workflows"
             }
         },
         "ui": {
-            "timestamp": 1786336222676,
-            "created": "2026-08-10T04:30:22.676Z",
+            "timestamp": 1786501938098,
+            "created": "2026-08-12T02:32:18.098Z",
             "git": {
                 "branch": "main",
-                "commit": "07da7257d2e74d643a1368b94c9d5cb5682a4cdf",
-                "date": "1786319161",
-                "message": "feat: implement HumanHand operator using native macOS Vision framework and update Electron build configuration"
+                "commit": "2ae7f373b433020f78f6cec2ab10cbd4c64755ee",
+                "date": "1786338946",
+                "message": "feat: add sync_apple_framework_ops script and integrate into setup and build workflows"
             }
         },
         "api": {
-            "timestamp": 1786336236754,
-            "created": "2026-08-10T04:30:36.754Z",
+            "timestamp": 1786527844833,
+            "created": "2026-08-12T09:44:04.833Z",
             "git": {
                 "branch": "main",
-                "commit": "07da7257d2e74d643a1368b94c9d5cb5682a4cdf",
-                "date": "1786319161",
-                "message": "feat: implement HumanHand operator using native macOS Vision framework and update Electron build configuration"
+                "commit": "2ae7f373b433020f78f6cec2ab10cbd4c64755ee",
+                "date": "1786338946",
+                "message": "feat: add sync_apple_framework_ops script and integrate into setup and build workflows"
             },
             "platform": {
-                "os": ":mac",
                 "npm": "11.16.0",
                 "node": "24.18.1"
             }

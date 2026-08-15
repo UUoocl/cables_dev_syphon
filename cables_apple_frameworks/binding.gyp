@@ -1,7 +1,33 @@
 {
   "targets": [
     {
+      "target_name": "uvc_controller_core",
+      "type": "static_library",
+      "sources": [
+        "UVCControllerCore/UVCController.m",
+        "UVCControllerCore/UVCType.m",
+        "UVCControllerCore/UVCValue.m"
+      ],
+      "include_dirs": [
+        "UVCControllerCore/include"
+      ],
+      "conditions": [
+        ["OS=='mac'", {
+          "xcode_settings": {
+            "MACOSX_DEPLOYMENT_TARGET": "14.0",
+            "OTHER_CFLAGS": [
+              "-fno-objc-arc"
+            ]
+          }
+        }]
+      ]
+    },
+    {
       "target_name": "apple_framework_bridge",
+      "dependencies": [
+        "<!(node -p \"require('node-addon-api').gyp\")",
+        "uvc_controller_core"
+      ],
       "sources": [
         "syphon_bridge.mm",
         "screencapturekit_bridge.mm",
@@ -16,16 +42,15 @@
         "8bitdo_xbox.mm",
         "XboxControllerCore.m",
         "soomfon_controller.mm",
-        "stream_deck.mm"
+        "stream_deck.mm",
+        "uvc_bridge.mm"
       ],
       "include_dirs": [
-        "<!@(node -p \"require('node-addon-api').include\")"
+        "<!@(node -p \"require('node-addon-api').include\")",
+        "UVCControllerCore/include"
       ],
       "defines": [
         "NAPI_DISABLE_CPP_EXCEPTIONS"
-      ],
-      "dependencies": [
-        "<!(node -p \"require('node-addon-api').gyp\")"
       ],
       "conditions": [
         ["OS=='mac'", {

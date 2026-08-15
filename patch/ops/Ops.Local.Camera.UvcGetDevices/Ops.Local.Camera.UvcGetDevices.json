@@ -1,0 +1,79 @@
+{
+    "id": "1b2c3d4e-5f60-7a8b-9c0d-e1f2a3b4c5d6",
+    "created": 1785970394200,
+    "license": "MIT",
+    "authorName": "Antigravity",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Refresh Devices"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "Devices"
+            },
+            {
+                "type": 2,
+                "name": "Device Names"
+            },
+            {
+                "type": 0,
+                "name": "Count",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Trigger Out"
+            },
+            {
+                "type": 5,
+                "name": "Status"
+            }
+        ]
+    },
+    "coreLibs": [
+        "standalone_electron"
+    ],
+    "summary": "Queries available USB Video Class (UVC) capture devices using native Apple IOKit USB framework bridge.",
+    "docs": {
+        "ports": [
+            {
+                "name": "Active",
+                "text": "Enable device discovery."
+            },
+            {
+                "name": "Refresh Devices",
+                "text": "Trigger a refresh scan of connected USB UVC cameras."
+            },
+            {
+                "name": "Devices",
+                "text": "Array of connected device objects with name, index, vendorId, productId, and locationId."
+            },
+            {
+                "name": "Device Names",
+                "text": "Array of human-readable device name strings."
+            },
+            {
+                "name": "Count",
+                "text": "Total number of connected UVC cameras detected."
+            },
+            {
+                "name": "Trigger Out",
+                "text": "Fires when device scan completes."
+            },
+            {
+                "name": "Status",
+                "text": "Current status of the query operation."
+            }
+        ]
+    },
+    "isReleased": true
+}

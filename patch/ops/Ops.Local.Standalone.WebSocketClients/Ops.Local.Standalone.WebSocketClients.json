@@ -1,0 +1,87 @@
+{
+    "id": "9d0b1c23-6543-4f01-9876-c3d4e5f6a7b8",
+    "created": 1724238219400,
+    "license": "MIT",
+    "authorName": "Antigravity",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Server Instance"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "On Client Connected"
+            },
+            {
+                "type": 1,
+                "name": "On Client Disconnected"
+            },
+            {
+                "type": 0,
+                "name": "Active Client Count",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "Client List"
+            },
+            {
+                "type": 5,
+                "name": "Last Client ID"
+            },
+            {
+                "type": 2,
+                "name": "Active Channels"
+            }
+        ]
+    },
+    "coreLibs": [
+        "standalone_electron"
+    ],
+    "summary": "Monitors connected WebSocket clients and channel subscription topology from the Standalone HttpFileServer broker.",
+    "docs": {
+        "ports": [
+            {
+                "name": "Server Instance",
+                "text": "The Server Instance object from Ops.Local.Standalone.HttpFileServer."
+            },
+            {
+                "name": "Active",
+                "text": "Enable or disable live client monitoring."
+            },
+            {
+                "name": "On Client Connected",
+                "text": "Fires when a new WebSocket client connects to the server."
+            },
+            {
+                "name": "On Client Disconnected",
+                "text": "Fires when a WebSocket client disconnects from the server."
+            },
+            {
+                "name": "Active Client Count",
+                "text": "Total number of currently connected WebSocket clients."
+            },
+            {
+                "name": "Client List",
+                "text": "Array of connected client metadata objects ({ id, ip, connectedAt, subscriptions })."
+            },
+            {
+                "name": "Last Client ID",
+                "text": "ID of the most recently connected or disconnected client."
+            },
+            {
+                "name": "Active Channels",
+                "text": "Array of all channel names that currently have active subscribers."
+            }
+        ]
+    },
+    "isReleased": true
+}

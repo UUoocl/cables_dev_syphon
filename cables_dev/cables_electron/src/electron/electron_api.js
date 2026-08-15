@@ -583,6 +583,59 @@ class ElectronApi
             return appleBridge.streamDeckSetStretchedImage(imageBase64);
         });
 
+        // UVC Video Capture & Camera Control API
+        ipcMain.handle("uvcGetDevices", () =>
+        {
+            return appleBridge.uvcGetDevices();
+        });
+
+        ipcMain.handle("uvcGetControls", (event, deviceIndex) =>
+        {
+            const idx = typeof deviceIndex === "number" ? deviceIndex : 0;
+            return appleBridge.uvcGetControls(idx);
+        });
+
+        ipcMain.handle("uvcGetControlValue", (event, deviceIndex, controlName) =>
+        {
+            const idx = typeof deviceIndex === "number" ? deviceIndex : 0;
+            return appleBridge.uvcGetControlValue(idx, controlName);
+        });
+
+        ipcMain.handle("uvcSetControlValue", (event, deviceIndex, controlName, value) =>
+        {
+            const idx = typeof deviceIndex === "number" ? deviceIndex : 0;
+            return appleBridge.uvcSetControlValue(idx, controlName, value);
+        });
+
+        ipcMain.handle("uvcResetControlValue", (event, deviceIndex, controlName) =>
+        {
+            const idx = typeof deviceIndex === "number" ? deviceIndex : 0;
+            return appleBridge.uvcResetControlValue(idx, controlName);
+        });
+
+        ipcMain.handle("uvcStartPolling", (event, deviceIndex, pollRate) =>
+        {
+            const senderFrame = event.senderFrame || event.sender.mainFrame;
+            const idx = typeof deviceIndex === "number" ? deviceIndex : 0;
+            const pps = typeof pollRate === "number" && pollRate > 0 ? pollRate : 30;
+            return appleBridge.uvcStartPolling(idx, pps, (jsonStr) =>
+            {
+                try
+                {
+                    senderFrame.send("uvcPollEvent", jsonStr);
+                }
+                catch (e)
+                {
+                    console.error("[Main] Error sending UVC poll event:", e);
+                }
+            });
+        });
+
+        ipcMain.handle("uvcStopPolling", () =>
+        {
+            return appleBridge.uvcStopPolling();
+        });
+
 
 
         ipcMain.handle("syphonStartAudioCapture", (event, pid) =>
@@ -1005,6 +1058,27 @@ class ElectronApi
         const currentProject = settings.getCurrentProject();
         let opDocs = doc.getOpDocs(true, true);
         opDocs = opDocs.concat(doc.getCollectionOpDocs("Ops.Extension.Standalone", currentUser));
+        opDocs = opDocs.concat(doc.getCollectionOpDocs("Ops.Extension.AppleFramework", currentUser));
+
+        const extOpsPath = cables.getExtensionOpsPath();
+        if (extOpsPath && fs.existsSync(extOpsPath))
+        {
+            try
+            {
+                const entries = fs.readdirSync(extOpsPath);
+                entries.forEach((entry) =>
+                {
+                    if (entry.startsWith("Ops.Extension.") &&
+                        entry !== "Ops.Extension.Standalone" &&
+                        entry !== "Ops.Extension.AppleFramework")
+                    {
+                        opDocs = opDocs.concat(doc.getCollectionOpDocs(entry, currentUser));
+                    }
+                });
+            }
+            catch (e) {}
+        }
+
         opDocs = opDocs.concat(projectsUtil.getOpDocsInProjectDirs(currentProject, true, true));
         const cleanDocs = doc.makeReadable(opDocs);
         opsUtil.addPermissionsToOps(cleanDocs, null);

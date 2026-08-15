@@ -430,6 +430,7 @@ extern void InitContourShuttleXpress(napi_env env, napi_value exports);
 extern void InitEightBitDoXbox(napi_env env, napi_value exports);
 extern void InitSoomfon(napi_env env, napi_value exports);
 extern void InitStreamDeck(napi_env env, napi_value exports);
+extern void InitUVC(Napi::Env env, Napi::Object exports);
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
     exports.Set(Napi::String::New(env, "getServers"), Napi::Function::New(env, GetServers));
@@ -452,6 +453,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
     InitEightBitDoXbox(env, exports);
     InitSoomfon(env, exports);
     InitStreamDeck(env, exports);
+    InitUVC(env, exports);
     
     return exports;
 }

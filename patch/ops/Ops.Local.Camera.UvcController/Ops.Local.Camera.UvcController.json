@@ -1,0 +1,259 @@
+{
+    "id": "2c3d4e5f-6a7b-8c9d-0e1f-a2b3c4d5e6f7",
+    "created": 1785970394300,
+    "license": "MIT",
+    "authorName": "Antigravity",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": 5,
+                "name": "Camera Target"
+            },
+            {
+                "type": 0,
+                "name": "Poll Rate (Hz)",
+                "subType": "number"
+            },
+            {
+                "type": 5,
+                "name": "Command"
+            },
+            {
+                "type": 1,
+                "name": "Trigger Command"
+            },
+            {
+                "type": 0,
+                "name": "Set Pan",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Set Tilt",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Send Pan/Tilt"
+            },
+            {
+                "type": 0,
+                "name": "Set Zoom",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Send Zoom"
+            },
+            {
+                "type": 0,
+                "name": "Set Focus",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Send Focus"
+            },
+            {
+                "type": 0,
+                "name": "Set Exposure",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Send Exposure"
+            },
+            {
+                "type": 0,
+                "name": "Set Brightness",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Send Brightness"
+            },
+            {
+                "type": 1,
+                "name": "Reset Defaults"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Trigger Out"
+            },
+            {
+                "type": 2,
+                "name": "Result Object"
+            },
+            {
+                "type": 2,
+                "name": "Properties Object"
+            },
+            {
+                "type": 2,
+                "name": "Controls List"
+            },
+            {
+                "type": 0,
+                "name": "Pan",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Tilt",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Zoom",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Focus",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Exposure",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Running",
+                "subType": "boolean"
+            },
+            {
+                "type": 5,
+                "name": "Status"
+            }
+        ]
+    },
+    "coreLibs": [
+        "standalone_electron"
+    ],
+    "summary": "Controls and queries UVC PTZ webcams and USB video capture cameras (Pan, Tilt, Zoom, Focus, Exposure, Brightness) via native Apple IOKit USB framework bridge.",
+    "docs": {
+        "ports": [
+            {
+                "name": "Active",
+                "text": "Enable or disable live camera monitoring and control."
+            },
+            {
+                "name": "Camera Target",
+                "text": "Target UVC camera selected from connected devices."
+            },
+            {
+                "name": "Poll Rate (Hz)",
+                "text": "Frequency in Hz for native hardware property polling."
+            },
+            {
+                "name": "Command",
+                "text": "JSON command string/object for programmatic camera control (e.g. set_value, get_value)."
+            },
+            {
+                "name": "Trigger Command",
+                "text": "Fires execution of the JSON Command."
+            },
+            {
+                "name": "Set Pan",
+                "text": "Absolute Pan angle value to write to the camera."
+            },
+            {
+                "name": "Set Tilt",
+                "text": "Absolute Tilt angle value to write to the camera."
+            },
+            {
+                "name": "Send Pan/Tilt",
+                "text": "Trigger to write Set Pan and Set Tilt values to the hardware."
+            },
+            {
+                "name": "Set Zoom",
+                "text": "Zoom value to write to the camera."
+            },
+            {
+                "name": "Send Zoom",
+                "text": "Trigger to write Zoom value to the hardware."
+            },
+            {
+                "name": "Set Focus",
+                "text": "Focus value to write to the camera."
+            },
+            {
+                "name": "Send Focus",
+                "text": "Trigger to write Focus value to the hardware."
+            },
+            {
+                "name": "Set Exposure",
+                "text": "Exposure time value to write to the camera."
+            },
+            {
+                "name": "Send Exposure",
+                "text": "Trigger to write Exposure time to the hardware."
+            },
+            {
+                "name": "Set Brightness",
+                "text": "Brightness value to write to the camera."
+            },
+            {
+                "name": "Send Brightness",
+                "text": "Trigger to write Brightness value to the hardware."
+            },
+            {
+                "name": "Reset Defaults",
+                "text": "Resets all supported controls to their hardware defaults."
+            },
+            {
+                "name": "Trigger Out",
+                "text": "Fires on every property update or poll cycle."
+            },
+            {
+                "name": "Result Object",
+                "text": "Full raw array of all control states."
+            },
+            {
+                "name": "Properties Object",
+                "text": "Key-value dictionary mapping control names to their current values."
+            },
+            {
+                "name": "Controls List",
+                "text": "List of all supported controls with their min, max, step, and default metadata."
+            },
+            {
+                "name": "Pan",
+                "text": "Current Pan value from the camera."
+            },
+            {
+                "name": "Tilt",
+                "text": "Current Tilt value from the camera."
+            },
+            {
+                "name": "Zoom",
+                "text": "Current Zoom value from the camera."
+            },
+            {
+                "name": "Focus",
+                "text": "Current Focus value from the camera."
+            },
+            {
+                "name": "Exposure",
+                "text": "Current Exposure value from the camera."
+            },
+            {
+                "name": "Running",
+                "text": "True when the native polling thread is active."
+            },
+            {
+                "name": "Status",
+                "text": "Current operational status string."
+            }
+        ]
+    },
+    "isReleased": true
+}

@@ -1,0 +1,113 @@
+{
+    "id": "8c9a0b12-5432-4ef0-9876-b2c3d4e5f6a7",
+    "created": 1724238219350,
+    "license": "MIT",
+    "authorName": "Antigravity",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "Server Instance"
+            },
+            {
+                "type": 5,
+                "name": "Channel"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Auto Parse JSON",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "On Message"
+            },
+            {
+                "type": 5,
+                "name": "Channel"
+            },
+            {
+                "type": 2,
+                "name": "Data"
+            },
+            {
+                "type": 5,
+                "name": "Raw Message"
+            },
+            {
+                "type": 5,
+                "name": "Sender Client ID"
+            },
+            {
+                "type": 0,
+                "name": "Total Received",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Timestamp",
+                "subType": "number"
+            }
+        ]
+    },
+    "coreLibs": [
+        "standalone_electron"
+    ],
+    "summary": "Subscribes to messages arriving on a specific WebSocket channel/topic from remote clients or the HttpFileServer broker.",
+    "docs": {
+        "ports": [
+            {
+                "name": "Server Instance",
+                "text": "The Server Instance object from Ops.Local.Standalone.HttpFileServer."
+            },
+            {
+                "name": "Channel",
+                "text": "The channel/topic name to filter messages on. Use '*' to listen to all channels."
+            },
+            {
+                "name": "Active",
+                "text": "Enable or disable message reception for this subscription."
+            },
+            {
+                "name": "Auto Parse JSON",
+                "text": "Automatically parses string payloads into JavaScript objects."
+            },
+            {
+                "name": "On Message",
+                "text": "Fires whenever a message matching the channel filter arrives."
+            },
+            {
+                "name": "Channel",
+                "text": "The actual channel name of the received message."
+            },
+            {
+                "name": "Data",
+                "text": "The parsed data payload (object, array, string, number)."
+            },
+            {
+                "name": "Raw Message",
+                "text": "The unparsed string representation of the payload."
+            },
+            {
+                "name": "Sender Client ID",
+                "text": "Unique ID of the client that sent this message ('patch' if emitted internally)."
+            },
+            {
+                "name": "Total Received",
+                "text": "Cumulative counter of messages received on this subscription."
+            },
+            {
+                "name": "Timestamp",
+                "text": "Unix timestamp in milliseconds when the message was dispatched."
+            }
+        ]
+    },
+    "isReleased": true
+}
