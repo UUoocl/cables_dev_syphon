@@ -96,8 +96,6 @@ static DeviceInfo g_active_device_info = { 0, "", 0, 0, 0, 0, 0, false };
 static std::vector<bool> g_button_states;
 
 static napi_threadsafe_function g_ts_fn = nullptr;
-
-static std::thread g_run_loop_thread;
 static CFRunLoopRef g_background_run_loop = nullptr;
 static std::mutex g_thread_mutex;
 
@@ -348,7 +346,7 @@ napi_value Init(napi_env env, napi_callback_info info) {
         return nullptr;
     }
 
-    g_run_loop_thread = std::thread([]() {
+    std::thread([]() {
         CFRunLoopRef runLoop = CFRunLoopGetCurrent();
         {
             std::lock_guard<std::mutex> lock(g_thread_mutex);
@@ -356,7 +354,7 @@ napi_value Init(napi_env env, napi_callback_info info) {
         }
         IOHIDManagerScheduleWithRunLoop(g_hid_manager, runLoop, kCFRunLoopDefaultMode);
         CFRunLoopRun();
-    });
+    }).detach();
 
     napi_value valTrue;
     napi_get_boolean(env, true, &valTrue);

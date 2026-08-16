@@ -12,7 +12,6 @@ struct ShuttleEventPayload {
 };
 
 static IOHIDManagerRef g_hid_manager = NULL;
-static std::thread g_run_loop_thread;
 static CFRunLoopRef g_cf_run_loop = NULL;
 static napi_threadsafe_function g_ts_fn = nullptr;
 static bool g_device_connected = false;
@@ -193,7 +192,7 @@ static napi_value Start(napi_env env, napi_callback_info info) {
         };
         IOHIDManagerSetDeviceMatching(g_hid_manager, (__bridge CFDictionaryRef)matchingDict);
         
-        g_run_loop_thread = std::thread(RunMonitorLoop);
+        std::thread(RunMonitorLoop).detach();
     }
     
     napi_value ret = nullptr;
@@ -206,10 +205,6 @@ static napi_value Stop(napi_env env, napi_callback_info info) {
     if (g_cf_run_loop) {
         CFRunLoopStop(g_cf_run_loop);
         g_cf_run_loop = NULL;
-    }
-    
-    if (g_run_loop_thread.joinable()) {
-        g_run_loop_thread.join();
     }
     
     if (g_hid_manager) {

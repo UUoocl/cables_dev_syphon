@@ -16,7 +16,6 @@ struct SoomfonEventPayload {
 
 static IOHIDManagerRef g_hid_manager = NULL;
 static CFRunLoopRef g_run_loop = NULL;
-static std::thread g_thread;
 static std::mutex g_devices_mutex;
 static std::vector<IOHIDDeviceRef> g_known_devices;
 
@@ -436,7 +435,7 @@ static napi_value Start(napi_env env, napi_callback_info info) {
         IOHIDManagerRegisterDeviceMatchingCallback(g_hid_manager, OnDeviceMatched, NULL);
         IOHIDManagerRegisterDeviceRemovalCallback(g_hid_manager, OnDeviceRemoved, NULL);
         
-        g_thread = std::thread([]() {
+        std::thread([]() {
             g_run_loop = CFRunLoopGetCurrent();
             IOHIDManagerScheduleWithRunLoop(g_hid_manager, g_run_loop, kCFRunLoopDefaultMode);
             IOReturn openRes = IOHIDManagerOpen(g_hid_manager, kIOHIDOptionsTypeNone);
@@ -445,7 +444,7 @@ static napi_value Start(napi_env env, napi_callback_info info) {
                 return;
             }
             CFRunLoopRun();
-        });
+        }).detach();
     }
     
     // Wait for manager to match devices (retry up to 1.5 seconds)

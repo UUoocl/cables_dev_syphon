@@ -13,7 +13,6 @@ static IOHIDManagerRef g_hid_manager = nullptr;
 static std::mutex g_devices_mutex;
 static std::unordered_map<std::string, IOHIDDeviceRef> g_connected_devices;
 static Napi::ThreadSafeFunction g_hid_callback = nullptr;
-static std::thread g_run_loop_thread;
 static CFRunLoopRef g_cf_run_loop = nullptr;
 
 // Helper to query device properties
@@ -221,7 +220,7 @@ Napi::Value StartHIDMonitoring(const Napi::CallbackInfo& info) {
     EnsureHIDManagerCreated();
 
     if (!g_cf_run_loop) {
-        g_run_loop_thread = std::thread(RunMonitorLoop);
+        std::thread(RunMonitorLoop).detach();
     }
 
     return Napi::Boolean::New(env, true);
@@ -233,10 +232,6 @@ Napi::Value StopHIDMonitoring(const Napi::CallbackInfo& info) {
     if (g_cf_run_loop) {
         CFRunLoopStop(g_cf_run_loop);
         g_cf_run_loop = nullptr;
-    }
-
-    if (g_run_loop_thread.joinable()) {
-        g_run_loop_thread.join();
     }
 
     if (g_hid_manager) {

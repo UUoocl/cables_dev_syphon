@@ -85,7 +85,6 @@ struct MouseEvent {
 
 static Napi::ThreadSafeFunction g_MouseCallback;
 static std::mutex g_MouseMutex;
-static std::thread g_MouseThread;
 static CFRunLoopRef g_MouseRunLoop = nullptr;
 static CFMachPortRef g_MouseEventTap = nullptr;
 static CFRunLoopSourceRef g_MouseRunLoopSource = nullptr;
@@ -218,12 +217,11 @@ Napi::Value StartMouseMonitor(const Napi::CallbackInfo& info) {
 
     g_MouseCallback = Napi::ThreadSafeFunction::New(env, cb, "MouseMonitorCallback", 0, 1);
     g_MouseActive = true;
-    g_MouseThread = std::thread(RunMouseMonitorLoop);
+    std::thread(RunMouseMonitorLoop).detach();
 
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
     if (!g_MouseEventTap) {
         g_MouseActive = false;
-        if (g_MouseThread.joinable()) g_MouseThread.join();
         g_MouseCallback.Release();
         g_MouseCallback = Napi::ThreadSafeFunction();
         return Napi::Boolean::New(env, false);
@@ -253,7 +251,6 @@ Napi::Value StopMouseMonitor(const Napi::CallbackInfo& info) {
         CFRelease(g_MouseRunLoopSource);
         g_MouseRunLoopSource = nullptr;
     }
-    if (g_MouseThread.joinable()) g_MouseThread.join();
     if (g_MouseCallback) {
         g_MouseCallback.Release();
         g_MouseCallback = Napi::ThreadSafeFunction();
@@ -275,7 +272,6 @@ struct KeyboardEvent {
 
 static Napi::ThreadSafeFunction g_KeyboardCallback;
 static std::mutex g_KeyboardMutex;
-static std::thread g_KeyboardThread;
 static CFRunLoopRef g_KeyboardRunLoop = nullptr;
 static CFMachPortRef g_KeyboardEventTap = nullptr;
 static CFRunLoopSourceRef g_KeyboardRunLoopSource = nullptr;
@@ -385,12 +381,11 @@ Napi::Value StartKeyboardMonitor(const Napi::CallbackInfo& info) {
     Napi::Function cb = info[0].As<Napi::Function>();
     g_KeyboardCallback = Napi::ThreadSafeFunction::New(env, cb, "KeyboardMonitorCallback", 0, 1);
     g_KeyboardActive = true;
-    g_KeyboardThread = std::thread(RunKeyboardMonitorLoop);
+    std::thread(RunKeyboardMonitorLoop).detach();
 
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
     if (!g_KeyboardEventTap) {
         g_KeyboardActive = false;
-        if (g_KeyboardThread.joinable()) g_KeyboardThread.join();
         g_KeyboardCallback.Release();
         g_KeyboardCallback = Napi::ThreadSafeFunction();
         return Napi::Boolean::New(env, false);
@@ -420,7 +415,6 @@ Napi::Value StopKeyboardMonitor(const Napi::CallbackInfo& info) {
         CFRelease(g_KeyboardRunLoopSource);
         g_KeyboardRunLoopSource = nullptr;
     }
-    if (g_KeyboardThread.joinable()) g_KeyboardThread.join();
     if (g_KeyboardCallback) {
         g_KeyboardCallback.Release();
         g_KeyboardCallback = Napi::ThreadSafeFunction();

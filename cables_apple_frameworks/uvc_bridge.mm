@@ -14,7 +14,6 @@ struct UvcPollData {
 
 static Napi::ThreadSafeFunction g_uvc_ts_fn = nullptr;
 static std::atomic<bool> g_uvc_polling(false);
-static std::thread g_uvc_poll_thread;
 static int g_uvc_target_device_index = 0;
 static double g_uvc_poll_rate_pps = 10.0;
 static std::mutex g_uvc_mutex;
@@ -395,9 +394,6 @@ Napi::Value UvcStartPolling(const Napi::CallbackInfo& info) {
     // Stop existing polling thread
     if (g_uvc_polling.load()) {
         g_uvc_polling.store(false);
-        if (g_uvc_poll_thread.joinable()) {
-            g_uvc_poll_thread.join();
-        }
     }
     if (g_uvc_ts_fn != nullptr) {
         g_uvc_ts_fn.Release();
@@ -416,7 +412,7 @@ Napi::Value UvcStartPolling(const Napi::CallbackInfo& info) {
     );
     
     g_uvc_polling.store(true);
-    g_uvc_poll_thread = std::thread(UvcPollingWorker);
+    std::thread(UvcPollingWorker).detach();
     
     return Napi::Boolean::New(env, true);
 }
@@ -426,9 +422,6 @@ Napi::Value UvcStopPolling(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
     if (g_uvc_polling.load()) {
         g_uvc_polling.store(false);
-        if (g_uvc_poll_thread.joinable()) {
-            g_uvc_poll_thread.join();
-        }
     }
     if (g_uvc_ts_fn != nullptr) {
         g_uvc_ts_fn.Release();
