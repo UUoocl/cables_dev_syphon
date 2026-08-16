@@ -1,9 +1,9 @@
-# Ops.Local.Standalone.WebSocketServerPub
+# Ops.Local.Standalone.Server.WebSocketServerPub
 
 Publishes messages to a specific channel/topic on the Cables Standalone WebSocket server broker.
 
 ## Overview
-Connects to the `Server Instance` output of `Ops.Local.Standalone.HttpFileServer` and publishes messages to connected browser clients, mobile interfaces, or other remote subscribers.
+Connects to the `Server Instance` output of `Ops.Local.Standalone.Server.HttpFileServer` and publishes messages to connected browser clients, mobile interfaces, or other remote subscribers.
 
 ## Features
 - **Channel-Targeted Publishing**: Broadcasts messages exclusively to clients subscribed to the specified channel.

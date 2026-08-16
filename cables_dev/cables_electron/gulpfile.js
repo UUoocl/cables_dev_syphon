@@ -5,6 +5,7 @@ import mkdirp from "mkdirp";
 import webpack from "webpack";
 import git from "git-last-commit";
 import { execa } from "execa";
+import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 import jsonfile from "jsonfile";
 import webpackElectronConfig from "./webpack.electron.config.js";
@@ -18,6 +19,23 @@ let analyze = false;
 const isLiveBuild = config.env === "electron";
 const minify = config.hasOwnProperty("minifyJs") ? config.minifyJs : false;
 
+function _sync_apple_ops(done)
+{
+    const syncScript = path.resolve(__dirname, "../sync_apple_framework_ops.sh");
+    if (fs.existsSync(syncScript))
+    {
+        try
+        {
+            execSync(`"${syncScript}"`, { "stdio": "inherit" });
+        }
+        catch (e)
+        {
+            console.error("Failed to sync apple framework ops:", e);
+        }
+    }
+    done();
+}
+
 const watchers = [];
 function _watch(done)
 {
@@ -28,6 +46,7 @@ function _watch(done)
     } };
     watchers.push(gulp.watch(["src_client/**/*.js", "../shared/shared_constants.json", "../shared/client/**/*.js"], watchOptions, gulp.series(defaultSeries)));
     watchers.push(gulp.watch(["src/**/*.js", "../shared/api/**/*.js"], watchOptions, gulp.series(electronChanges)));
+    watchers.push(gulp.watch(["../../patch/ops/**/*"], watchOptions, gulp.series(_sync_apple_ops, _extension_ops_copy)));
     done();
 }
 
@@ -275,6 +294,7 @@ const defaultSeries = gulp.series(
 );
 
 gulp.task("build", gulp.series(
+    _sync_apple_ops,
     _create_ops_dirs,
     gulp.parallel(
         defaultSeries,
@@ -290,6 +310,7 @@ gulp.task("build", gulp.series(
 gulp.task("analyze", gulp.series(_analyze, defaultSeries));
 
 gulp.task("watch", gulp.series(
+    _sync_apple_ops,
     defaultSeries,
     gulp.parallel(
         _serve,

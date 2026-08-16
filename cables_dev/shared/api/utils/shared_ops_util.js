@@ -1068,7 +1068,12 @@ export default class SharedOpsUtil extends SharedUtil
     {
         const collectionFile = this.getCollectionOpDocFile(collectionName);
         if (!collectionOps) collectionOps = this.getCollectionOpNames(collectionName);
-        let collectionDocs = this._docsUtil.getCollectionOpDocs(collectionName, null, opNames);
+        let collectionDocs = [];
+        try
+        {
+            collectionDocs = jsonfile.readFileSync(collectionFile);
+        }
+        catch (e) {}
         let rebuildOps = collectionOps;
         if (opNames)
         {
@@ -1112,7 +1117,7 @@ export default class SharedOpsUtil extends SharedUtil
 
     addOpDocsForCollections(opNames, opDocs = [], forceRebuild = false)
     {
-        if (!opNames || opNames.length == 0) return [];
+        if (!opNames || opNames.length == 0) return opDocs;
         const allOpDocs = [...opDocs];
         const collections = {};
         opNames.forEach((opName) =>
@@ -2333,7 +2338,7 @@ export default class SharedOpsUtil extends SharedUtil
     getCollectionOpDocFile(collectionName)
     {
         if (collectionName.endsWith(".")) collectionName = collectionName.substring(0, collectionName.length - 1);
-        return path.join(this._cables.getOpDocsCachePath() + collectionName + ".json");
+        return path.join(this._cables.getOpDocsCachePath(), collectionName + ".json");
     }
 
     getCollectionOpNames(collectionName, filterInvisibleOps = false)

@@ -1,13 +1,13 @@
 {
-    "id": "0d8f54b7-73d2-48d7-a8fa-b23dbbfab0b1",
-    "created": 1724238219450,
+    "id": "8c9a0b12-5432-4ef0-9876-b2c3d4e5f6a7",
+    "created": 1724238219350,
     "license": "MIT",
     "authorName": "Antigravity",
     "layout": {
         "portsIn": [
             {
                 "type": 2,
-                "name": "Client Connection"
+                "name": "Server Instance"
             },
             {
                 "type": 5,
@@ -57,16 +57,19 @@
             }
         ]
     },
-    "summary": "Subscribes a client Cables patch to a WebSocket channel/topic on a remote or localhost WebSocket server.",
+    "coreLibs": [
+        "standalone_electron"
+    ],
+    "summary": "Subscribes to messages arriving on a specific WebSocket channel/topic from remote clients or the HttpFileServer broker.",
     "docs": {
         "ports": [
             {
-                "name": "Client Connection",
-                "text": "The Client Connection object from Ops.Local.Standalone.WebSocketClient."
+                "name": "Server Instance",
+                "text": "The Server Instance object from Ops.Local.Standalone.Server.HttpFileServer."
             },
             {
                 "name": "Channel",
-                "text": "The channel/topic to subscribe to. Use '*' to receive all messages."
+                "text": "The channel/topic name to filter messages on. Use '*' to listen to all channels."
             },
             {
                 "name": "Active",
@@ -78,7 +81,7 @@
             },
             {
                 "name": "On Message",
-                "text": "Fires whenever a matching message arrives."
+                "text": "Fires whenever a message matching the channel filter arrives."
             },
             {
                 "name": "Message Channel",
@@ -90,19 +93,19 @@
             },
             {
                 "name": "Raw Message",
-                "text": "The raw string representation of the payload."
+                "text": "The unparsed string representation of the payload."
             },
             {
                 "name": "Sender Client ID",
-                "text": "ID of the client that sent this message ('patch' if emitted internally by the host)."
+                "text": "Unique ID of the client that sent this message ('patch' if emitted internally)."
             },
             {
                 "name": "Total Received",
-                "text": "Cumulative count of messages received on this subscription."
+                "text": "Cumulative counter of messages received on this subscription."
             },
             {
                 "name": "Timestamp",
-                "text": "Timestamp when the message was dispatched."
+                "text": "Unix timestamp in milliseconds when the message was dispatched."
             }
         ]
     },

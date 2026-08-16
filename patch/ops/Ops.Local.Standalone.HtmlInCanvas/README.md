@@ -1,4 +1,4 @@
-# Ops.Local.Canvas.HTMLInCanvas
+# Ops.Local.Standalone.HtmlInCanvas
 
 Render styled, interactive HTML/DOM elements directly into a WebGL texture using the experimental browser-native HTML-in-Canvas API.
 
@@ -18,7 +18,7 @@ This Op allows you to use standard HTML elements (like text boxes, buttons, tabl
 ---
 
 ## How to Use
-1.  **Place the Op**: In Cables, add `Ops.Local.Canvas.HTMLInCanvas`.
+1.  **Place the Op**: In Cables, add `Ops.Local.Standalone.HtmlInCanvas`.
 2.  **Verify Support**: Check the `Supported` output port (must be `true`; if it is `false`, check that the Electron application has the Blink switch enabled).
 3.  **Provide Element**: Connect an HTML/DOM element (e.g. from an HTML UI Op) to the `Element` input port.
 4.  **Configure Resolution**: Set the `Width` and `Height` input values to define the rendering resolution of the output texture.

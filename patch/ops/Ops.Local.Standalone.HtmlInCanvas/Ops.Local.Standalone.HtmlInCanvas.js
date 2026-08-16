@@ -1,4 +1,4 @@
-// Ops.Local.Canvas.HTMLInCanvas.js
+// Ops.Local.Standalone.HtmlInCanvas.js
 
 // Define inputs
 const inUpdate = op.inTrigger("Update");

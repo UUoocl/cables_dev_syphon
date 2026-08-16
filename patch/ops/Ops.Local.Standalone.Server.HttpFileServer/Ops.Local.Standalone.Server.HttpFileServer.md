@@ -1,4 +1,4 @@
-# Ops.Local.Standalone.HttpFileServer
+# Ops.Local.Standalone.Server.HttpFileServer
 
 High-performance HTTP File Server & WebSocket Pub/Sub Broker for Cables Standalone.
 

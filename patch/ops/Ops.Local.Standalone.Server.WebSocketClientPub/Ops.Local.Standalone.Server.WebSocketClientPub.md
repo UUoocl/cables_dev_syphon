@@ -1,9 +1,9 @@
-# Ops.Local.Standalone.WebSocketClientPub
+# Ops.Local.Standalone.Server.WebSocketClientPub
 
 Publishes messages to a specific channel/topic from a client Cables patch.
 
 ## Overview
-Connects to `Ops.Local.Standalone.WebSocketClient` and publishes structured data envelopes to the WebSocket server broker.
+Connects to `Ops.Local.Standalone.Server.WebSocketClient` and publishes structured data envelopes to the WebSocket server broker.
 
 ## Features
 - **Channel Publishing**: Send messages to a dedicated channel (e.g. `joystickData`, `cursorPos`).

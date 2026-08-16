@@ -1,9 +1,9 @@
-# Ops.Local.Standalone.WebSocketServerClientsList
+# Ops.Local.Standalone.Server.WebSocketServerClientsList
 
 Monitors connected WebSocket clients and channel subscription topology from the Standalone HttpFileServer broker.
 
 ## Overview
-Connects to `Ops.Local.Standalone.HttpFileServer` and outputs real-time client metadata, connection events, and active channel lists.
+Connects to `Ops.Local.Standalone.Server.HttpFileServer` and outputs real-time client metadata, connection events, and active channel lists.
 
 ## Features
 - **Connection Lifecycle Triggers**: Fires on client connection and disconnection.
@@ -15,7 +15,7 @@ Connects to `Ops.Local.Standalone.HttpFileServer` and outputs real-time client m
 External clients (such as web browsers, Node.js scripts, Python apps, or mobile devices) can connect to the Cables Standalone WebSocket server using standard WebSocket protocols.
 
 ### 1. Connection URL
-Connect to the host and port configured in `Ops.Local.Standalone.HttpFileServer` (default is `127.0.0.1:8080`):
+Connect to the host and port configured in `Ops.Local.Standalone.Server.HttpFileServer` (default is `127.0.0.1:8080`):
 
 ```text
 ws://127.0.0.1:8080

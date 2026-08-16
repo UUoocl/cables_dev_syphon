@@ -698,11 +698,11 @@ export default class SharedDocUtil extends SharedUtil
                     const docFile = this._opsUtil.getCollectionOpDocFile(collectionName);
                     const collectionDocs = jsonfile.readFileSync(docFile);
                     opNames = collectionDocs.map((collectionDoc) => { return collectionDoc.name; });
-                    opDocs = this._opsUtil.addOpDocsForCollections(opNames, opDocs);
                 }
                 catch (e)
                 {
-                    // file does not exists or is not parseable, fallback to filesystem
+                    // file does not exist or is not parseable, fallback to filesystem
+                    opNames = this._opsUtil.getCollectionOpNames(collectionName);
                 }
             }
             opDocs = this._opsUtil.addOpDocsForCollections(opNames, opDocs);

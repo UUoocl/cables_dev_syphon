@@ -51,7 +51,7 @@
         "ports": [
             {
                 "name": "Server Instance",
-                "text": "The Server Instance object from Ops.Local.Standalone.HttpFileServer."
+                "text": "The Server Instance object from Ops.Local.Standalone.Server.HttpFileServer."
             },
             {
                 "name": "Active",
