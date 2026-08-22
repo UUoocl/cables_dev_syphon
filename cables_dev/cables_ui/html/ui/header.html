@@ -17,6 +17,19 @@
                 window.addEventListener("hashchange", (event) => {
                     parent.postMessage({"type": "hashchange", "data": window.location.hash}, "*");
                 });
+
+                if (window.top && window.top !== window && window.top.document) {
+                    if (window.top.HTMLWebViewElement) {
+                        window.HTMLWebViewElement = window.top.HTMLWebViewElement;
+                    }
+                    const _origCreateElement = document.createElement.bind(document);
+                    document.createElement = function(tagName, options) {
+                        if (tagName && typeof tagName === "string" && tagName.toLowerCase() === "webview") {
+                            return window.top.document.createElement("webview", options);
+                        }
+                        return _origCreateElement(tagName, options);
+                    };
+                }
             }
         </script>
 

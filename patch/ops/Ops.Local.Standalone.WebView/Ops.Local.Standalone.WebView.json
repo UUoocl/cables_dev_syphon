@@ -1,0 +1,135 @@
+{
+    "id": "cables_op_standalone_webview",
+    "name": "Ops.Local.Standalone.WebView",
+    "summary": "Embeds and controls an Electron WebView tag with navigation, script injection, and layout options in Cables Standalone.",
+    "authorName": "cables",
+    "license": "MIT",
+    "ports": [
+        {
+            "name": "URL",
+            "type": "string",
+            "group": "Configuration"
+        },
+        {
+            "name": "Active",
+            "type": "boolean",
+            "group": "Configuration"
+        },
+        {
+            "name": "Transparent",
+            "type": "boolean",
+            "group": "Configuration"
+        },
+        {
+            "name": "Allow Popups",
+            "type": "boolean",
+            "group": "Configuration"
+        },
+        {
+            "name": "Preload Script Path",
+            "type": "string",
+            "group": "Configuration"
+        },
+        {
+            "name": "Context Isolation",
+            "type": "boolean",
+            "group": "Configuration"
+        },
+        {
+            "name": "Node Integration",
+            "type": "boolean",
+            "group": "Configuration"
+        },
+        {
+            "name": "Width",
+            "type": "integer",
+            "group": "Layout"
+        },
+        {
+            "name": "Height",
+            "type": "integer",
+            "group": "Layout"
+        },
+        {
+            "name": "Position X",
+            "type": "integer",
+            "group": "Layout"
+        },
+        {
+            "name": "Position Y",
+            "type": "integer",
+            "group": "Layout"
+        },
+        {
+            "name": "Reload",
+            "type": "trigger",
+            "group": "Navigation"
+        },
+        {
+            "name": "Go Back",
+            "type": "trigger",
+            "group": "Navigation"
+        },
+        {
+            "name": "Go Forward",
+            "type": "trigger",
+            "group": "Navigation"
+        },
+        {
+            "name": "JavaScript Code",
+            "type": "string",
+            "group": "Injection"
+        },
+        {
+            "name": "Execute JS",
+            "type": "trigger",
+            "group": "Injection"
+        },
+        {
+            "name": "CSS Code",
+            "type": "string",
+            "group": "Injection"
+        },
+        {
+            "name": "Inject CSS",
+            "type": "trigger",
+            "group": "Injection"
+        },
+        {
+            "name": "Element",
+            "type": "object"
+        },
+        {
+            "name": "Is Loaded",
+            "type": "boolean"
+        },
+        {
+            "name": "Page Title",
+            "type": "string"
+        },
+        {
+            "name": "Current URL",
+            "type": "string"
+        },
+        {
+            "name": "DOM Ready",
+            "type": "trigger"
+        },
+        {
+            "name": "Did Finish Load",
+            "type": "trigger"
+        },
+        {
+            "name": "IPC Message",
+            "type": "object"
+        },
+        {
+            "name": "Supported",
+            "type": "boolean"
+        },
+        {
+            "name": "Error",
+            "type": "string"
+        }
+    ]
+}
