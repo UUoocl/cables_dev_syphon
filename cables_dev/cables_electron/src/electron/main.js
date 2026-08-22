@@ -336,7 +336,8 @@ class ElectronApp
                 "experimentalFeatures": true,
                 "v8CacheOptions": "none",
                 "backgroundThrottling": false,
-                "autoplayPolicy": "no-user-gesture-required"
+                "autoplayPolicy": "no-user-gesture-required",
+                "webviewTag": true
             }
         };
 
@@ -1035,8 +1036,13 @@ class ElectronApp
                             "nodeIntegration": true,
                             "nodeIntegrationInSubFrames": true,
                             "contextIsolation": false,
+                            "sandbox": false,
+                            "webSecurity": false,
+                            "allowRunningInsecureContent": true,
+                            "experimentalFeatures": true,
                             "backgroundThrottling": false,
-                            "autoplayPolicy": "no-user-gesture-required"
+                            "autoplayPolicy": "no-user-gesture-required",
+                            "webviewTag": true
                         }
                     };
                 }
