@@ -1003,7 +1003,7 @@ class ElectronApp
             }
         });
 
-        this.editorWindow.webContents.setWindowOpenHandler(({ url, frameName }) =>
+        this.editorWindow.webContents.setWindowOpenHandler(({ url, frameName, features }) =>
         {
             if (url && url.startsWith("http"))
             {
@@ -1015,9 +1015,13 @@ class ElectronApp
                 "action": "allow"
             };
 
-            if (frameName.startsWith("view#"))
+            const isFeaturesTransparent = typeof features === "string" && (features.includes("transparent=yes") || features.includes("transparent=true") || features.includes("transparent=1"));
+            const isFrameTransparent = frameName && frameName.includes("transparent");
+            const isPrefTransparent = settings.getUserSetting("transparentpopout", false);
+
+            if (frameName && frameName.startsWith("view#"))
             {
-                const transparent = settings.getUserSetting("transparentpopout", false);
+                const transparent = isPrefTransparent || isFrameTransparent || isFeaturesTransparent;
                 if (transparent)
                 {
                     options.overrideBrowserWindowOptions = {

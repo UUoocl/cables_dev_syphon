@@ -134,15 +134,23 @@ inOpen.onTriggered = () =>
 {
     if (subWindow)close();
     let id = CABLES.uuid();
-    subWindow = window.open("", "view#" + id, "width=" + inSizeX.get() + ",height=" + inSizeY.get() + ",directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=no,resizable=yes,popup=true");
+    const isTransparent = inTransparent.get();
+    let frameName = "view#" + (isTransparent ? "transparent#" : "") + id;
+    let features = "width=" + inSizeX.get() + ",height=" + inSizeY.get() + ",directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=no,resizable=yes,popup=true" + (isTransparent ? ",transparent=yes,frame=no" : "");
+    subWindow = window.open("", frameName, features);
     if (!subWindow) return;
     let document = subWindow.document;
     document.title = inTitle.get();
 
     let body = document.body;
-    let bgColor = "#000";
-    if (inTransparent.get()) bgColor = "transparent";
+    let bgColor = isTransparent ? "transparent" : "#000";
     body.style = "padding:0px;margin:0px;background-color:" + bgColor + ";overflow:hidden;";
+    if (isTransparent)
+    {
+        body.style.background = "transparent";
+        document.documentElement.style.backgroundColor = "transparent";
+        document.documentElement.style.background = "transparent";
+    }
     canvas = document.createElement("canvas");
     canvas.style.position = "absolute";
     canvas.width = winWidth;

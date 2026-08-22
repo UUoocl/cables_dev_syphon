@@ -289,8 +289,11 @@ export default class CanvasManager
             catch (e) {}
             this.subWindow = null;
         }
+        const isTransparent = !!gui.userSettings.get("transparentpopout");
         let id = utils.uuid();
-        this.subWindow = window.open("", "view#" + id, "width=" + gui.rendererWidth + ",height=" + gui.rendererHeight + ",directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=no,resizable=yes,popup=true");
+        let frameName = "view#" + (isTransparent ? "transparent#" : "") + id;
+        let features = "width=" + gui.rendererWidth + ",height=" + gui.rendererHeight + ",directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=no,resizable=yes,popup=true" + (isTransparent ? ",transparent=yes,frame=no" : "");
+        this.subWindow = window.open("", frameName, features);
         if (!this.subWindow) return;
         let nDocument = this.subWindow.document;
         nDocument.title = "cables";
@@ -299,20 +302,36 @@ export default class CanvasManager
 
         gui.corePatch().emitEvent("windowChanged", this.subWindow);
 
+        const bgColor = isTransparent ? "transparent" : "black";
         const style = document.createElement("style");
-        style.innerHTML = "body{padding:0;margin:0;background-color:black;overflow:hidden;color:#aaa;font-family:arial;}" +
-            "#glcanvas{position:absolute;}" +
+        style.innerHTML = "html,body{padding:0;margin:0;background-color:" + bgColor + " !important;overflow:hidden;color:#aaa;font-family:arial;}" +
+            "#glcanvas{position:absolute;background:transparent !important;}" +
             ":focus{outline:unset;}";
         nBody.appendChild(style);
 
         // <link rel="stylesheet" type="text/css" media="all" href="css/style-dark.css">
 
         nBody.classList.add("cablesCssUi");
+        if (isTransparent)
+        {
+            nBody.style.backgroundColor = "transparent";
+            nBody.style.background = "transparent";
+            nDocument.documentElement.style.backgroundColor = "transparent";
+            nDocument.documentElement.style.background = "transparent";
+        }
 
         const containerEle = nDocument.createElement("div");
 
-        containerEle.classList.add("bgpatternDark");
-        containerEle.classList.add("bgPatternDark");
+        if (!isTransparent)
+        {
+            containerEle.classList.add("bgpatternDark");
+            containerEle.classList.add("bgPatternDark");
+        }
+        else
+        {
+            containerEle.style.backgroundColor = "transparent";
+            containerEle.style.background = "transparent";
+        }
         containerEle.style.width = "100%";
         containerEle.style.height = "100%";
         nBody.appendChild(containerEle);

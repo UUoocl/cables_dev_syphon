@@ -56,6 +56,12 @@ class CmdElectron
                 "category": "cables",
                 "func": CmdElectron.openFileManager,
                 "icon": "folder"
+            },
+            {
+                "cmd": "toggle transparent popout canvas",
+                "category": "cables",
+                "func": CmdElectron.toggleTransparentPopout,
+                "icon": "window"
             }
         ];
     }
@@ -194,12 +200,16 @@ class CmdElectron
         }
     }
 
-    // static toggleTransparentPopout()
-    // {
-    //     const current = gui.userSettings.get("transparentpopout", true);
-    //     gui.userSettings.set("transparentpopout", !current);
-    //     cablesElectron.editor.notify("Transparent popout canvas: " + (!current ? "enabled" : "disabled"));
-    // };
+    static toggleTransparentPopout()
+    {
+        const gui = cablesElectron.gui;
+        if (gui)
+        {
+            const current = gui.userSettings.get("transparentpopout", false);
+            gui.userSettings.set("transparentpopout", !current);
+            cablesElectron.editor.notify("Transparent popout canvas: " + (!current ? "enabled" : "disabled"));
+        }
+    }
 
     static openOpDir(opId = null, opName = null)
     {
